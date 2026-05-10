@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>¡Gracias! - AMORISMO VOL. III</title>
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700;900&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+	
+	<style>
+		/* ===== CSS Custom Properties ===== */
+		:root {
+			--ty-font-sans: 'Inter', system-ui, sans-serif;
+			--ty-font-title: 'IBM Plex Mono', monospace;
+			
+			--ty-color-verde-petroleo: #0D2C2C;
+			--ty-color-verde-carbon: #0A2424;
+			--ty-color-gris-neblina-azul: #A8B8BD;
+			--ty-color-blanco-proyector: #E6EBEE;
+			--ty-color-blanco-puro: #FFFFFF;
+			
+			--ty-space-4: 1rem;
+			--ty-space-5: 1.5rem;
+			--ty-space-6: 2rem;
+			--ty-space-8: 4rem;
+			
+			--ty-radius-md: 14px;
+		}
+		
+		/* ===== Base ===== */
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		
+		body {
+			margin: 0;
+			color: var(--ty-color-blanco-puro);
+			font-family: var(--ty-font-sans);
+			font-weight: 400;
+			position: relative;
+			overflow-x: hidden;
+			background-color: var(--ty-color-verde-petroleo);
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		
+		/* Fondo gradiente - Compatible con todos los navegadores */
+		.ty__bg-gradient {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: radial-gradient(
+					circle at 50% 40%,
+					rgba(255,255,255,0.08) 0%,
+					rgba(255,255,255,0.02) 25%,
+					rgba(0,0,0,0.95) 80%
+				),
+				linear-gradient(
+					to bottom right,
+					var(--ty-color-verde-petroleo) 0%,
+					var(--ty-color-verde-carbon) 40%,
+					#153A3B 100%
+				);
+			pointer-events: none;
+			z-index: -2;
+		}
+		
+		/* Ruido/Grano - Compatible con todos los navegadores */
+		.ty__bg-noise {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			pointer-events: none;
+			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='5' seed='3'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
+			background-size: 200px 200px;
+			opacity: 0.35;
+			z-index: -2;
+			will-change: auto;
+		}
+		
+		/* ===== Thank You Container ===== */
+		main {
+			position: relative;
+			z-index: 1;
+			width: 100%;
+			max-width: 800px;
+			padding: var(--ty-space-8);
+			text-align: center;
+		}
+		
+		.ty-section {
+			display: none;
+		}
+		
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		
+		h1 {
+			font-family: var(--ty-font-title);
+			font-size: clamp(2rem, 6vw, 3.5rem);
+			font-weight: 900;
+			color: var(--ty-color-blanco-proyector);
+			margin: 0 0 var(--ty-space-6) 0;
+			text-shadow: 0 4px 20px rgba(230, 235, 238, 0.2);
+		}
+		
+		h2 {
+			font-family: var(--ty-font-title);
+			font-size: 1.5rem;
+			font-weight: 700;
+			color: var(--ty-color-blanco-proyector);
+			margin: 0 0 var(--ty-space-4) 0;
+		}
+		
+		.ty-logo {
+			width: 180px;
+			height: auto;
+			max-width: 100%;
+			margin: 0 auto var(--ty-space-6) auto;
+			display: block;
+			animation: fadeIn 0.8s ease-out;
+		}
+		
+		p {
+			font-size: 1.125rem;
+			line-height: 1.7;
+			color: var(--ty-color-blanco-puro);
+			margin: 0 0 var(--ty-space-4) 0;
+		}
+		
+		.ty-cta {
+			display: inline-block;
+			background-color: var(--ty-color-blanco-proyector);
+			color: var(--ty-color-verde-petroleo);
+			padding: var(--ty-space-5) var(--ty-space-8);
+			border-radius: var(--ty-radius-md);
+			font-weight: 700;
+			font-size: 1rem;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			box-shadow: 0 8px 30px rgba(230, 235, 238, 0.2);
+			border: none;
+			cursor: pointer;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			margin-top: var(--ty-space-6);
+		}
+		
+		.ty-cta:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 40px rgba(230, 235, 238, 0.35);
+			background-color: var(--ty-color-blanco-puro);
+		}
+		
+		.ty-secondary {
+			display: inline-block;
+			background-color: transparent;
+			color: var(--ty-color-luz-neblina);
+			padding: var(--ty-space-4) var(--ty-space-6);
+			border: 2px solid var(--ty-color-luz-neblina);
+			border-radius: var(--ty-radius-md);
+			font-weight: 700;
+			font-size: 0.95rem;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			margin: var(--ty-space-4);
+		}
+		
+		.ty-secondary:hover {
+			color: var(--ty-color-blanco-proyector);
+			border-color: var(--ty-color-blanco-proyector);
+			background-color: rgba(230, 235, 238, 0.05);
+		}
+		
+		.ty-buttons {
+			margin-top: var(--ty-space-8);
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--ty-space-4);
+			justify-content: center;
+		}
+		
+		/* ===== Responsive ===== */
+		@media (max-width: 768px) {
+			main {
+				padding: var(--ty-space-6);
+			}
+			
+			.ty-section {
+				padding: var(--ty-space-6) var(--ty-space-4);
+			}
+			
+			.ty-logo {
+				width: 140px;
+				height: 140px;
+				margin: 0 auto var(--ty-space-4) auto;
+			}
+			
+			h1 {
+				font-size: clamp(1.5rem, 5vw, 2.5rem);
+				margin: 0 0 var(--ty-space-4) 0;
+			}
+			
+			h2 {
+				font-size: 1.25rem;
+			}
+			
+			p {
+				font-size: 1rem;
+			}
+			
+			.ty-emoji {
+				font-size: 3rem;
+			}
+			
+			.ty-cta {
+				width: 100%;
+				padding: var(--ty-space-4);
+				margin-top: var(--ty-space-4);
+			}
+			
+			.ty-secondary {
+				padding: var(--ty-space-3) var(--ty-space-4);
+				font-size: 0.9rem;
+				margin: var(--ty-space-2);
+			}
+			
+			.ty-buttons {
+				flex-direction: column;
+				gap: var(--ty-space-2);
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- FONDO DECORATIVO (Cross-browser compatible) -->
+	<div class="ty__bg-gradient"></div>
+	<div class="ty__bg-noise"></div>
+	
+	<main>
+		<img src="assets/images/amorismo-logo.png" alt="AMORISMO Logo" class="ty-logo">
+		<h1>Bienvenido/a</h1>
+		<h2>Ya está todo hecho.</h2>
+		
+		<p>Te iremos informando de avances del disco poco a poco, sin prisa pero sin pausa.</p>
+		<p>Puedes escuchar el Volumen I mientras tanto:</p>
+		
+		<div class="ty-buttons">
+			<a href="https://dustincalderon.com/musica/amorismo-links/" class="ty-cta">Amorismo Vol. I</a>
+		</div>
+	</main>
+	
+	<script>
+		(function() {
+			// Registrar conversión si está disponible
+			if (window.gtag) {
+				gtag('event', 'sign_up', {
+					method: 'album_newsletter'
+				});
+			}
+			
+			// Log para verificar que se cargó la página
+			console.log('Thank you page loaded');
+		})();
+	</script>
+</body>
+</html>
