@@ -1,6 +1,5 @@
 /* Amorismo Musical – estilos scoped */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+/* Nota: Google Fonts se carga vía <link> en el HTML con preconnect para mejor rendimiento */
 
 /* ===== CSS Custom Properties (tokens del proyecto) ===== */
 :root {
@@ -88,89 +87,9 @@ body {
   will-change: auto;
 }
 
-/* Video fullscreen - sin márgenes */
-.amorismo__video-container {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: block;
-  height: 100vh;
-  overflow: hidden;
-}
 
-/* Header sticky con CTA */
-.amorismo__header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: var(--amorismo-space-4) var(--amorismo-space-5);
-  opacity: 0;
-  transition: opacity 0.6s ease-in-out;
-}
 
-.amorismo__header--hidden {
-  pointer-events: none;
-}
 
-.amorismo__header--visible {
-  opacity: 1;
-}
-
-.amorismo__header-gradient {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200px;
-  background: linear-gradient(
-    to bottom,
-    rgba(13, 44, 44, 0.95),
-    rgba(10, 36, 36, 0.85),
-    rgba(21, 58, 59, 0.5),
-    rgba(13, 44, 44, 0.1),
-    rgba(13, 44, 44, 0)
-  );
-  pointer-events: none;
-}
-
-.amorismo__header-content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--amorismo-space-3);
-}
-
-.amorismo__cta-button {
-  display: inline-block;
-  background-color: var(--amorismo-color-blanco-proyector);
-  color: var(--amorismo-color-verde-petroleo);
-  padding: var(--amorismo-space-4) var(--amorismo-space-6);
-  border-radius: var(--amorismo-radius-md);
-  font-weight: 700;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 30px rgba(230, 235, 238, 0.2);
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  font-family: var(--amorismo-font-sans);
-}
-
-.amorismo__cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(230, 235, 238, 0.35);
-  background-color: var(--amorismo-color-blanco-puro);
-}
-
-.amorismo__cta-button:active {
-  transform: translateY(0);
-}
 
 h1, h2, h3 {
   font-family: var(--amorismo-font-title);
@@ -302,10 +221,7 @@ main {
   background-color: transparent;
 }
 
-.amorismo__cta--large {
-  padding: var(--amorismo-space-5) var(--amorismo-space-8);
-  font-size: 1.125rem;
-}
+
 
 /* ===== HERO SECTION ===== */
 .amorismo__hero-container {
@@ -484,26 +400,7 @@ main {
   letter-spacing: 0.05em;
 }
 
-/* ===== CTA FINAL SECTION ===== */
-.amorismo__cta-final {
-  padding: var(--amorismo-space-8) var(--amorismo-space-6);
-  position: relative;
-  z-index: 1;
-  margin: 0;
-}
 
-.amorismo__urgencia {
-  max-width: var(--amorismo-max-width);
-  margin: 0 auto var(--amorismo-space-6) auto;
-  text-align: center;
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--amorismo-color-blanco-puro);
-}
-
-.amorismo__urgencia strong {
-  color: var(--amorismo-color-blanco-proyector);
-}
 
 /* ===== GALERÍA SECTION ===== */
 .amorismo__galeria {
@@ -583,18 +480,7 @@ main {
   box-shadow: 0 6px 18px rgba(230, 235, 238, 0.4);
 }
 
-.amorismo__cta-final .amorismo__cta {
-  display: block;
-  margin: 0 auto;
-  width: fit-content;
-}
 
-.amorismo__cierre {
-  padding: var(--amorismo-space-8) var(--amorismo-space-6);
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
 
 /* ===== ÁLBUM SECTION ===== */
 .amorismo__album {
@@ -1076,60 +962,5 @@ main {
   .amorismo__video-container {
     height: 100vh;
   }
-}
-
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-.evl-lm-simple__footer {
-  text-align: center;
-  padding: 4rem var(--amorismo-space-4);
-  background-color: var(--amorismo-color-verde-carbon);
-  color: var(--amorismo-color-texto);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.amorismo__footer-logo {
-  max-width: 120px;
-  margin-bottom: 2rem;
-  opacity: 0.8;
-}
-
-.evl-lm-simple__footer p {
-  font-family: var(--amorismo-font-sans);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 0 0 1rem 0;
-  color: var(--amorismo-color-texto);
-}
-
-.evl-lm-simple__footer nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  font-size: 0.75rem;
-  color: var(--amorismo-color-gris-neblina-azul);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.evl-lm-simple__footer nav a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.evl-lm-simple__footer nav a:hover {
-  color: #ffffff;
-}
-
-.evl-lm-simple__footer nav span {
-  opacity: 0.5;
 }
 

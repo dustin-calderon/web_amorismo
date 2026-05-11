@@ -276,15 +276,9 @@
 	
 	<script>
 		(function() {
-			// Registrar conversión si está disponible
 			if (window.gtag) {
-				gtag('event', 'sign_up', {
-					method: 'album_newsletter'
-				});
+				gtag('event', 'sign_up', { method: 'album_newsletter' });
 			}
-			
-			// Log para verificar que se cargó la página
-			console.log('Thank you page loaded');
 		})();
 	</script>
 </body>

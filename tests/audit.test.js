@@ -317,8 +317,9 @@ describe('4. CSS - Design System y tokens', () => {
 describe('5. JavaScript - Galería y comportamiento', () => {
   const js = readFile('assets/js/amorismo-scripts.js');
 
-  test('5.1 - IIFE para scope aislado', () => {
-    assert.ok(js.startsWith('(function(){'), 'JS debe estar envuelto en IIFE');
+  test('5.1 - IIFE con strict mode para scope aislado', () => {
+    assert.ok(js.includes("'use strict'"), 'JS debe usar strict mode dentro del IIFE');
+    assert.ok(js.includes('(function ()'), 'JS debe estar envuelto en IIFE');
   });
 
   test('5.2 - Lógica de galería implementada', () => {
@@ -330,9 +331,12 @@ describe('5. JavaScript - Galería y comportamiento', () => {
     assert.ok(js.includes('amorismo__galeria-thumbnail--active'), 'JS debe gestionar la clase active en thumbnails');
   });
 
-  test('5.4 - Scroll suave a anclas implementado', () => {
-    assert.ok(js.includes('scrollIntoView'), 'JS debe implementar scroll suave');
-    assert.ok(js.includes("href^=\"#\""), 'Scroll suave debe aplicarse a enlaces internos');
+  test('5.4 - Scroll suave gestionado por CSS (scroll-behavior)', () => {
+    // El listener JS de scroll fue eliminado; CSS lo gestiona más eficientemente
+    assert.ok(!js.includes('scrollIntoView'), 'Scroll suave no debe estar en JS (lo maneja CSS)');
+    // scroll-behavior: smooth está en el <style> inline de index.html
+    const html = readFile('index.html');
+    assert.ok(html.includes('scroll-behavior: smooth'), 'scroll-behavior: smooth debe estar declarado en el HTML');
   });
 
   test('5.5 - Código defensivo: comprueba existencia de elementos antes de usarlos', () => {
