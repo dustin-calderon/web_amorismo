@@ -472,127 +472,7 @@ main {
 
 
 
-/* ===== ÁLBUM SECTION ===== */
-.amorismo__album {
-  padding: var(--amorismo-space-8) var(--amorismo-space-6);
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  background: transparent;
-  text-align: center;
-}
 
-.amorismo__album-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-family: var(--amorismo-font-title);
-  color: var(--amorismo-color-blanco-proyector);
-  margin: 0 0 var(--amorismo-space-6) 0;
-}
-
-.amorismo__album-emoji {
-  font-size: clamp(2rem, 8vw, 4rem);
-  display: block;
-  margin: 0 auto var(--amorismo-space-6) auto;
-  animation: spin 20s linear infinite;
-}
-
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.amorismo__album-copy {
-  font-size: 1.125rem;
-  line-height: 1.7;
-  color: var(--amorismo-color-blanco-puro);
-  max-width: 600px;
-  margin: 0 auto var(--amorismo-space-8) auto;
-}
-
-.amorismo__form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--amorismo-space-4);
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.amorismo__mailchimp .amorismo__form-input {
-  padding: var(--amorismo-space-4);
-  border: 1px solid var(--amorismo-color-gris-neblina-azul) !important;
-  border-radius: var(--amorismo-radius-md);
-  background-color: transparent !important;
-  color: var(--amorismo-color-blanco-puro) !important;
-  font-family: var(--amorismo-font-sans);
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  appearance: none;
-  box-shadow: none !important;
-}
-
-/* Remover estilos de navegador */
-.amorismo__mailchimp .amorismo__form-input::-webkit-outer-spin-button,
-.amorismo__mailchimp .amorismo__form-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.amorismo__mailchimp .amorismo__form-input[type="number"] {
-  -moz-appearance: textfield;
-  appearance: textfield;
-}
-
-.amorismo__mailchimp .amorismo__form-input::placeholder {
-  color: var(--amorismo-color-gris-neblina-azul);
-  opacity: 1;
-}
-
-.amorismo__mailchimp .amorismo__form-input:focus {
-  outline: none;
-  border-color: var(--amorismo-color-blanco-proyector) !important;
-  background-color: rgba(230, 235, 238, 0.05) !important;
-  box-shadow: 0 0 15px rgba(230, 235, 238, 0.15) !important;
-}
-
-.amorismo__form-submit {
-  display: flex;
-  justify-content: center;
-  margin-top: var(--amorismo-space-4);
-}
-
-.amorismo__mailchimp .amorismo__form-button {
-  display: inline-block;
-  background-color: var(--amorismo-color-blanco-proyector) !important;
-  color: var(--amorismo-color-negro-escenico) !important;
-  padding: var(--amorismo-space-4) var(--amorismo-space-6);
-  border-radius: var(--amorismo-radius-md);
-  font-weight: 700;
-  font-size: 1rem;
-  border: none !important;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 30px rgba(230, 235, 238, 0.2);
-  appearance: button;
-  font-family: inherit;
-}
-
-.amorismo__mailchimp .amorismo__form-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(230, 235, 238, 0.35) !important;
-  background-color: var(--amorismo-color-blanco-puro) !important;
-}
-
-.amorismo__mailchimp .amorismo__form-button:active {
-  transform: translateY(0);
-}
-
-.amorismo__mailchimp .amorismo__form-button:focus {
-  outline: 2px solid var(--amorismo-color-blanco-proyector);
-  outline-offset: 2px;
-}
 
 .amorismo__footer-logo {
   width: 160px;
@@ -746,35 +626,7 @@ main {
     gap: var(--amorismo-space-3);
   }
 
-  /* Album section responsive */
-  .amorismo__album {
-    padding: var(--amorismo-space-6) var(--amorismo-space-4);
-    text-align: center;
-  }
 
-  .amorismo__album-title {
-    font-size: 1.25rem;
-  }
-
-  .amorismo__album-copy {
-    font-size: 1rem;
-    margin: 0 auto var(--amorismo-space-6) auto;
-  }
-
-  .amorismo__form {
-    max-width: 100%;
-  }
-
-  .amorismo__form-input {
-    padding: var(--amorismo-space-3);
-    font-size: 0.95rem;
-  }
-
-  .amorismo__form-button {
-    padding: var(--amorismo-space-3) var(--amorismo-space-4);
-    font-size: 0.9rem;
-    width: 100%;
-  }
 
   /* Footer responsive */
   .amorismo__footer-logo {
@@ -857,29 +709,7 @@ main {
     font-size: 0.9rem;
   }
 
-  /* Album section ultra-mobile */
-  .amorismo__album {
-    padding: var(--amorismo-space-4) var(--amorismo-space-3);
-  }
 
-  .amorismo__album-title {
-    font-size: 1.1rem;
-  }
-
-  .amorismo__album-copy {
-    font-size: 0.9rem;
-    margin: 0 auto var(--amorismo-space-4) auto;
-  }
-
-  .amorismo__form-input {
-    padding: var(--amorismo-space-2);
-    font-size: 0.9rem;
-  }
-
-  .amorismo__form-button {
-    padding: var(--amorismo-space-2) var(--amorismo-space-3);
-    font-size: 0.85rem;
-  }
 
   .amorismo__footer-logo {
     width: 140px;

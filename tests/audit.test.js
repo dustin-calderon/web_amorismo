@@ -46,9 +46,6 @@ describe('1. Integridad de archivos del proyecto', () => {
     assert.ok(fileExists('404.html'), '404.html debe existir en la raíz');
   });
 
-  test('1.3 - gracias.html existe', () => {
-    assert.ok(fileExists('gracias.html'), 'gracias.html debe existir en la raíz');
-  });
 
   test('1.4 - Hoja de estilos principal existe', () => {
     assert.ok(fileExists('assets/css/amorismo-styles.css'), 'amorismo-styles.css debe existir');
@@ -205,25 +202,14 @@ describe('3. Integridad de contenido y lógica de negocio', () => {
     assert.ok(!html.includes('amorismo__cta-final'), 'La sección cta-final debe estar eliminada');
   });
 
-  test('3.6 - Formulario Mailchimp presente y funcional', () => {
-    assert.ok(html.includes('list-manage.com/subscribe/post'), 'Action del formulario Mailchimp debe estar presente');
-    assert.ok(html.includes('id="mc-embedded-subscribe-form"'), 'Formulario Mailchimp debe estar identificado');
-    assert.ok(html.includes('type="email"'), 'Input de email debe estar presente');
-  });
-
-  test('3.7 - Trampa anti-bot de Mailchimp presente', () => {
-    // Campo oculto que los bots llenarían pero los humanos no
-    assert.ok(html.includes('aria-hidden="true" style="position: absolute; left: -5000px;"'), 'Trampa anti-bot de Mailchimp debe estar presente');
-  });
-
-  test('3.8 - Elenco completo (4 artistas)', () => {
+  test('3.6 - Elenco completo (4 artistas)', () => {
     assert.ok(html.includes('Loa Miller'), 'Elenco: Loa Miller');
     assert.ok(html.includes('Blanca Rodríguez'), 'Elenco: Blanca Rodríguez');
     assert.ok(html.includes('Ángela Santos'), 'Elenco: Ángela Santos');
     assert.ok(html.includes('Braulio Chappell'), 'Elenco: Braulio Chappell');
   });
 
-  test('3.9 - Equipo creativo completo (3 roles)', () => {
+  test('3.7 - Equipo creativo completo (3 roles)', () => {
     assert.ok(html.includes('Dustin Calderón'), 'Equipo: Dustin Calderón');
     assert.ok(html.includes('David Gregory'), 'Equipo: David Gregory');
     assert.ok(html.includes('Carmen Rodríguez'), 'Equipo: Carmen Rodríguez');
@@ -294,11 +280,7 @@ describe('4. CSS - Design System y tokens', () => {
     assert.equal(suspicious.length, 0, `Clases sin prefijo encontradas: ${suspicious.join(', ')}`);
   });
 
-  test('4.9 - Animación del vinyl (spin) definida', () => {
-    assert.ok(css.includes('@keyframes spin'), 'Animación spin del vinyl debe estar definida');
-  });
-
-  test('4.10 - Botón CTA tiene transición definida', () => {
+  test('4.9 - Botón CTA tiene transición definida', () => {
     assert.ok(css.includes('transition: all 0.3s ease'), 'CTAs deben tener transición definida');
   });
 
@@ -352,71 +334,39 @@ describe('5. JavaScript - Galería y comportamiento', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 6: PÁGINAS SECUNDARIAS (404 y gracias)
+// BLOQUE 6: PÁGINA SECUNDARIA (404)
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('6. Páginas secundarias: 404 y gracias', () => {
+describe('6. Página secundaria: 404', () => {
 
-  describe('6a. 404.html', () => {
-    const html404 = readFile('404.html');
+  const html404 = readFile('404.html');
 
-    test('6.1 - 404 tiene title correcto', () => {
-      assert.ok(html404.includes('<title>404 - Página no encontrada</title>'), '404 debe tener title descriptivo');
-    });
-
-    test('6.2 - 404 tiene favicon', () => {
-      assert.ok(html404.includes('rel="icon"'), '404 debe tener favicon');
-    });
-
-    test('6.3 - 404 tiene link "Volver a Inicio" (href="/")', () => {
-      assert.ok(html404.includes('href="/"'), '404 debe tener link de vuelta a inicio');
-    });
-
-    test('6.4 - 404 usa Inter font', () => {
-      assert.ok(html404.includes('Inter'), '404 debe usar la fuente Inter');
-    });
-
-    test('6.5 - 404 usa paleta de colores correcta', () => {
-      assert.ok(html404.includes('#0D2C2C'), '404 debe usar el verde petróleo del design system');
-    });
-
-    test('6.6 - 404 tiene fondo con ruido/grain (brand consistent)', () => {
-      assert.ok(html404.includes('error__bg-noise'), '404 debe tener el fondo con grain');
-    });
-
-    test('6.7 - 404 tiene role="main" (accesibilidad)', () => {
-      assert.ok(html404.includes('role="main"'), '404 debe tener role=main');
-    });
+  test('6.1 - 404 tiene title correcto', () => {
+    assert.ok(html404.includes('<title>404 - Página no encontrada</title>'), '404 debe tener title descriptivo');
   });
 
-  describe('6b. gracias.html', () => {
-    const htmlGracias = readFile('gracias.html');
+  test('6.2 - 404 tiene favicon', () => {
+    assert.ok(html404.includes('rel="icon"'), '404 debe tener favicon');
+  });
 
-    test('6.8 - gracias.html tiene title correcto', () => {
-      assert.ok(htmlGracias.includes('¡Gracias!'), 'Página de gracias debe tener title apropiado');
-    });
+  test('6.3 - 404 tiene link "Volver a Inicio" (href="/")', () => {
+    assert.ok(html404.includes('href="/"'), '404 debe tener link de vuelta a inicio');
+  });
 
-    test('6.9 - gracias.html tiene favicon', () => {
-      assert.ok(htmlGracias.includes('rel="icon"'), 'Gracias debe tener favicon');
-    });
+  test('6.4 - 404 usa Inter font', () => {
+    assert.ok(html404.includes('Inter'), '404 debe usar la fuente Inter');
+  });
 
-    test('6.10 - gracias.html rastrea conversión con gtag', () => {
-      assert.ok(htmlGracias.includes("window.gtag"), 'Debe disparar conversión si gtag está disponible');
-      assert.ok(htmlGracias.includes("sign_up"), 'Evento de conversión debe ser sign_up');
-    });
+  test('6.5 - 404 usa paleta de colores correcta', () => {
+    assert.ok(html404.includes('#0D2C2C'), '404 debe usar el verde petróleo del design system');
+  });
 
-    test('6.11 - gracias.html enlaza a Amorismo Vol. I', () => {
-      assert.ok(htmlGracias.includes('amorismo-links'), 'Gracias debe enlazar al Vol. I');
-    });
+  test('6.6 - 404 tiene fondo con ruido/grain (brand consistent)', () => {
+    assert.ok(html404.includes('error__bg-noise'), '404 debe tener el fondo con grain');
+  });
 
-    test('6.12 - gracias.html usa paleta correcta', () => {
-      assert.ok(htmlGracias.includes('#0D2C2C'), 'Gracias debe usar el verde petróleo');
-    });
-
-    test('6.13 - gracias.html usa paths relativos para assets (no absolutos)', () => {
-      assert.ok(!htmlGracias.includes('href="/assets'), 'Assets deben usar paths relativos sin barra inicial');
-      assert.ok(htmlGracias.includes('href="assets/'), 'Assets deben usar paths relativos');
-    });
+  test('6.7 - 404 tiene role="main" (accesibilidad)', () => {
+    assert.ok(html404.includes('role="main"'), '404 debe tener role=main');
   });
 });
 
@@ -484,14 +434,5 @@ describe('8. Seguridad y buenas prácticas', () => {
 
   test('8.4 - No hay href con javascript: (XSS)', () => {
     assert.ok(!html.match(/href="javascript:/i), 'No debe haber href con javascript:');
-  });
-
-  test('8.5 - Mailchimp usa HTTPS (no HTTP)', () => {
-    assert.ok(html.includes('https://dustincalderon.us12.list-manage.com'), 'Mailchimp debe usar HTTPS');
-  });
-
-  test('8.6 - El ID de lista de Mailchimp está presente y tiene formato correcto', () => {
-    // u=xxxx&id=xxxx es el formato estándar de Mailchimp
-    assert.ok(html.match(/u=[a-f0-9]+&amp;id=[a-f0-9]+/), 'URL de Mailchimp debe tener formato u=xxx&id=xxx');
   });
 });
