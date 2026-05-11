@@ -226,13 +226,12 @@ describe('3. Integridad de contenido y lógica de negocio', () => {
     assert.ok(html.includes('Copyright © 2025'), 'Footer debe tener copyright');
     assert.ok(html.includes('Aviso Legal'), 'Footer debe tener Aviso Legal');
     assert.ok(html.includes('Política de Privacidad'), 'Footer debe tener Política de Privacidad');
-    assert.ok(html.includes('Términos y Condiciones'), 'Footer debe tener Términos y Condiciones');
   });
 
-  test('3.12 - Links legales abren en nueva pestaña (rel="noopener")', () => {
-    const legalLinks = html.match(/dustincalderon\.com\/politica-privacidad[^"]*/g) || [];
-    assert.ok(legalLinks.length >= 2, 'Deben haber al menos 2 links legales');
-    // Verificamos que target="_blank" y rel="noopener" están presentes
+  test('3.12 - Links legales apuntan a rutas correctas y abren en nueva pestaña', () => {
+    assert.ok(html.includes('dustincalderon.com/legal/aviso-legal/'), 'Aviso Legal debe apuntar a /legal/aviso-legal/');
+    assert.ok(html.includes('dustincalderon.com/legal/privacidad/'), 'Privacidad debe apuntar a /legal/privacidad/');
+    assert.ok(!html.includes('politica-privacidad'), 'URLs antiguas de WordPress no deben existir');
     assert.ok(html.includes('rel="noopener noreferrer"'), 'Links externos deben tener rel=noopener');
   });
 });
