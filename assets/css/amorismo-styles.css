@@ -87,10 +87,6 @@ body {
   will-change: auto;
 }
 
-
-
-
-
 h1, h2, h3 {
   font-family: var(--amorismo-font-title);
   font-weight: 700;
@@ -208,10 +204,6 @@ main {
   box-shadow: 0 12px 40px rgba(230, 235, 238, 0.35);
   background-color: var(--amorismo-color-blanco-puro);
 }
-
-
-
-
 
 /* ===== HERO SECTION ===== */
 .amorismo__hero-container {
@@ -621,13 +613,6 @@ main {
     border-radius: var(--amorismo-radius-md);
   }
 
-  .amorismo__galeria-thumbnails {
-    grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
-    gap: var(--amorismo-space-3);
-  }
-
-
-
   /* Footer responsive */
   .amorismo__footer-logo {
     width: 180px;
@@ -672,6 +657,7 @@ main {
   /* Galería responsive */
   .amorismo__galeria-thumbnails {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: var(--amorismo-space-3);
   }
 }
 
@@ -708,8 +694,6 @@ main {
     padding: var(--amorismo-space-3) var(--amorismo-space-4);
     font-size: 0.9rem;
   }
-
-
 
   .amorismo__footer-logo {
     width: 140px;

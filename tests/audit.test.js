@@ -368,6 +368,17 @@ describe('6. Página secundaria: 404', () => {
   test('6.7 - 404 tiene role="main" (accesibilidad)', () => {
     assert.ok(html404.includes('role="main"'), '404 debe tener role=main');
   });
+
+  test('6.8 - 404 footer usa rutas /legal/ correctas y no tiene T&C', () => {
+    // Rutas canónicas (sincronizadas con index.html)
+    assert.ok(html404.includes('dustincalderon.com/legal/aviso-legal/'), '404 footer debe usar /legal/aviso-legal/');
+    assert.ok(html404.includes('dustincalderon.com/legal/privacidad/'), '404 footer debe usar /legal/privacidad/');
+    // Rutas WordPress antiguas eliminadas
+    assert.ok(!html404.includes('politica-privacidad'), '404 no debe tener URLs WordPress /politica-privacidad/');
+    // Términos y Condiciones eliminados (sitio estático sin contrato)
+    assert.ok(!html404.includes('terminos-y-condiciones'), '404 no debe tener link a Términos y Condiciones');
+    assert.ok(!html404.includes('Términos'), '404 no debe mostrar texto de Términos');
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
