@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Página no encontrada – AMORISMO Vol. III. Vuelve al inicio y sigue disfrutando de la música.">
+	<meta name="robots" content="noindex">
 	<title>404 - Página no encontrada</title>
 	
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +29,8 @@
 			--error-color-blanco-puro: #FFFFFF;
 			--error-color-negro-escenico: #0A0D0E;
 			
+			--error-space-2: 0.5rem;
+			--error-space-3: 0.75rem;
 			--error-space-4: 1rem;
 			--error-space-5: 1.5rem;
 			--error-space-6: 2rem;
@@ -54,7 +58,6 @@
 			position: relative;
 			overflow-x: hidden;
 			background-color: var(--error-color-verde-petroleo);
-			height: 100vh;
 			min-height: 100vh;
 			display: flex;
 			align-items: center;
@@ -276,6 +279,10 @@
 				flex-direction: column;
 				gap: var(--error-space-3);
 				width: 100%;
+			}
+
+			.error__buttons .error__divider {
+				display: none;
 			}
 
 			.error__cta {
