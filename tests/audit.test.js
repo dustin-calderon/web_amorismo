@@ -59,27 +59,28 @@ describe('1. Integridad de archivos del proyecto', () => {
     assert.ok(fileExists('assets/images/amorismo-logo.png'), 'amorismo-logo.png debe existir');
   });
 
-  test('1.7 - Cartel existe', () => {
-    assert.ok(fileExists('assets/images/amorismo-cartel.jpeg'), 'amorismo-cartel.jpeg debe existir');
+  test('1.7 - Cartel existe (webp)', () => {
+    assert.ok(fileExists('assets/images/amorismo-cartel.webp'), 'amorismo-cartel.webp debe existir');
+    assert.ok(!fileExists('assets/images/amorismo-cartel.jpeg'), 'Cartel JPEG original eliminado — solo WebP');
   });
 
-  test('1.8 - Todas las fotos del elenco existen', () => {
+  test('1.8 - Todas las fotos del elenco existen (webp)', () => {
     const elencoPhotos = [
-      'LOA_fondo-verde.png',
-      'BLANCA_fondo-verde.png',
-      'ANGELA_fondo-verde.png',
-      'BRAULIO_fondo-verde.png',
+      'LOA_fondo-verde.webp',
+      'BLANCA_fondo-verde.webp',
+      'ANGELA_fondo-verde.webp',
+      'BRAULIO_fondo-verde.webp',
     ];
     elencoPhotos.forEach(photo => {
       assert.ok(fileExists(`assets/images/${photo}`), `Foto elenco ${photo} debe existir`);
     });
   });
 
-  test('1.9 - Todas las fotos del equipo creativo existen', () => {
+  test('1.9 - Todas las fotos del equipo creativo existen (webp)', () => {
     const equipoPhotos = [
-      'DUSTIN_fondo-verde.png',
-      'DAVID_fondo-verde.png',
-      'CARMEN_fondo-verde.png',
+      'DUSTIN_fondo-verde.webp',
+      'DAVID_fondo-verde.webp',
+      'CARMEN_fondo-verde.webp',
     ];
     equipoPhotos.forEach(photo => {
       assert.ok(fileExists(`assets/images/${photo}`), `Foto equipo ${photo} debe existir`);
