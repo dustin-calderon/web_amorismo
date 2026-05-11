@@ -91,9 +91,9 @@ describe('1. Integridad de archivos del proyecto', () => {
 
   test('1.10 - Todas las fotos de galería existen', () => {
     const galeriaPhotos = [
-      'IMG_6612.jpeg', 'IMG_6624.jpeg', 'IMG_6632.jpg',
-      'IMG_6655.jpeg', 'IMG_6660.jpeg', 'IMG_6666.jpeg',
-      'IMG_6670.jpeg', 'IMG_6685.jpeg',
+      'IMG_6612.webp', 'IMG_6624.webp', 'IMG_6632.webp',
+      'IMG_6655.webp', 'IMG_6660.webp', 'IMG_6666.webp',
+      'IMG_6670.webp', 'IMG_6685.webp',
     ];
     galeriaPhotos.forEach(photo => {
       assert.ok(fileExists(`assets/images/${photo}`), `Foto galería ${photo} debe existir`);

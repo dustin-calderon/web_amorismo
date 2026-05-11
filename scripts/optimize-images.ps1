@@ -1,87 +1,87 @@
 # optimize-images.ps1
-# Convierte y comprime todas las imágenes del proyecto a WebP usando ffmpeg.
-# Los originales se conservan intactos. Los WebP se escriben en assets/images/.
+# Convierte y comprime todas las imagenes del proyecto a WebP usando ffmpeg.
+# Los originales se conservan intactos.
 #
 # Uso: .\scripts\optimize-images.ps1
 
-$ErrorActionPreference = 'Stop'
 $root   = Split-Path $PSScriptRoot -Parent
 $imgDir = Join-Path $root 'assets\images'
 
-# ── Configuración por tipo ──────────────────────────────────────────────────
-# Logo: escala a 400px de ancho máximo (display real: 160-180px; 400 = buen 2x)
-# Fotos galería: reescala a 1400px ancho máx (container max 1180px, display 2x)
-# Thumbnails galería: mismos archivos, el CSS los muestra pequeño — mismo WebP sirve
-# Fotos elenco/equipo: reescala a 600px ancho máx (cards 3:4, ~280px display)
-# Cartel: reescala a 1000px ancho máx (display max 500px, 2x)
-
+# Configuracion por tipo de imagen
 $rules = @(
-    @{ Pattern = 'amorismo-logo.png';   MaxW = 400;  Quality = 85 },
-    @{ Pattern = 'amorismo-cartel.*';   MaxW = 1000; Quality = 82 },
-    @{ Pattern = 'IMG_*.jpeg';          MaxW = 1400; Quality = 80 },
-    @{ Pattern = 'IMG_*.jpg';           MaxW = 1400; Quality = 80 },
-    @{ Pattern = '*_fondo-verde.png';   MaxW = 600;  Quality = 82 }
+    [pscustomobject]@{ Pattern = 'amorismo-logo.png';  MaxW = 400;  Qual = 85 }
+    [pscustomobject]@{ Pattern = 'amorismo-cartel.*';  MaxW = 1000; Qual = 82 }
+    [pscustomobject]@{ Pattern = 'IMG_*.jpeg';         MaxW = 1400; Qual = 80 }
+    [pscustomobject]@{ Pattern = 'IMG_*.jpg';          MaxW = 1400; Qual = 80 }
+    [pscustomobject]@{ Pattern = '*_fondo-verde.png';  MaxW = 600;  Qual = 82 }
 )
 
-# ── Función de conversión ───────────────────────────────────────────────────
 function Convert-ToWebP {
     param(
         [string]$InputFile,
         [int]$MaxW,
-        [int]$Quality
+        [int]$Qual
     )
 
-    $baseName  = [System.IO.Path]::GetFileNameWithoutExtension($InputFile)
+    $baseName   = [System.IO.Path]::GetFileNameWithoutExtension($InputFile)
     $outputFile = Join-Path $imgDir "$baseName.webp"
+    $sizeBefore = [math]::Round((Get-Item $InputFile).Length / 1KB)
 
-    # vf: scale=min(MaxW,iw):-1  → solo escala si la imagen es más ancha que MaxW
-    # flags=lanczos → resampling de alta calidad
+    # scale: reduce solo si iw > MaxW; -1 mantiene aspect ratio
     $vf = "scale='if(gt(iw,$MaxW),$MaxW,iw)':-1:flags=lanczos"
 
-    $args = @(
-        '-y',                       # sobreescribir sin preguntar
-        '-i', $InputFile,
-        '-vf', $vf,
-        '-quality', $Quality,       # ffmpeg webp quality 0-100
-        '-compression_level', '6',  # 0=rápido, 6=máxima compresión
+    $ffArgs = @(
+        '-y'
+        '-i', $InputFile
+        '-vf', $vf
+        '-quality', "$Qual"
+        '-compression_level', '6'
         $outputFile
     )
 
-    Write-Host "  → $([System.IO.Path]::GetFileName($InputFile)) ($([math]::Round((Get-Item $InputFile).Length/1KB))KB)" -NoNewline
-    ffmpeg @args 2>$null
-    if ($LASTEXITCODE -ne 0) {
-        Write-Host " [ERROR]" -ForegroundColor Red
-        return
+    Write-Host "  $([System.IO.Path]::GetFileName($InputFile)) ($sizeBefore KB)" -NoNewline
+
+    # Redirigir stderr a archivo temporal para evitar NativeCommandError en PowerShell.
+    # ffmpeg siempre escribe su cabecera de version en stderr aunque tenga exito.
+    $tmpErr = [System.IO.Path]::GetTempFileName()
+    & ffmpeg @ffArgs 2>$tmpErr | Out-Null
+    $exitCode = $LASTEXITCODE
+
+    if ($exitCode -ne 0) {
+        Write-Host " [ERROR - exit $exitCode]" -ForegroundColor Red
+        Get-Content $tmpErr -ErrorAction SilentlyContinue | Select-Object -Last 5 |
+            ForEach-Object { Write-Host "    $_" -ForegroundColor DarkRed }
+        Remove-Item $tmpErr -ErrorAction SilentlyContinue
+        return 0
     }
-    $sizeBefore = [math]::Round((Get-Item $InputFile).Length / 1KB)
-    $sizeAfter  = [math]::Round((Get-Item $outputFile).Length / 1KB)
-    $saving     = [math]::Round((1 - $sizeAfter / $sizeBefore) * 100)
-    Write-Host " → $sizeAfter KB  (-$saving%)" -ForegroundColor Green
+
+    Remove-Item $tmpErr -ErrorAction SilentlyContinue
+
+    $sizeAfter = [math]::Round((Get-Item $outputFile).Length / 1KB)
+    $saving    = if ($sizeBefore -gt 0) { [math]::Round((1 - $sizeAfter / $sizeBefore) * 100) } else { 0 }
+    Write-Host " --> $sizeAfter KB  (-$saving%)" -ForegroundColor Green
+    return $sizeAfter
 }
 
-# ── Main ────────────────────────────────────────────────────────────────────
+# ── Main ─────────────────────────────────────────────────────────────────────
 Write-Host "`n[Amorismo] Image Optimizer  ffmpeg + WebP`n" -ForegroundColor Cyan
 
 $totalBefore = 0
 $totalAfter  = 0
 
 foreach ($rule in $rules) {
-    $files = Get-ChildItem -Path $imgDir -Filter $rule.Pattern
+    $files = Get-ChildItem -Path $imgDir -Filter $rule.Pattern -ErrorAction SilentlyContinue
     foreach ($file in $files) {
-        $totalBefore += $file.Length
-        Convert-ToWebP -InputFile $file.FullName -MaxW $rule.MaxW -Quality $rule.Quality
-        $webpName = [System.IO.Path]::GetFileNameWithoutExtension($file.Name) + '.webp'
-        $webpPath = Join-Path $imgDir $webpName
-        if (Test-Path $webpPath) {
-            $totalAfter += (Get-Item $webpPath).Length
-        }
+        $totalBefore += [math]::Round($file.Length / 1KB)
+        $afterKB      = Convert-ToWebP -InputFile $file.FullName -MaxW $rule.MaxW -Qual $rule.Qual
+        $totalAfter  += $afterKB
     }
 }
 
-$savedKB   = [math]::Round(($totalBefore - $totalAfter) / 1KB)
-$savedPct  = [math]::Round((1 - $totalAfter / $totalBefore) * 100)
+$savedKB  = $totalBefore - $totalAfter
+$savedPct = if ($totalBefore -gt 0) { [math]::Round($savedKB / $totalBefore * 100) } else { 0 }
 
-Write-Host "`n[OK] Total antes : $([math]::Round($totalBefore/1KB)) KB"  -ForegroundColor White
-Write-Host "[OK] Total despues: $([math]::Round($totalAfter/1KB)) KB"   -ForegroundColor White
-Write-Host "[>>] Ahorro       : $savedKB KB  (-$savedPct%)`n"           -ForegroundColor Yellow
-Write-Host "[i]  Los originales se conservan. Actualiza los src en HTML cuando verifiques el resultado." -ForegroundColor Gray
+Write-Host "`n[OK] Total antes : $totalBefore KB" -ForegroundColor White
+Write-Host "[OK] Total despues: $totalAfter KB"   -ForegroundColor White
+Write-Host "[>>] Ahorro       : $savedKB KB  (-$savedPct%)`n" -ForegroundColor Yellow
+Write-Host "[i]  Originales conservados. Actualiza los src en HTML cuando verifiques el resultado." -ForegroundColor Gray
