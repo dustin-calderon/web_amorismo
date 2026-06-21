@@ -1,0 +1,51 @@
+/* ===== Navigation – Amorismo ===== */
+
+.am-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--am-nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 36, 36, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(168, 184, 189, 0.12);
+}
+
+.am-nav__list {
+  display: flex;
+  list-style: none;
+  gap: var(--am-sp-1);
+  padding: 0;
+  margin: 0;
+}
+
+.am-nav__link {
+  display: block;
+  padding: var(--am-sp-2) var(--am-sp-5);
+  font-family: var(--am-font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--am-gris-neblina);
+  text-decoration: none;
+  border-radius: var(--am-radius-sm);
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.am-nav__link:hover {
+  color: var(--am-blanco);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Active tab — set via body[data-page] + descendant selector */
+.am-nav__link--active {
+  color: var(--am-blanco);
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+}

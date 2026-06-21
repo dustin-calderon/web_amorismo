@@ -1,0 +1,67 @@
+/* ===== Gallery – Amorismo ===== */
+
+.am-gallery {
+  padding: var(--am-sp-8) var(--am-sp-6);
+}
+
+.am-gallery__main {
+  max-width: var(--am-max-w);
+  margin: 0 auto var(--am-sp-8);
+}
+
+.am-gallery__frame {
+  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  aspect-ratio: 16 / 9;
+  border-radius: var(--am-radius-md);
+  overflow: hidden;
+  box-shadow: var(--am-shadow-card);
+}
+
+.am-gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.am-gallery__thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: var(--am-sp-3);
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+}
+
+.am-gallery__thumb {
+  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  aspect-ratio: 1;
+  border-radius: var(--am-radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  padding: 0;
+}
+
+.am-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.am-gallery__thumb:hover {
+  border-color: var(--am-blanco-proyector);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.am-gallery__thumb:hover img {
+  transform: scale(1.05);
+}
+
+.am-gallery__thumb--active {
+  border-color: var(--am-blanco-proyector);
+  box-shadow: 0 6px 18px rgba(230, 235, 238, 0.4);
+}

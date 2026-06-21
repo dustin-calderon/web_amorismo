@@ -1,0 +1,102 @@
+/* ===== Shared Components – Amorismo ===== */
+
+/* ===== CTA Button ===== */
+.am-cta {
+  display: inline-block;
+  background-color: var(--am-blanco-proyector);
+  color: var(--am-verde-petroleo);
+  padding: var(--am-sp-4) var(--am-sp-6);
+  border-radius: var(--am-radius-md);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: var(--am-shadow-cta);
+}
+
+.am-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--am-shadow-cta-hover);
+  background-color: var(--am-blanco);
+  color: var(--am-verde-petroleo);
+}
+
+.am-cta--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* ===== Section Label ===== */
+.am-section-label {
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--am-gris-neblina);
+  margin: 0 0 var(--am-sp-8);
+  font-family: var(--am-font-sans);
+  text-align: left;
+}
+
+/* ===== Person Card (Elenco / Equipo) ===== */
+.am-person-grid {
+  display: grid;
+  gap: var(--am-sp-4);
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+}
+
+.am-person-grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.am-person-grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.am-person {
+  text-align: center;
+}
+
+.am-person__photo-wrap {
+  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  aspect-ratio: 3 / 4;
+  border-radius: var(--am-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--am-sp-3);
+  box-shadow: var(--am-shadow-card);
+}
+
+.am-person__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.am-person__role {
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--am-gris-neblina);
+  margin: 0 0 var(--am-sp-2);
+}
+
+.am-person__name {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--am-blanco);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* ===== Page Title Section ===== */
+.am-page-title {
+  padding: var(--am-sp-8) var(--am-sp-6) var(--am-sp-4);
+  text-align: center;
+}
+
+.am-page-title h1 {
+  margin: 0;
+}

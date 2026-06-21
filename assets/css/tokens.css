@@ -1,0 +1,41 @@
+/* ===== Design Tokens – Amorismo ===== */
+/* Single source of truth for colors, fonts, spacing, radii, shadows */
+
+:root {
+  /* Fuentes */
+  --am-font-sans: 'Inter', system-ui, sans-serif;
+  --am-font-title: 'IBM Plex Mono', monospace;
+
+  /* Colores – Paleta Verde Petróleo */
+  --am-verde-petroleo: #0D2C2C;
+  --am-verde-carbon: #0A2424;
+  --am-verde-profundo: #153A3B;
+  --am-gris-neblina: #A8B8BD;
+  --am-blanco-proyector: #E6EBEE;
+  --am-blanco: #FFFFFF;
+  --am-negro-escenico: #0A0D0E;
+
+  /* Espaciado (escala 4px) */
+  --am-sp-1: 0.25rem;
+  --am-sp-2: 0.5rem;
+  --am-sp-3: 0.75rem;
+  --am-sp-4: 1rem;
+  --am-sp-5: 1.5rem;
+  --am-sp-6: 2rem;
+  --am-sp-7: 3rem;
+  --am-sp-8: 4rem;
+
+  /* Radios */
+  --am-radius-sm: 8px;
+  --am-radius-md: 14px;
+  --am-radius-lg: 22px;
+
+  /* Sombras */
+  --am-shadow-card: 0 8px 25px rgba(0, 0, 0, 0.5);
+  --am-shadow-cta: 0 8px 30px rgba(230, 235, 238, 0.2);
+  --am-shadow-cta-hover: 0 12px 40px rgba(230, 235, 238, 0.35);
+
+  /* Layout */
+  --am-max-w: 1180px;
+  --am-nav-h: 60px;
+}

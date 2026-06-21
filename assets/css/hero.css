@@ -1,0 +1,62 @@
+/* ===== Hero Section – Amorismo ===== */
+
+.am-hero {
+  padding: var(--am-sp-4) var(--am-sp-6) var(--am-sp-8);
+  text-align: center;
+}
+
+.am-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--am-sp-8);
+  align-items: center;
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+  padding: var(--am-sp-8) var(--am-sp-6);
+}
+
+.am-hero__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.am-hero__image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+}
+
+.am-hero__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--am-sp-6);
+  text-align: left;
+}
+
+.am-hero__copy {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--am-blanco);
+  margin: 0;
+}
+
+.am-hero__copy strong {
+  color: var(--am-blanco-proyector);
+  font-weight: 700;
+}
+
+.am-hero__meta {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--am-blanco);
+}
+
+.am-hero__meta strong {
+  color: var(--am-blanco-proyector);
+  display: block;
+  margin-bottom: var(--am-sp-2);
+}
