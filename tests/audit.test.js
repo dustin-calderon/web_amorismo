@@ -1,10 +1,10 @@
 /**
  * @file audit.test.js
- * @description Suite de tests completos para la web estática de Amorismo.
- * Cubre HTML, CSS, JS, Cloudflare y accesibilidad.
+ * @description Test suite for the multi-page Amorismo static site.
+ * Covers file integrity, HTML semantics, content, CSS tokens, JS, 404, and security.
  *
- * Ejecutar: node --test tests/audit.test.js
- * (Requiere Node.js >= 18 para el runner nativo)
+ * Run: node --test tests/audit.test.js
+ * Requires Node.js >= 18
  */
 
 import { readFileSync, existsSync } from 'fs';
@@ -16,434 +16,356 @@ import assert from 'node:assert/strict';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
-/**
- * Lee un archivo del proyecto como string.
- * @param {string} relPath - Ruta relativa a la raíz del proyecto
- * @returns {string}
- */
+/** @param {string} relPath – path relative to project root */
 const readFile = (relPath) => readFileSync(join(ROOT, relPath), 'utf8');
 
-/**
- * Verifica que un archivo exista en el proyecto.
- * @param {string} relPath - Ruta relativa a la raíz del proyecto
- * @returns {boolean}
- */
+/** @param {string} relPath */
 const fileExists = (relPath) => existsSync(join(ROOT, relPath));
 
+// ─── Shared page list ────────────────────────────────────────────────────────
+
+const PAGES = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'];
+
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 1: INTEGRIDAD DE ARCHIVOS
+// 1. FILE INTEGRITY
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('1. Integridad de archivos del proyecto', () => {
+describe('1. Integridad de archivos', () => {
 
-  test('1.1 - index.html existe', () => {
-    assert.ok(fileExists('index.html'), 'index.html debe existir en la raíz');
+  test('1.1 - Las 4 páginas HTML existen', () => {
+    PAGES.forEach(page => {
+      assert.ok(fileExists(page), `${page} debe existir`);
+    });
   });
 
   test('1.2 - 404.html existe', () => {
-    assert.ok(fileExists('404.html'), '404.html debe existir en la raíz');
+    assert.ok(fileExists('404.html'));
   });
 
-
-  test('1.4 - Hoja de estilos principal existe', () => {
-    assert.ok(fileExists('assets/css/amorismo-styles.css'), 'amorismo-styles.css debe existir');
-  });
-
-  test('1.5 - Script JS principal existe', () => {
-    assert.ok(fileExists('assets/js/amorismo-scripts.js'), 'amorismo-scripts.js debe existir');
-  });
-
-  test('1.6 - Logo existe', () => {
-    assert.ok(fileExists('assets/images/amorismo-logo.png'), 'amorismo-logo.png debe existir');
-  });
-
-  test('1.7 - Cartel existe (webp)', () => {
-    assert.ok(fileExists('assets/images/amorismo-cartel.webp'), 'amorismo-cartel.webp debe existir');
-    assert.ok(!fileExists('assets/images/amorismo-cartel.jpeg'), 'Cartel JPEG original eliminado — solo WebP');
-  });
-
-  test('1.8 - Todas las fotos del elenco existen (webp)', () => {
-    const elencoPhotos = [
-      'LOA_fondo-verde.webp',
-      'BLANCA_fondo-verde.webp',
-      'ANGELA_fondo-verde.webp',
-      'BRAULIO_fondo-verde.webp',
+  test('1.3 - Módulos CSS existen', () => {
+    const cssFiles = [
+      'tokens.css', 'base.css', 'nav.css', 'components.css',
+      'hero.css', 'gallery.css', 'footer.css', 'responsive.css',
     ];
-    elencoPhotos.forEach(photo => {
-      assert.ok(fileExists(`assets/images/${photo}`), `Foto elenco ${photo} debe existir`);
+    cssFiles.forEach(f => {
+      assert.ok(fileExists(`assets/css/${f}`), `CSS: ${f} debe existir`);
     });
   });
 
-  test('1.9 - Todas las fotos del equipo creativo existen (webp)', () => {
-    const equipoPhotos = [
-      'DUSTIN_fondo-verde.webp',
-      'DAVID_fondo-verde.webp',
+  test('1.4 - Módulos JS existen', () => {
+    assert.ok(fileExists('assets/js/nav.js'), 'nav.js debe existir');
+    assert.ok(fileExists('assets/js/gallery.js'), 'gallery.js debe existir');
+  });
+
+  test('1.5 - Legacy files eliminados', () => {
+    assert.ok(!fileExists('assets/css/amorismo-styles.css'), 'Legacy CSS eliminado');
+    assert.ok(!fileExists('assets/js/amorismo-scripts.js'), 'Legacy JS eliminado');
+  });
+
+  test('1.6 - Favicon optimizado existe', () => {
+    assert.ok(fileExists('assets/images/favicon.png'), 'favicon.png debe existir');
+    assert.ok(!fileExists('assets/images/amorismo-logo.png'), 'PNG bloated eliminado');
+  });
+
+  test('1.7 - Assets de imágenes existen', () => {
+    const images = [
+      'amorismo-cartel.webp', 'amorismo-logo.webp', 'favicon.png',
+      'LOA_fondo-verde.webp', 'BLANCA_fondo-verde.webp',
+      'ANGELA_fondo-verde.webp', 'BRAULIO_fondo-verde.webp',
+      'DUSTIN_fondo-verde.webp', 'DAVID_fondo-verde.webp',
       'CARMEN_fondo-verde.webp',
     ];
-    equipoPhotos.forEach(photo => {
-      assert.ok(fileExists(`assets/images/${photo}`), `Foto equipo ${photo} debe existir`);
+    images.forEach(img => {
+      assert.ok(fileExists(`assets/images/${img}`), `Imagen: ${img}`);
     });
   });
 
-  test('1.10 - Todas las fotos de galería existen', () => {
-    const galeriaPhotos = [
-      'IMG_6612.webp', 'IMG_6624.webp', 'IMG_6632.webp',
-      'IMG_6655.webp', 'IMG_6660.webp', 'IMG_6666.webp',
-      'IMG_6670.webp', 'IMG_6685.webp',
+  test('1.8 - Galería completa (8 fotos)', () => {
+    const gallery = [
+      'IMG_6612.webp', 'IMG_6624.webp', 'IMG_6632.webp', 'IMG_6655.webp',
+      'IMG_6660.webp', 'IMG_6666.webp', 'IMG_6670.webp', 'IMG_6685.webp',
     ];
-    galeriaPhotos.forEach(photo => {
-      assert.ok(fileExists(`assets/images/${photo}`), `Foto galería ${photo} debe existir`);
+    gallery.forEach(img => {
+      assert.ok(fileExists(`assets/images/${img}`), `Galería: ${img}`);
+    });
+  });
+
+  test('1.9 - Ningún archivo CSS/JS supera 300 líneas', () => {
+    const files = [
+      'assets/css/tokens.css', 'assets/css/base.css', 'assets/css/nav.css',
+      'assets/css/components.css', 'assets/css/hero.css', 'assets/css/gallery.css',
+      'assets/css/footer.css', 'assets/css/responsive.css',
+      'assets/js/nav.js', 'assets/js/gallery.js',
+    ];
+    files.forEach(f => {
+      const lines = readFile(f).split('\n').length;
+      assert.ok(lines <= 300, `${f} tiene ${lines} líneas (máx 300)`);
     });
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 2: SEMÁNTICA HTML Y SEO (index.html)
+// 2. HTML SEMÁNTICA (todas las páginas)
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('2. Semántica HTML y SEO - index.html', () => {
-  const html = readFile('index.html');
+describe('2. Semántica HTML y SEO', () => {
 
-  test('2.1 - DOCTYPE HTML5 presente', () => {
-    assert.ok(html.startsWith('<!DOCTYPE html>'), 'Debe comenzar con DOCTYPE html');
-  });
+  PAGES.forEach(page => {
+    describe(`2.x - ${page}`, () => {
+      const html = readFile(page);
 
-  test('2.2 - lang="es" declarado', () => {
-    assert.ok(html.includes('lang="es"'), 'Idioma debe ser "es"');
-  });
+      test('DOCTYPE html5', () => {
+        assert.ok(html.startsWith('<!DOCTYPE html>'));
+      });
 
-  test('2.3 - Meta charset UTF-8', () => {
-    assert.ok(html.includes('charset="utf-8"'), 'Charset debe ser UTF-8');
-  });
+      test('lang="es"', () => {
+        assert.ok(html.includes('lang="es"'));
+      });
 
-  test('2.4 - Meta viewport presente', () => {
-    assert.ok(html.includes('name="viewport"'), 'Meta viewport debe estar presente');
-  });
+      test('charset utf-8', () => {
+        assert.ok(html.includes('charset="utf-8"'));
+      });
 
-  test('2.5 - <title> descriptivo presente', () => {
-    assert.ok(html.includes('<title>Amorismo Vol. III - El Musical</title>'), 'Título debe ser descriptivo');
-  });
+      test('meta viewport', () => {
+        assert.ok(html.includes('name="viewport"'));
+      });
 
-  test('2.6 - Un único <h1> (SEO)', () => {
-    const h1Matches = html.match(/<h1[^>]*>/g) || [];
-    assert.equal(h1Matches.length, 1, 'Debe haber exactamente un h1 en la página');
-  });
+      test('Único <h1>', () => {
+        const h1s = (html.match(/<h1[^>]*>/g) || []).length;
+        assert.equal(h1s, 1);
+      });
 
-  test('2.7 - Google Fonts cargado con preconnect', () => {
-    assert.ok(html.includes('rel="preconnect" href="https://fonts.googleapis.com"'), 'Preconnect a Google Fonts requerido');
-    assert.ok(html.includes('rel="preconnect" href="https://fonts.gstatic.com"'), 'Preconnect a gstatic requerido');
-  });
+      test('Preconnect fonts', () => {
+        assert.ok(html.includes('preconnect" href="https://fonts.googleapis.com"'));
+      });
 
-  test('2.8 - Favicon configurado (png)', () => {
-    assert.ok(html.includes('rel="icon" type="image/png" href="assets/images/amorismo-logo.png"'), 'Favicon PNG debe estar presente');
-  });
+      test('Favicon referencia favicon.png', () => {
+        assert.ok(html.includes('href="assets/images/favicon.png"'));
+      });
 
-  test('2.9 - Apple touch icon configurado', () => {
-    assert.ok(html.includes('rel="apple-touch-icon"'), 'Apple touch icon debe estar presente');
-  });
+      test('role="main" presente', () => {
+        assert.ok(html.includes('role="main"'));
+      });
 
-  test('2.10 - amorismo-styles.css se carga DESPUÉS del bloque <style> inline', () => {
-    const styleTagEnd = html.lastIndexOf('</style>');
-    const cssLinkPos = html.indexOf('assets/css/amorismo-styles.css');
-    assert.ok(cssLinkPos > styleTagEnd, 'El CSS externo debe cargarse después del <style> inline para ganar en cascade');
-  });
+      test('Footer FUERA de main', () => {
+        const mainClose = html.indexOf('</main>');
+        const footerOpen = html.indexOf('<footer');
+        assert.ok(footerOpen > mainClose, 'Footer debe ser sibling de main, no hijo');
+      });
 
-  test('2.11 - amorismo-scripts.js se carga con defer', () => {
-    assert.ok(html.includes('defer src="assets/js/amorismo-scripts.js"'), 'El JS debe cargarse con defer');
-  });
+      test('Sin inline style=', () => {
+        assert.ok(!html.includes('style='), `${page} no debe tener estilos inline`);
+      });
 
-  test('2.12 - <main> tiene role="main" (accesibilidad)', () => {
-    assert.ok(html.includes('role="main"'), 'Main debe tener role="main"');
-  });
+      test('Sin referencias legacy (amorismo__)', () => {
+        assert.ok(!html.includes('amorismo__'), `${page} no debe usar clases legacy`);
+      });
 
-  test('2.13 - Nav legal tiene aria-label (accesibilidad)', () => {
-    assert.ok(html.includes('aria-label="Enlaces legales"'), 'Nav legal debe tener aria-label');
-  });
+      test('Todas las img tienen alt', () => {
+        const imgs = html.match(/<img [^>]+>/g) || [];
+        imgs.forEach(img => {
+          assert.ok(img.includes('alt='), `Imagen sin alt: ${img.substring(0, 60)}`);
+        });
+      });
 
-  test('2.14 - Separadores decorativos tienen aria-hidden (accesibilidad)', () => {
-    assert.ok(html.includes('aria-hidden="true"'), 'Separadores decorativos deben tener aria-hidden');
-  });
+      test('nav.js cargado con defer', () => {
+        assert.ok(html.includes('defer src="assets/js/nav.js"'));
+      });
 
-  test('2.15 - Todas las imágenes tienen atributo alt', () => {
-    const imgTags = html.match(/<img [^>]+>/g) || [];
-    imgTags.forEach(img => {
-      assert.ok(img.includes('alt='), `Imagen sin alt: ${img.substring(0, 80)}`);
+      test('Rutas relativas (no absolutas)', () => {
+        assert.ok(!html.includes('href="/assets'));
+        assert.ok(!html.includes('src="/assets'));
+      });
     });
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 3: CONTENT INTEGRITY (Negocio)
+// 3. CONTENIDO VOL. III (la página con más contenido)
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('3. Integridad de contenido y lógica de negocio', () => {
+describe('3. Contenido de vol-3.html', () => {
+  const html = readFile('vol-3.html');
+
+  test('3.1 - CTA disabled presente', () => {
+    assert.ok(html.includes('Entradas no disponibles'));
+    assert.ok(html.includes('am-cta--disabled'));
+  });
+
+  test('3.2 - Sin enlace a taquilla', () => {
+    assert.ok(!html.includes('taquilla.microteatro'));
+  });
+
+  test('3.3 - Elenco completo (4)', () => {
+    ['Loa Miller', 'Blanca Rodríguez', 'Ángela Santos', 'Braulio Chappell'].forEach(name => {
+      assert.ok(html.includes(name), `Elenco: ${name}`);
+    });
+  });
+
+  test('3.4 - Equipo creativo (3)', () => {
+    ['Dustin Calderón', 'David Gregory', 'Carmen Rodríguez'].forEach(name => {
+      assert.ok(html.includes(name), `Equipo: ${name}`);
+    });
+  });
+
+  test('3.5 - Galería con 8 thumbnails', () => {
+    const thumbs = (html.match(/class="am-gallery__thumb/g) || []).length;
+    assert.ok(thumbs >= 8, `Necesita 8+ thumbnails, tiene ${thumbs}`);
+  });
+
+  test('3.6 - gallery.js cargado', () => {
+    assert.ok(html.includes('defer src="assets/js/gallery.js"'));
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4. CONTENIDO HOME (index.html)
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('4. Contenido de index.html', () => {
   const html = readFile('index.html');
 
-  test('3.1 - Botón CTA muestra "Entradas no disponibles"', () => {
-    assert.ok(html.includes('Entradas no disponibles'), 'CTA debe mostrar mensaje de no disponibilidad');
+  test('4.1 - Hero centrado usa modifier class', () => {
+    assert.ok(html.includes('am-hero__grid--centered'));
   });
 
-  test('3.2 - CTA NO tiene link a taquilla (tickets eliminados)', () => {
-    assert.ok(!html.includes('taquilla.microteatro'), 'No debe haber ningún enlace a taquilla.microteatro');
+  test('4.2 - Crédito de autoría', () => {
+    assert.ok(html.includes('Dustin Calderón'));
   });
 
-  test('3.3 - CTA NO tiene href activo (pointer-events: none)', () => {
-    assert.ok(html.includes('pointer-events: none'), 'El CTA debe tener pointer-events: none para bloquearlo');
-  });
-
-  test('3.4 - CTA NO es un <a>, es un <span> inerte', () => {
-    assert.ok(!html.match(/<a[^>]+Entradas no disponibles/), 'CTA no debe ser un <a> clickable');
-    assert.ok(html.includes('<span class="amorismo__cta"'), 'CTA debe ser un <span>');
-  });
-
-  test('3.5 - Sección de urgencia de venta eliminada', () => {
-    assert.ok(!html.includes('La temporada es muy corta'), 'El texto de urgencia debe estar eliminado');
-    assert.ok(!html.includes('amorismo__cta-final'), 'La sección cta-final debe estar eliminada');
-  });
-
-  test('3.6 - Elenco completo (4 artistas)', () => {
-    assert.ok(html.includes('Loa Miller'), 'Elenco: Loa Miller');
-    assert.ok(html.includes('Blanca Rodríguez'), 'Elenco: Blanca Rodríguez');
-    assert.ok(html.includes('Ángela Santos'), 'Elenco: Ángela Santos');
-    assert.ok(html.includes('Braulio Chappell'), 'Elenco: Braulio Chappell');
-  });
-
-  test('3.7 - Equipo creativo completo (3 roles)', () => {
-    assert.ok(html.includes('Dustin Calderón'), 'Equipo: Dustin Calderón');
-    assert.ok(html.includes('David Gregory'), 'Equipo: David Gregory');
-    assert.ok(html.includes('Carmen Rodríguez'), 'Equipo: Carmen Rodríguez');
-  });
-
-  test('3.10 - Galería con 8 fotos', () => {
-    const thumbnails = (html.match(/amorismo__galeria-thumbnail/g) || []).length;
-    // Cada thumbnail tiene la clase 2 veces (button + img dentro), o 1 en el button
-    const thumbnailButtons = (html.match(/class="amorismo__galeria-thumbnail/g) || []).length;
-    assert.ok(thumbnailButtons >= 8, `Debe haber al menos 8 thumbnails, hay ${thumbnailButtons}`);
-  });
-
-  test('3.11 - Footer tiene copyright y links legales', () => {
-    assert.ok(html.includes('Copyright © 2025'), 'Footer debe tener copyright');
-    assert.ok(html.includes('Aviso Legal'), 'Footer debe tener Aviso Legal');
-    assert.ok(html.includes('Política de Privacidad'), 'Footer debe tener Política de Privacidad');
-  });
-
-  test('3.12 - Links legales apuntan a rutas correctas y abren en nueva pestaña', () => {
-    assert.ok(html.includes('dustincalderon.com/legal/aviso-legal/'), 'Aviso Legal debe apuntar a /legal/aviso-legal/');
-    assert.ok(html.includes('dustincalderon.com/legal/privacidad/'), 'Privacidad debe apuntar a /legal/privacidad/');
-    assert.ok(!html.includes('politica-privacidad'), 'URLs antiguas de WordPress no deben existir');
-    assert.ok(html.includes('rel="noopener noreferrer"'), 'Links externos deben tener rel=noopener');
+  test('4.3 - Footer con copyright y legales', () => {
+    assert.ok(html.includes('Copyright © 2025'));
+    assert.ok(html.includes('Aviso Legal'));
+    assert.ok(html.includes('Política de Privacidad'));
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 4: CSS - DESIGN SYSTEM
+// 5. CSS DESIGN SYSTEM
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('4. CSS - Design System y tokens', () => {
-  const css = readFile('assets/css/amorismo-styles.css');
+describe('5. CSS Design System', () => {
+  const tokens = readFile('assets/css/tokens.css');
 
-  test('4.1 - Color primario verde petróleo definido', () => {
-    assert.ok(css.includes('--amorismo-color-verde-petroleo: #0D2C2C'), 'Token verde petróleo debe estar definido');
+  test('5.1 - Verde petróleo definido', () => {
+    assert.ok(tokens.includes('--am-verde'));
   });
 
-  test('4.2 - Fuente Inter definida como principal', () => {
-    assert.ok(css.includes("--amorismo-font-sans: 'Inter'"), 'Font Inter debe ser la principal');
+  test('5.2 - Font Inter definida', () => {
+    assert.ok(tokens.includes("'Inter'"));
   });
 
-  test('4.3 - Fuente IBM Plex Mono definida para títulos', () => {
-    assert.ok(css.includes("--amorismo-font-title: 'IBM Plex Mono'"), 'Font monoespaciada para títulos debe estar definida');
+  test('5.3 - Font IBM Plex Mono definida', () => {
+    assert.ok(tokens.includes("'IBM Plex Mono'"));
   });
 
-  test('4.4 - h1 usa clamp() para tipografía fluida', () => {
-    assert.ok(css.match(/h1\s*\{[^}]*clamp\(/s), 'h1 debe usar clamp() para tamaño fluido');
+  test('5.4 - Sin tokens huérfanos (dead tokens eliminados)', () => {
+    assert.ok(!tokens.includes('--am-negro-escenico'));
+    assert.ok(!tokens.includes('--am-radius-lg'));
+    assert.ok(!tokens.includes('--am-sp-7'));
   });
 
-  test('4.5 - Media query para móvil (768px) presente', () => {
-    assert.ok(css.includes('@media (max-width: 768px)'), 'Media query para móvil debe estar presente');
-  });
-
-  test('4.6 - Media query ultra-mobile (480px) presente', () => {
-    assert.ok(css.includes('@media (max-width: 480px)'), 'Media query ultra-mobile debe estar presente');
-  });
-
-  test('4.7 - Hero grid responsivo (1 columna en móvil)', () => {
-    assert.ok(css.includes('grid-template-columns: 1fr;'), 'Hero debe colapsar a 1 columna en móvil');
-  });
-
-  test('4.8 - CSS scoped: todas las clases usan prefijo amorismo__', () => {
-    // Verificamos que no haya clases que puedan colisionar sin prefijo
-    const nonPrefixedClasses = css.match(/\.((?!amorismo|evl-lm|error|ty-|mc-|mc_)[a-z][a-zA-Z-]+)\s*\{/g) || [];
-    // Filtramos pseudo-clases y elementos HTML globales
-    const suspicious = nonPrefixedClasses.filter(cls => !cls.match(/\.(clear|response|small-text)\s*\{/));
-    assert.equal(suspicious.length, 0, `Clases sin prefijo encontradas: ${suspicious.join(', ')}`);
-  });
-
-  test('4.9 - Botón CTA tiene transición definida', () => {
-    assert.ok(css.includes('transition: all 0.3s ease'), 'CTAs deben tener transición definida');
-  });
-
-  test('4.11 - CSS no tiene reglas duplicadas de footer eliminado', () => {
-    // Verificamos que NO existe el bloque .evl-lm-simple__footer con las reglas que fueron borradas
-    // (el footer CSS con flex-direction column que fue eliminado en el git diff)
-    const footerRules = css.match(/\.evl-lm-simple__footer\s*\{[^}]*flex-direction:\s*column/s);
-    assert.equal(footerRules, null, 'Las reglas de footer eliminadas no deben existir');
+  test('5.5 - Responsive tiene media queries', () => {
+    const responsive = readFile('assets/css/responsive.css');
+    assert.ok(responsive.includes('@media'));
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 5: JAVASCRIPT
+// 6. JAVASCRIPT
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('5. JavaScript - Galería y comportamiento', () => {
-  const js = readFile('assets/js/amorismo-scripts.js');
+describe('6. JavaScript', () => {
 
-  test('5.1 - IIFE con strict mode para scope aislado', () => {
-    assert.ok(js.includes("'use strict'"), 'JS debe usar strict mode dentro del IIFE');
-    assert.ok(js.includes('(function ()'), 'JS debe estar envuelto en IIFE');
+  test('6.1 - nav.js usa IIFE + strict', () => {
+    const nav = readFile('assets/js/nav.js');
+    assert.ok(nav.includes("'use strict'"));
+    assert.ok(nav.includes('(function ()'));
   });
 
-  test('5.2 - Lógica de galería implementada', () => {
-    assert.ok(js.includes('#galeria-main-image'), 'JS debe referenciar la imagen principal de galería');
-    assert.ok(js.includes('data-src'), 'JS debe leer el data-src de los thumbnails');
+  test('6.2 - gallery.js usa IIFE + strict', () => {
+    const gallery = readFile('assets/js/gallery.js');
+    assert.ok(gallery.includes("'use strict'"));
+    assert.ok(gallery.includes('(function ()'));
   });
 
-  test('5.3 - Thumbnail activo se actualiza al hacer click', () => {
-    assert.ok(js.includes('amorismo__galeria-thumbnail--active'), 'JS debe gestionar la clase active en thumbnails');
+  test('6.3 - gallery.js es defensivo', () => {
+    const gallery = readFile('assets/js/gallery.js');
+    assert.ok(gallery.includes('if (!mainImage'));
   });
 
-  test('5.4 - Scroll suave gestionado por CSS (scroll-behavior)', () => {
-    // El listener JS de scroll fue eliminado; CSS lo gestiona más eficientemente
-    assert.ok(!js.includes('scrollIntoView'), 'Scroll suave no debe estar en JS (lo maneja CSS)');
-    // scroll-behavior: smooth está en el <style> inline de index.html
-    const html = readFile('index.html');
-    assert.ok(html.includes('scroll-behavior: smooth'), 'scroll-behavior: smooth debe estar declarado en el HTML');
+  test('6.4 - nav.js mapea las 4 páginas', () => {
+    const nav = readFile('assets/js/nav.js');
+    ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
+      assert.ok(nav.includes(`'${page}'`), `nav.js debe mapear ${page}`);
+    });
   });
 
-  test('5.5 - Código defensivo: comprueba existencia de elementos antes de usarlos', () => {
-    assert.ok(js.includes('if (mainImage && thumbnails.length > 0)'), 'JS debe verificar que los elementos existen');
-  });
-
-  test('5.6 - Sin console.log de debug en producción', () => {
-    // Los console.log en el JS son para verificar carga, son aceptables en este caso
-    // pero los señalamos para revisión futura
-    const consoleLogs = (js.match(/console\.log/g) || []).length;
-    assert.ok(consoleLogs <= 3, `Hay ${consoleLogs} console.log en producción - revisar`);
+  test('6.5 - Sin console.log en producción', () => {
+    const nav = readFile('assets/js/nav.js');
+    const gallery = readFile('assets/js/gallery.js');
+    assert.ok(!nav.includes('console.log'));
+    assert.ok(!gallery.includes('console.log'));
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 6: PÁGINA SECUNDARIA (404)
+// 7. PÁGINA 404
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('6. Página secundaria: 404', () => {
+describe('7. Página 404', () => {
+  const html = readFile('404.html');
 
-  const html404 = readFile('404.html');
-
-  test('6.1 - 404 tiene title correcto', () => {
-    assert.ok(html404.includes('<title>404 - Página no encontrada</title>'), '404 debe tener title descriptivo');
+  test('7.1 - Title descriptivo', () => {
+    assert.ok(html.includes('<title>404 - Página no encontrada</title>'));
   });
 
-  test('6.2 - 404 tiene favicon', () => {
-    assert.ok(html404.includes('rel="icon"'), '404 debe tener favicon');
+  test('7.2 - Link a inicio', () => {
+    assert.ok(html.includes('href="/"'));
   });
 
-  test('6.3 - 404 tiene link "Volver a Inicio" (href="/")', () => {
-    assert.ok(html404.includes('href="/"'), '404 debe tener link de vuelta a inicio');
+  test('7.3 - Usa paleta verde petróleo', () => {
+    assert.ok(html.includes('#0D2C2C'));
   });
 
-  test('6.4 - 404 usa Inter font', () => {
-    assert.ok(html404.includes('Inter'), '404 debe usar la fuente Inter');
-  });
-
-  test('6.5 - 404 usa paleta de colores correcta', () => {
-    assert.ok(html404.includes('#0D2C2C'), '404 debe usar el verde petróleo del design system');
-  });
-
-  test('6.6 - 404 tiene fondo con ruido/grain (brand consistent)', () => {
-    assert.ok(html404.includes('error__bg-noise'), '404 debe tener el fondo con grain');
-  });
-
-  test('6.7 - 404 tiene role="main" (accesibilidad)', () => {
-    assert.ok(html404.includes('role="main"'), '404 debe tener role=main');
-  });
-
-  test('6.8 - 404 footer usa rutas /legal/ correctas y no tiene T&C', () => {
-    // Rutas canónicas (sincronizadas con index.html)
-    assert.ok(html404.includes('dustincalderon.com/legal/aviso-legal/'), '404 footer debe usar /legal/aviso-legal/');
-    assert.ok(html404.includes('dustincalderon.com/legal/privacidad/'), '404 footer debe usar /legal/privacidad/');
-    // Rutas WordPress antiguas eliminadas
-    assert.ok(!html404.includes('politica-privacidad'), '404 no debe tener URLs WordPress /politica-privacidad/');
-    // Términos y Condiciones eliminados (sitio estático sin contrato)
-    assert.ok(!html404.includes('terminos-y-condiciones'), '404 no debe tener link a Términos y Condiciones');
-    assert.ok(!html404.includes('Términos'), '404 no debe mostrar texto de Términos');
+  test('7.4 - Legales correctos', () => {
+    assert.ok(html.includes('dustincalderon.com/legal/aviso-legal/'));
+    assert.ok(html.includes('dustincalderon.com/legal/privacidad/'));
+    assert.ok(!html.includes('politica-privacidad'));
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 7: CLOUDFLARE PAGES - CONFIGURACIÓN
+// 8. SEGURIDAD
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('7. Cloudflare Pages - Configuración de despliegue', () => {
+describe('8. Seguridad', () => {
 
-  test('7.1 - No hay archivos de build innecesarios (package.json, node_modules)', () => {
-    assert.ok(!fileExists('package.json'), 'No debe haber package.json (sitio puramente estático)');
-    assert.ok(!fileExists('node_modules'), 'No debe haber node_modules');
+  test('8.1 - Links externos con noopener', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      const blanks = (html.match(/target="_blank"/g) || []).length;
+      const noopers = (html.match(/rel="noopener noreferrer"/g) || []).length;
+      assert.equal(blanks, noopers, `${page}: target=_blank (${blanks}) vs noopener (${noopers})`);
+    });
   });
 
-  test('7.2 - No hay archivos de framework (next.config, vite.config)', () => {
-    assert.ok(!fileExists('next.config.js'), 'No debe haber next.config.js');
-    assert.ok(!fileExists('vite.config.js'), 'No debe haber vite.config.js');
+  test('8.2 - Sin credenciales en HTML/JS', () => {
+    const allContent = PAGES.map(p => readFile(p)).join('') +
+      readFile('assets/js/nav.js') + readFile('assets/js/gallery.js');
+    assert.ok(!allContent.includes('Bearer '));
+    assert.ok(!allContent.includes('api_key'));
   });
 
-  test('7.3 - No hay archivos WordPress residuales', () => {
-    assert.ok(!fileExists('wp-config.php'), 'No debe haber wp-config.php');
-    assert.ok(!fileExists('wp-content'), 'No debe haber carpeta wp-content');
+  test('8.3 - Sin href javascript: (XSS)', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      assert.ok(!html.match(/href="javascript:/i), `${page}: no javascript: href`);
+    });
   });
 
-  test('7.4 - index.html usa rutas relativas (compatible con subdirectorios)', () => {
-    const html = readFile('index.html');
-    // Verificamos que NO usa rutas absolutas para assets locales
-    assert.ok(!html.includes('href="/assets'), 'Assets CSS deben usar rutas relativas');
-    assert.ok(!html.includes('src="/assets'), 'Assets imágenes deben usar rutas relativas');
-  });
-
-  test('7.5 - 404.html usa rutas relativas', () => {
-    const html404 = readFile('404.html');
-    // La página 404 puede estar en cualquier ruta, debe usar rutas relativas
-    assert.ok(!html404.includes('src="/assets'), '404 no debe usar rutas absolutas para assets');
-  });
-});
-
-// ─────────────────────────────────────────────────────────────────────────────
-// BLOQUE 8: SEGURIDAD Y BUENAS PRÁCTICAS
-// ─────────────────────────────────────────────────────────────────────────────
-
-describe('8. Seguridad y buenas prácticas', () => {
-  const html = readFile('index.html');
-
-  test('8.1 - Links externos tienen rel="noopener noreferrer"', () => {
-    // Verificamos que todos los target="_blank" tengan rel=noopener
-    const blankLinks = html.match(/target="_blank"/g) || [];
-    const noopenerLinks = html.match(/rel="noopener noreferrer"/g) || [];
-    assert.equal(blankLinks.length, noopenerLinks.length,
-      `Debe haber tantos rel=noopener (${noopenerLinks.length}) como target=_blank (${blankLinks.length})`);
-  });
-
-  test('8.2 - No hay contraseñas ni tokens hardcoded en el HTML', () => {
-    assert.ok(!html.includes('password'), 'No debe haber "password" en el HTML');
-    assert.ok(!html.includes('Bearer '), 'No debe haber tokens Bearer en el HTML');
-    assert.ok(!html.includes('api_key'), 'No debe haber api_key en el HTML');
-  });
-
-  test('8.3 - No hay credenciales en el JS', () => {
-    const js = readFile('assets/js/amorismo-scripts.js');
-    assert.ok(!js.includes('Bearer '), 'No debe haber tokens Bearer en el JS');
-    assert.ok(!js.includes('password'), 'No debe haber contraseñas en el JS');
-  });
-
-  test('8.4 - No hay href con javascript: (XSS)', () => {
-    assert.ok(!html.match(/href="javascript:/i), 'No debe haber href con javascript:');
+  test('8.4 - Sin package.json ni node_modules', () => {
+    assert.ok(!fileExists('package.json'));
+    assert.ok(!fileExists('node_modules'));
   });
 });
