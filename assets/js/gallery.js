@@ -1,6 +1,5 @@
 /**
  * gallery.js – Interactive gallery for production photos
- * Migrated from amorismo-scripts.js, unchanged logic.
  */
 (function () {
   'use strict';

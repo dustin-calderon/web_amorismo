@@ -43,7 +43,7 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
-/* Active tab — set via body[data-page] + descendant selector */
+/* Active tab — applied by nav.js based on current URL */
 .am-nav__link--active {
   color: var(--am-blanco);
   font-weight: 700;

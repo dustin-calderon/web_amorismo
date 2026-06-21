@@ -13,7 +13,6 @@
   --am-gris-neblina: #A8B8BD;
   --am-blanco-proyector: #E6EBEE;
   --am-blanco: #FFFFFF;
-  --am-negro-escenico: #0A0D0E;
 
   /* Espaciado (escala 4px) */
   --am-sp-1: 0.25rem;
@@ -22,13 +21,11 @@
   --am-sp-4: 1rem;
   --am-sp-5: 1.5rem;
   --am-sp-6: 2rem;
-  --am-sp-7: 3rem;
   --am-sp-8: 4rem;
 
   /* Radios */
   --am-radius-sm: 8px;
   --am-radius-md: 14px;
-  --am-radius-lg: 22px;
 
   /* Sombras */
   --am-shadow-card: 0 8px 25px rgba(0, 0, 0, 0.5);

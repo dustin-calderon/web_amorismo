@@ -60,3 +60,14 @@
   display: block;
   margin-bottom: var(--am-sp-2);
 }
+
+/* Centered variant — single-column hero (used on Home, placeholder pages) */
+.am-hero__grid--centered {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.am-hero__grid--centered .am-hero__body {
+  text-align: center;
+  align-items: center;
+}
