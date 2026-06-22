@@ -63,7 +63,7 @@
   text-transform: uppercase;
   color: var(--am-home-text-muted);
   text-decoration: none;
-  border: 1px solid var(--am-home-border);
+  border: 1px solid rgba(245, 244, 239, 0.25);
   border-radius: var(--am-radius-sm);
   transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
@@ -76,8 +76,8 @@
 
 /* Active – set by nav.js on page load */
 .am-nav__link--active {
-  color: var(--am-home-accent);
-  border-color: var(--am-home-accent);
+  color: var(--am-home-accent-soft);
+  border-color: var(--am-home-accent-soft);
   background: var(--am-nav-active-bg);
   font-weight: 700;
 }
