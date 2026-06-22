@@ -21,6 +21,28 @@ body {
   padding-top: var(--am-nav-h);
 }
 
+.am-skip-link {
+  position: fixed;
+  top: var(--am-sp-2);
+  left: var(--am-sp-2);
+  z-index: 200;
+  padding: var(--am-sp-3) var(--am-sp-4);
+  border-radius: var(--am-radius-sm);
+  background: var(--am-home-accent);
+  color: var(--am-on-accent);
+  font-weight: 700;
+  transform: translateY(calc(-100% - var(--am-sp-4)));
+}
+
+.am-skip-link:focus {
+  color: var(--am-on-accent);
+  transform: translateY(0);
+}
+
+[id] {
+  scroll-margin-top: calc(var(--am-nav-h) + var(--am-sp-4));
+}
+
 /* ===== Background decoration ===== */
 /* Gradiente usa tokens dinámicos; cada body[data-vol] los sobreescribe */
 .am-bg-gradient {

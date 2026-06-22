@@ -102,6 +102,10 @@ describe('1. Integridad de archivos', () => {
       assert.ok(lines <= 300, `${f} tiene ${lines} líneas (máx 300)`);
     });
   });
+
+  test('1.10 - No quedan herramientas de build rotas u obsoletas', () => {
+    assert.ok(!fileExists('scripts/compress-covers.js'));
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -170,6 +174,16 @@ describe('2. Semántica HTML y SEO', () => {
 
       test('nav.js cargado con defer', () => {
         assert.ok(html.includes('defer src="assets/js/nav.js"'));
+      });
+
+      test('Incluye acceso directo al contenido principal', () => {
+        assert.ok(html.includes('class="am-skip-link" href="#main"'));
+        assert.ok(html.includes('<main id="main" role="main" tabindex="-1">'));
+      });
+
+      test('La página activa existe sin depender de JavaScript', () => {
+        assert.equal((html.match(/aria-current="page"/g) || []).length, 1);
+        assert.equal((html.match(/am-nav__link--active/g) || []).length, 1);
       });
 
       test('Rutas relativas (no absolutas)', () => {
@@ -322,6 +336,57 @@ describe('5. CSS Design System', () => {
     assert.ok(!sharedComponents.includes('rgba(0, 0, 0'));
     assert.ok(!sharedComponents.includes('var(--am-v1-secundario)'));
   });
+
+  test('5.10 - Componentes interactivos usan contraste y tamaño táctil', () => {
+    const components = readFile('assets/css/components.css');
+    const nav = readFile('assets/css/nav.css');
+
+    assert.ok(components.includes('color: var(--am-on-accent)'));
+    assert.ok(components.includes('min-height: 44px'));
+    assert.ok(nav.includes('min-height: 44px'));
+    assert.ok(nav.includes('var(--am-nav-active-text)'));
+  });
+
+  test('5.11 - Anclas compensan la navegación fija', () => {
+    const base = readFile('assets/css/base.css');
+    assert.ok(base.includes('scroll-margin-top: calc(var(--am-nav-h) + var(--am-sp-4))'));
+  });
+
+  test('5.12 - Placeholder conserva contraste sin opacidad artificial', () => {
+    const home = readFile('assets/css/home.css');
+    assert.ok(home.includes('color: var(--am-input-placeholder)'));
+    assert.ok(home.includes('opacity: 1'));
+  });
+
+  test('5.13 - Vol. II define el tema completo de componentes interactivos', () => {
+    const volumeTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    [
+      '--am-on-accent:',
+      '--am-nav-bg:',
+      '--am-nav-active-bg:',
+      '--am-nav-active-text:',
+      '--am-cta-hover-bg:',
+      '--am-input-placeholder:',
+      '--am-footer-logo-bg:',
+    ].forEach(token => {
+      assert.ok(volumeTwoTheme.includes(token), `Vol. II debe definir ${token}`);
+    });
+  });
+
+  test('5.14 - Galería usa sombras temáticas', () => {
+    const gallery = readFile('assets/css/gallery.css');
+    assert.ok(gallery.includes('var(--am-shadow-thumb)'));
+    assert.ok(gallery.includes('var(--am-shadow-thumb-hover)'));
+    assert.ok(gallery.includes('var(--am-shadow-thumb-active)'));
+    assert.ok(!gallery.includes('rgba('));
+  });
+
+  test('5.15 - Vol. III no hereda sombras rojas de Home', () => {
+    const volumeThreeTheme = tokens.match(/body\[data-vol="3"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    assert.ok(volumeThreeTheme.includes('--am-shadow-cta:'));
+    assert.ok(volumeThreeTheme.includes('--am-shadow-cta-hover:'));
+    assert.ok(!volumeThreeTheme.includes('rgba(167, 25, 33'));
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -461,7 +526,14 @@ describe('8. Regresiones funcionales', () => {
     assert.ok(readFile('vol-3.html').includes('loading="lazy"'));
   });
 
-  test('8.5 - Todos los recursos locales referenciados existen', () => {
+  test('8.5 - Imagen principal de galería difiere carga y decodificación', () => {
+    const html = readFile('vol-3.html');
+    const galleryImage = html.match(/<img id="gallery-main-image"[^>]+>/)?.[0] || '';
+    assert.ok(galleryImage.includes('loading="lazy"'));
+    assert.ok(galleryImage.includes('decoding="async"'));
+  });
+
+  test('8.6 - Todos los recursos locales referenciados existen', () => {
     [...PAGES, '404.html'].forEach(page => {
       const html = readFile(page);
       const references = [...html.matchAll(/(?:href|src)="([^"]+)"/g)]

@@ -4,8 +4,9 @@
 .am-cta {
   display: inline-block;
   background-color: var(--am-home-accent);
-  color: var(--am-home-text);
+  color: var(--am-on-accent);
   padding: var(--am-sp-4) var(--am-sp-6);
+  min-height: 44px;
   border-radius: var(--am-radius-md);
   font-weight: 700;
   font-size: 1rem;
@@ -22,7 +23,7 @@
   transform: translateY(-2px);
   box-shadow: var(--am-shadow-cta-hover);
   background-color: var(--am-cta-hover-bg);
-  color: var(--am-home-text);
+  color: var(--am-on-accent);
 }
 
 .am-cta--disabled {

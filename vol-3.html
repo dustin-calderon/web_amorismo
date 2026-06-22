@@ -36,6 +36,7 @@
 <!-- Background -->
 <div class="am-bg-gradient"></div>
 <div class="am-bg-noise"></div>
+<a class="am-skip-link" href="#main">Saltar al contenido</a>
 
 <!-- Navigation -->
 <nav class="am-nav" aria-label="Navegación principal">
@@ -43,11 +44,11 @@
 		<li><a href="index.html" class="am-nav__link" data-page="home">Home</a></li>
 		<li><a href="vol-1.html" class="am-nav__link" data-page="vol1">Vol I</a></li>
 		<li><a href="vol-2.html" class="am-nav__link" data-page="vol2">Vol II</a></li>
-		<li><a href="vol-3.html" class="am-nav__link" data-page="vol3">Vol III</a></li>
+		<li><a href="vol-3.html" class="am-nav__link am-nav__link--active" data-page="vol3" aria-current="page">Vol III</a></li>
 	</ul>
 </nav>
 
-<main id="main" role="main">
+<main id="main" role="main" tabindex="-1">
 
 	<!-- ===== 1. HERO: Cartel + Frase + CTA ===== -->
 	<section class="am-page-title">
@@ -149,7 +150,7 @@
 		<h2 class="am-section-label" id="gallery-heading">Galería</h2>
 		<div class="am-gallery__main">
 			<div class="am-gallery__frame">
-				<img id="gallery-main-image" src="assets/images/IMG_6612.webp" alt="Escena de AMORISMO Vol. III, fotografía 1" class="am-gallery__image" width="1400" height="1867">
+				<img id="gallery-main-image" src="assets/images/IMG_6612.webp" alt="Escena de AMORISMO Vol. III, fotografía 1" class="am-gallery__image" width="1400" height="1867" loading="lazy" decoding="async">
 			</div>
 		</div>
 		<div class="am-gallery__thumbs" aria-label="Seleccionar fotografía">

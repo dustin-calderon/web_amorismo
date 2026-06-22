@@ -19,6 +19,9 @@
   max-width: 100%;
   display: block;
   margin: 0 auto var(--am-sp-6);
+  padding: var(--am-footer-logo-padding);
+  border-radius: var(--am-radius-sm);
+  background: var(--am-footer-logo-bg);
 }
 
 .am-footer nav {

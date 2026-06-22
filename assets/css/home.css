@@ -193,8 +193,8 @@
 }
 
 .am-contact__input::placeholder {
-  color: var(--am-home-text-muted);
-  opacity: 0.6;
+  color: var(--am-input-placeholder);
+  opacity: 1;
 }
 
 .am-contact__input:focus {

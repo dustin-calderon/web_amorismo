@@ -40,7 +40,7 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--am-shadow-thumb);
   padding: 0;
 }
 
@@ -54,7 +54,7 @@
 
 .am-gallery__thumb:hover {
   border-color: var(--am-home-accent);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--am-shadow-thumb-hover);
 }
 
 .am-gallery__thumb:hover img {
@@ -63,7 +63,7 @@
 
 .am-gallery__thumb--active {
   border-color: var(--am-home-accent);
-  box-shadow: 0 6px 18px rgba(167, 25, 33, 0.3);
+  box-shadow: var(--am-shadow-thumb-active);
 }
 
 .am-gallery__thumb:focus-visible {
