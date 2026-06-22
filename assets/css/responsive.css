@@ -164,23 +164,15 @@
     padding: var(--am-sp-4);
   }
 
-  /* Footer */
-  .am-footer__logo {
-    width: 180px;
-    margin-bottom: var(--am-sp-4);
+  /* Footer — 2×2 grid */
+  .am-footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--am-sp-6);
+    padding: var(--am-sp-6) var(--am-sp-4);
   }
 
-  .am-footer {
-    padding: var(--am-sp-4);
-    font-size: 0.7rem;
-  }
-
-  .am-footer nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--am-sp-2);
-    justify-content: center;
-    margin-top: var(--am-sp-2);
+  .am-footer__bottom {
+    padding: var(--am-sp-3) var(--am-sp-4);
   }
 
   /* Typography */
@@ -305,22 +297,17 @@
     padding: var(--am-sp-5) var(--am-sp-3);
   }
 
-  /* Footer */
-  .am-footer__logo {
-    width: 140px;
-    margin-bottom: var(--am-sp-3);
+  /* Footer — single column */
+  .am-footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--am-sp-5);
+    padding: var(--am-sp-5) var(--am-sp-3);
   }
 
-  .am-footer {
-    padding: var(--am-sp-3);
-  }
-
-  .am-footer nav {
+  .am-footer__bottom {
     flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .am-footer span[aria-hidden] {
-    display: none;
+    gap: var(--am-sp-2);
+    text-align: center;
+    padding: var(--am-sp-3);
   }
 }
