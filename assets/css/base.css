@@ -11,10 +11,10 @@ html {
 }
 
 body {
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   font-family: var(--am-font-sans);
   font-weight: 400;
-  background-color: var(--am-verde-petroleo);
+  background-color: var(--am-home-bg);
   min-height: 100vh;
   overflow-x: hidden;
   /* offset for fixed nav */
@@ -27,16 +27,19 @@ body {
   inset: 0;
   background:
     radial-gradient(
-      circle at 50% 40%,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(255, 255, 255, 0.02) 25%,
-      rgba(0, 0, 0, 0.95) 80%
+      circle at 30% 40%,
+      rgba(106, 0, 24, 0.15) 0%,
+      rgba(0, 0, 0, 0) 50%
+    ),
+    radial-gradient(
+      circle at 75% 65%,
+      rgba(15, 61, 34, 0.12) 0%,
+      rgba(0, 0, 0, 0) 50%
     ),
     linear-gradient(
-      to bottom right,
-      var(--am-verde-petroleo) 0%,
-      var(--am-verde-carbon) 40%,
-      var(--am-verde-profundo) 100%
+      to bottom,
+      var(--am-home-bg) 0%,
+      #0d0d0d 100%
     );
   pointer-events: none;
   z-index: -2;
@@ -48,7 +51,7 @@ body {
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='5' seed='3'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
   background-size: 200px 200px;
-  opacity: 0.35;
+  opacity: 0.25;
   z-index: -2;
 }
 
@@ -56,16 +59,16 @@ body {
 h1, h2, h3 {
   font-family: var(--am-font-title);
   font-weight: 700;
-  color: var(--am-blanco-proyector);
+  color: var(--am-home-text);
   letter-spacing: -0.02em;
-  text-shadow: 0 0 20px rgba(230, 235, 238, 0.3);
+  text-shadow: 0 0 20px rgba(245, 244, 239, 0.15);
   margin: 0 0 var(--am-sp-4);
 }
 
 h1 {
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 900;
-  text-shadow: 0 0 30px rgba(230, 235, 238, 0.4);
+  text-shadow: 0 0 30px rgba(245, 244, 239, 0.2);
 }
 
 h2 {
@@ -75,7 +78,7 @@ h2 {
 h3 {
   font-size: 1.75rem;
   font-family: var(--am-font-sans);
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   text-shadow: none;
 }
 
@@ -83,17 +86,17 @@ p {
   margin: 0 0 var(--am-sp-4);
   line-height: 1.7;
   font-size: 1.125rem;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
 }
 
 a {
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: var(--am-blanco-proyector);
+  color: var(--am-home-accent);
 }
 
 

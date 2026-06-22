@@ -10,10 +10,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 36, 36, 0.85);
+  background: rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(168, 184, 189, 0.12);
+  border-bottom: 1px solid var(--am-home-border);
 }
 
 .am-nav__list {
@@ -32,20 +32,20 @@
   font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   text-decoration: none;
   border-radius: var(--am-radius-sm);
   transition: color 0.25s ease, background-color 0.25s ease;
 }
 
 .am-nav__link:hover {
-  color: var(--am-blanco);
-  background: rgba(255, 255, 255, 0.06);
+  color: var(--am-home-text);
+  background: rgba(245, 244, 239, 0.06);
 }
 
 /* Active tab — applied by nav.js based on current URL */
 .am-nav__link--active {
-  color: var(--am-blanco);
+  color: var(--am-home-accent);
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(167, 25, 33, 0.12);
 }

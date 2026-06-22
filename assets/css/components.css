@@ -3,8 +3,8 @@
 /* ===== CTA Button ===== */
 .am-cta {
   display: inline-block;
-  background-color: var(--am-blanco-proyector);
-  color: var(--am-verde-petroleo);
+  background-color: var(--am-home-accent);
+  color: var(--am-home-text);
   padding: var(--am-sp-4) var(--am-sp-6);
   border-radius: var(--am-radius-md);
   font-weight: 700;
@@ -15,14 +15,14 @@
   letter-spacing: 0.05em;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: var(--am-shadow-cta);
+  box-shadow: 0 8px 30px rgba(167, 25, 33, 0.35);
 }
 
 .am-cta:hover {
   transform: translateY(-2px);
-  box-shadow: var(--am-shadow-cta-hover);
-  background-color: var(--am-blanco);
-  color: var(--am-verde-petroleo);
+  box-shadow: 0 12px 40px rgba(167, 25, 33, 0.5);
+  background-color: var(--am-v1-secundario);
+  color: var(--am-home-text);
 }
 
 .am-cta--disabled {
@@ -37,7 +37,7 @@
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-8);
   font-family: var(--am-font-sans);
   text-align: left;
@@ -59,7 +59,7 @@
 }
 
 .am-person__photo-wrap {
-  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  background: var(--am-home-surface);
   aspect-ratio: 3 / 4;
   border-radius: var(--am-radius-md);
   overflow: hidden;
@@ -79,14 +79,14 @@
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-2);
 }
 
 .am-person__name {
   font-size: 0.95rem;
   font-weight: 400;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   margin: 0;
   letter-spacing: 0.05em;
 }
@@ -106,5 +106,5 @@
   max-width: 280px;
   height: auto;
   margin: 0 auto;
-  filter: drop-shadow(0 0 20px rgba(230, 235, 238, 0.3));
+  filter: drop-shadow(0 0 20px rgba(245, 244, 239, 0.2));
 }

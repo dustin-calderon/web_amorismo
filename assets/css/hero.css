@@ -39,12 +39,12 @@
 .am-hero__copy {
   font-size: 1.25rem;
   line-height: 1.8;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   margin: 0;
 }
 
 .am-hero__copy strong {
-  color: var(--am-blanco-proyector);
+  color: var(--am-home-accent-soft);
   font-weight: 700;
 }
 
@@ -52,11 +52,11 @@
   margin: 0;
   font-size: 1.125rem;
   line-height: 1.6;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
 }
 
 .am-hero__meta strong {
-  color: var(--am-blanco-proyector);
+  color: var(--am-home-text);
   display: block;
   margin-bottom: var(--am-sp-2);
 }

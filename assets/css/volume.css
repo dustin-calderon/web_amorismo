@@ -14,14 +14,14 @@
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-6);
 }
 
 .am-synopsis__text {
   font-size: 1.125rem;
   line-height: 1.9;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   max-width: 780px;
   margin: 0;
 }
@@ -39,7 +39,7 @@
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-8);
 }
 
@@ -56,7 +56,7 @@
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-8);
 }
 
@@ -69,15 +69,15 @@
 .am-review {
   padding: var(--am-sp-6);
   border-radius: var(--am-radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(168, 184, 189, 0.08);
+  background: var(--am-home-quote-bg);
+  border: 1px solid var(--am-home-border);
   max-width: 780px;
 }
 
 .am-review__quote {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   font-style: italic;
   margin: 0 0 var(--am-sp-4);
 }
@@ -87,7 +87,7 @@
   font-size: 2.5rem;
   line-height: 0;
   vertical-align: -0.5em;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-accent);
   margin-right: var(--am-sp-1);
   font-style: normal;
 }
@@ -95,7 +95,7 @@
 .am-review__source {
   font-size: 0.875rem;
   font-weight: 400;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   letter-spacing: 0.04em;
   margin: 0;
 }

@@ -10,7 +10,7 @@
 }
 
 .am-gallery__frame {
-  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  background: var(--am-home-surface);
   aspect-ratio: 16 / 9;
   border-radius: var(--am-radius-md);
   overflow: hidden;
@@ -33,7 +33,7 @@
 }
 
 .am-gallery__thumb {
-  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  background: var(--am-home-surface);
   aspect-ratio: 1;
   border-radius: var(--am-radius-md);
   overflow: hidden;
@@ -53,7 +53,7 @@
 }
 
 .am-gallery__thumb:hover {
-  border-color: var(--am-blanco-proyector);
+  border-color: var(--am-home-accent);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
 }
 
@@ -62,6 +62,6 @@
 }
 
 .am-gallery__thumb--active {
-  border-color: var(--am-blanco-proyector);
-  box-shadow: 0 6px 18px rgba(230, 235, 238, 0.4);
+  border-color: var(--am-home-accent);
+  box-shadow: 0 6px 18px rgba(167, 25, 33, 0.3);
 }

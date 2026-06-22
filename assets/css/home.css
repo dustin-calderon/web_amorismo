@@ -8,8 +8,8 @@
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(168, 184, 189, 0.25) 20%,
-    rgba(168, 184, 189, 0.25) 80%,
+    var(--am-home-border) 20%,
+    var(--am-home-border) 80%,
     transparent 100%
   );
   max-width: var(--am-max-w);
@@ -30,7 +30,7 @@
   font-weight: 300;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-8);
 }
 
@@ -46,14 +46,14 @@
   position: relative;
   padding: var(--am-sp-6);
   border-radius: var(--am-radius-md);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(168, 184, 189, 0.08);
+  background: var(--am-home-quote-bg);
+  border: 1px solid var(--am-home-border);
 }
 
 .am-testimonial__quote {
   font-size: 1.125rem;
   line-height: 1.8;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   font-style: italic;
   margin: 0 0 var(--am-sp-4);
 }
@@ -63,7 +63,7 @@
   font-size: 2.5rem;
   line-height: 0;
   vertical-align: -0.5em;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-accent);
   margin-right: var(--am-sp-1);
   font-style: normal;
 }
@@ -71,7 +71,7 @@
 .am-testimonial__author {
   font-size: 0.875rem;
   font-weight: 400;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   letter-spacing: 0.04em;
   margin: 0;
 }
@@ -107,7 +107,7 @@
   border-radius: var(--am-radius-md);
   overflow: hidden;
   box-shadow: var(--am-shadow-card);
-  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+  background: var(--am-home-surface);
 }
 
 .am-bio__photo {
@@ -128,7 +128,7 @@
   font-weight: 300;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-accent);
   margin: 0;
 }
 
@@ -136,7 +136,7 @@
   font-family: var(--am-font-title);
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 700;
-  color: var(--am-blanco-proyector);
+  color: var(--am-home-text);
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -144,7 +144,7 @@
 .am-bio__text {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--am-blanco);
+  color: var(--am-home-text);
   margin: 0;
 }
 
@@ -160,7 +160,7 @@
   font-family: var(--am-font-title);
   font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 700;
-  color: var(--am-blanco-proyector);
+  color: var(--am-home-text);
   margin: 0 0 var(--am-sp-4);
   letter-spacing: -0.02em;
 }
@@ -168,7 +168,7 @@
 .am-contact__text {
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-6);
 }
 
@@ -183,10 +183,10 @@
   flex: 1;
   min-width: 220px;
   padding: var(--am-sp-3) var(--am-sp-4);
-  border: 1px solid rgba(168, 184, 189, 0.2);
+  border: 1px solid var(--am-home-border);
   border-radius: var(--am-radius-sm);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--am-blanco);
+  background: var(--am-home-surface);
+  color: var(--am-home-text);
   font-family: var(--am-font-sans);
   font-size: 1rem;
   outline: none;
@@ -194,20 +194,20 @@
 }
 
 .am-contact__input::placeholder {
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   opacity: 0.6;
 }
 
 .am-contact__input:focus {
-  border-color: var(--am-blanco-proyector);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--am-home-accent);
+  background: rgba(167, 25, 33, 0.05);
 }
 
 /* Success/error states for form feedback */
 .am-contact__feedback {
   margin-top: var(--am-sp-4);
   font-size: 0.875rem;
-  color: var(--am-gris-neblina);
+  color: var(--am-home-text-muted);
   display: none;
 }
 
@@ -216,9 +216,9 @@
 }
 
 .am-contact__feedback--success {
-  color: #7dcea0;
+  color: var(--am-v3-acento);
 }
 
 .am-contact__feedback--error {
-  color: #e57373;
+  color: var(--am-home-accent-soft);
 }
