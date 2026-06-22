@@ -42,6 +42,13 @@
   --am-home-accent-soft: var(--am-v1-elemento-02); /* rosa D98A95 – hover, detalles */
   --am-home-quote-bg: #1A1A1A;               /* bloque cita, ligeramente elevado */
   --am-home-border: rgba(245, 244, 239, 0.1); /* bordes sutiles sobre oscuro */
+  --am-nav-bg: rgba(10, 10, 10, 0.88);
+  --am-nav-hover-bg: rgba(245, 244, 239, 0.06);
+  --am-nav-active-bg: rgba(167, 25, 33, 0.12);
+  --am-control-focus-bg: rgba(167, 25, 33, 0.05);
+  --am-cta-hover-bg: var(--am-v1-secundario);
+  --am-feedback-success: var(--am-v3-acento);
+  --am-noise-color: var(--am-home-text);
 
   /* Espaciado (escala 4px) */
   --am-sp-1: 0.25rem;
@@ -58,8 +65,10 @@
 
   /* Sombras */
   --am-shadow-card: 0 8px 25px rgba(0, 0, 0, 0.5);
-  --am-shadow-cta: 0 8px 30px rgba(230, 235, 238, 0.2);
-  --am-shadow-cta-hover: 0 12px 40px rgba(230, 235, 238, 0.35);
+  --am-shadow-cta: 0 8px 30px rgba(167, 25, 33, 0.35);
+  --am-shadow-cta-hover: 0 12px 40px rgba(167, 25, 33, 0.5);
+  --am-shadow-hero: 0 10px 30px rgba(0, 0, 0, 0.5);
+  --am-shadow-logo: 0 0 20px rgba(245, 244, 239, 0.2);
 
   /* Layout */
   --am-max-w: 1180px;
@@ -86,16 +95,31 @@
 /* ── Vol I – Burdeos ── */
 body[data-vol="1"] {
   --am-home-bg:           var(--am-v1-fondo-oscuro);      /* #3A0010 */
-  --am-home-surface:      #4A0015;
+  --am-home-surface:      var(--am-v1-principal);         /* #6A0018 */
   --am-home-text:         var(--am-v1-texto);             /* #F5F4EF */
   --am-home-text-muted:   var(--am-v1-elemento-01);       /* #DAD7D4 */
   --am-home-accent:       var(--am-v1-secundario);        /* #8B1030 */
   --am-home-accent-soft:  var(--am-v1-elemento-02);       /* #D98A95 */
-  --am-home-quote-bg:     #2A000C;
+  --am-home-quote-bg:     var(--am-v1-principal);         /* #6A0018 */
   --am-home-border:       rgba(218, 215, 212, 0.12);
+  --am-nav-bg:            rgba(58, 0, 16, 0.94);
+  --am-nav-hover-bg:      rgba(245, 244, 239, 0.08);
+  --am-nav-active-bg:     rgba(139, 16, 48, 0.28);
+  --am-control-focus-bg:  rgba(139, 16, 48, 0.18);
+  --am-cta-hover-bg:      var(--am-v1-principal);
+  --am-feedback-success:  var(--am-v1-elemento-02);
+  --am-noise-color:       var(--am-v1-elemento-01);
 
   --am-bg-grad-color-a:   rgba(106, 0, 24, 0.35);
   --am-bg-grad-color-b:   rgba(139, 16, 48, 0.15);
+  --am-bg-grad-bottom:    var(--am-v1-fondo-oscuro);
+  --am-heading-shadow:    rgba(245, 244, 239, 0.15);
+  --am-h1-shadow:         rgba(245, 244, 239, 0.20);
+  --am-shadow-card:       0 8px 25px rgba(58, 0, 16, 0.55);
+  --am-shadow-cta:        0 8px 30px rgba(139, 16, 48, 0.35);
+  --am-shadow-cta-hover:  0 12px 40px rgba(106, 0, 24, 0.55);
+  --am-shadow-hero:       0 10px 30px rgba(58, 0, 16, 0.55);
+  --am-shadow-logo:       0 0 20px rgba(245, 244, 239, 0.20);
 }
 
 /* ── Vol II – Editorial (paleta clara) ── */

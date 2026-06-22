@@ -199,7 +199,7 @@
 
 .am-contact__input:focus {
   border-color: var(--am-home-accent);
-  background: rgba(167, 25, 33, 0.05);
+  background: var(--am-control-focus-bg);
 }
 
 /* Success/error states for form feedback */
@@ -215,7 +215,7 @@
 }
 
 .am-contact__feedback--success {
-  color: var(--am-v3-acento);
+  color: var(--am-feedback-success);
 }
 
 .am-contact__feedback--error {

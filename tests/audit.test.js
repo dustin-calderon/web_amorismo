@@ -286,6 +286,42 @@ describe('5. CSS Design System', () => {
     ].map(readFile).join('\n');
     assert.ok(!productionCss.match(/outline:\s*none/));
   });
+
+  test('5.8 - Vol. I remapea todos los colores funcionales a su paleta oficial', () => {
+    const volumeOneTheme = tokens.match(/body\[data-vol="1"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    const expectedMappings = [
+      '--am-home-bg:           var(--am-v1-fondo-oscuro)',
+      '--am-home-surface:      var(--am-v1-principal)',
+      '--am-home-text:         var(--am-v1-texto)',
+      '--am-home-text-muted:   var(--am-v1-elemento-01)',
+      '--am-home-accent:       var(--am-v1-secundario)',
+      '--am-home-accent-soft:  var(--am-v1-elemento-02)',
+      '--am-home-quote-bg:     var(--am-v1-principal)',
+      '--am-bg-grad-bottom:    var(--am-v1-fondo-oscuro)',
+    ];
+
+    expectedMappings.forEach(mapping => {
+      assert.ok(volumeOneTheme.includes(mapping), `Falta mapping oficial: ${mapping}`);
+    });
+
+    ['#4A0015', '#2A000C', '#0A0A0A', '#A71921'].forEach(color => {
+      assert.ok(!volumeOneTheme.toUpperCase().includes(color), `Color ajeno en Vol. I: ${color}`);
+    });
+  });
+
+  test('5.9 - Componentes compartidos no fijan colores de un volumen concreto', () => {
+    const sharedComponents = [
+      'assets/css/components.css',
+      'assets/css/nav.css',
+      'assets/css/hero.css',
+      'assets/css/home.css',
+    ].map(readFile).join('\n');
+
+    assert.ok(!sharedComponents.includes('rgba(167, 25, 33'));
+    assert.ok(!sharedComponents.includes('rgba(10, 10, 10'));
+    assert.ok(!sharedComponents.includes('rgba(0, 0, 0'));
+    assert.ok(!sharedComponents.includes('var(--am-v1-secundario)'));
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
