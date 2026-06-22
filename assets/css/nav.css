@@ -40,44 +40,51 @@
   filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.4));
 }
 
-/* ── Vol links – centered group ── */
+/* ── Vol links – single centered card ── */
 /*
- * position:absolute + translate is the only way to truly center
- * the group when the left/right siblings have different widths.
+ * The container is the visible card (border + radius).
+ * Individual links grow on hover via transform: scale().
+ * position:absolute centers the card regardless of sibling widths.
  */
 .am-nav__links {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: var(--am-sp-2);
+  border: 1px solid currentColor;
+  border-radius: var(--am-radius-sm);
+  color: var(--am-home-text-muted);
+  overflow: hidden;
 }
 
 .am-nav__link {
   display: block;
-  padding: 0.3rem 0.875rem;
+  padding: 0.35rem 1rem;
   font-family: var(--am-font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--am-home-text-muted);
+  color: inherit;
   text-decoration: none;
-  border: 1px solid currentColor;
-  border-radius: var(--am-radius-sm);
-  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Vertical dividers between links */
+.am-nav__link + .am-nav__link {
+  border-left: 1px solid currentColor;
 }
 
 .am-nav__link:hover {
   color: var(--am-home-text);
-  border-color: rgba(245, 244, 239, 0.25);
   background: var(--am-nav-hover-bg);
+  transform: scale(1.12);
+  z-index: 1;
 }
 
 /* Active – set by nav.js on page load */
 .am-nav__link--active {
   color: var(--am-home-accent-soft);
-  border-color: var(--am-home-accent-soft);
   background: var(--am-nav-active-bg);
   font-weight: 700;
 }
