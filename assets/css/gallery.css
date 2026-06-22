@@ -65,3 +65,7 @@
   border-color: var(--am-home-accent);
   box-shadow: 0 6px 18px rgba(167, 25, 33, 0.3);
 }
+
+.am-gallery__thumb:focus-visible {
+  border-color: var(--am-home-accent-soft);
+}

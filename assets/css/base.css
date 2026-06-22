@@ -98,6 +98,10 @@ a:hover {
   color: var(--am-home-accent);
 }
 
+:focus-visible {
+  outline: 3px solid var(--am-home-accent-soft);
+  outline-offset: 3px;
+}
 
 /* ===== Layout ===== */
 main {
@@ -114,4 +118,17 @@ main {
 section {
   margin: 0;
   padding: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-duration: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

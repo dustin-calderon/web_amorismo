@@ -189,7 +189,6 @@
   color: var(--am-home-text);
   font-family: var(--am-font-sans);
   font-size: 1rem;
-  outline: none;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 

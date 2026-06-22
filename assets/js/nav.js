@@ -16,11 +16,15 @@
 
   const path = window.location.pathname;
   const filename = path.substring(path.lastIndexOf('/') + 1);
-  const activePage = PAGE_MAP[filename] || 'home';
+  const activePage = PAGE_MAP[filename];
 
   document.querySelectorAll('.am-nav__link').forEach(link => {
+    link.classList.remove('am-nav__link--active');
+    link.removeAttribute('aria-current');
+
     if (link.getAttribute('data-page') === activePage) {
       link.classList.add('am-nav__link--active');
+      link.setAttribute('aria-current', 'page');
     }
   });
 })();

@@ -15,12 +15,18 @@
   thumbnails.forEach(thumb => {
     thumb.addEventListener('click', () => {
       const newSrc = thumb.getAttribute('data-src');
+      const newAlt = thumb.getAttribute('data-alt');
       if (!newSrc) return;
 
       mainImage.src = newSrc;
+      if (newAlt) mainImage.alt = newAlt;
 
-      thumbnails.forEach(t => t.classList.remove('am-gallery__thumb--active'));
+      thumbnails.forEach(t => {
+        t.classList.remove('am-gallery__thumb--active');
+        t.setAttribute('aria-pressed', 'false');
+      });
       thumb.classList.add('am-gallery__thumb--active');
+      thumb.setAttribute('aria-pressed', 'true');
     });
   });
 })();

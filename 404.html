@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Página no encontrada – AMORISMO Vol. III. Vuelve al inicio y sigue disfrutando de la música.">
+	<meta name="description" content="Página no encontrada en la web de AMORISMO. Vuelve al inicio y sigue disfrutando de la música.">
 	<meta name="robots" content="noindex">
 	<title>404 - Página no encontrada</title>
 	
@@ -19,7 +19,7 @@
 		/* ===== CSS Custom Properties ===== */
 		:root {
 			--error-font-sans: 'Inter', system-ui, sans-serif;
-			--error-font-title: 'IBM Plex Mono', monospace;
+			--error-font-title: 'Fredoka', sans-serif;
 			
 			--error-color-verde-petroleo: #0D2C2C;
 			--error-color-verde-carbon: #0A2424;
@@ -250,6 +250,26 @@
 			color: var(--error-color-blanco-proyector);
 		}
 
+		:focus-visible {
+			outline: 3px solid var(--error-color-blanco-proyector);
+			outline-offset: 3px;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			html {
+				scroll-behavior: auto;
+			}
+
+			.error__emoji {
+				animation: none;
+			}
+
+			.error__cta,
+			footer a {
+				transition: none;
+			}
+		}
+
 		/* ===== Responsive ===== */
 		@media (max-width: 768px) {
 			main {
@@ -390,7 +410,7 @@
 		</p>
 
 		<div class="error__buttons">
-			<a href="/" class="error__cta error__cta--primary">Volver a Inicio</a>
+			<a href="index.html" class="error__cta error__cta--primary">Volver a Inicio</a>
 			<span class="error__divider">|</span>
 			<a href="https://dustincalderon.com/" class="error__cta error__cta--secondary">Mi Web Principal</a>
 		</div>
@@ -402,7 +422,7 @@
 			<span class="error__divider">|</span>
 			<a href="https://dustincalderon.com/legal/privacidad/" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
 		</nav>
-		<p>© 2025 dustincalderon.com · Todos los derechos reservados</p>
+		<p>© 2026 dustincalderon.com · Todos los derechos reservados</p>
 	</footer>
 </body>
 </html>

@@ -234,7 +234,7 @@ describe('4. Contenido de index.html', () => {
   });
 
   test('4.3 - Footer con copyright y legales', () => {
-    assert.ok(html.includes('Copyright © 2025'));
+    assert.ok(html.includes('Copyright © 2026'));
     assert.ok(html.includes('Aviso Legal'));
     assert.ok(html.includes('Política de Privacidad'));
   });
@@ -247,16 +247,18 @@ describe('4. Contenido de index.html', () => {
 describe('5. CSS Design System', () => {
   const tokens = readFile('assets/css/tokens.css');
 
-  test('5.1 - Verde petróleo definido', () => {
-    assert.ok(tokens.includes('--am-verde'));
+  test('5.1 - Tokens semánticos de Home definidos', () => {
+    ['--am-home-bg', '--am-home-text', '--am-home-accent'].forEach(token => {
+      assert.ok(tokens.includes(token), `${token} debe existir`);
+    });
   });
 
   test('5.2 - Font Inter definida', () => {
     assert.ok(tokens.includes("'Inter'"));
   });
 
-  test('5.3 - Font IBM Plex Mono definida', () => {
-    assert.ok(tokens.includes("'IBM Plex Mono'"));
+  test('5.3 - Font Fredoka definida', () => {
+    assert.ok(tokens.includes("'Fredoka'"));
   });
 
   test('5.4 - Sin tokens huérfanos (dead tokens eliminados)', () => {
@@ -268,6 +270,21 @@ describe('5. CSS Design System', () => {
   test('5.5 - Responsive tiene media queries', () => {
     const responsive = readFile('assets/css/responsive.css');
     assert.ok(responsive.includes('@media'));
+  });
+
+  test('5.6 - Respeta prefers-reduced-motion', () => {
+    assert.ok(readFile('assets/css/base.css').includes('prefers-reduced-motion'));
+    assert.ok(readFile('404.html').includes('prefers-reduced-motion'));
+  });
+
+  test('5.7 - Foco visible global sin supresión de outline', () => {
+    assert.ok(readFile('assets/css/base.css').includes(':focus-visible'));
+    const productionCss = [
+      'assets/css/base.css', 'assets/css/nav.css', 'assets/css/components.css',
+      'assets/css/hero.css', 'assets/css/home.css', 'assets/css/volume.css',
+      'assets/css/gallery.css', 'assets/css/footer.css', 'assets/css/responsive.css',
+    ].map(readFile).join('\n');
+    assert.ok(!productionCss.match(/outline:\s*none/));
   });
 });
 
@@ -301,7 +318,20 @@ describe('6. JavaScript', () => {
     });
   });
 
-  test('6.5 - Sin console.log en producción', () => {
+  test('6.5 - nav.js expone la página activa a tecnologías de asistencia', () => {
+    const nav = readFile('assets/js/nav.js');
+    assert.ok(nav.includes("setAttribute('aria-current', 'page')"));
+    assert.ok(!nav.includes("PAGE_MAP[filename] || 'home'"));
+  });
+
+  test('6.6 - gallery.js sincroniza imagen y estado accesible', () => {
+    const gallery = readFile('assets/js/gallery.js');
+    assert.ok(gallery.includes('mainImage.alt = newAlt'));
+    assert.ok(gallery.includes("setAttribute('aria-pressed', 'true')"));
+    assert.ok(gallery.includes("setAttribute('aria-pressed', 'false')"));
+  });
+
+  test('6.7 - Sin console.log en producción', () => {
     const nav = readFile('assets/js/nav.js');
     const gallery = readFile('assets/js/gallery.js');
     assert.ok(!nav.includes('console.log'));
@@ -321,7 +351,7 @@ describe('7. Página 404', () => {
   });
 
   test('7.2 - Link a inicio', () => {
-    assert.ok(html.includes('href="/"'));
+    assert.ok(html.includes('href="index.html"'));
   });
 
   test('7.3 - Usa paleta verde petróleo', () => {
@@ -333,15 +363,89 @@ describe('7. Página 404', () => {
     assert.ok(html.includes('dustincalderon.com/legal/privacidad/'));
     assert.ok(!html.includes('politica-privacidad'));
   });
+
+  test('7.5 - Regreso al inicio funciona en despliegues bajo subruta', () => {
+    assert.ok(html.includes('href="index.html"'));
+    assert.ok(!html.includes('href="/"'));
+  });
+
+  test('7.6 - Descripción no atribuye el error a un volumen concreto', () => {
+    const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1] || '';
+    assert.ok(description.includes('AMORISMO'));
+    assert.ok(!description.includes('Vol. III'));
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 8. SEGURIDAD
+// 8. REGRESIONES FUNCIONALES
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('8. Seguridad', () => {
+describe('8. Regresiones funcionales', () => {
 
-  test('8.1 - Links externos con noopener', () => {
+  test('8.1 - Cada volumen usa su portada optimizada', () => {
+    ['1', '2', '3'].forEach(volume => {
+      const html = readFile(`vol-${volume}.html`);
+      assert.ok(
+        html.includes(`src="assets/images/covers/portada-vol-${volume}.webp"`),
+        `Vol. ${volume} debe usar su portada`
+      );
+    });
+  });
+
+  test('8.2 - Todas las páginas publicables tienen canonical y Open Graph absolutos', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      assert.ok(html.includes('<link rel="canonical" href="https://amorismoelmusical.com/'));
+      assert.ok(html.match(/<meta property="og:url" content="https:\/\/amorismoelmusical\.com\//));
+      assert.ok(html.match(/<meta property="og:image" content="https:\/\/amorismoelmusical\.com\//));
+      assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
+    });
+  });
+
+  test('8.3 - Galería completa, estilizada y operativa en Vol. III', () => {
+    const html = readFile('vol-3.html');
+    assert.ok(html.includes('href="assets/css/gallery.css"'));
+    assert.ok(html.includes('defer src="assets/js/gallery.js"'));
+    assert.equal((html.match(/class="am-gallery__thumb(?: |")/g) || []).length, 8);
+    assert.equal((html.match(/aria-pressed="true"/g) || []).length, 1);
+    assert.equal((html.match(/aria-pressed="false"/g) || []).length, 7);
+  });
+
+  test('8.4 - Imágenes de contenido reservan espacio y las secundarias usan lazy loading', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      const images = html.match(/<img [^>]+>/g) || [];
+      images.forEach(img => {
+        assert.ok(img.includes('width='), `${page}: imagen sin width: ${img}`);
+        assert.ok(img.includes('height='), `${page}: imagen sin height: ${img}`);
+      });
+    });
+
+    assert.ok(readFile('index.html').includes('loading="lazy"'));
+    assert.ok(readFile('vol-3.html').includes('loading="lazy"'));
+  });
+
+  test('8.5 - Todos los recursos locales referenciados existen', () => {
+    [...PAGES, '404.html'].forEach(page => {
+      const html = readFile(page);
+      const references = [...html.matchAll(/(?:href|src)="([^"]+)"/g)]
+        .map(match => match[1])
+        .filter(ref => !/^(?:https?:|#|data:|mailto:)/.test(ref));
+
+      references.forEach(ref => {
+        assert.ok(fileExists(ref), `${page}: recurso local inexistente: ${ref}`);
+      });
+    });
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. SEGURIDAD
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('9. Seguridad', () => {
+
+  test('9.1 - Links externos con noopener', () => {
     PAGES.forEach(page => {
       const html = readFile(page);
       const blanks = (html.match(/target="_blank"/g) || []).length;
@@ -350,21 +454,21 @@ describe('8. Seguridad', () => {
     });
   });
 
-  test('8.2 - Sin credenciales en HTML/JS', () => {
+  test('9.2 - Sin credenciales en HTML/JS', () => {
     const allContent = PAGES.map(p => readFile(p)).join('') +
       readFile('assets/js/nav.js') + readFile('assets/js/gallery.js');
     assert.ok(!allContent.includes('Bearer '));
     assert.ok(!allContent.includes('api_key'));
   });
 
-  test('8.3 - Sin href javascript: (XSS)', () => {
+  test('9.3 - Sin href javascript: (XSS)', () => {
     PAGES.forEach(page => {
       const html = readFile(page);
       assert.ok(!html.match(/href="javascript:/i), `${page}: no javascript: href`);
     });
   });
 
-  test('8.4 - Sin package.json ni node_modules', () => {
+  test('9.4 - Sin package.json ni node_modules', () => {
     assert.ok(!fileExists('package.json'));
     assert.ok(!fileExists('node_modules'));
   });

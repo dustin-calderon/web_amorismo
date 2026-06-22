@@ -7,8 +7,12 @@
 	<meta name="description" content="AMORISMO Vol. III – El Musical. Solo 5 semanas, del 4 de diciembre al 4 de enero. Música y letra de Dustin Calderón.">
 	<meta property="og:title" content="Amorismo Vol. III – El Musical">
 	<meta property="og:description" content="Una habitación vacía, una verdad que se proyecta y quince años de historias condensadas en unos minutos.">
-	<meta property="og:image" content="assets/images/amorismo-cartel.webp">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://amorismoelmusical.com/vol-3.html">
+	<meta property="og:image" content="https://amorismoelmusical.com/assets/images/covers/portada-vol-3.webp">
+	<meta name="twitter:card" content="summary_large_image">
 	<title>AMORISMO Vol. III – El Musical</title>
+	<link rel="canonical" href="https://amorismoelmusical.com/vol-3.html">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +27,7 @@
 	<link rel="stylesheet" href="assets/css/components.css">
 	<link rel="stylesheet" href="assets/css/hero.css">
 	<link rel="stylesheet" href="assets/css/volume.css">
+	<link rel="stylesheet" href="assets/css/gallery.css">
 	<link rel="stylesheet" href="assets/css/home.css">
 	<link rel="stylesheet" href="assets/css/footer.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
@@ -52,7 +57,7 @@
 	<section class="am-hero">
 		<div class="am-hero__grid">
 			<div class="am-hero__visual">
-				<img src="assets/images/amorismo-cartel.webp" alt="AMORISMO Vol. III – Cartel" class="am-hero__image">
+				<img src="assets/images/covers/portada-vol-3.webp" alt="Portada de AMORISMO Vol. III" class="am-hero__image" width="559" height="800" fetchpriority="high">
 			</div>
 			<div class="am-hero__body">
 				<p class="am-hero__copy">
@@ -87,50 +92,50 @@
 		<div class="am-person-grid am-person-grid--cols-3">
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/DUSTIN_fondo-verde.webp" alt="Dustin Calderón" class="am-person__photo">
+					<img src="assets/images/DUSTIN_fondo-verde.webp" alt="Dustin Calderón" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__role">Música y letra</p>
 				<p class="am-person__name">Dustin Calderón</p>
 			</div>
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/DAVID_fondo-verde.webp" alt="David Gregory" class="am-person__photo">
+					<img src="assets/images/DAVID_fondo-verde.webp" alt="David Gregory" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__role">Dirección</p>
 				<p class="am-person__name">David Gregory</p>
 			</div>
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/CARMEN_fondo-verde.webp" alt="Carmen Rodríguez" class="am-person__photo">
+					<img src="assets/images/CARMEN_fondo-verde.webp" alt="Carmen Rodríguez" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__role">Audiovisuales</p>
 				<p class="am-person__name">Carmen Rodríguez</p>
 			</div>
 		</div>
 
-		<h2 class="am-cast__heading" style="margin-top: var(--am-sp-8);">Elenco</h2>
+		<h2 class="am-cast__heading am-cast__heading--spaced">Elenco</h2>
 		<div class="am-person-grid am-person-grid--cols-4">
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/LOA_fondo-verde.webp" alt="Loa Miller" class="am-person__photo">
+					<img src="assets/images/LOA_fondo-verde.webp" alt="Loa Miller" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__name">Loa Miller</p>
 			</div>
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/BLANCA_fondo-verde.webp" alt="Blanca Rodríguez" class="am-person__photo">
+					<img src="assets/images/BLANCA_fondo-verde.webp" alt="Blanca Rodríguez" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__name">Blanca Rodríguez</p>
 			</div>
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/ANGELA_fondo-verde.webp" alt="Ángela Santos" class="am-person__photo">
+					<img src="assets/images/ANGELA_fondo-verde.webp" alt="Ángela Santos" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__name">Ángela Santos</p>
 			</div>
 			<div class="am-person">
 				<div class="am-person__photo-wrap">
-					<img src="assets/images/BRAULIO_fondo-verde.webp" alt="Braulio Chappell" class="am-person__photo">
+					<img src="assets/images/BRAULIO_fondo-verde.webp" alt="Braulio Chappell" class="am-person__photo" width="540" height="675" loading="lazy">
 				</div>
 				<p class="am-person__name">Braulio Chappell</p>
 			</div>
@@ -139,7 +144,29 @@
 
 	<hr class="am-divider">
 
-	<!-- ===== 4. REVIEWS ===== -->
+	<!-- ===== 4. GALERÍA ===== -->
+	<section class="am-gallery" aria-labelledby="gallery-heading">
+		<h2 class="am-section-label" id="gallery-heading">Galería</h2>
+		<div class="am-gallery__main">
+			<div class="am-gallery__frame">
+				<img id="gallery-main-image" src="assets/images/IMG_6612.webp" alt="Escena de AMORISMO Vol. III, fotografía 1" class="am-gallery__image" width="1400" height="1867">
+			</div>
+		</div>
+		<div class="am-gallery__thumbs" aria-label="Seleccionar fotografía">
+			<button type="button" class="am-gallery__thumb am-gallery__thumb--active" data-src="assets/images/IMG_6612.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 1" aria-pressed="true" aria-label="Mostrar fotografía 1"><img src="assets/images/IMG_6612.webp" alt="" width="1400" height="1867" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6624.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 2" aria-pressed="false" aria-label="Mostrar fotografía 2"><img src="assets/images/IMG_6624.webp" alt="" width="1400" height="1867" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6632.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 3" aria-pressed="false" aria-label="Mostrar fotografía 3"><img src="assets/images/IMG_6632.webp" alt="" width="990" height="1760" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6655.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 4" aria-pressed="false" aria-label="Mostrar fotografía 4"><img src="assets/images/IMG_6655.webp" alt="" width="1400" height="1867" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6660.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 5" aria-pressed="false" aria-label="Mostrar fotografía 5"><img src="assets/images/IMG_6660.webp" alt="" width="1400" height="1050" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6666.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 6" aria-pressed="false" aria-label="Mostrar fotografía 6"><img src="assets/images/IMG_6666.webp" alt="" width="1400" height="1867" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6670.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 7" aria-pressed="false" aria-label="Mostrar fotografía 7"><img src="assets/images/IMG_6670.webp" alt="" width="1400" height="1050" loading="lazy"></button>
+			<button type="button" class="am-gallery__thumb" data-src="assets/images/IMG_6685.webp" data-alt="Escena de AMORISMO Vol. III, fotografía 8" aria-pressed="false" aria-label="Mostrar fotografía 8"><img src="assets/images/IMG_6685.webp" alt="" width="1400" height="1867" loading="lazy"></button>
+		</div>
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 5. REVIEWS ===== -->
 	<section class="am-reviews" id="reviews">
 		<h2 class="am-reviews__heading">Reviews</h2>
 		<div class="am-reviews__list">
@@ -165,7 +192,7 @@
 
 	<hr class="am-divider">
 
-	<!-- ===== 5. CORREO / FORMULARIO ===== -->
+	<!-- ===== 6. CORREO ===== -->
 	<section class="am-contact" id="correo">
 		<h2 class="am-contact__heading">Mantente al tanto</h2>
 		<p class="am-contact__text">Déjanos tu correo y te avisamos de todo lo que viene.</p>
@@ -179,8 +206,8 @@
 </main>
 
 <footer class="am-footer">
-	<img src="assets/images/amorismo-logo.webp" alt="AMORISMO Vol. III" class="am-footer__logo">
-	<p>Copyright © 2025 dustincalderon.com · Todos los derechos reservados.</p>
+	<img src="assets/images/amorismo-logo.webp" alt="AMORISMO Vol. III" class="am-footer__logo" width="400" height="514" loading="lazy">
+	<p>Copyright © 2026 dustincalderon.com · Todos los derechos reservados.</p>
 	<nav aria-label="Enlaces legales">
 		<a href="https://dustincalderon.com/legal/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso Legal</a>
 		<span aria-hidden="true">|</span>
@@ -189,5 +216,6 @@
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
+<script defer src="assets/js/gallery.js"></script>
 </body>
 </html>

@@ -43,6 +43,10 @@
   margin: 0 0 var(--am-sp-8);
 }
 
+.am-cast__heading--spaced {
+  margin-top: var(--am-sp-8);
+}
+
 /* ===== Reviews ===== */
 .am-reviews {
   padding: var(--am-sp-8) var(--am-sp-6);
