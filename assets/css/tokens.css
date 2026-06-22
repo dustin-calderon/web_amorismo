@@ -1,5 +1,6 @@
 /* ===== Design Tokens – Amorismo ===== */
-/* Single source of truth for colors, fonts, spacing, radii, shadows */
+/* Single source of truth for colors, fonts, spacing, radii, shadows        */
+/* Theming: body[data-vol="1|2|3"] remaps --am-home-* to each Vol's palette */
 
 :root {
   /* Fuentes */
@@ -63,4 +64,76 @@
   /* Layout */
   --am-max-w: 1180px;
   --am-nav-h: 60px;
+
+  /* ── Gradiente de fondo (sobreescribible por Vol) ── */
+  --am-bg-grad-color-a:  rgba(106, 0, 24, 0.15);  /* glow A — Vol I rojo */
+  --am-bg-grad-color-b:  rgba(15, 61, 34, 0.12);  /* glow B — Vol III verde */
+  --am-bg-grad-bottom:   #0d0d0d;                 /* tono final gradiente (light Vol: crema) */
+
+  /* ── Sombras de tipografía (sobreescribibles por Vol claro) ── */
+  --am-heading-shadow:   rgba(245, 244, 239, 0.15);
+  --am-h1-shadow:        rgba(245, 244, 239, 0.20);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Theming por Vol — remap de tokens semánticos
+   Cada body[data-vol="X"] sobreescribe --am-home-* con
+   la paleta raw del volumen correspondiente.
+   Todo el CSS (base, volume, components, etc.) hereda
+   el tema correcto sin modificar ninguna regla de layout.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* ── Vol I – Burdeos ── */
+body[data-vol="1"] {
+  --am-home-bg:           var(--am-v1-fondo-oscuro);      /* #3A0010 */
+  --am-home-surface:      #4A0015;
+  --am-home-text:         var(--am-v1-texto);             /* #F5F4EF */
+  --am-home-text-muted:   var(--am-v1-elemento-01);       /* #DAD7D4 */
+  --am-home-accent:       var(--am-v1-secundario);        /* #8B1030 */
+  --am-home-accent-soft:  var(--am-v1-elemento-02);       /* #D98A95 */
+  --am-home-quote-bg:     #2A000C;
+  --am-home-border:       rgba(218, 215, 212, 0.12);
+
+  --am-bg-grad-color-a:   rgba(106, 0, 24, 0.35);
+  --am-bg-grad-color-b:   rgba(139, 16, 48, 0.15);
+}
+
+/* ── Vol II – Editorial (paleta clara) ── */
+/* Fondo crema #F5F4EF, texto oscuro #2B2B2B, acento rojo #A71921  */
+body[data-vol="2"] {
+  --am-home-bg:           var(--am-v2-fondo);             /* #F5F4EF crema */
+  --am-home-surface:      #E8E6DE;                        /* crema ligeramente rebajada */
+  --am-home-text:         var(--am-v2-parrafo);           /* #2B2B2B texto oscuro */
+  --am-home-text-muted:   var(--am-v2-subtitulo);         /* #777777 subtítulos */
+  --am-home-accent:       var(--am-v2-acento);            /* #A71921 rojo */
+  --am-home-accent-soft:  #C83030;                        /* rojo hover */
+  --am-home-quote-bg:     #ECEAE2;                        /* fondo bloque cita */
+  --am-home-border:       rgba(43, 43, 43, 0.12);         /* borde sutil sobre claro */
+
+  /* Gradiente: muy suave sobre el fondo crema */
+  --am-bg-grad-color-a:   rgba(167, 25, 33, 0.06);
+  --am-bg-grad-color-b:   rgba(43, 43, 43, 0.03);
+  --am-bg-grad-bottom:    var(--am-v2-fondo);             /* no degrade a negro */
+
+  /* Text-shadows invertidos: oscuros sobre fondo claro */
+  --am-heading-shadow:    rgba(43, 43, 43, 0.08);
+  --am-h1-shadow:         rgba(43, 43, 43, 0.10);
+
+  /* Sombras de cards adaptadas al contexto claro */
+  --am-shadow-card:       0 8px 25px rgba(0, 0, 0, 0.10);
+}
+
+/* ── Vol III – Verde Oscuro ── */
+body[data-vol="3"] {
+  --am-home-bg:           var(--am-v3-fondo-oscuro);      /* #08130C */
+  --am-home-surface:      #0F2018;
+  --am-home-text:         var(--am-v3-texto);             /* #F5F4EF */
+  --am-home-text-muted:   var(--am-v3-texto-secundario);  /* #B8C0B8 */
+  --am-home-accent:       var(--am-v3-secundario);        /* #1E5A35 */
+  --am-home-accent-soft:  var(--am-v3-acento);            /* #7FAF72 */
+  --am-home-quote-bg:     #050E08;
+  --am-home-border:       rgba(127, 175, 114, 0.12);
+
+  --am-bg-grad-color-a:   rgba(15, 61, 34, 0.4);
+  --am-bg-grad-color-b:   rgba(30, 90, 53, 0.2);
 }
