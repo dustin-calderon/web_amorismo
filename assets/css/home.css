@@ -221,3 +221,60 @@
 .am-contact__feedback--error {
   color: var(--am-home-accent-soft);
 }
+
+/* ===== Música / Albums Section ===== */
+.am-musica {
+  padding: var(--am-sp-8) var(--am-sp-6);
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+}
+
+.am-musica__heading {
+  font-family: var(--am-font-sans);
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--am-home-text-muted);
+  margin: 0 0 var(--am-sp-8);
+  text-align: center;
+}
+
+.am-musica__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--am-sp-6);
+}
+
+.am-musica__album {
+  display: block;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.am-musica__album:hover {
+  transform: scale(1.04);
+}
+
+.am-musica__cover {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--am-radius-md);
+  box-shadow: var(--am-shadow-card);
+  display: block;
+}
+
+.am-musica__title {
+  font-family: var(--am-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--am-home-text-muted);
+  margin: var(--am-sp-3) 0 0;
+  transition: color 0.25s ease;
+}
+
+.am-musica__album:hover .am-musica__title {
+  color: var(--am-home-text);
+}

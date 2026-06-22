@@ -87,6 +87,21 @@
     max-width: 200px;
   }
 
+  /* Home: Landing hero */
+  .am-landing-hero {
+    padding-left: var(--am-sp-5);
+    padding-right: var(--am-sp-5);
+  }
+
+  .am-landing-hero__logo {
+    width: clamp(140px, 30vw, 200px);
+  }
+
+  /* Home: Música grid */
+  .am-musica {
+    padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
   /* Home: Testimonials */
   .am-testimonials {
     padding: var(--am-sp-6) var(--am-sp-4);
@@ -219,6 +234,39 @@
   .am-cta {
     padding: var(--am-sp-3) var(--am-sp-4);
     font-size: 0.9rem;
+  }
+
+  /* Landing hero — stacked triptych */
+  .am-landing-hero {
+    min-height: 100svh;
+    padding-left: var(--am-sp-4);
+    padding-right: var(--am-sp-4);
+  }
+
+  .am-landing-hero__bg {
+    grid-template-columns: 1fr;
+  }
+
+  .am-landing-hero__cover:first-child,
+  .am-landing-hero__cover:nth-child(2) {
+    display: none;
+  }
+
+  .am-landing-hero__cover:last-child {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .am-landing-hero__logo {
+    width: 140px;
+  }
+
+  /* Música grid — single column */
+  .am-musica__grid {
+    grid-template-columns: 1fr;
+    gap: var(--am-sp-5);
+    max-width: 280px;
+    margin: 0 auto;
   }
 
   /* Gallery */

@@ -71,3 +71,118 @@
   text-align: center;
   align-items: center;
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Landing Hero – Home page only
+   Full-viewport cinematic hero with triptych background.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.am-landing-hero {
+  position: relative;
+  min-height: 100vh;
+  margin-top: calc(-1 * var(--am-nav-h));
+  display: flex;
+  align-items: flex-end;
+  padding: var(--am-nav-h) clamp(var(--am-sp-6), 6vw, 8rem) clamp(var(--am-sp-8), 8vh, 6rem);
+  overflow: hidden;
+}
+
+/* ── Triptych background ── */
+.am-landing-hero__bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  z-index: 0;
+}
+
+.am-landing-hero__cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0.5;
+}
+
+/* Gradient masks: fade edges of each cover into neighbours */
+.am-landing-hero__cover:first-child {
+  -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
+  mask-image: linear-gradient(to right, black 40%, transparent 100%);
+}
+
+.am-landing-hero__cover:nth-child(2) {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+}
+
+.am-landing-hero__cover:last-child {
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%);
+  mask-image: linear-gradient(to right, transparent 0%, black 60%);
+}
+
+/* Dark gradient overlay — legibility + bottom fade */
+.am-landing-hero__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    var(--am-home-bg) 0%,
+    rgba(10, 10, 10, 0.55) 35%,
+    rgba(10, 10, 10, 0.25) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── Content ── */
+.am-landing-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--am-sp-4);
+  max-width: 480px;
+}
+
+.am-landing-hero__logo {
+  display: block;
+  width: clamp(160px, 20vw, 280px);
+  height: auto;
+  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.6));
+}
+
+.am-landing-hero__tagline {
+  font-family: var(--am-font-sans);
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.9;
+  color: var(--am-home-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
+/* CTA – outlined pill with play icon */
+.am-landing-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--am-sp-2);
+  padding: 0.6rem 1.5rem;
+  border: 1px solid var(--am-home-text-muted);
+  border-radius: 999px;
+  color: var(--am-home-text);
+  font-family: var(--am-font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+  width: fit-content;
+}
+
+.am-landing-hero__cta:hover {
+  border-color: var(--am-home-text);
+  background: rgba(245, 244, 239, 0.1);
+  color: var(--am-home-text);
+}
+
+.am-landing-hero__cta svg {
+  flex-shrink: 0;
+}

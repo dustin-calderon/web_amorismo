@@ -56,23 +56,46 @@
 
 <main id="main" role="main" tabindex="-1">
 
-	<!-- ===== 1. HERO: Logo + Frase + CTA ===== -->
-	<section class="am-page-title">
-		<h1>
-			<img src="assets/images/amorismo-logo.webp" alt="AMORISMO" class="am-page-title__logo" width="400" height="514">
-		</h1>
+	<!-- ===== 1. LANDING HERO: Triptych + Logo + Tagline + CTA ===== -->
+	<section class="am-landing-hero">
+		<div class="am-landing-hero__bg" aria-hidden="true">
+			<img src="assets/images/covers/portada-vol-1.webp" alt="" class="am-landing-hero__cover" width="600" height="600">
+			<img src="assets/images/covers/portada-vol-2.webp" alt="" class="am-landing-hero__cover" width="600" height="600">
+			<img src="assets/images/covers/portada-vol-3.webp" alt="" class="am-landing-hero__cover" width="600" height="600">
+		</div>
+		<div class="am-landing-hero__content">
+			<h1>
+				<img src="assets/images/amorismo-logo.webp" alt="AMORISMO" class="am-landing-hero__logo" width="400" height="514">
+			</h1>
+			<p class="am-landing-hero__tagline">
+				Micromúsica.<br>
+				Poesía.<br>
+				Tres volúmenes.<br>
+				Un mismo viaje.
+			</p>
+			<a href="#musica" class="am-landing-hero__cta" id="cta-hero">
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="10,7.5 17,12 10,16.5"/></svg>
+				Escuchar en Spotify
+			</a>
+		</div>
 	</section>
 
-	<section class="am-hero">
-		<div class="am-hero__grid am-hero__grid--centered">
-			<div class="am-hero__body">
-				<p class="am-hero__copy">
-					<!-- PLACEHOLDER: Frase principal del proyecto -->
-					Tres volúmenes. Quince años de historias.<br>
-					Un micromusical que se atreve a decir la verdad en voz alta.
-				</p>
-				<a href="#correo" class="am-cta" id="cta-hero">Quiero saber más</a>
-			</div>
+	<!-- ===== 1b. MÚSICA: Los 3 álbumes ===== -->
+	<section class="am-musica" id="musica">
+		<h2 class="am-musica__heading">Discografía</h2>
+		<div class="am-musica__grid">
+			<a href="vol-1.html" class="am-musica__album">
+				<img src="assets/images/covers/portada-vol-1.webp" alt="Portada de Amorismo Vol. I" class="am-musica__cover" width="600" height="600" loading="lazy">
+				<p class="am-musica__title">Vol. I</p>
+			</a>
+			<a href="vol-2.html" class="am-musica__album">
+				<img src="assets/images/covers/portada-vol-2.webp" alt="Portada de Amorismo Vol. II" class="am-musica__cover" width="600" height="600" loading="lazy">
+				<p class="am-musica__title">Vol. II</p>
+			</a>
+			<a href="vol-3.html" class="am-musica__album">
+				<img src="assets/images/covers/portada-vol-3.webp" alt="Portada de Amorismo Vol. III" class="am-musica__cover" width="600" height="600" loading="lazy">
+				<p class="am-musica__title">Vol. III</p>
+			</a>
 		</div>
 	</section>
 
