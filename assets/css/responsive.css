@@ -82,6 +82,73 @@
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   }
 
+  /* Home: Page title logo */
+  .am-page-title__logo {
+    max-width: 200px;
+  }
+
+  /* Home: Testimonials */
+  .am-testimonials {
+    padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
+  .am-testimonial {
+    padding: var(--am-sp-4);
+  }
+
+  /* Home: Bio blocks */
+  .am-bio {
+    grid-template-columns: 1fr;
+    gap: var(--am-sp-5);
+  }
+
+  .am-bio--reverse {
+    direction: ltr;
+  }
+
+  .am-bio__photo-wrap {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .am-bio__body {
+    text-align: center;
+    align-items: center;
+  }
+
+  /* Home: Contact form */
+  .am-contact {
+    padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
+  .am-contact__form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .am-contact__input {
+    min-width: 0;
+  }
+
+  /* Volume: Synopsis */
+  .am-synopsis {
+    padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
+  /* Volume: Cast */
+  .am-cast {
+    padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
+  /* Volume: Reviews */
+  .am-reviews {
+    padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
+  .am-review {
+    padding: var(--am-sp-4);
+  }
+
   /* Footer */
   .am-footer__logo {
     width: 180px;
@@ -174,6 +241,20 @@
 
   .am-gallery__thumb {
     border-radius: var(--am-radius-sm);
+  }
+
+  /* Home: Bio blocks — tighter on mobile */
+  .am-bio__photo-wrap {
+    max-width: 260px;
+  }
+
+  .am-bio__name {
+    font-size: clamp(1.25rem, 5vw, 1.75rem);
+  }
+
+  /* Home: Contact */
+  .am-contact {
+    padding: var(--am-sp-5) var(--am-sp-3);
   }
 
   /* Footer */

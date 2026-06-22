@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="assets/css/nav.css">
 	<link rel="stylesheet" href="assets/css/components.css">
 	<link rel="stylesheet" href="assets/css/hero.css">
+	<link rel="stylesheet" href="assets/css/home.css">
 	<link rel="stylesheet" href="assets/css/footer.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
 </head>
@@ -41,23 +42,123 @@
 </nav>
 
 <main id="main" role="main">
+
+	<!-- ===== 1. HERO: Logo + Frase + CTA ===== -->
 	<section class="am-page-title">
-		<h1>AMORISMO</h1>
+		<img src="assets/images/amorismo-logo.webp" alt="AMORISMO" class="am-page-title__logo">
 	</section>
 
 	<section class="am-hero">
 		<div class="am-hero__grid am-hero__grid--centered">
 			<div class="am-hero__body">
 				<p class="am-hero__copy">
+					<!-- PLACEHOLDER: Frase principal del proyecto -->
 					Tres volúmenes. Quince años de historias.<br>
 					Un micromusical que se atreve a decir la verdad en voz alta.
 				</p>
-				<p class="am-hero__meta">
-					<strong>Música y letra de Dustin Calderón</strong>
-				</p>
+				<a href="#correo" class="am-cta" id="cta-hero">Quiero saber más</a>
 			</div>
 		</div>
 	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 2. FRASES Y OPINIONES ===== -->
+	<section class="am-testimonials" id="opiniones">
+		<h2 class="am-testimonials__heading">Frases y opiniones</h2>
+		<div class="am-testimonials__list">
+
+			<div class="am-testimonial">
+				<p class="am-testimonial__quote">
+					<!-- PLACEHOLDER: Testimonio 1 -->
+					Texto de opinión o frase aquí.
+				</p>
+				<p class="am-testimonial__author">— Nombre Apellido</p>
+			</div>
+
+			<div class="am-testimonial">
+				<p class="am-testimonial__quote">
+					<!-- PLACEHOLDER: Testimonio 2 -->
+					Texto de opinión o frase aquí.
+				</p>
+				<p class="am-testimonial__author">— Nombre Apellido</p>
+			</div>
+
+			<div class="am-testimonial">
+				<p class="am-testimonial__quote">
+					<!-- PLACEHOLDER: Testimonio 3 -->
+					Texto de opinión o frase aquí.
+				</p>
+				<p class="am-testimonial__author">— Nombre Apellido</p>
+			</div>
+
+		</div>
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 3. BIOS: Dustin + David ===== -->
+	<section class="am-bios" id="equipo">
+
+		<!-- Dustin: foto izquierda, texto derecha -->
+		<article class="am-bio">
+			<div class="am-bio__photo-wrap">
+				<img src="assets/images/DUSTIN_fondo-verde.webp" alt="Dustin Calderón" class="am-bio__photo">
+			</div>
+			<div class="am-bio__body">
+				<p class="am-bio__role">Música y letra</p>
+				<h3 class="am-bio__name">Dustin Calderón</h3>
+				<p class="am-bio__text">
+					<!-- PLACEHOLDER: Bio de Dustin -->
+					Texto sobre Dustin aquí. Descripción breve de su papel en Amorismo y su trayectoria.
+				</p>
+			</div>
+		</article>
+
+		<!-- David: texto izquierda, foto derecha (reverse) -->
+		<article class="am-bio am-bio--reverse">
+			<div class="am-bio__photo-wrap">
+				<img src="assets/images/DAVID_fondo-verde.webp" alt="David Gregory" class="am-bio__photo">
+			</div>
+			<div class="am-bio__body">
+				<p class="am-bio__role">Dirección</p>
+				<h3 class="am-bio__name">David Gregory</h3>
+				<p class="am-bio__text">
+					<!-- PLACEHOLDER: Bio de David -->
+					Texto sobre David aquí. Descripción breve de su papel en Amorismo y su trayectoria.
+				</p>
+			</div>
+		</article>
+
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 4. CORREO / FORMULARIO ===== -->
+	<section class="am-contact" id="correo">
+		<h2 class="am-contact__heading">
+			<!-- PLACEHOLDER: Heading del formulario -->
+			Mantente al tanto
+		</h2>
+		<p class="am-contact__text">
+			<!-- PLACEHOLDER: Subtexto del formulario -->
+			Déjanos tu correo y te avisamos de todo lo que viene.
+		</p>
+		<form class="am-contact__form" id="contact-form" action="#" method="POST">
+			<input
+				type="email"
+				name="email"
+				class="am-contact__input"
+				placeholder="Tu correo electrónico"
+				required
+				autocomplete="email"
+				id="contact-email"
+			>
+			<button type="submit" class="am-cta" id="contact-submit">Enviar</button>
+		</form>
+		<p class="am-contact__feedback" id="contact-feedback" aria-live="polite"></p>
+	</section>
+
 </main>
 
 <footer class="am-footer">

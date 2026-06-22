@@ -37,17 +37,19 @@ web_amorismo/
 ├── 404.html                (sin cambios)
 ├── assets/
 │   ├── css/
-│   │   ├── tokens.css      (~60 líneas)  — Custom properties, fuentes
-│   │   ├── base.css        (~80 líneas)  — Reset, body, typography, links
-│   │   ├── nav.css         (~120 líneas) — Navigation bar + responsive
-│   │   ├── components.css  (~150 líneas) — CTA, cards, grids reutilizables
-│   │   ├── hero.css        (~100 líneas) — Hero section styles
-│   │   ├── gallery.css     (~100 líneas) — Galería + thumbnails
-│   │   ├── footer.css      (~60 líneas)  — Footer
-│   │   └── responsive.css  (~150 líneas) — Media queries centralizadas
+│   │   ├── tokens.css      (~40 líneas)  — Custom properties, fuentes
+│   │   ├── base.css        (~115 líneas) — Reset, body, typography, links
+│   │   ├── nav.css         (~50 líneas)  — Navigation bar
+│   │   ├── components.css  (~110 líneas) — CTA, cards, grids, page-title
+│   │   ├── hero.css        (~75 líneas)  — Hero section styles
+│   │   ├── home.css        (~170 líneas) — Home: testimonials, bios, contact
+│   │   ├── volume.css      (~100 líneas) — Volume: synopsis, cast, reviews
+│   │   ├── gallery.css     (~100 líneas) — Galería + thumbnails (legacy)
+│   │   ├── footer.css      (~30 líneas)  — Footer
+│   │   └── responsive.css  (~280 líneas) — Media queries centralizadas
 │   ├── js/
 │   │   ├── nav.js          (~40 líneas)  — Tab navigation logic
-│   │   └── gallery.js      (~30 líneas)  — Galería (actual migrado)
+│   │   └── gallery.js      (~30 líneas)  — Galería (legacy)
 │   └── images/             (sin cambios)
 └── tests/
     └── audit.test.js
@@ -62,8 +64,15 @@ web_amorismo/
 
 ## Fases de Ejecución
 1. ✅ **Fase 1**: Estructura de archivos, CSS modular, shells HTML — **COMPLETADA**
-2. **Fase 2**: Diseñar Home landing
-3. **Fase 3**: Diseñar Vol I y Vol II (contenido pendiente del usuario)
+2. 🔧 **Fase 2**: Home landing — **ESTRUCTURA LISTA** (esperando copy)
+   - `index.html` — Hero (logo+CTA→form), Testimonios, Bios (Dustin/David), Correo, Footer
+   - `assets/css/home.css` — testimonials, bio blocks, contact form, dividers
+3. 🔧 **Fase 3**: Volúmenes — **ESTRUCTURA LISTA** (esperando copy)
+   - `vol-1.html`, `vol-2.html`, `vol-3.html` — Hero (álbum+frase+CTA), Sinopsis, Cast, Reviews, Correo, Footer
+   - `assets/css/volume.css` — synopsis, cast, reviews
+   - Vol III conserva contenido real (equipo creativo, elenco)
+4. **Fase 4**: Copy + CSS final del usuario
+5. **Fase 5**: Integración formulario Mautic
 
 ## Decisión Arquitectónica
 **Multi-page (MPA)** con archivos `.html` independientes.

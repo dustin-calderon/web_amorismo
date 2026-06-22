@@ -1,0 +1,224 @@
+/* ===== Home Page – Amorismo ===== */
+/* Sections: Testimonials, Bio blocks, Contact/Form */
+
+/* ===== Section divider (subtle line between sections) ===== */
+.am-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(168, 184, 189, 0.25) 20%,
+    rgba(168, 184, 189, 0.25) 80%,
+    transparent 100%
+  );
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+}
+
+/* ===== Testimonials / Frases y opiniones ===== */
+.am-testimonials {
+  padding: var(--am-sp-8) var(--am-sp-6);
+  text-align: center;
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+}
+
+.am-testimonials__heading {
+  font-family: var(--am-font-sans);
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--am-gris-neblina);
+  margin: 0 0 var(--am-sp-8);
+}
+
+.am-testimonials__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--am-sp-6);
+  align-items: center;
+}
+
+.am-testimonial {
+  max-width: 720px;
+  position: relative;
+  padding: var(--am-sp-6);
+  border-radius: var(--am-radius-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(168, 184, 189, 0.08);
+}
+
+.am-testimonial__quote {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--am-blanco);
+  font-style: italic;
+  margin: 0 0 var(--am-sp-4);
+}
+
+.am-testimonial__quote::before {
+  content: '\201C';
+  font-size: 2.5rem;
+  line-height: 0;
+  vertical-align: -0.5em;
+  color: var(--am-gris-neblina);
+  margin-right: var(--am-sp-1);
+  font-style: normal;
+}
+
+.am-testimonial__author {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--am-gris-neblina);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+/* ===== Bio Blocks (Dustin / David) ===== */
+.am-bios {
+  padding: var(--am-sp-8) var(--am-sp-6);
+  max-width: var(--am-max-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--am-sp-8);
+}
+
+.am-bio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--am-sp-8);
+  align-items: center;
+}
+
+/* Reverse layout for alternating blocks */
+.am-bio--reverse {
+  direction: rtl;
+}
+
+.am-bio--reverse > * {
+  direction: ltr;
+}
+
+.am-bio__photo-wrap {
+  aspect-ratio: 3 / 4;
+  border-radius: var(--am-radius-md);
+  overflow: hidden;
+  box-shadow: var(--am-shadow-card);
+  background: linear-gradient(135deg, var(--am-verde-carbon), var(--am-verde-profundo));
+}
+
+.am-bio__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.am-bio__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--am-sp-4);
+}
+
+.am-bio__role {
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--am-gris-neblina);
+  margin: 0;
+}
+
+.am-bio__name {
+  font-family: var(--am-font-title);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--am-blanco-proyector);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.am-bio__text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--am-blanco);
+  margin: 0;
+}
+
+/* ===== Contact / Correo Section ===== */
+.am-contact {
+  padding: var(--am-sp-8) var(--am-sp-6);
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.am-contact__heading {
+  font-family: var(--am-font-title);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--am-blanco-proyector);
+  margin: 0 0 var(--am-sp-4);
+  letter-spacing: -0.02em;
+}
+
+.am-contact__text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--am-gris-neblina);
+  margin: 0 0 var(--am-sp-6);
+}
+
+.am-contact__form {
+  display: flex;
+  gap: var(--am-sp-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.am-contact__input {
+  flex: 1;
+  min-width: 220px;
+  padding: var(--am-sp-3) var(--am-sp-4);
+  border: 1px solid rgba(168, 184, 189, 0.2);
+  border-radius: var(--am-radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--am-blanco);
+  font-family: var(--am-font-sans);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.am-contact__input::placeholder {
+  color: var(--am-gris-neblina);
+  opacity: 0.6;
+}
+
+.am-contact__input:focus {
+  border-color: var(--am-blanco-proyector);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Success/error states for form feedback */
+.am-contact__feedback {
+  margin-top: var(--am-sp-4);
+  font-size: 0.875rem;
+  color: var(--am-gris-neblina);
+  display: none;
+}
+
+.am-contact__feedback--visible {
+  display: block;
+}
+
+.am-contact__feedback--success {
+  color: #7dcea0;
+}
+
+.am-contact__feedback--error {
+  color: #e57373;
+}

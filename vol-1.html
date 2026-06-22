@@ -3,6 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="facebook-domain-verification" content="1ptp0k5fhktlvoxo1y8tif2kxrf4m1">
 	<meta name="description" content="AMORISMO Vol. I – El primer volumen del micromusical de Dustin Calderón.">
 	<meta property="og:title" content="AMORISMO Vol. I">
 	<meta property="og:description" content="El primer volumen del micromusical. Música y letra de Dustin Calderón.">
@@ -20,6 +21,8 @@
 	<link rel="stylesheet" href="assets/css/nav.css">
 	<link rel="stylesheet" href="assets/css/components.css">
 	<link rel="stylesheet" href="assets/css/hero.css">
+	<link rel="stylesheet" href="assets/css/volume.css">
+	<link rel="stylesheet" href="assets/css/home.css">
 	<link rel="stylesheet" href="assets/css/footer.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
 </head>
@@ -39,17 +42,103 @@
 </nav>
 
 <main id="main" role="main">
+
+	<!-- ===== 1. HERO: Álbum + Frase + CTA ===== -->
 	<section class="am-page-title">
 		<h1>AMORISMO · VOL. I</h1>
 	</section>
 
 	<section class="am-hero">
-		<div class="am-hero__grid am-hero__grid--centered">
+		<div class="am-hero__grid">
+			<div class="am-hero__visual">
+				<!-- PLACEHOLDER: Imagen de álbum/cartel Vol I -->
+				<img src="assets/images/amorismo-cartel.webp" alt="AMORISMO Vol. I – Cartel" class="am-hero__image">
+			</div>
 			<div class="am-hero__body">
-				<p class="am-hero__copy">Contenido del Vol. I — próximamente.</p>
+				<p class="am-hero__copy">
+					<!-- PLACEHOLDER: Frase del Vol I -->
+					Descripción del primer volumen de Amorismo.
+				</p>
+				<a href="#correo" class="am-cta" id="cta-vol1">Quiero saber más</a>
 			</div>
 		</div>
 	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 2. SINOPSIS ===== -->
+	<section class="am-synopsis" id="sinopsis">
+		<h2 class="am-synopsis__heading">Sinopsis</h2>
+		<p class="am-synopsis__text">
+			<!-- PLACEHOLDER: Sinopsis del Vol I -->
+			Texto de la sinopsis aquí. Descripción de la historia, el contexto y lo que el espectador puede esperar.
+		</p>
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 3. CAST ===== -->
+	<section class="am-cast" id="cast">
+		<h2 class="am-cast__heading">Cast</h2>
+		<div class="am-person-grid am-person-grid--cols-4">
+
+			<!-- PLACEHOLDER: Miembros del cast -->
+			<div class="am-person">
+				<div class="am-person__photo-wrap">
+					<!-- PLACEHOLDER: Foto del intérprete -->
+				</div>
+				<p class="am-person__name">Nombre</p>
+			</div>
+
+			<div class="am-person">
+				<div class="am-person__photo-wrap">
+					<!-- PLACEHOLDER: Foto del intérprete -->
+				</div>
+				<p class="am-person__name">Nombre</p>
+			</div>
+
+		</div>
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 4. REVIEWS ===== -->
+	<section class="am-reviews" id="reviews">
+		<h2 class="am-reviews__heading">Reviews</h2>
+		<div class="am-reviews__list">
+
+			<div class="am-review">
+				<p class="am-review__quote">
+					<!-- PLACEHOLDER: Review 1 -->
+					Texto de la review aquí.
+				</p>
+				<p class="am-review__source">— Fuente</p>
+			</div>
+
+			<div class="am-review">
+				<p class="am-review__quote">
+					<!-- PLACEHOLDER: Review 2 -->
+					Texto de la review aquí.
+				</p>
+				<p class="am-review__source">— Fuente</p>
+			</div>
+
+		</div>
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 5. CORREO / FORMULARIO ===== -->
+	<section class="am-contact" id="correo">
+		<h2 class="am-contact__heading">Mantente al tanto</h2>
+		<p class="am-contact__text">Déjanos tu correo y te avisamos de todo lo que viene.</p>
+		<form class="am-contact__form" id="contact-form" action="#" method="POST">
+			<input type="email" name="email" class="am-contact__input" placeholder="Tu correo electrónico" required autocomplete="email" id="contact-email">
+			<button type="submit" class="am-cta" id="contact-submit">Enviar</button>
+		</form>
+		<p class="am-contact__feedback" id="contact-feedback" aria-live="polite"></p>
+	</section>
+
 </main>
 
 <footer class="am-footer">

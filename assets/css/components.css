@@ -100,3 +100,11 @@
 .am-page-title h1 {
   margin: 0;
 }
+
+.am-page-title__logo {
+  display: block;
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 20px rgba(230, 235, 238, 0.3));
+}
