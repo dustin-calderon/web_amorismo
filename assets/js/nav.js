@@ -10,8 +10,11 @@
   'use strict';
 
   const PAGE_MAP = {
+    'vol-1':      'vol1',
     'vol-1.html': 'vol1',
+    'vol-2':      'vol2',
     'vol-2.html': 'vol2',
+    'vol-3':      'vol3',
     'vol-3.html': 'vol3',
   };
 
