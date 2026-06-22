@@ -1,0 +1,11 @@
+# Node (herramientas puntuales de build)
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
