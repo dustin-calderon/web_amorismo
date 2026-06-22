@@ -200,10 +200,14 @@ body[data-vol="3"] {
 
   --am-bg-grad-color-a:   rgba(15, 61, 34, 0.4);
   --am-bg-grad-color-b:   rgba(30, 90, 53, 0.2);
+  --am-bg-grad-bottom:    var(--am-v3-fondo-oscuro);      /* #08130C */
+  --am-heading-shadow:    rgba(127, 175, 114, 0.12);
+  --am-h1-shadow:         rgba(127, 175, 114, 0.18);
   --am-shadow-card:       0 8px 25px rgba(8, 19, 12, 0.55);
   --am-shadow-cta:        0 8px 30px rgba(30, 90, 53, 0.38);
   --am-shadow-cta-hover:  0 12px 40px rgba(15, 61, 34, 0.58);
   --am-shadow-hero:       0 10px 30px rgba(8, 19, 12, 0.58);
+  --am-shadow-logo:       0 0 20px rgba(127, 175, 114, 0.20);
   --am-shadow-thumb:      0 4px 12px rgba(8, 19, 12, 0.50);
   --am-shadow-thumb-hover: 0 6px 18px rgba(8, 19, 12, 0.70);
   --am-shadow-thumb-active: 0 6px 18px rgba(127, 175, 114, 0.32);

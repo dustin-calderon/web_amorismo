@@ -106,7 +106,8 @@
 .am-nav__mail:focus-visible {
   color: var(--am-home-text);
   background: var(--am-nav-hover-bg);
-  outline: none;
+  outline: 3px solid var(--am-home-accent-soft);
+  outline-offset: 2px;
 }
 
 .am-nav__mail svg {

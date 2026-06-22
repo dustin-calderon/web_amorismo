@@ -205,7 +205,8 @@
 	<section class="am-contact" id="correo">
 		<h2 class="am-contact__heading">Mantente al tanto</h2>
 		<p class="am-contact__text">Déjanos tu correo y te avisamos de todo lo que viene.</p>
-		<form class="am-contact__form" id="contact-form" action="#" method="POST">
+		<form class="am-contact__form" id="contact-form">
+			<label for="contact-email" class="sr-only">Tu correo electrónico</label>
 			<input type="email" name="email" class="am-contact__input" placeholder="Tu correo electrónico" required autocomplete="email" id="contact-email">
 			<button type="submit" class="am-cta" id="contact-submit">Enviar</button>
 		</form>
@@ -266,6 +267,7 @@
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
+<script defer src="assets/js/form.js"></script>
 <script defer src="assets/js/gallery.js"></script>
 </body>
 </html>

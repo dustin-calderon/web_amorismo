@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="assets/css/footer.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
 </head>
-<body>
+<body class="am-body--home">
 <!-- Background -->
 <div class="am-bg-gradient"></div>
 <div class="am-bg-noise"></div>
@@ -59,9 +59,9 @@
 	<!-- ===== 1. LANDING HERO: Triptych + Logo + Tagline + CTA ===== -->
 	<section class="am-landing-hero">
 		<div class="am-landing-hero__bg" aria-hidden="true">
-			<img src="assets/images/covers/portada-vol-1.webp" alt="" class="am-landing-hero__cover" width="600" height="600">
-			<img src="assets/images/covers/portada-vol-2.webp" alt="" class="am-landing-hero__cover" width="600" height="600">
-			<img src="assets/images/covers/portada-vol-3.webp" alt="" class="am-landing-hero__cover" width="600" height="600">
+			<img src="assets/images/covers/portada-vol-1.webp" alt="" class="am-landing-hero__cover" width="600" height="600" fetchpriority="high">
+			<img src="assets/images/covers/portada-vol-2.webp" alt="" class="am-landing-hero__cover" width="600" height="600" fetchpriority="low">
+			<img src="assets/images/covers/portada-vol-3.webp" alt="" class="am-landing-hero__cover" width="600" height="600" fetchpriority="low">
 		</div>
 		<div class="am-landing-hero__content">
 			<h1>
@@ -182,7 +182,8 @@
 			<!-- PLACEHOLDER: Subtexto del formulario -->
 			Déjanos tu correo y te avisamos de todo lo que viene.
 		</p>
-		<form class="am-contact__form" id="contact-form" action="#" method="POST">
+		<form class="am-contact__form" id="contact-form">
+			<label for="contact-email" class="sr-only">Tu correo electrónico</label>
 			<input
 				type="email"
 				name="email"
@@ -256,5 +257,6 @@
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
+<script defer src="assets/js/form.js"></script>
 </body>
 </html>

@@ -21,6 +21,11 @@ body {
   padding-top: var(--am-nav-h);
 }
 
+/* Home landing hero manages its own nav offset via negative margin */
+body.am-body--home {
+  padding-top: 0;
+}
+
 .am-skip-link {
   position: fixed;
   top: var(--am-sp-2);
@@ -37,6 +42,19 @@ body {
 .am-skip-link:focus {
   color: var(--am-on-accent);
   transform: translateY(0);
+}
+
+/* Screen-reader only (visually hidden, accessible to AT) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 [id] {

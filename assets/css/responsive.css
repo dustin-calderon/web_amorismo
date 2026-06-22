@@ -183,8 +183,8 @@
 
 /* ===== Mobile (≤ 480px) ===== */
 @media (max-width: 480px) {
-  /* Nav stacks tighter */
-  .am-nav__list {
+  /* Nav links — tighter */
+  .am-nav__links {
     gap: 0;
   }
 
