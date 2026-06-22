@@ -1,4 +1,8 @@
 /* ===== Navigation – Amorismo ===== */
+/*
+ * Layout: [logo]  ←—— [Vol I | Vol II | Vol III] ——→  [✉]
+ * Transparent. Vol links are truly centered via position:absolute.
+ */
 
 .am-nav {
   position: fixed;
@@ -9,46 +13,97 @@
   height: var(--am-nav-h);
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: var(--am-nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--am-home-border);
+  justify-content: space-between;
+  padding: 0 clamp(var(--am-sp-5), 4vw, var(--am-sp-8));
+  background: transparent;
 }
 
-.am-nav__list {
+/* ── Logo (home link) ── */
+.am-nav__logo {
   display: flex;
-  list-style: none;
-  gap: var(--am-sp-1);
-  padding: 0;
-  margin: 0;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.25s ease;
+}
+
+.am-nav__logo:hover,
+.am-nav__logo:focus-visible {
+  opacity: 1;
+}
+
+.am-nav__logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.4));
+}
+
+/* ── Vol links – centered group ── */
+/*
+ * position:absolute + translate is the only way to truly center
+ * the group when the left/right siblings have different widths.
+ */
+.am-nav__links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--am-sp-2);
 }
 
 .am-nav__link {
-  display: flex;
-  align-items: center;
-  padding: var(--am-sp-2) var(--am-sp-5);
-  min-height: 44px;
+  display: block;
+  padding: 0.3rem 0.875rem;
   font-family: var(--am-font-sans);
-  font-size: 0.8125rem;
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--am-home-text-muted);
   text-decoration: none;
+  border: 1px solid var(--am-home-border);
   border-radius: var(--am-radius-sm);
-  transition: color 0.25s ease, background-color 0.25s ease;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .am-nav__link:hover {
   color: var(--am-home-text);
+  border-color: rgba(245, 244, 239, 0.25);
   background: var(--am-nav-hover-bg);
 }
 
-/* Active tab — applied by nav.js based on current URL */
-.am-nav__link--active,
-.am-nav__link[aria-current="page"] {
-  color: var(--am-nav-active-text);
-  font-weight: 700;
+/* Active – set by nav.js on page load */
+.am-nav__link--active {
+  color: var(--am-home-accent);
+  border-color: var(--am-home-accent);
   background: var(--am-nav-active-bg);
+  font-weight: 700;
 }
+
+/* ── Mail icon (newsletter anchor) ── */
+.am-nav__mail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--am-home-text-muted);
+  text-decoration: none;
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.am-nav__mail:hover,
+.am-nav__mail:focus-visible {
+  color: var(--am-home-text);
+  background: var(--am-nav-hover-bg);
+  outline: none;
+}
+
+.am-nav__mail svg {
+  display: block;
+  pointer-events: none;
+}
+

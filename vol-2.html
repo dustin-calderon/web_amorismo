@@ -39,12 +39,20 @@
 
 <!-- Navigation -->
 <nav class="am-nav" aria-label="Navegación principal">
-	<ul class="am-nav__list">
-		<li><a href="index.html" class="am-nav__link" data-page="home">Home</a></li>
-		<li><a href="vol-1.html" class="am-nav__link" data-page="vol1">Vol I</a></li>
-		<li><a href="vol-2.html" class="am-nav__link am-nav__link--active" data-page="vol2" aria-current="page">Vol II</a></li>
-		<li><a href="vol-3.html" class="am-nav__link" data-page="vol3">Vol III</a></li>
-	</ul>
+	<a href="index.html" class="am-nav__logo" aria-label="Amorismo – Inicio">
+		<img src="assets/images/amorismo-logo.webp" alt="AMORISMO" class="am-nav__logo-img" width="400" height="514">
+	</a>
+	<div class="am-nav__links">
+		<a href="vol-1.html" class="am-nav__link" data-page="vol1">Vol I</a>
+		<a href="vol-2.html" class="am-nav__link" data-page="vol2">Vol II</a>
+		<a href="vol-3.html" class="am-nav__link" data-page="vol3">Vol III</a>
+	</div>
+	<a href="#correo" class="am-nav__mail" aria-label="Newsletter – suscríbete al correo">
+		<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<rect x="2" y="4" width="20" height="16" rx="2"/>
+			<path d="m2 7 10 7 10-7"/>
+		</svg>
+	</a>
 </nav>
 
 <main id="main" role="main" tabindex="-1">

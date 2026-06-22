@@ -1,27 +1,26 @@
 /**
- * nav.js – Highlights active navigation tab based on current page URL.
- * Reads the filename from window.location and marks the matching link.
+ * nav.js – Highlights the active volume pill in the nav bar.
+ *
+ * Reads the current filename from window.location and adds
+ * .am-nav__link--active + aria-current="page" to the matching link.
+ *
+ * @type {Record<string, string>} PAGE_MAP — filename → data-page value
  */
 (function () {
   'use strict';
 
-  /** @type {Record<string, string>} Maps filename to nav link data-page value */
   const PAGE_MAP = {
-    'index.html': 'home',
     'vol-1.html': 'vol1',
     'vol-2.html': 'vol2',
     'vol-3.html': 'vol3',
-    '':           'home',  // root path resolves to home
   };
 
-  const path = window.location.pathname;
-  const filename = path.substring(path.lastIndexOf('/') + 1);
+  const filename = window.location.pathname.split('/').pop();
   const activePage = PAGE_MAP[filename];
 
-  document.querySelectorAll('.am-nav__link').forEach(link => {
-    link.classList.remove('am-nav__link--active');
-    link.removeAttribute('aria-current');
+  if (!activePage) return; // index.html — no pill to highlight
 
+  document.querySelectorAll('.am-nav__link').forEach(function (link) {
     if (link.getAttribute('data-page') === activePage) {
       link.classList.add('am-nav__link--active');
       link.setAttribute('aria-current', 'page');
