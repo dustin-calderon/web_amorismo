@@ -22,6 +22,7 @@
 .am-nav__logo {
   display: flex;
   align-items: center;
+  min-height: 44px;
   flex-shrink: 0;
   text-decoration: none;
   opacity: 0.9;
@@ -37,7 +38,7 @@
   height: 36px;
   width: auto;
   display: block;
-  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(var(--am-shadow-nav-logo));
 }
 
 /* ── Vol links – single centered card ── */
@@ -58,7 +59,9 @@
 }
 
 .am-nav__link {
-  display: block;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   padding: 0.35rem 1rem;
   font-family: var(--am-font-sans);
   font-size: 0.75rem;
@@ -83,8 +86,8 @@
 }
 
 /* Active – set by nav.js on page load */
-.am-nav__link--active {
-  color: var(--am-home-accent-soft);
+.am-nav__link.am-nav__link--active {
+  color: var(--am-nav-active-text);
   background: var(--am-nav-active-bg);
   font-weight: 700;
 }
@@ -95,7 +98,8 @@
   align-items: center;
   justify-content: center;
   width: 40px;
-  height: 40px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   color: var(--am-home-text-muted);
   text-decoration: none;
@@ -114,4 +118,3 @@
   display: block;
   pointer-events: none;
 }
-

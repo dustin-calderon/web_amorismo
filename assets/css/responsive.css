@@ -1,15 +1,9 @@
-/* ===== Responsive – Amorismo ===== */
-/* Centralized media queries for all components */
-
-/* ===== Tablet (≤ 768px) ===== */
 @media (max-width: 768px) {
-  /* Nav */
   .am-nav__link {
     padding: var(--am-sp-2) var(--am-sp-3);
     font-size: 0.75rem;
   }
 
-  /* Page title */
   .am-page-title {
     padding: var(--am-sp-6) var(--am-sp-4) var(--am-sp-3);
   }
@@ -18,7 +12,6 @@
     font-size: clamp(1.75rem, 5vw, 2.5rem);
   }
 
-  /* Hero */
   .am-hero {
     padding: var(--am-sp-4);
   }
@@ -48,7 +41,6 @@
     font-weight: 600;
   }
 
-  /* Person grids */
   .am-person-grid--cols-4 {
     grid-template-columns: repeat(2, 1fr);
     gap: var(--am-sp-3);
@@ -64,12 +56,10 @@
     margin-bottom: var(--am-sp-6);
   }
 
-  /* Container */
   .am-container {
     padding: var(--am-sp-4);
   }
 
-  /* Gallery */
   .am-gallery {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
@@ -82,12 +72,10 @@
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
   }
 
-  /* Home: Page title logo */
   .am-page-title__logo {
     max-width: 200px;
   }
 
-  /* Home: Landing hero */
   .am-landing-hero {
     padding-left: var(--am-sp-5);
     padding-right: var(--am-sp-5);
@@ -97,12 +85,10 @@
     width: clamp(140px, 30vw, 200px);
   }
 
-  /* Home: Música grid */
   .am-musica {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
 
-  /* Home: Testimonials */
   .am-testimonials {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
@@ -111,7 +97,6 @@
     padding: var(--am-sp-4);
   }
 
-  /* Home: Bio blocks */
   .am-bio {
     grid-template-columns: 1fr;
     gap: var(--am-sp-5);
@@ -131,7 +116,6 @@
     align-items: center;
   }
 
-  /* Home: Contact form */
   .am-contact {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
@@ -145,17 +129,14 @@
     min-width: 0;
   }
 
-  /* Volume: Synopsis */
   .am-synopsis {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
 
-  /* Volume: Cast */
   .am-cast {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
 
-  /* Volume: Reviews */
   .am-reviews {
     padding: var(--am-sp-6) var(--am-sp-4);
   }
@@ -164,7 +145,6 @@
     padding: var(--am-sp-4);
   }
 
-  /* Footer — 2×2 grid */
   .am-footer__grid {
     grid-template-columns: 1fr 1fr;
     gap: var(--am-sp-6);
@@ -175,15 +155,12 @@
     padding: var(--am-sp-3) var(--am-sp-4);
   }
 
-  /* Typography */
   h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
   h3 { font-size: clamp(0.85rem, 3vw, 1rem); }
   p  { font-size: clamp(0.95rem, 2.5vw, 1.125rem); }
 }
 
-/* ===== Mobile (≤ 480px) ===== */
 @media (max-width: 480px) {
-  /* Nav links — tighter */
   .am-nav__links {
     gap: 0;
   }
@@ -193,7 +170,6 @@
     font-size: 0.6875rem;
   }
 
-  /* Page title */
   .am-page-title {
     padding: var(--am-sp-5) var(--am-sp-3) var(--am-sp-3);
   }
@@ -202,12 +178,10 @@
     font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
-  /* Hero */
   .am-hero {
     padding: var(--am-sp-3);
   }
 
-  /* Person grids */
   .am-person-grid--cols-4 {
     grid-template-columns: 1fr;
     gap: var(--am-sp-2);
@@ -217,18 +191,15 @@
     margin-bottom: var(--am-sp-2);
   }
 
-  /* Container */
   .am-container {
     padding: var(--am-sp-3);
   }
 
-  /* CTA */
   .am-cta {
     padding: var(--am-sp-3) var(--am-sp-4);
     font-size: 0.9rem;
   }
 
-  /* Landing hero — stacked triptych */
   .am-landing-hero {
     min-height: 100svh;
     padding-left: var(--am-sp-4);
@@ -253,7 +224,6 @@
     width: 140px;
   }
 
-  /* Música grid — single column */
   .am-musica__grid {
     grid-template-columns: 1fr;
     gap: var(--am-sp-5);
@@ -261,7 +231,6 @@
     margin: 0 auto;
   }
 
-  /* Gallery */
   .am-gallery {
     padding: var(--am-sp-5) var(--am-sp-3);
   }
@@ -283,7 +252,6 @@
     border-radius: var(--am-radius-sm);
   }
 
-  /* Home: Bio blocks — tighter on mobile */
   .am-bio__photo-wrap {
     max-width: 260px;
   }
@@ -292,12 +260,10 @@
     font-size: clamp(1.25rem, 5vw, 1.75rem);
   }
 
-  /* Home: Contact */
   .am-contact {
     padding: var(--am-sp-5) var(--am-sp-3);
   }
 
-  /* Footer — single column */
   .am-footer__grid {
     grid-template-columns: 1fr;
     gap: var(--am-sp-5);

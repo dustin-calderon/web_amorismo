@@ -77,6 +77,10 @@
   --am-shadow-thumb: 0 4px 12px rgba(0, 0, 0, 0.4);
   --am-shadow-thumb-hover: 0 6px 18px rgba(0, 0, 0, 0.6);
   --am-shadow-thumb-active: 0 6px 18px rgba(167, 25, 33, 0.3);
+  --am-shadow-nav-logo: 0 1px 6px rgba(0, 0, 0, 0.4);
+  --am-shadow-landing-logo: 0 4px 24px rgba(0, 0, 0, 0.6);
+  --am-hero-overlay-mid: rgba(10, 10, 10, 0.55);
+  --am-hero-overlay-top: rgba(10, 10, 10, 0.25);
 
   /* Layout */
   --am-max-w: 1180px;
@@ -134,6 +138,10 @@ body[data-vol="1"] {
   --am-shadow-thumb:      0 4px 12px rgba(58, 0, 16, 0.45);
   --am-shadow-thumb-hover: 0 6px 18px rgba(58, 0, 16, 0.65);
   --am-shadow-thumb-active: 0 6px 18px rgba(139, 16, 48, 0.40);
+  --am-shadow-nav-logo: 0 1px 6px rgba(58, 0, 16, 0.45);
+  --am-shadow-landing-logo: 0 4px 24px rgba(58, 0, 16, 0.55);
+  --am-hero-overlay-mid: rgba(58, 0, 16, 0.58);
+  --am-hero-overlay-top: rgba(58, 0, 16, 0.30);
 }
 
 /* ── Vol II – Editorial (paleta clara) ── */
@@ -176,6 +184,10 @@ body[data-vol="2"] {
   --am-shadow-thumb:      0 4px 12px rgba(43, 43, 43, 0.14);
   --am-shadow-thumb-hover: 0 6px 18px rgba(43, 43, 43, 0.22);
   --am-shadow-thumb-active: 0 6px 18px rgba(167, 25, 33, 0.24);
+  --am-shadow-nav-logo: 0 1px 6px rgba(43, 43, 43, 0.16);
+  --am-shadow-landing-logo: 0 4px 24px rgba(43, 43, 43, 0.18);
+  --am-hero-overlay-mid: rgba(245, 244, 239, 0.58);
+  --am-hero-overlay-top: rgba(245, 244, 239, 0.30);
 }
 
 /* ── Vol III – Verde Oscuro ── */
@@ -211,4 +223,8 @@ body[data-vol="3"] {
   --am-shadow-thumb:      0 4px 12px rgba(8, 19, 12, 0.50);
   --am-shadow-thumb-hover: 0 6px 18px rgba(8, 19, 12, 0.70);
   --am-shadow-thumb-active: 0 6px 18px rgba(127, 175, 114, 0.32);
+  --am-shadow-nav-logo: 0 1px 6px rgba(8, 19, 12, 0.45);
+  --am-shadow-landing-logo: 0 4px 24px rgba(8, 19, 12, 0.58);
+  --am-hero-overlay-mid: rgba(8, 19, 12, 0.58);
+  --am-hero-overlay-top: rgba(8, 19, 12, 0.30);
 }

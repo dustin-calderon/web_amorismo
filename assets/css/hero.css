@@ -128,8 +128,8 @@
   background: linear-gradient(
     to top,
     var(--am-home-bg) 0%,
-    rgba(10, 10, 10, 0.55) 35%,
-    rgba(10, 10, 10, 0.25) 100%
+    var(--am-hero-overlay-mid) 35%,
+    var(--am-hero-overlay-top) 100%
   );
   pointer-events: none;
 }
@@ -148,7 +148,7 @@
   display: block;
   width: clamp(160px, 20vw, 280px);
   height: auto;
-  filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(var(--am-shadow-landing-logo));
 }
 
 .am-landing-hero__tagline {
@@ -179,7 +179,7 @@
 
 .am-landing-hero__cta:hover {
   border-color: var(--am-home-text);
-  background: rgba(245, 244, 239, 0.1);
+  background: var(--am-nav-hover-bg);
   color: var(--am-home-text);
 }
 

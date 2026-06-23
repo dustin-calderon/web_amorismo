@@ -38,7 +38,7 @@
 
 <!-- Navigation -->
 <nav class="am-nav" aria-label="Navegación principal">
-	<a href="index.html" class="am-nav__logo" aria-label="Amorismo – Inicio">
+	<a href="index.html" class="am-nav__logo am-nav__link--active" data-page="home" aria-label="Amorismo – Inicio" aria-current="page">
 		<img src="assets/images/amorismo-logo.webp" alt="AMORISMO" class="am-nav__logo-img" width="400" height="514">
 	</a>
 	<div class="am-nav__links">
@@ -73,7 +73,7 @@
 				Tres volúmenes.<br>
 				Un mismo viaje.
 			</p>
-			<a href="#musica" class="am-landing-hero__cta" id="cta-hero">
+			<a href="https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0" class="am-landing-hero__cta" id="cta-hero" target="_blank" rel="noopener noreferrer">
 				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="10,7.5 17,12 10,16.5"/></svg>
 				Escuchar en Spotify
 			</a>
@@ -101,41 +101,7 @@
 
 	<hr class="am-divider">
 
-	<!-- ===== 2. FRASES Y OPINIONES ===== -->
-	<section class="am-testimonials" id="opiniones">
-		<h2 class="am-testimonials__heading">Frases y opiniones</h2>
-		<div class="am-testimonials__list">
-
-			<div class="am-testimonial">
-				<p class="am-testimonial__quote">
-					<!-- PLACEHOLDER: Testimonio 1 -->
-					Texto de opinión o frase aquí.
-				</p>
-				<p class="am-testimonial__author">— Nombre Apellido</p>
-			</div>
-
-			<div class="am-testimonial">
-				<p class="am-testimonial__quote">
-					<!-- PLACEHOLDER: Testimonio 2 -->
-					Texto de opinión o frase aquí.
-				</p>
-				<p class="am-testimonial__author">— Nombre Apellido</p>
-			</div>
-
-			<div class="am-testimonial">
-				<p class="am-testimonial__quote">
-					<!-- PLACEHOLDER: Testimonio 3 -->
-					Texto de opinión o frase aquí.
-				</p>
-				<p class="am-testimonial__author">— Nombre Apellido</p>
-			</div>
-
-		</div>
-	</section>
-
-	<hr class="am-divider">
-
-	<!-- ===== 3. BIOS: Dustin + David ===== -->
+	<!-- ===== 2. BIOS: Dustin + David ===== -->
 	<section class="am-bios" id="equipo">
 
 		<!-- Dustin: foto izquierda, texto derecha -->
@@ -147,8 +113,7 @@
 				<p class="am-bio__role">Música y letra</p>
 				<h3 class="am-bio__name">Dustin Calderón</h3>
 				<p class="am-bio__text">
-					<!-- PLACEHOLDER: Bio de Dustin -->
-					Texto sobre Dustin aquí. Descripción breve de su papel en Amorismo y su trayectoria.
+					Creador de AMORISMO y responsable de la música y la letra de sus volúmenes.
 				</p>
 			</div>
 		</article>
@@ -162,8 +127,7 @@
 				<p class="am-bio__role">Dirección</p>
 				<h3 class="am-bio__name">David Gregory</h3>
 				<p class="am-bio__text">
-					<!-- PLACEHOLDER: Bio de David -->
-					Texto sobre David aquí. Descripción breve de su papel en Amorismo y su trayectoria.
+					Director del proyecto escénico y parte del equipo creativo de AMORISMO.
 				</p>
 			</div>
 		</article>
@@ -172,16 +136,10 @@
 
 	<hr class="am-divider">
 
-	<!-- ===== 4. CORREO / FORMULARIO ===== -->
+	<!-- ===== 3. CORREO ===== -->
 	<section class="am-contact" id="correo">
-		<h2 class="am-contact__heading">
-			<!-- PLACEHOLDER: Heading del formulario -->
-			Mantente al tanto
-		</h2>
-		<p class="am-contact__text">
-			<!-- PLACEHOLDER: Subtexto del formulario -->
-			Déjanos tu correo y te avisamos de todo lo que viene.
-		</p>
+		<h2 class="am-contact__heading">Mantente al tanto</h2>
+		<p class="am-contact__text">El formulario de correo estará disponible próximamente.</p>
 		<form class="am-contact__form" id="contact-form">
 			<label for="contact-email" class="sr-only">Tu correo electrónico</label>
 			<input
@@ -192,10 +150,10 @@
 				required
 				autocomplete="email"
 				id="contact-email"
+				disabled
 			>
-			<button type="submit" class="am-cta" id="contact-submit">Enviar</button>
+			<button type="submit" class="am-cta am-cta--disabled" id="contact-submit" disabled>Próximamente</button>
 		</form>
-		<p class="am-contact__feedback" id="contact-feedback" aria-live="polite"></p>
 	</section>
 
 </main>
@@ -247,16 +205,15 @@
 	</div>
 	<!-- Bottom -->
 	<div class="am-footer__bottom">
-		<p class="am-footer__copyright">© 2026 dustincalderon.com · Todos los derechos reservados.</p>
+		<p class="am-footer__copyright">Copyright © 2026 dustincalderon.com · Todos los derechos reservados.</p>
 		<nav class="am-footer__legal" aria-label="Enlaces legales">
 			<a href="https://dustincalderon.com/legal/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso Legal</a>
 			<span aria-hidden="true">·</span>
-			<a href="https://dustincalderon.com/legal/privacidad/" target="_blank" rel="noopener noreferrer">Privacidad</a>
+			<a href="https://dustincalderon.com/legal/privacidad/" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
 		</nav>
 	</div>
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
-<script defer src="assets/js/form.js"></script>
 </body>
 </html>

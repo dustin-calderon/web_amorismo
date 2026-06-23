@@ -40,13 +40,13 @@
 
 <!-- Navigation -->
 <nav class="am-nav" aria-label="Navegación principal">
-	<a href="index.html" class="am-nav__logo" aria-label="Amorismo – Inicio">
+	<a href="index.html" class="am-nav__logo" data-page="home" aria-label="Amorismo – Inicio">
 		<img src="assets/images/amorismo-logo.webp" alt="AMORISMO" class="am-nav__logo-img" width="400" height="514">
 	</a>
 	<div class="am-nav__links">
 		<a href="vol-1.html" class="am-nav__link" data-page="vol1">Vol I</a>
 		<a href="vol-2.html" class="am-nav__link" data-page="vol2">Vol II</a>
-		<a href="vol-3.html" class="am-nav__link" data-page="vol3">Vol III</a>
+		<a href="vol-3.html" class="am-nav__link am-nav__link--active" data-page="vol3" aria-current="page">Vol III</a>
 	</div>
 	<a href="#correo" class="am-nav__mail" aria-label="Newsletter – suscríbete al correo">
 		<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -88,8 +88,7 @@
 	<section class="am-synopsis" id="sinopsis">
 		<h2 class="am-synopsis__heading">Sinopsis</h2>
 		<p class="am-synopsis__text">
-			<!-- PLACEHOLDER: Sinopsis del Vol III -->
-			Texto de la sinopsis aquí. Descripción de la historia, el contexto y lo que el espectador puede esperar.
+			Una habitación vacía, una verdad que se proyecta y quince años de historias condensadas en unos minutos.
 		</p>
 	</section>
 
@@ -175,42 +174,15 @@
 
 	<hr class="am-divider">
 
-	<!-- ===== 5. REVIEWS ===== -->
-	<section class="am-reviews" id="reviews">
-		<h2 class="am-reviews__heading">Reviews</h2>
-		<div class="am-reviews__list">
-
-			<div class="am-review">
-				<p class="am-review__quote">
-					<!-- PLACEHOLDER: Review 1 -->
-					Texto de la review aquí.
-				</p>
-				<p class="am-review__source">— Fuente</p>
-			</div>
-
-			<div class="am-review">
-				<p class="am-review__quote">
-					<!-- PLACEHOLDER: Review 2 -->
-					Texto de la review aquí.
-				</p>
-				<p class="am-review__source">— Fuente</p>
-			</div>
-
-		</div>
-	</section>
-
-	<hr class="am-divider">
-
-	<!-- ===== 6. CORREO ===== -->
+	<!-- ===== 5. CORREO ===== -->
 	<section class="am-contact" id="correo">
 		<h2 class="am-contact__heading">Mantente al tanto</h2>
-		<p class="am-contact__text">Déjanos tu correo y te avisamos de todo lo que viene.</p>
+		<p class="am-contact__text">El formulario de correo estará disponible próximamente.</p>
 		<form class="am-contact__form" id="contact-form">
 			<label for="contact-email" class="sr-only">Tu correo electrónico</label>
-			<input type="email" name="email" class="am-contact__input" placeholder="Tu correo electrónico" required autocomplete="email" id="contact-email">
-			<button type="submit" class="am-cta" id="contact-submit">Enviar</button>
+			<input type="email" name="email" class="am-contact__input" placeholder="Tu correo electrónico" required autocomplete="email" id="contact-email" disabled>
+			<button type="submit" class="am-cta am-cta--disabled" id="contact-submit" disabled>Próximamente</button>
 		</form>
-		<p class="am-contact__feedback" id="contact-feedback" aria-live="polite"></p>
 	</section>
 
 </main>
@@ -257,17 +229,16 @@
 		</div>
 	</div>
 	<div class="am-footer__bottom">
-		<p class="am-footer__copyright">© 2026 dustincalderon.com · Todos los derechos reservados.</p>
+		<p class="am-footer__copyright">Copyright © 2026 dustincalderon.com · Todos los derechos reservados.</p>
 		<nav class="am-footer__legal" aria-label="Enlaces legales">
 			<a href="https://dustincalderon.com/legal/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso Legal</a>
 			<span aria-hidden="true">·</span>
-			<a href="https://dustincalderon.com/legal/privacidad/" target="_blank" rel="noopener noreferrer">Privacidad</a>
+			<a href="https://dustincalderon.com/legal/privacidad/" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
 		</nav>
 	</div>
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
-<script defer src="assets/js/form.js"></script>
 <script defer src="assets/js/gallery.js"></script>
 </body>
 </html>

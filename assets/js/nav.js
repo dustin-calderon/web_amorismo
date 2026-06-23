@@ -10,6 +10,8 @@
   'use strict';
 
   const PAGE_MAP = {
+    '':            'home',
+    'index.html':  'home',
     'vol-1':      'vol1',
     'vol-1.html': 'vol1',
     'vol-2':      'vol2',
@@ -21,12 +23,15 @@
   const filename = window.location.pathname.split('/').pop();
   const activePage = PAGE_MAP[filename];
 
-  if (!activePage) return; // index.html — no pill to highlight
+  if (!activePage) return;
 
-  document.querySelectorAll('.am-nav__link').forEach(function (link) {
+  document.querySelectorAll('[data-page]').forEach(function (link) {
     if (link.getAttribute('data-page') === activePage) {
       link.classList.add('am-nav__link--active');
       link.setAttribute('aria-current', 'page');
+    } else {
+      link.classList.remove('am-nav__link--active');
+      link.removeAttribute('aria-current');
     }
   });
 })();

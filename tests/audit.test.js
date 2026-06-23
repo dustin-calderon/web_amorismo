@@ -57,6 +57,10 @@ describe('1. Integridad de archivos', () => {
     assert.ok(fileExists('assets/js/gallery.js'), 'gallery.js debe existir');
   });
 
+  test('1.4b - No hay JavaScript de formulario sin backend', () => {
+    assert.ok(!fileExists('assets/js/form.js'), 'form.js no debe fingir altas sin backend real');
+  });
+
   test('1.5 - Legacy files eliminados', () => {
     assert.ok(!fileExists('assets/css/amorismo-styles.css'), 'Legacy CSS eliminado');
     assert.ok(!fileExists('assets/js/amorismo-scripts.js'), 'Legacy JS eliminado');
@@ -190,6 +194,28 @@ describe('2. Semántica HTML y SEO', () => {
         assert.ok(!html.includes('href="/assets'));
         assert.ok(!html.includes('src="/assets'));
       });
+
+      test('Footer legal consistente', () => {
+        assert.ok(html.includes('Copyright © 2026'));
+        assert.ok(html.includes('Aviso Legal'));
+        assert.ok(html.includes('Política de Privacidad'));
+      });
+
+      test('Sin copy provisional publicado', () => {
+        [
+          'PLACEHOLDER',
+          'Texto de opinión',
+          'Texto de la review',
+          'Texto de la sinopsis',
+          'Nombre Apellido',
+          '— Fuente',
+          '<p class="am-person__name">Nombre</p>',
+          'Descripción del primer volumen',
+          'Descripción del segundo volumen',
+        ].forEach(text => {
+          assert.ok(!html.includes(text), `${page}: copy provisional publicado: ${text}`);
+        });
+      });
     });
   });
 });
@@ -239,8 +265,10 @@ describe('3. Contenido de vol-3.html', () => {
 describe('4. Contenido de index.html', () => {
   const html = readFile('index.html');
 
-  test('4.1 - Hero centrado usa modifier class', () => {
-    assert.ok(html.includes('am-hero__grid--centered'));
+  test('4.1 - Home usa landing hero con triptico y CTA principal', () => {
+    assert.ok(html.includes('class="am-landing-hero"'));
+    assert.equal((html.match(/class="am-landing-hero__cover"/g) || []).length, 3);
+    assert.ok(html.includes('class="am-landing-hero__cta"'));
   });
 
   test('4.2 - Crédito de autoría', () => {
@@ -438,6 +466,13 @@ describe('6. JavaScript', () => {
     assert.ok(!nav.includes('console.log'));
     assert.ok(!gallery.includes('console.log'));
   });
+
+  test('6.8 - Ninguna página carga scripts inexistentes o muertos', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      assert.ok(!html.includes('assets/js/form.js'), `${page}: no debe cargar form.js sin backend`);
+    });
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -541,8 +576,26 @@ describe('8. Regresiones funcionales', () => {
         .filter(ref => !/^(?:https?:|#|data:|mailto:)/.test(ref));
 
       references.forEach(ref => {
-        assert.ok(fileExists(ref), `${page}: recurso local inexistente: ${ref}`);
+        const [path, fragment] = ref.split('#');
+        if (path) {
+          assert.ok(fileExists(path), `${page}: recurso local inexistente: ${ref}`);
+        }
+        if (fragment) {
+          assert.ok(html.includes(`id="${fragment}"`) || readFile(path || page).includes(`id="${fragment}"`), `${page}: ancla local inexistente: ${ref}`);
+        }
       });
+    });
+  });
+
+  test('8.7 - El formulario de correo no simula altas sin backend', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      const emailInput = html.match(/<input[^>]+id="contact-email"[^>]*>/)?.[0] || '';
+      const submitButton = html.match(/<button[^>]+id="contact-submit"[^>]*>/)?.[0] || '';
+      assert.ok(html.includes('El formulario de correo estará disponible próximamente.'), `${page}: debe explicar el estado real del formulario`);
+      assert.ok(emailInput.includes('disabled'), `${page}: input de correo debe estar deshabilitado`);
+      assert.ok(submitButton.includes('disabled'), `${page}: submit debe estar deshabilitado`);
+      assert.ok(!html.includes('¡Gracias! Te mantendremos al tanto.'), `${page}: no debe prometer un alta no enviada`);
     });
   });
 });
