@@ -16,6 +16,22 @@
   margin: 0 auto;
 }
 
+/* ===== Trilogy Concept (Home only) ===== */
+.am-trilogy {
+  padding: var(--am-sp-6) var(--am-sp-6) 0;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.am-trilogy__text {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--am-home-text-muted);
+  font-style: italic;
+  margin: 0;
+}
+
 /* ===== Testimonials / Frases y opiniones ===== */
 .am-testimonials {
   padding: var(--am-sp-8) var(--am-sp-6);
