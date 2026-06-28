@@ -26,6 +26,21 @@
   margin: 0;
 }
 
+.am-synopsis__text + .am-synopsis__text {
+  margin-top: var(--am-sp-4);
+}
+
+.am-synopsis__concept {
+  font-size: 0.925rem;
+  line-height: 1.7;
+  color: var(--am-home-text-muted);
+  font-style: italic;
+  max-width: 780px;
+  margin: var(--am-sp-6) 0 0;
+  padding-top: var(--am-sp-4);
+  border-top: 1px solid var(--am-home-border);
+}
+
 /* ===== Cast Section (extends am-person components) ===== */
 .am-cast {
   padding: var(--am-sp-8) var(--am-sp-6);

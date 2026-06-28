@@ -148,6 +148,10 @@
   margin: 0;
 }
 
+.am-bio__text + .am-bio__text {
+  margin-top: var(--am-sp-3);
+}
+
 /* ===== Contact / Correo Section ===== */
 .am-contact {
   padding: var(--am-sp-8) var(--am-sp-6);

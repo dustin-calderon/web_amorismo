@@ -64,14 +64,18 @@ web_amorismo/
 
 ## Fases de Ejecución
 1. ✅ **Fase 1**: Estructura de archivos, CSS modular, shells HTML — **COMPLETADA**
-2. 🔧 **Fase 2**: Home landing — **ESTRUCTURA LISTA** (esperando copy)
-   - `index.html` — Hero (logo+CTA→form), Testimonios, Bios (Dustin/David), Correo, Footer
+2. ✅ **Fase 2**: Home landing — **COMPLETADA**
+   - `index.html` — Hero (logo+CTA→form), Discografía, Bios expandidas (Dustin/David), Correo, Footer
    - `assets/css/home.css` — testimonials, bio blocks, contact form, dividers
-3. 🔧 **Fase 3**: Volúmenes — **ESTRUCTURA LISTA** (esperando copy)
-   - `vol-1.html`, `vol-2.html`, `vol-3.html` — Hero (álbum+frase+CTA), Sinopsis, Cast, Reviews, Correo, Footer
-   - `assets/css/volume.css` — synopsis, cast, reviews
-   - Vol III conserva contenido real (equipo creativo, elenco)
-4. **Fase 4**: Copy + CSS final del usuario
+3. ✅ **Fase 3**: Volúmenes — **COMPLETADA**
+   - `vol-1.html`, `vol-2.html` — Hero + sinopsis real + concepto trilogía
+   - `vol-3.html` — Hero + sinopsis expandida + concepto trilogía + cast + galería
+   - `assets/css/volume.css` — synopsis, concept, cast, reviews
+4. ✅ **Fase 4**: Copy integrado — **COMPLETADA** (2026-06-28)
+   - `docs/CONTENT.md` — fuente de verdad del contenido
+   - Sinopsis reales para los 3 volúmenes
+   - Bios profesionales completas de Dustin Calderón y David Gregory
+   - Meta tags actualizados con sinopsis reales
 5. **Fase 5**: Integración formulario Mautic
 
 ## Decisión Arquitectónica
