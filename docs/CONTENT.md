@@ -23,7 +23,10 @@ Tres historias independientes unidas por un mismo concepto. Personajes distintos
 
 ## Vol. I — Sinopsis
 
-**Hero:** Él y Ella descubren que la frontera entre amistad y amor es tan sutil como peligrosa.
+**Hero:** Una noche puede parecer el principio de algo. Entre ilusión, amistad y deseo, esta historia mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.
+
+**Descripción completa:**
+Una noche puede parecer el principio de algo. También puede ser solo una confusión. Él cree haber encontrado una posibilidad real de amor; ella, en cambio, descubre demasiado tarde que quizá confundió la intimidad con algo que no estaba dispuesta a sostener. Entre ilusión, amistad y deseo, esta historia mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.
 
 **Sinopsis:**
 Una cita basta para que aparezcan emociones inesperadas: ese estado en el que despiertas pensando en la otra persona, convencido de que todo puede suceder… hasta que, en un instante, las ilusiones se desmoronan.
@@ -34,7 +37,10 @@ Un retrato íntimo de la ilusión, la vulnerabilidad y la fragilidad del amor cu
 
 ## Vol. II — Sinopsis
 
-**Hero:** Dos personas buscan el amor. Una telaraña de pensamientos los lleva inevitablemente a decisiones equivocadas.
+**Hero:** Dos personas se desean, se buscan y se hieren sin saber muy bien cómo parar. Esta historia entra en la parte menos cómoda del amor: esa en la que amar no cura nada si nadie sabe mirarse de verdad.
+
+**Descripción completa:**
+Dos personas se desean, se buscan y se hieren sin saber muy bien cómo parar. Ella necesita sentirse elegida; él se acerca y se escapa con la misma intensidad. Entre ansiedad, evasión, culpa, deseo y decisiones que cruzan límites, esta historia entra en la parte menos cómoda del amor: esa en la que amar no cura nada si nadie sabe mirarse de verdad.
 
 **Sinopsis:**
 Ella busca sentirse querida de la única forma que ha aprendido. Él tiene pareja, pero algo lo empuja hacia ella. Los dos creen estar eligiendo, pero una telaraña de pensamientos los arrastra hacia decisiones que no pueden deshacer.
@@ -45,7 +51,10 @@ No os contamos más porque sería spoiler.
 
 ## Vol. III — Sinopsis
 
-**Hero:** Una habitación vacía, una verdad que se proyecta y quince años de historias condensadas en unos minutos.
+**Hero:** Después de quince años de matrimonio, una pareja se enfrenta a una verdad que ya no cabe debajo de la alfombra. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.
+
+**Descripción completa:**
+Después de quince años de matrimonio, una pareja se enfrenta a una verdad que ya no cabe debajo de la alfombra. Él ha intentado ser el marido que todos esperaban; ella ha amado a un hombre que quizá nunca pudo entregarse por completo. No se trata de falta de amor, sino de una mentira demasiado larga. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.
 
 **Sinopsis:**
 Un recorrido emocional que explora los puntos clave de una relación consolidada a través de los años. Un aniversario como nexo de unión, un punto clave desde el que el público podrá descubrir la historia de él y ella.
