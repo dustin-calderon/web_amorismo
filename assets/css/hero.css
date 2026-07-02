@@ -105,14 +105,15 @@
 }
 
 /* ── Silhouette masks ──
-   Atmospheric, blurred, ghostly. They should feel like
-   shadows in colored fog, not sharp cutouts. */
+   Ghost-like impressions WITHIN the colored fog.
+   Normal blend mode — screen was causing neon-glow on dark BG.
+   Heavy blur (8-14px) dissolves edges into atmosphere.
+   Very low opacity — the radial halos are the real visual. */
 .am-landing-hero__shadow {
   position: absolute;
   display: block;
   pointer-events: none;
   background-color: currentColor;
-  mix-blend-mode: screen;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
   -webkit-mask-position: center;
@@ -122,46 +123,45 @@
 }
 
 /* Vol I — red couple, center-left.
-   Extends from top into the mid area so it feels
-   connected to the content below, not floating above. */
+   Largest and most visible silhouette, but still ghostly. */
 .am-landing-hero__shadow--vol1 {
-  width: clamp(280px, 30vw, 480px);
+  width: clamp(200px, 22vw, 360px);
   aspect-ratio: 1;
-  left: 22%;
-  top: 5%;
+  left: 24%;
+  top: 8%;
   color: var(--am-hero-shadow-vol1);
-  opacity: 0.52;
-  filter: blur(2px);
+  opacity: 0.22;
+  filter: blur(8px);
   transform: scaleX(-1);
   -webkit-mask-image: url('../images/hero/amorismo-01-sombra.png');
   mask-image: url('../images/hero/amorismo-01-sombra.png');
 }
 
 /* Vol II — brushstroke, horizontal, center.
-   Positioned in the mid-zone to bridge the silhouettes. */
+   Barely there — a faint trace bridging the composition. */
 .am-landing-hero__shadow--vol2 {
-  width: clamp(440px, 48vw, 760px);
+  width: clamp(360px, 40vw, 620px);
   aspect-ratio: 1345 / 519;
   left: 50%;
-  top: 30%;
+  top: 32%;
   transform: translateX(-40%) rotate(-1deg);
   color: var(--am-hero-shadow-vol2);
-  opacity: 0.42;
-  filter: blur(1px);
+  opacity: 0.15;
+  filter: blur(10px);
   -webkit-mask-image: url('../images/hero/amorismo-02-sombra.png');
   mask-image: url('../images/hero/amorismo-02-sombra.png');
 }
 
-/* Vol III — green figure, right side.
-   Most subtle of the three — a distant apparition. */
+/* Vol III — green figure, right.
+   Most distant — almost invisible texture. */
 .am-landing-hero__shadow--vol3 {
-  width: clamp(220px, 24vw, 400px);
+  width: clamp(180px, 20vw, 320px);
   aspect-ratio: 1280 / 1438;
-  right: 6%;
-  top: 6%;
+  right: 8%;
+  top: 8%;
   color: var(--am-hero-shadow-vol3);
-  opacity: 0.38;
-  filter: blur(2.5px);
+  opacity: 0.18;
+  filter: blur(12px);
   transform: rotate(1deg);
   -webkit-mask-image: url('../images/hero/amorismo-03-sombra.png');
   mask-image: url('../images/hero/amorismo-03-sombra.png');
