@@ -16,20 +16,105 @@
   margin: 0 auto;
 }
 
-/* ===== Trilogy Concept (Home only) ===== */
-.am-trilogy {
-  padding: var(--am-sp-6) var(--am-sp-6) 0;
-  max-width: 720px;
+/* ===== Statement Section (Concepto + Quotes) ===== */
+.am-statement {
+  padding: var(--am-sp-8) var(--am-sp-6);
+  max-width: var(--am-max-w);
   margin: 0 auto;
-  text-align: center;
 }
 
-.am-trilogy__text {
+.am-statement__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--am-sp-8);
+  align-items: start;
+  margin-bottom: var(--am-sp-8);
+}
+
+.am-statement__headline h2 {
+  font-family: var(--am-font-title);
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--am-home-text);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.am-statement__headline em {
+  font-style: normal;
+  color: var(--am-home-accent);
+}
+
+/* Highlighted keyword spans */
+.am-hl {
+  font-weight: 700;
+  position: relative;
+}
+
+.am-hl--amor {
+  color: var(--am-home-accent);
+}
+
+.am-hl--no {
+  color: var(--am-v3-acento);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--am-v3-acento);
+}
+
+.am-statement__body p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--am-home-text);
+  margin: 0 0 var(--am-sp-4);
+}
+
+.am-statement__body p:last-child {
+  margin-bottom: 0;
+  color: var(--am-home-text-muted);
+  font-size: 0.95rem;
+}
+
+/* ── Testimonial Quotes Grid ── */
+.am-statement__quotes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--am-sp-5);
+}
+
+.am-statement__quote {
+  padding: var(--am-sp-5);
+  border-radius: var(--am-radius-md);
+  background: var(--am-home-quote-bg);
+  border: 1px solid var(--am-home-border);
+  margin: 0;
+  transition: border-color 0.3s ease;
+}
+
+.am-statement__quote:hover {
+  border-color: rgba(245, 244, 239, 0.2);
+}
+
+.am-statement__quote--featured {
+  grid-column: 1 / -1;
+  border-left: 3px solid var(--am-home-accent);
+}
+
+.am-statement__quote p {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: var(--am-home-text-muted);
+  color: var(--am-home-text);
   font-style: italic;
-  margin: 0;
+  margin: 0 0 var(--am-sp-3);
+}
+
+.am-statement__quote cite {
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--am-home-text-muted);
+  letter-spacing: 0.04em;
 }
 
 /* ===== Testimonials / Frases y opiniones ===== */
@@ -242,59 +327,5 @@
   color: var(--am-home-accent-soft);
 }
 
-/* ===== Música / Albums Section ===== */
-.am-musica {
-  padding: var(--am-sp-8) var(--am-sp-6);
-  max-width: var(--am-max-w);
-  margin: 0 auto;
-}
 
-.am-musica__heading {
-  font-family: var(--am-font-sans);
-  font-size: 0.875rem;
-  font-weight: 300;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--am-home-text-muted);
-  margin: 0 0 var(--am-sp-8);
-  text-align: center;
-}
 
-.am-musica__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--am-sp-6);
-}
-
-.am-musica__album {
-  display: block;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-}
-
-.am-musica__album:hover {
-  transform: scale(1.04);
-}
-
-.am-musica__cover {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--am-radius-md);
-  box-shadow: var(--am-shadow-card);
-  display: block;
-}
-
-.am-musica__title {
-  font-family: var(--am-font-sans);
-  font-size: 0.875rem;
-  font-weight: 500;
-  text-align: center;
-  color: var(--am-home-text-muted);
-  margin: var(--am-sp-3) 0 0;
-  transition: color 0.25s ease;
-}
-
-.am-musica__album:hover .am-musica__title {
-  color: var(--am-home-text);
-}

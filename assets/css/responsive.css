@@ -94,8 +94,17 @@
     width: clamp(140px, 30vw, 200px);
   }
 
-  .am-musica {
+  .am-statement {
     padding: var(--am-sp-6) var(--am-sp-4);
+  }
+
+  .am-statement__grid {
+    grid-template-columns: 1fr;
+    gap: var(--am-sp-5);
+  }
+
+  .am-statement__quotes {
+    grid-template-columns: 1fr;
   }
 
   .am-testimonials {
@@ -240,11 +249,12 @@
     width: 140px;
   }
 
-  .am-musica__grid {
-    grid-template-columns: 1fr;
-    gap: var(--am-sp-5);
-    max-width: 280px;
-    margin: 0 auto;
+  .am-statement {
+    padding: var(--am-sp-5) var(--am-sp-3);
+  }
+
+  .am-statement__headline h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
   .am-gallery {
