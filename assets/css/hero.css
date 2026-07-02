@@ -94,9 +94,9 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 45% 80% at 42% 38%, var(--am-hero-shadow-vol1) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 55% at 58% 40%, var(--am-hero-shadow-vol2) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 75% at 82% 35%, var(--am-hero-shadow-vol3) 0%, transparent 65%);
+    radial-gradient(ellipse 45% 80% at 42% 50%, var(--am-hero-shadow-vol1) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 55% at 55% 48%, var(--am-hero-shadow-vol2) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 75% at 82% 50%, var(--am-hero-shadow-vol3) 0%, transparent 65%);
 }
 
 /* ── Silhouette masks — visible shapes with minimal blur ── */
@@ -115,27 +115,27 @@
 
 /* Vol I — red couple */
 .am-landing-hero__shadow--vol1 {
-  width: clamp(220px, 24vw, 400px);
+  width: clamp(380px, 44vw, 700px);
   aspect-ratio: 1;
-  left: 32%;
-  top: 6%;
+  left: 26%;
+  top: 50%;
   color: var(--am-hero-shadow-vol1);
-  opacity: 0.55;
+  opacity: 0.90;
   filter: blur(3px);
-  transform: scaleX(-1);
+  transform: translateY(-50%) scaleX(-1);
   -webkit-mask-image: url('../images/hero/amorismo-01-sombra.png');
   mask-image: url('../images/hero/amorismo-01-sombra.png');
 }
 
 /* Vol II — brushstroke */
 .am-landing-hero__shadow--vol2 {
-  width: clamp(360px, 38vw, 580px);
+  width: clamp(520px, 58vw, 900px);
   aspect-ratio: 1345 / 519;
-  left: 48%;
-  top: 30%;
-  transform: translateX(-35%) rotate(-1deg);
+  left: 44%;
+  top: 48%;
+  transform: translateX(-35%) translateY(-50%) rotate(-1deg);
   color: var(--am-hero-shadow-vol2);
-  opacity: 0.45;
+  opacity: 0.85;
   filter: blur(2px);
   -webkit-mask-image: url('../images/hero/amorismo-02-sombra.png');
   mask-image: url('../images/hero/amorismo-02-sombra.png');
@@ -143,14 +143,14 @@
 
 /* Vol III — green figure */
 .am-landing-hero__shadow--vol3 {
-  width: clamp(200px, 22vw, 360px);
+  width: clamp(360px, 40vw, 640px);
   aspect-ratio: 1280 / 1438;
-  right: 4%;
-  top: 5%;
+  right: 0%;
+  top: 50%;
   color: var(--am-hero-shadow-vol3);
-  opacity: 0.42;
+  opacity: 0.88;
   filter: blur(3px);
-  transform: rotate(1deg);
+  transform: translateY(-50%) rotate(1deg);
   -webkit-mask-image: url('../images/hero/amorismo-03-sombra.png');
   mask-image: url('../images/hero/amorismo-03-sombra.png');
 }
@@ -242,24 +242,21 @@
   .am-landing-hero__shadow--vol1 {
     width: clamp(200px, 42vw, 340px);
     left: 24%;
-    top: 8%;
-    opacity: 0.48;
+    opacity: 0.40;
     filter: blur(3px);
   }
 
   .am-landing-hero__shadow--vol2 {
     width: clamp(320px, 68vw, 500px);
     left: 38%;
-    top: 26%;
-    opacity: 0.38;
+    opacity: 0.32;
     filter: blur(2px);
   }
 
   .am-landing-hero__shadow--vol3 {
     width: clamp(180px, 36vw, 300px);
     right: -2%;
-    top: 6%;
-    opacity: 0.34;
+    opacity: 0.30;
     filter: blur(4px);
   }
 }
@@ -268,24 +265,21 @@
   .am-landing-hero__shadow--vol1 {
     width: 55vw;
     left: 22vw;
-    top: 4%;
-    opacity: 0.38;
+    opacity: 0.32;
     filter: blur(4px);
   }
 
   .am-landing-hero__shadow--vol2 {
     width: 85vw;
     left: 8vw;
-    top: 20%;
-    opacity: 0.32;
+    opacity: 0.26;
     filter: blur(3px);
   }
 
   .am-landing-hero__shadow--vol3 {
     width: 50vw;
     right: -10vw;
-    top: 3%;
-    opacity: 0.28;
+    opacity: 0.22;
     filter: blur(5px);
   }
 }
