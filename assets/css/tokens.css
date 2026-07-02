@@ -54,6 +54,8 @@
   --am-noise-color: var(--am-home-text);
   --am-footer-logo-bg: transparent;
   --am-footer-logo-padding: 0;
+  /* Logo color control: dark red logo → invert to cream on dark backgrounds */
+  --am-logo-filter: brightness(0) invert(1) brightness(0.96) sepia(0.05);
 
   /* Espaciado (escala 4px) */
   --am-sp-1: 0.25rem;
@@ -164,8 +166,10 @@ body[data-vol="2"] {
   --am-cta-hover-bg:      var(--am-v2-parrafo);
   --am-input-placeholder: var(--am-v2-parrafo);
   --am-noise-color:       var(--am-v2-parrafo);
-  --am-footer-logo-bg:    var(--am-v2-acento);
-  --am-footer-logo-padding: var(--am-sp-3);
+  --am-footer-logo-bg:    transparent;
+  --am-footer-logo-padding: 0;
+  /* Light theme: keep original logo color while preserving composed filters */
+  --am-logo-filter: brightness(1);
 
   /* Gradiente: muy suave sobre el fondo crema */
   --am-bg-grad-color-a:   rgba(167, 25, 33, 0.06);

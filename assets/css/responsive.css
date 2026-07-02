@@ -1,7 +1,16 @@
 @media (max-width: 768px) {
+  .am-nav {
+    padding: 0 var(--am-sp-4);
+  }
+
+  .am-nav__links {
+    max-width: calc(100vw - 8rem);
+  }
+
   .am-nav__link {
-    padding: var(--am-sp-2) var(--am-sp-3);
-    font-size: 0.75rem;
+    min-width: 64px;
+    padding: var(--am-sp-2);
+    font-size: 0.7rem;
   }
 
   .am-page-title {
@@ -145,29 +154,36 @@
     padding: var(--am-sp-4);
   }
 
-  .am-footer__grid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--am-sp-6);
-    padding: var(--am-sp-6) var(--am-sp-4);
-  }
+  .am-footer__grid { grid-template-columns: 1fr 1fr; grid-template-areas: "brand listen" "social listen"; gap: var(--am-sp-5); padding: var(--am-sp-5) var(--am-sp-4); }
+  .am-footer__col--listen { grid-column: auto; }
 
   .am-footer__bottom {
     padding: var(--am-sp-3) var(--am-sp-4);
   }
 
-  h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
-  h3 { font-size: clamp(0.85rem, 3vw, 1rem); }
-  p  { font-size: clamp(0.95rem, 2.5vw, 1.125rem); }
+  main h2 { font-size: clamp(1.5rem, 4vw, 2rem); }
+  main h3 { font-size: clamp(0.85rem, 3vw, 1rem); }
+  main p  { font-size: clamp(0.95rem, 2.5vw, 1.125rem); }
 }
 
 @media (max-width: 480px) {
+  .am-nav {
+    padding: 0 var(--am-sp-3);
+  }
+
   .am-nav__links {
-    gap: 0;
+    max-width: calc(100vw - 7rem);
   }
 
   .am-nav__link {
-    padding: var(--am-sp-2);
+    min-width: 54px;
+    padding: var(--am-sp-2) var(--am-sp-1);
     font-size: 0.6875rem;
+  }
+
+  .am-body--home .am-nav__logo {
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .am-page-title {
@@ -264,11 +280,15 @@
     padding: var(--am-sp-5) var(--am-sp-3);
   }
 
-  .am-footer__grid {
-    grid-template-columns: 1fr;
-    gap: var(--am-sp-5);
-    padding: var(--am-sp-5) var(--am-sp-3);
-  }
+  .am-footer__grid { grid-template-columns: 1fr; grid-template-areas: "brand" "listen" "social"; gap: var(--am-sp-4); padding: var(--am-sp-4) var(--am-sp-3); }
+
+  .am-footer__col--listen { grid-column: auto; order: 2; }
+  .am-footer__brand { order: 1; }
+  .am-footer__col--social { order: 3; }
+  .am-footer__album { max-width: none; }
+  .am-footer__col--social { justify-self: start; }
+  .am-footer__logo { width: 64px; }
+  .am-footer__album-cover { width: 48px; height: 48px; }
 
   .am-footer__bottom {
     flex-direction: column;

@@ -107,5 +107,5 @@
   max-width: 280px;
   height: auto;
   margin: 0 auto;
-  filter: drop-shadow(var(--am-shadow-logo));
+  filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-logo));
 }

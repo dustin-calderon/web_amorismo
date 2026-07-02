@@ -148,7 +148,7 @@
   display: block;
   width: clamp(160px, 20vw, 280px);
   height: auto;
-  filter: drop-shadow(var(--am-shadow-landing-logo));
+  filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-landing-logo));
 }
 
 .am-landing-hero__tagline {

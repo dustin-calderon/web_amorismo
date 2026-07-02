@@ -68,12 +68,12 @@ describe('1. Integridad de archivos', () => {
 
   test('1.6 - Favicon optimizado existe', () => {
     assert.ok(fileExists('assets/images/favicon.png'), 'favicon.png debe existir');
-    assert.ok(!fileExists('assets/images/amorismo-logo.png'), 'PNG bloated eliminado');
+    assert.ok(!fileExists('assets/images/amorismo-logo.webp'), 'Legacy WebP logo eliminado');
   });
 
   test('1.7 - Assets de imágenes existen', () => {
     const images = [
-      'amorismo-cartel.webp', 'amorismo-logo.webp', 'favicon.png',
+      'amorismo-cartel.webp', 'amorismo-logo.png', 'favicon.png',
       'LOA_fondo-verde.webp', 'BLANCA_fondo-verde.webp',
       'ANGELA_fondo-verde.webp', 'BRAULIO_fondo-verde.webp',
       'DUSTIN_fondo-verde.webp', 'DAVID_fondo-verde.webp',
@@ -315,7 +315,9 @@ describe('5. CSS Design System', () => {
   });
 
   test('5.6 - Respeta prefers-reduced-motion', () => {
-    assert.ok(readFile('assets/css/base.css').includes('prefers-reduced-motion'));
+    const base = readFile('assets/css/base.css');
+    assert.ok(base.includes('prefers-reduced-motion'));
+    assert.ok(!base.includes('scroll-duration'), 'scroll-duration no es una propiedad CSS válida');
     assert.ok(readFile('404.html').includes('prefers-reduced-motion'));
   });
 
@@ -375,6 +377,17 @@ describe('5. CSS Design System', () => {
     assert.ok(nav.includes('var(--am-nav-active-text)'));
   });
 
+  test('5.10b - Menú alineado con marca y sin desplazamientos en hover', () => {
+    const nav = readFile('assets/css/nav.css');
+    const navLinkHover = nav.match(/\.am-nav__link:hover\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+
+    assert.ok(nav.includes('background: linear-gradient(to bottom, var(--am-nav-bg), transparent)'));
+    assert.ok(nav.includes('backdrop-filter: blur(14px)'));
+    assert.ok(nav.includes('border-radius: 999px'));
+    assert.ok(nav.includes('.am-nav__link.am-nav__link--active::after'));
+    assert.ok(!navLinkHover.includes('transform:'), 'El hover del menú no debe mover ni reescalar tabs');
+  });
+
   test('5.11 - Anclas compensan la navegación fija', () => {
     const base = readFile('assets/css/base.css');
     assert.ok(base.includes('scroll-margin-top: calc(var(--am-nav-h) + var(--am-sp-4))'));
@@ -415,6 +428,28 @@ describe('5. CSS Design System', () => {
     assert.ok(volumeThreeTheme.includes('--am-shadow-cta-hover:'));
     assert.ok(!volumeThreeTheme.includes('rgba(167, 25, 33'));
   });
+
+  test('5.16 - Responsive no pisa tipografía fuera del contenido principal', () => {
+    const responsive = readFile('assets/css/responsive.css');
+    assert.ok(!responsive.match(/(^|\n)\s*h[123]\s*\{/), 'Los headings globales rompen componentes como footer/nav');
+    assert.ok(!responsive.match(/(^|\n)\s*p\s*\{/), 'Los párrafos globales inflan textos pequeños como copyright');
+    assert.ok(responsive.includes('main h2'));
+    assert.ok(responsive.includes('main h3'));
+    assert.ok(responsive.includes('main p'));
+  });
+
+  test('5.17 - El filtro del logo se puede componer con drop-shadow', () => {
+    const components = readFile('assets/css/components.css');
+    const hero = readFile('assets/css/hero.css');
+    const nav = readFile('assets/css/nav.css');
+    const volumeTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+
+    assert.ok(!volumeTwoTheme.includes('--am-logo-filter: none'), 'none + drop-shadow() invalida filter');
+    assert.ok(volumeTwoTheme.includes('--am-logo-filter: brightness(1)'));
+    [components, hero, nav].forEach(css => {
+      assert.ok(css.includes('var(--am-logo-filter) drop-shadow'));
+    });
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -451,6 +486,12 @@ describe('6. JavaScript', () => {
     const nav = readFile('assets/js/nav.js');
     assert.ok(nav.includes("setAttribute('aria-current', 'page')"));
     assert.ok(!nav.includes("PAGE_MAP[filename] || 'home'"));
+  });
+
+  test('6.5b - nav.js normaliza URLs con slash final', () => {
+    const nav = readFile('assets/js/nav.js');
+    assert.ok(nav.includes("replace(/\\/+$/, '')"));
+    assert.ok(nav.includes("path.split('/').pop() || ''"));
   });
 
   test('6.6 - gallery.js sincroniza imagen y estado accesible', () => {

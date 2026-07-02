@@ -20,7 +20,8 @@
     'vol-3.html': 'vol3',
   };
 
-  const filename = window.location.pathname.split('/').pop();
+  const path = window.location.pathname.replace(/\/+$/, '');
+  const filename = path.split('/').pop() || '';
   const activePage = PAGE_MAP[filename];
 
   if (!activePage) return;
