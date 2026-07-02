@@ -94,9 +94,9 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 45% 80% at 42% 50%, var(--am-hero-shadow-vol1) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 55% at 55% 48%, var(--am-hero-shadow-vol2) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 75% at 82% 50%, var(--am-hero-shadow-vol3) 0%, transparent 65%);
+    radial-gradient(ellipse 55% 90% at 28% 50%, var(--am-hero-shadow-vol1) 0%, transparent 70%),
+    radial-gradient(ellipse 65% 60% at 50% 48%, var(--am-hero-shadow-vol2) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 85% at 85% 50%, var(--am-hero-shadow-vol3) 0%, transparent 65%);
 }
 
 /* ── Silhouette masks — visible shapes with minimal blur ── */
@@ -117,7 +117,7 @@
 .am-landing-hero__shadow--vol1 {
   width: clamp(380px, 44vw, 700px);
   aspect-ratio: 1;
-  left: 26%;
+  left: 18%;
   top: 50%;
   color: var(--am-hero-shadow-vol1);
   opacity: 0.90;
@@ -129,9 +129,9 @@
 
 /* Vol II — brushstroke */
 .am-landing-hero__shadow--vol2 {
-  width: clamp(520px, 58vw, 900px);
+  width: clamp(700px, 80vw, 1300px);
   aspect-ratio: 1345 / 519;
-  left: 44%;
+  left: 50%;
   top: 48%;
   transform: translateX(-35%) translateY(-50%) rotate(-1deg);
   color: var(--am-hero-shadow-vol2);
@@ -175,6 +175,74 @@
       transparent 60%
     );
   pointer-events: none;
+}
+
+/* ── Option B: Photo backgrounds ── */
+.am-landing-hero__bg--photos {
+  display: none;
+  background: none;
+}
+
+.am-landing-hero__photo {
+  position: absolute;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.am-landing-hero__photo--vol1 {
+  left: 0;
+  width: 38%;
+  object-position: right center;
+}
+
+.am-landing-hero__photo--vol2 {
+  left: 28%;
+  width: 44%;
+  object-position: center;
+  mix-blend-mode: lighten;
+  opacity: 0.70;
+}
+
+.am-landing-hero__photo--vol3 {
+  right: 0;
+  width: 35%;
+  object-position: left center;
+}
+
+/* ── Mode switching via data attribute ── */
+[data-hero-mode="photos"] > .am-landing-hero__bg:not(.am-landing-hero__bg--photos) {
+  display: none;
+}
+
+[data-hero-mode="photos"] > .am-landing-hero__bg--photos {
+  display: block;
+}
+
+/* ── Toggle button ── */
+.am-landing-hero__toggle {
+  position: fixed;
+  bottom: var(--am-sp-6);
+  right: var(--am-sp-6);
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--am-home-border);
+  border-radius: 50%;
+  background: rgba(10, 10, 10, 0.6);
+  color: var(--am-home-text);
+  font-family: var(--am-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.am-landing-hero__toggle:hover {
+  border-color: var(--am-home-text);
+  background: rgba(10, 10, 10, 0.8);
 }
 
 /* ── Content cluster — logo → tagline → CTA ── */
