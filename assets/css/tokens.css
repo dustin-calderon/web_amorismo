@@ -40,6 +40,7 @@
   --am-home-text-muted: var(--am-v2-subtitulo); /* gris 777 – subtítulos */
   --am-home-accent: var(--am-v2-acento);      /* rojo A71921 – CTAs, links */
   --am-home-accent-soft: var(--am-v1-elemento-02); /* rosa D98A95 – hover, detalles */
+  --am-statement-highlight: rgba(167, 25, 33, 0.35);
   --am-on-accent: var(--am-v1-texto);
   --am-home-quote-bg: #1A1A1A;               /* bloque cita, ligeramente elevado */
   --am-home-border: rgba(245, 244, 239, 0.1); /* bordes sutiles sobre oscuro */

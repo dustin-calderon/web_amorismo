@@ -88,12 +88,16 @@
   }
 
   .am-statement {
-    padding: var(--am-sp-6) var(--am-sp-4);
+    padding: clamp(3rem, 8vw, 5rem) var(--am-sp-4);
   }
 
   .am-statement__grid {
     grid-template-columns: 1fr;
     gap: var(--am-sp-5);
+  }
+
+  .am-statement__body {
+    padding-top: 0;
   }
 
   .am-statement__quotes {
@@ -233,11 +237,11 @@
   }
 
   .am-statement {
-    padding: var(--am-sp-5) var(--am-sp-3);
+    padding: clamp(2.5rem, 6vw, 4rem) var(--am-sp-3);
   }
 
   .am-statement__headline h2 {
-    font-size: clamp(1.5rem, 6vw, 2rem);
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
   }
 
   .am-gallery {

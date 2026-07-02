@@ -17,105 +17,146 @@
 }
 
 /* ===== Statement Section (Concepto + Quotes) ===== */
+/* Design ref: In Pieces Musical — art-gallery density, massive headline,
+   marker-highlight keywords, floating colored quotes without cards.
+   Applies taste-skill criteria: VARIANCE=8, DENSITY=4 (Gallery).      */
 .am-statement {
-  padding: var(--am-sp-8) var(--am-sp-6);
+  padding: clamp(5rem, 10vw, 8rem) var(--am-sp-6);
   max-width: var(--am-max-w);
   margin: 0 auto;
 }
 
+/* ── Headline + Body grid ── */
 .am-statement__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--am-sp-8);
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
-  margin-bottom: var(--am-sp-8);
+  margin-bottom: clamp(4rem, 8vw, 6rem);
 }
 
+/* Headline — cinematic, dominant, editorial presence */
 .am-statement__headline h2 {
   font-family: var(--am-font-title);
-  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.15;
   color: var(--am-home-text);
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
+/* "Amorismo" — italic title treatment (like "In Pieces") */
 .am-statement__headline em {
-  font-style: normal;
-  color: var(--am-home-accent);
+  font-style: italic;
 }
 
-/* Highlighted keyword spans */
+/* ── Highlighted keyword spans ── */
 .am-hl {
   font-weight: 700;
-  position: relative;
 }
 
+/* "amor" — Vol I accent red with marker-highlight background */
 .am-hl--amor {
-  color: var(--am-home-accent);
+  color: var(--am-home-text);
+  background: linear-gradient(
+    to top,
+    var(--am-statement-highlight) 0%,
+    var(--am-statement-highlight) 40%,
+    transparent 40%
+  );
+  padding: 0 0.15em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
+/* "no" — Vol III green, warm contrast against dark bg */
 .am-hl--no {
   color: var(--am-v3-acento);
-  text-decoration: line-through;
-  text-decoration-thickness: 2px;
-  text-decoration-color: var(--am-v3-acento);
+}
+
+/* ── Body / description text ── */
+/* Vertical offset: starts below the headline's midpoint */
+.am-statement__body {
+  padding-top: clamp(1rem, 3vw, 2.5rem);
 }
 
 .am-statement__body p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--am-home-text);
+  font-size: 0.875rem;
+  line-height: 1.85;
+  color: var(--am-home-text-muted);
   margin: 0 0 var(--am-sp-4);
+}
+
+.am-statement__body p:first-child {
+  color: var(--am-home-text);
+  font-size: 0.9375rem;
 }
 
 .am-statement__body p:last-child {
   margin-bottom: 0;
-  color: var(--am-home-text-muted);
-  font-size: 0.95rem;
+  font-size: 0.8125rem;
 }
 
-/* ── Testimonial Quotes Grid ── */
+/* ── Testimonial Quotes — floating colored text, no cards ── */
 .am-statement__quotes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--am-sp-5);
+  gap: clamp(2rem, 4vw, 3rem);
+  text-align: center;
 }
 
 .am-statement__quote {
-  padding: var(--am-sp-5);
-  border-radius: var(--am-radius-md);
-  background: var(--am-home-quote-bg);
-  border: 1px solid var(--am-home-border);
   margin: 0;
-  transition: border-color 0.3s ease;
+  padding: var(--am-sp-5) var(--am-sp-4);
 }
 
-.am-statement__quote:hover {
-  border-color: rgba(245, 244, 239, 0.2);
-}
-
+/* Featured quote spans full width */
 .am-statement__quote--featured {
   grid-column: 1 / -1;
-  border-left: 3px solid var(--am-home-accent);
+  padding-bottom: var(--am-sp-6);
 }
 
 .am-statement__quote p {
-  font-size: 1.05rem;
-  line-height: 1.7;
-  color: var(--am-home-text);
+  font-family: var(--am-font-title);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.55;
   font-style: italic;
+  font-weight: 500;
   margin: 0 0 var(--am-sp-3);
 }
 
-.am-statement__quote cite {
-  font-size: 0.8125rem;
-  font-style: normal;
-  font-weight: 400;
-  color: var(--am-home-text-muted);
-  letter-spacing: 0.04em;
+/* Featured gets larger, editorial text */
+.am-statement__quote--featured p {
+  font-size: clamp(1.125rem, 3vw, 1.5rem);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--am-sp-4);
 }
+
+/* Source / Attribution */
+.am-statement__quote cite {
+  font-family: var(--am-font-sans);
+  font-size: 0.6875rem;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* ── Color per quote — maps each to a Vol palette ── */
+.am-statement__quote--featured p   { color: var(--am-v1-elemento-02); }
+.am-statement__quote--featured cite { color: var(--am-v1-elemento-02); }
+
+.am-statement__quote--v1 p   { color: var(--am-home-accent); }
+.am-statement__quote--v1 cite { color: var(--am-home-accent); }
+
+.am-statement__quote--v2 p   { color: var(--am-v1-elemento-02); }
+.am-statement__quote--v2 cite { color: var(--am-v1-elemento-02); }
+
+.am-statement__quote--v3 p   { color: var(--am-v3-acento); }
+.am-statement__quote--v3 cite { color: var(--am-v3-acento); }
 
 /* ===== Testimonials / Frases y opiniones ===== */
 .am-testimonials {
