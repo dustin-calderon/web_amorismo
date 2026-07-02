@@ -82,11 +82,11 @@
   --am-shadow-thumb-active: 0 6px 18px rgba(167, 25, 33, 0.3);
   --am-shadow-nav-logo: 0 1px 6px rgba(0, 0, 0, 0.4);
   --am-shadow-landing-logo: 0 4px 24px rgba(0, 0, 0, 0.6);
-  --am-hero-overlay-mid: rgba(10, 10, 10, 0.48);
-  --am-hero-overlay-top: rgba(10, 10, 10, 0.15);
-  --am-hero-shadow-vol1: rgba(139, 16, 48, 0.78);
-  --am-hero-shadow-vol2: rgba(218, 215, 212, 0.58);
-  --am-hero-shadow-vol3: rgba(127, 175, 114, 0.52);
+  --am-hero-overlay-mid: rgba(10, 10, 10, 0.45);
+  --am-hero-overlay-top: rgba(10, 10, 10, 0.18);
+  --am-hero-shadow-vol1: rgba(139, 16, 48, 0.55);
+  --am-hero-shadow-vol2: rgba(218, 215, 212, 0.35);
+  --am-hero-shadow-vol3: rgba(127, 175, 114, 0.38);
 
   /* Layout */
   --am-max-w: 1180px;

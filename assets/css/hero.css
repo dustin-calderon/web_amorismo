@@ -74,10 +74,9 @@
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    Landing Hero – Home page only
-   Full-viewport cinematic hero with triptych background.
-   Design ref: cinema-poster composition — logo dominant,
-   silhouettes as atmospheric triptych backdrop, content
-   anchored bottom-left with editorial breathing room.
+   Cinema-poster hero: dark, atmospheric. Silhouettes are
+   ghostly colored light, NOT foreground elements.
+   Logo emerges from darkness at the bottom-left.
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .am-landing-hero {
@@ -92,24 +91,26 @@
 }
 
 /* ── Triptych background ──
-   Radial color halos behind each silhouette for depth.
-   Tuned for atmospheric presence, not UI distraction. */
+   Wide, diffuse elliptical halos create pools of colored
+   light. These are the PRIMARY visual — silhouettes sit
+   WITHIN them as ghost-like shapes. */
 .am-landing-hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(ellipse 50% 70% at 28% 40%, var(--am-hero-shadow-vol1) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 52% 38%, var(--am-hero-shadow-vol2) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 60% at 82% 36%, var(--am-hero-shadow-vol3) 0%, transparent 70%);
+    radial-gradient(ellipse 70% 90% at 30% 35%, var(--am-hero-shadow-vol1) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 70% at 52% 42%, var(--am-hero-shadow-vol2) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 80% 32%, var(--am-hero-shadow-vol3) 0%, transparent 60%);
 }
 
-/* ── Silhouette masks ── */
+/* ── Silhouette masks ──
+   Atmospheric, blurred, ghostly. They should feel like
+   shadows in colored fog, not sharp cutouts. */
 .am-landing-hero__shadow {
   position: absolute;
   display: block;
   pointer-events: none;
-  background: currentColor;
   background-color: currentColor;
   mix-blend-mode: screen;
   -webkit-mask-repeat: no-repeat;
@@ -120,67 +121,84 @@
   mask-size: contain;
 }
 
-/* Vol I — red couple, center-left, dominant atmospheric element */
+/* Vol I — red couple, center-left.
+   Extends from top into the mid area so it feels
+   connected to the content below, not floating above. */
 .am-landing-hero__shadow--vol1 {
-  width: clamp(280px, 32vw, 520px);
+  width: clamp(280px, 30vw, 480px);
   aspect-ratio: 1;
-  left: 24%;
-  top: 4%;
+  left: 22%;
+  top: 5%;
   color: var(--am-hero-shadow-vol1);
-  opacity: 0.88;
-  transform: translateX(-8%) scaleX(-1);
+  opacity: 0.52;
+  filter: blur(2px);
+  transform: scaleX(-1);
   -webkit-mask-image: url('../images/hero/amorismo-01-sombra.png');
   mask-image: url('../images/hero/amorismo-01-sombra.png');
 }
 
-/* Vol II — brushstroke, wide horizontal, center stage */
+/* Vol II — brushstroke, horizontal, center.
+   Positioned in the mid-zone to bridge the silhouettes. */
 .am-landing-hero__shadow--vol2 {
-  width: clamp(560px, 64vw, 960px);
+  width: clamp(440px, 48vw, 760px);
   aspect-ratio: 1345 / 519;
-  left: 32%;
-  top: 26%;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-40%) rotate(-1deg);
   color: var(--am-hero-shadow-vol2);
-  opacity: 0.82;
-  transform: translateX(-5%) rotate(-1.5deg);
+  opacity: 0.42;
+  filter: blur(1px);
   -webkit-mask-image: url('../images/hero/amorismo-02-sombra.png');
   mask-image: url('../images/hero/amorismo-02-sombra.png');
 }
 
-/* Vol III — green figure, right anchor, vertical */
+/* Vol III — green figure, right side.
+   Most subtle of the three — a distant apparition. */
 .am-landing-hero__shadow--vol3 {
-  width: clamp(260px, 28vw, 480px);
+  width: clamp(220px, 24vw, 400px);
   aspect-ratio: 1280 / 1438;
-  right: 2%;
+  right: 6%;
   top: 6%;
   color: var(--am-hero-shadow-vol3);
-  opacity: 0.64;
+  opacity: 0.38;
+  filter: blur(2.5px);
   transform: rotate(1deg);
-  filter: blur(0.4px);
   -webkit-mask-image: url('../images/hero/amorismo-03-sombra.png');
   mask-image: url('../images/hero/amorismo-03-sombra.png');
 }
 
-/* ── Dark gradient overlay ──
-   Ensures text legibility at bottom while letting
-   silhouettes breathe through the upper 60%.
-   Tuned: lighter top, stronger bottom fade. */
+/* ── Gradient overlay ──
+   Two-layer system:
+   1. Radial vignette — darkens edges, keeps center alive
+   2. Linear bottom-fade — ensures legibility for content
+   The result: silhouettes glow in the upper-center,
+   everything fades to black around the edges and bottom. */
 .am-landing-hero__bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    var(--am-home-bg) 0%,
-    rgba(10, 10, 10, 0.72) 22%,
-    var(--am-hero-overlay-mid) 45%,
-    var(--am-hero-overlay-top) 100%
-  );
+  background:
+    /* Vignette — dark edges, slightly less dark center */
+    radial-gradient(
+      ellipse 80% 70% at 50% 40%,
+      transparent 0%,
+      rgba(10, 10, 10, 0.35) 60%,
+      rgba(10, 10, 10, 0.7) 100%
+    ),
+    /* Bottom fade — strong, for text legibility */
+    linear-gradient(
+      to top,
+      var(--am-home-bg) 0%,
+      rgba(10, 10, 10, 0.88) 18%,
+      rgba(10, 10, 10, 0.4) 42%,
+      transparent 65%
+    );
   pointer-events: none;
 }
 
 /* ── Content cluster ──
-   Bottom-left anchored: Logo → tagline → CTA.
-   Generous gap for poster-like breathing room. */
+   Logo → tagline → CTA. Bottom-left anchored.
+   Sits in the darkest zone of the gradient. */
 .am-landing-hero__content {
   position: relative;
   z-index: 1;
@@ -190,11 +208,10 @@
   max-width: 520px;
 }
 
-/* Logo — the hero centerpiece.
-   Scaled up significantly for cinematic dominance. */
+/* Logo — cinematic, large, the hero centerpiece. */
 .am-landing-hero__logo {
   display: block;
-  width: clamp(220px, 26vw, 380px);
+  width: clamp(200px, 24vw, 360px);
   height: auto;
   filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-landing-logo));
 }
@@ -216,7 +233,7 @@
   align-items: center;
   gap: var(--am-sp-2);
   padding: 0.65rem 1.6rem;
-  border: 1px solid rgba(245, 244, 239, 0.25);
+  border: 1px solid rgba(245, 244, 239, 0.2);
   border-radius: 999px;
   color: var(--am-home-text);
   font-family: var(--am-font-sans);
@@ -246,46 +263,52 @@
 
 @media (max-width: 768px) {
   .am-landing-hero__shadow--vol1 {
-    width: clamp(240px, 48vw, 380px);
-    left: 36%;
+    width: clamp(200px, 42vw, 340px);
+    left: 28%;
     top: 10%;
-    opacity: 0.56;
+    opacity: 0.4;
+    filter: blur(3px);
   }
 
   .am-landing-hero__shadow--vol2 {
-    width: clamp(400px, 88vw, 640px);
-    left: 24%;
-    top: 30%;
-    opacity: 0.52;
+    width: clamp(320px, 72vw, 520px);
+    left: 40%;
+    top: 28%;
+    opacity: 0.34;
+    filter: blur(2px);
   }
 
   .am-landing-hero__shadow--vol3 {
-    width: clamp(220px, 46vw, 360px);
-    right: -6%;
+    width: clamp(180px, 38vw, 300px);
+    right: -4%;
     top: 8%;
-    opacity: 0.42;
+    opacity: 0.28;
+    filter: blur(4px);
   }
 }
 
 @media (max-width: 480px) {
   .am-landing-hero__shadow--vol1 {
-    width: 72vw;
-    left: 20vw;
+    width: 60vw;
+    left: 22vw;
     top: 6%;
-    opacity: 0.38;
+    opacity: 0.3;
+    filter: blur(4px);
   }
 
   .am-landing-hero__shadow--vol2 {
-    width: 110vw;
-    left: -8vw;
-    top: 24%;
-    opacity: 0.38;
+    width: 90vw;
+    left: 5vw;
+    top: 22%;
+    opacity: 0.28;
+    filter: blur(3px);
   }
 
   .am-landing-hero__shadow--vol3 {
-    width: 80vw;
-    right: -20vw;
-    top: 6%;
-    opacity: 0.36;
+    width: 56vw;
+    right: -14vw;
+    top: 5%;
+    opacity: 0.22;
+    filter: blur(5px);
   }
 }
