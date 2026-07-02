@@ -1,11 +1,6 @@
 @media (max-width: 768px) {
-  .am-nav {
-    padding: 0 var(--am-sp-4);
-  }
-
-  .am-nav__links {
-    max-width: calc(100vw - 8rem);
-  }
+  .am-nav { padding: 0 var(--am-sp-4); }
+  .am-nav__links { max-width: calc(100vw - 8rem); }
 
   .am-nav__link {
     min-width: 64px;
@@ -13,9 +8,7 @@
     font-size: 0.7rem;
   }
 
-  .am-page-title {
-    padding: var(--am-sp-6) var(--am-sp-4) var(--am-sp-3);
-  }
+  .am-page-title { padding: var(--am-sp-6) var(--am-sp-4) var(--am-sp-3); }
 
   .am-page-title h1 {
     font-size: clamp(1.75rem, 5vw, 2.5rem);
@@ -176,13 +169,8 @@
 }
 
 @media (max-width: 480px) {
-  .am-nav {
-    padding: 0 var(--am-sp-3);
-  }
-
-  .am-nav__links {
-    max-width: calc(100vw - 7rem);
-  }
+  .am-nav { padding: 0 var(--am-sp-3); }
+  .am-nav__links { max-width: calc(100vw - 7rem); }
 
   .am-nav__link {
     min-width: 54px;
@@ -190,14 +178,9 @@
     font-size: 0.6875rem;
   }
 
-  .am-body--home .am-nav__logo {
-    visibility: hidden;
-    pointer-events: none;
-  }
+  .am-body--home .am-nav__logo { visibility: hidden; pointer-events: none; }
 
-  .am-page-title {
-    padding: var(--am-sp-5) var(--am-sp-3) var(--am-sp-3);
-  }
+  .am-page-title { padding: var(--am-sp-5) var(--am-sp-3) var(--am-sp-3); }
 
   .am-page-title h1 {
     font-size: clamp(1.5rem, 6vw, 2rem);
