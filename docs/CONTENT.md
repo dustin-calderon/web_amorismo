@@ -11,6 +11,16 @@ Tres historias independientes unidas por un mismo concepto. Personajes distintos
 
 ---
 
+## Enlaces oficiales — Spotify
+
+| Volumen | Spotify Album URL |
+|---------|-------------------|
+| Vol. I  | https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0 |
+| Vol. II | https://open.spotify.com/intl-es/album/5YmceQBudLtEer75utcBX6 |
+| Vol. III | *(pendiente)* |
+
+---
+
 ## Vol. I — Sinopsis
 
 **Hero:** Él y Ella descubren que la frontera entre amistad y amor es tan sutil como peligrosa.
