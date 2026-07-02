@@ -218,20 +218,6 @@
     padding-right: var(--am-sp-4);
   }
 
-  .am-landing-hero__bg {
-    grid-template-columns: 1fr;
-  }
-
-  .am-landing-hero__cover:first-child,
-  .am-landing-hero__cover:nth-child(2) {
-    display: none;
-  }
-
-  .am-landing-hero__cover:last-child {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
   .am-landing-hero__logo {
     width: 140px;
   }

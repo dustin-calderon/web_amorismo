@@ -84,6 +84,9 @@
   --am-shadow-landing-logo: 0 4px 24px rgba(0, 0, 0, 0.6);
   --am-hero-overlay-mid: rgba(10, 10, 10, 0.55);
   --am-hero-overlay-top: rgba(10, 10, 10, 0.25);
+  --am-hero-shadow-vol1: rgba(139, 16, 48, 0.72);
+  --am-hero-shadow-vol2: rgba(218, 215, 212, 0.54);
+  --am-hero-shadow-vol3: rgba(127, 175, 114, 0.45);
 
   /* Layout */
   --am-max-w: 1180px;

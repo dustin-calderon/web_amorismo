@@ -91,33 +91,63 @@
 .am-landing-hero__bg {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   z-index: 0;
+  background:
+    radial-gradient(circle at 24% 42%, var(--am-hero-shadow-vol1) 0%, transparent 30%),
+    radial-gradient(circle at 50% 36%, var(--am-hero-shadow-vol2) 0%, transparent 32%),
+    radial-gradient(circle at 82% 38%, var(--am-hero-shadow-vol3) 0%, transparent 34%);
 }
 
-.am-landing-hero__cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.am-landing-hero__shadow {
+  position: absolute;
   display: block;
-  opacity: 0.5;
+  pointer-events: none;
+  background: currentColor;
+  background-color: currentColor;
+  mix-blend-mode: screen;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 
-/* Gradient masks: fade edges of each cover into neighbours */
-.am-landing-hero__cover:first-child {
-  -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%);
-  mask-image: linear-gradient(to right, black 40%, transparent 100%);
+.am-landing-hero__shadow--vol1 {
+  width: clamp(240px, 26vw, 440px);
+  aspect-ratio: 1;
+  left: 31%;
+  top: 7%;
+  color: var(--am-hero-shadow-vol1);
+  opacity: 0.78;
+  transform: translateX(-12%) scaleX(-1);
+  -webkit-mask-image: url('../images/hero/amorismo-01-sombra.png');
+  mask-image: url('../images/hero/amorismo-01-sombra.png');
 }
 
-.am-landing-hero__cover:nth-child(2) {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+.am-landing-hero__shadow--vol2 {
+  width: clamp(520px, 62vw, 940px);
+  aspect-ratio: 1345 / 519;
+  left: 36%;
+  top: 30%;
+  color: var(--am-hero-shadow-vol2);
+  opacity: 0.78;
+  transform: translateX(-5%) rotate(-2deg);
+  -webkit-mask-image: url('../images/hero/amorismo-02-sombra.png');
+  mask-image: url('../images/hero/amorismo-02-sombra.png');
 }
 
-.am-landing-hero__cover:last-child {
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%);
-  mask-image: linear-gradient(to right, transparent 0%, black 60%);
+.am-landing-hero__shadow--vol3 {
+  width: clamp(220px, 24vw, 420px);
+  aspect-ratio: 1280 / 1438;
+  right: 4%;
+  top: 12%;
+  color: var(--am-hero-shadow-vol3);
+  opacity: 0.52;
+  transform: rotate(2deg);
+  filter: blur(0.5px);
+  -webkit-mask-image: url('../images/hero/amorismo-03-sombra.png');
+  mask-image: url('../images/hero/amorismo-03-sombra.png');
 }
 
 /* Dark gradient overlay — legibility + bottom fade */
@@ -185,4 +215,50 @@
 
 .am-landing-hero__cta svg {
   flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .am-landing-hero__shadow--vol1 {
+    width: clamp(220px, 44vw, 360px);
+    left: 42%;
+    top: 14%;
+    opacity: 0.46;
+  }
+
+  .am-landing-hero__shadow--vol2 {
+    width: clamp(360px, 86vw, 620px);
+    left: 30%;
+    top: 34%;
+    opacity: 0.48;
+  }
+
+  .am-landing-hero__shadow--vol3 {
+    width: clamp(210px, 42vw, 340px);
+    right: -8%;
+    top: 12%;
+    opacity: 0.36;
+  }
+}
+
+@media (max-width: 480px) {
+  .am-landing-hero__shadow--vol1 {
+    width: 76vw;
+    left: 18vw;
+    top: 8%;
+    opacity: 0.32;
+  }
+
+  .am-landing-hero__shadow--vol2 {
+    width: 116vw;
+    left: -12vw;
+    top: 28%;
+    opacity: 0.34;
+  }
+
+  .am-landing-hero__shadow--vol3 {
+    width: 86vw;
+    right: -24vw;
+    top: 8%;
+    opacity: 0.34;
+  }
 }

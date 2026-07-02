@@ -74,6 +74,7 @@ describe('1. Integridad de archivos', () => {
   test('1.7 - Assets de imágenes existen', () => {
     const images = [
       'amorismo-cartel.webp', 'amorismo-logo.png', 'favicon.png',
+      'hero/amorismo-01-sombra.png', 'hero/amorismo-02-sombra.png', 'hero/amorismo-03-sombra.png',
       'LOA_fondo-verde.webp', 'BLANCA_fondo-verde.webp',
       'ANGELA_fondo-verde.webp', 'BRAULIO_fondo-verde.webp',
       'DUSTIN_fondo-verde.webp', 'DAVID_fondo-verde.webp',
@@ -276,9 +277,10 @@ describe('3. Contenido de vol-3.html', () => {
 describe('4. Contenido de index.html', () => {
   const html = readFile('index.html');
 
-  test('4.1 - Home usa landing hero con triptico y CTA principal', () => {
+  test('4.1 - Home usa landing hero con sombras y CTA principal', () => {
     assert.ok(html.includes('class="am-landing-hero"'));
-    assert.equal((html.match(/class="am-landing-hero__cover"/g) || []).length, 3);
+    assert.equal((html.match(/class="am-landing-hero__shadow/g) || []).length, 3);
+    assert.ok(!html.includes('class="am-landing-hero__cover"'));
     assert.ok(html.includes('class="am-landing-hero__cta"'));
   });
 
