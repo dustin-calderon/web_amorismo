@@ -32,6 +32,20 @@
   pointer-events: none;
 }
 
+.am-cta--outline {
+  background: transparent;
+  color: var(--am-home-text);
+  border: 1.5px solid var(--am-home-border);
+  box-shadow: none;
+}
+
+.am-cta--outline:hover {
+  border-color: var(--am-home-text-muted);
+  color: var(--am-home-text);
+  background: var(--am-nav-hover-bg);
+  box-shadow: none;
+}
+
 /* ===== Section Label ===== */
 .am-section-label {
   font-size: 0.875rem;
@@ -108,4 +122,43 @@
   height: auto;
   margin: 0 auto;
   filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-logo));
+}
+
+/* ===== Work-in-Progress / "En construcción" ===== */
+/* Reusable: drop .am-wip inside any <main> for a coming-soon page. */
+.am-wip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: calc(100vh - var(--am-nav-h) - 200px);
+  padding: var(--am-sp-8) var(--am-sp-4);
+}
+
+.am-wip__icon {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  display: block;
+  margin-bottom: var(--am-sp-5);
+}
+
+.am-wip__title {
+  font-family: var(--am-font-title);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--am-home-text);
+  margin-bottom: var(--am-sp-3);
+  text-shadow: 0 0 20px var(--am-heading-shadow);
+}
+
+.am-wip__subtitle {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--am-home-text-muted);
+  max-width: 480px;
+  margin-bottom: var(--am-sp-8);
+}
+
+.am-wip__cta {
+  margin-top: var(--am-sp-2);
 }
