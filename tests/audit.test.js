@@ -532,6 +532,23 @@ describe('6. JavaScript', () => {
       assert.ok(!html.includes('assets/js/form.js'), `${page}: no debe cargar form.js sin backend`);
     });
   });
+
+  test('6.9 - Nav HTML idéntico en todas las páginas (single source guard)', () => {
+    const allPages = [...PAGES, '404.html'];
+    const extractNav = (html) => {
+      const match = html.match(/<nav class="am-nav"[\s\S]*?<\/nav>/);
+      return match ? match[0]
+        .replace(/\r\n/g, '\n')                                   // normalize CRLF
+        .replace(/href="#correo"/g, 'href="index.html#correo"')   // normalize local anchor
+        : null;
+    };
+    const navs = allPages.map(p => ({ page: p, nav: extractNav(readFile(p)) }));
+    navs.forEach(({ page, nav }) => assert.ok(nav, `${page}: no se encontró <nav class="am-nav">`));
+    const reference = navs[0].nav;
+    navs.slice(1).forEach(({ page, nav }) => {
+      assert.strictEqual(nav, reference, `${page}: nav diverge de ${allPages[0]}`);
+    });
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
