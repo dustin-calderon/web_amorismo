@@ -5,8 +5,7 @@
  */
 
 .am-footer {
-  border-top: 1px solid var(--am-home-border);
-  background: var(--am-home-bg);
+  margin-top: var(--am-sp-6);
   position: relative;
   z-index: 1;
 }
