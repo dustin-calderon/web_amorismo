@@ -2,6 +2,8 @@
 
 .am-gallery {
   padding: var(--am-sp-8) var(--am-sp-6);
+  max-width: var(--am-max-w);
+  margin: 0 auto;
 }
 
 .am-gallery__main {
