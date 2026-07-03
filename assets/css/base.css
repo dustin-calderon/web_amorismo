@@ -107,8 +107,8 @@ body.am-body--home {
   opacity: 0.1;
   background-image: url("../images/old_film_grain.png");
   background-size: 1200px auto;
-  filter: invert(1);
-  mix-blend-mode: screen;
+  filter: var(--am-noise-filter, invert(1));
+  mix-blend-mode: var(--am-noise-blend, screen);
 }
 
 /* ===== Typography ===== */
