@@ -49,6 +49,4 @@
     });
   });
 
-  // Auto-activate first thumbnail on load (progressive enhancement)
-  activateThumb(thumbnails[0]);
 })();
