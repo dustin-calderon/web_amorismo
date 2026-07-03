@@ -82,8 +82,8 @@
   height: 100vh;
   height: 100svh;
   display: flex;
-  align-items: flex-end;
-  padding: var(--am-nav-h) clamp(var(--am-sp-6), 6vw, 8rem) clamp(var(--am-sp-8), 10vh, 8rem);
+  align-items: center;
+  padding: var(--am-nav-h) clamp(var(--am-sp-6), 6vw, 8rem) clamp(var(--am-sp-6), 6vh, 5rem);
   overflow: hidden;
 }
 
@@ -175,7 +175,7 @@
   color: var(--am-home-text-muted);
   font-style: italic;
   letter-spacing: 0.01em;
-  margin: clamp(0.5rem, 1vw, 0.75rem) 0 0;
+  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
 }
 
 /* CTA – outlined pill with play icon */
