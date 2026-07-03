@@ -407,7 +407,7 @@ describe('5. CSS Design System', () => {
 
     assert.ok(nav.includes('background: linear-gradient(to bottom, var(--am-nav-bg), transparent)'));
     assert.ok(nav.includes('backdrop-filter: blur(14px)'));
-    assert.ok(nav.includes('border-radius: 999px'));
+    assert.ok(nav.includes('border-radius: var(--am-radius-sm)'));
     assert.ok(nav.includes('.am-nav__link.am-nav__link--active::after'));
     assert.ok(!navLinkHover.includes('transform:'), 'El hover del menú no debe mover ni reescalar tabs');
   });
@@ -729,6 +729,24 @@ describe('8. Regresiones funcionales', () => {
     ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
       const html = readFile(page);
       assert.ok(html.includes('class="am-gallery__thumbs" role="group" aria-label="Seleccionar fotografía"'), `${page}: thumbnails necesitan role=group para aria-label`);
+    });
+  });
+
+  test('8.12 - Las miniaturas de galería no cargan imágenes full-size', () => {
+    ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
+      const html = readFile(page);
+      const thumbButtons = html.match(/<button[^>]+class="am-gallery__thumb[\s\S]*?<\/button>/g) || [];
+      assert.ok(thumbButtons.length > 0, `${page}: debe tener thumbnails`);
+
+      thumbButtons.forEach(button => {
+        const dataSrc = button.match(/data-src="([^"]+)"/)?.[1] || '';
+        const imgSrc = button.match(/<img src="([^"]+)"/)?.[1] || '';
+        assert.ok(dataSrc.startsWith('assets/images/'), `${page}: data-src debe apuntar al asset completo`);
+        assert.ok(imgSrc.startsWith('assets/images/thumbs/'), `${page}: img src debe apuntar a thumbnail optimizada`);
+        assert.notEqual(imgSrc, dataSrc, `${page}: thumbnail no debe cargar la imagen completa`);
+        assert.ok(button.includes('width="360" height="360"'), `${page}: thumbnail debe reservar tamaño cuadrado real`);
+        assert.ok(fileExists(imgSrc), `${page}: thumbnail inexistente: ${imgSrc}`);
+      });
     });
   });
 });
