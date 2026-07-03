@@ -94,7 +94,7 @@ body.am-body--home {
   background: var(--am-bg-photo) center / var(--am-bg-photo-size) no-repeat;
   opacity: var(--am-bg-photo-opacity);
   mix-blend-mode: var(--am-bg-photo-blend);
-  filter: blur(6px);
+  filter: blur(3px);
   transform: scale(1.03);
   pointer-events: none;
 }
