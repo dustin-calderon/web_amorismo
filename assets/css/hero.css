@@ -163,9 +163,10 @@
 
 .am-landing-hero__logo {
   display: block;
-  width: clamp(220px, 28vw, 400px);
+  width: clamp(260px, 32vw, 460px);
   height: auto;
-  filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-landing-logo));
+  /* New logo is already white — no invert filter needed, only depth shadow */
+  filter: drop-shadow(var(--am-shadow-landing-logo));
 }
 
 .am-landing-hero__tagline {
