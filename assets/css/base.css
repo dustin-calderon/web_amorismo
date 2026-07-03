@@ -86,6 +86,19 @@ body.am-body--home {
   z-index: -2;
 }
 
+/* Ambient photo layer — active only on Vol pages via tokens */
+.am-bg-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--am-bg-photo) center / var(--am-bg-photo-size) no-repeat;
+  opacity: var(--am-bg-photo-opacity);
+  mix-blend-mode: var(--am-bg-photo-blend);
+  filter: blur(6px);
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
 .am-bg-noise {
   position: fixed;
   inset: 0;

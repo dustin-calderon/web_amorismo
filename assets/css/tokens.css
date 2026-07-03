@@ -102,6 +102,12 @@
   --am-bg-grad-color-b:  rgba(15, 61, 34, 0.12);  /* glow B — Vol III verde */
   --am-bg-grad-bottom:   #0d0d0d;                 /* tono final gradiente (light Vol: crema) */
 
+  /* ── Foto de fondo ambiental (inerte por defecto, activa en Vol pages) ── */
+  --am-bg-photo: none;
+  --am-bg-photo-opacity: 0;
+  --am-bg-photo-blend: normal;
+  --am-bg-photo-size: cover;
+
   /* ── Sombras de tipografía (sobreescribibles por Vol claro) ── */
   --am-heading-shadow:   rgba(245, 244, 239, 0.15);
   --am-h1-shadow:        rgba(245, 244, 239, 0.20);
@@ -153,6 +159,10 @@ body[data-vol="1"] {
   --am-shadow-landing-logo: 0 4px 24px rgba(58, 0, 16, 0.55);
   --am-hero-overlay-mid: rgba(58, 0, 16, 0.58);
   --am-hero-overlay-top: rgba(58, 0, 16, 0.30);
+
+  --am-bg-photo: url("../images/hero/fondo-vol1.jpeg");
+  --am-bg-photo-opacity: 0.8;
+  --am-bg-photo-blend: normal;
 }
 
 /* ── Vol II – Editorial (paleta clara) ── */
@@ -201,6 +211,11 @@ body[data-vol="2"] {
   --am-shadow-landing-logo: 0 4px 24px rgba(43, 43, 43, 0.18);
   --am-hero-overlay-mid: rgba(245, 244, 239, 0.58);
   --am-hero-overlay-top: rgba(245, 244, 239, 0.30);
+
+  --am-bg-photo: url("../images/hero/fondo-vol2.jpeg");
+  --am-bg-photo-opacity: 0.08;
+  --am-bg-photo-blend: multiply;
+  --am-bg-photo-size: contain;
 }
 
 /* ── Vol III – Verde Oscuro ── */
@@ -240,4 +255,8 @@ body[data-vol="3"] {
   --am-shadow-landing-logo: 0 4px 24px rgba(8, 19, 12, 0.58);
   --am-hero-overlay-mid: rgba(8, 19, 12, 0.58);
   --am-hero-overlay-top: rgba(8, 19, 12, 0.30);
+
+  --am-bg-photo: url("../images/hero/fondo-vol3.jpeg");
+  --am-bg-photo-opacity: 0.35;
+  --am-bg-photo-blend: screen;
 }
