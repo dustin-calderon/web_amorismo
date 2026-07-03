@@ -20,75 +20,6 @@
 	<link rel="stylesheet" href="assets/css/components.css">
 	<link rel="stylesheet" href="assets/css/footer.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
-
-	<style>
-		/* ── 404-specific layout (minimal, non-reusable) ── */
-		.am-error {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			min-height: calc(100vh - var(--am-nav-h) - 200px);
-			padding: var(--am-sp-8) var(--am-sp-4);
-		}
-
-		.am-error__emoji {
-			font-size: clamp(2.5rem, 8vw, 4rem);
-			display: block;
-			margin-bottom: var(--am-sp-5);
-			animation: am-float 3s ease-in-out infinite;
-		}
-
-		@keyframes am-float {
-			0%, 100% { transform: translateY(0); }
-			50% { transform: translateY(-16px); }
-		}
-
-		.am-error__code {
-			font-family: var(--am-font-title);
-			font-size: clamp(3rem, 14vw, 7rem);
-			font-weight: 500;
-			color: var(--am-home-text);
-			line-height: 1;
-			margin-bottom: var(--am-sp-3);
-			text-shadow: 0 0 40px var(--am-h1-shadow);
-		}
-
-		.am-error__subtitle {
-			font-family: var(--am-font-title);
-			font-size: clamp(1.25rem, 4vw, 2rem);
-			font-weight: 500;
-			color: var(--am-home-text-muted);
-			margin-bottom: var(--am-sp-6);
-			letter-spacing: 0.04em;
-		}
-
-		.am-error__copy {
-			max-width: 520px;
-			font-size: 1.0625rem;
-			line-height: 1.75;
-			color: var(--am-home-text);
-			margin-bottom: var(--am-sp-8);
-		}
-
-		.am-error__buttons {
-			display: flex;
-			flex-wrap: wrap;
-			gap: var(--am-sp-4);
-			justify-content: center;
-		}
-
-		@media (max-width: 480px) {
-			.am-error { padding: var(--am-sp-6) var(--am-sp-3); }
-			.am-error__buttons { flex-direction: column; width: 100%; }
-			.am-error__buttons .am-cta { width: 100%; text-align: center; }
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			.am-error__emoji { animation: none; }
-		}
-	</style>
 </head>
 <body>
 <!-- Background -->
@@ -135,7 +66,7 @@
 <footer class="am-footer">
 	<div class="am-footer__grid">
 		<div class="am-footer__brand">
-			<img src="assets/images/amorismo-logo-hero.png" alt="AMORISMO — Un Musical de Dustin Calderón" class="am-footer__logo" width="1254" height="1254" loading="lazy">
+			<img src="assets/images/amorismo-logo-hero.png" alt="AMORISMO — Un Musical de Dustin Calderón" class="am-footer__logo" width="654" height="990" loading="lazy">
 		</div>
 		<div class="am-footer__social">
 			<a href="https://www.instagram.com/amorismoelmusical/" target="_blank" rel="noopener noreferrer" class="am-footer__social-link" aria-label="Instagram">

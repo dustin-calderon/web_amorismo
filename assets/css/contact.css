@@ -1,0 +1,72 @@
+/* ===== Contact / Correo Section ===== */
+.am-contact {
+  padding: var(--am-sp-8) var(--am-sp-6);
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.am-contact__heading {
+  font-family: var(--am-font-title);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: var(--am-home-text);
+  margin: 0 0 var(--am-sp-4);
+  letter-spacing: -0.02em;
+}
+
+.am-contact__text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--am-home-text-muted);
+  margin: 0 0 var(--am-sp-6);
+}
+
+.am-contact__form {
+  display: flex;
+  gap: var(--am-sp-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.am-contact__input {
+  flex: 1;
+  min-width: 220px;
+  padding: var(--am-sp-3) var(--am-sp-4);
+  border: 1px solid var(--am-home-border);
+  border-radius: var(--am-radius-sm);
+  background: var(--am-home-surface);
+  color: var(--am-home-text);
+  font-family: var(--am-font-sans);
+  font-size: 1rem;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.am-contact__input::placeholder {
+  color: var(--am-input-placeholder);
+  opacity: 1;
+}
+
+.am-contact__input:focus {
+  border-color: var(--am-home-accent);
+  background: var(--am-control-focus-bg);
+}
+
+.am-contact__feedback {
+  margin-top: var(--am-sp-4);
+  font-size: 0.875rem;
+  color: var(--am-home-text-muted);
+  display: none;
+}
+
+.am-contact__feedback--visible {
+  display: block;
+}
+
+.am-contact__feedback--success {
+  color: var(--am-feedback-success);
+}
+
+.am-contact__feedback--error {
+  color: var(--am-home-accent-soft);
+}

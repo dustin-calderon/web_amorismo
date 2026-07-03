@@ -7,13 +7,10 @@
  * Requires Node.js >= 18
  */
 
-import { readFileSync, existsSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-import { test, describe } from 'node:test';
-import assert from 'node:assert/strict';
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const { readFileSync, existsSync } = require('fs');
+const { join } = require('path');
+const { test, describe } = require('node:test');
+const assert = require('node:assert/strict');
 const ROOT = join(__dirname, '..');
 
 /** @param {string} relPath – path relative to project root */
@@ -50,7 +47,8 @@ describe('1. Integridad de archivos', () => {
   test('1.3 - Módulos CSS existen', () => {
     const cssFiles = [
       'tokens.css', 'base.css', 'nav.css', 'components.css',
-      'hero.css', 'gallery.css', 'footer.css', 'responsive.css',
+      'hero.css', 'home.css', 'volume.css', 'gallery.css',
+      'contact.css', 'footer.css', 'responsive.css',
     ];
     cssFiles.forEach(f => {
       assert.ok(fileExists(`assets/css/${f}`), `CSS: ${f} debe existir`);
@@ -102,10 +100,13 @@ describe('1. Integridad de archivos', () => {
 
   test('1.9 - Ningún archivo CSS/JS supera 300 líneas', () => {
     const files = [
-      'assets/css/tokens.css', 'assets/css/base.css', 'assets/css/nav.css',
-      'assets/css/components.css', 'assets/css/hero.css', 'assets/css/gallery.css',
-      'assets/css/footer.css', 'assets/css/responsive.css',
-      'assets/js/nav.js', 'assets/js/gallery.js',
+      ...[
+        'tokens.css', 'base.css', 'nav.css', 'components.css',
+        'hero.css', 'home.css', 'volume.css', 'gallery.css',
+        'contact.css', 'footer.css', 'responsive.css',
+      ].map(f => `assets/css/${f}`),
+      'assets/js/nav.js',
+      'assets/js/gallery.js',
     ];
     files.forEach(f => {
       const lines = readFile(f).split('\n').length;
@@ -116,6 +117,7 @@ describe('1. Integridad de archivos', () => {
   test('1.10 - No quedan herramientas de build rotas u obsoletas', () => {
     assert.ok(!fileExists('scripts/compress-covers.js'));
   });
+
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -210,6 +212,7 @@ describe('2. Semántica HTML y SEO', () => {
         const footer = html.match(/<footer class="am-footer">([\s\S]*?)<\/footer>/)?.[1] || '';
 
         assert.ok(footer.includes('src="assets/images/amorismo-logo-hero.png"'));
+        assert.ok(footer.includes('width="654" height="990"'));
         assert.ok(footer.includes('Un Musical de Dustin Calderón'));
         assert.ok(!footer.includes('Micromúsica y poesía escrita'));
         ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(href => {
@@ -414,9 +417,9 @@ describe('5. CSS Design System', () => {
   });
 
   test('5.12 - Placeholder conserva contraste sin opacidad artificial', () => {
-    const home = readFile('assets/css/home.css');
-    assert.ok(home.includes('color: var(--am-input-placeholder)'));
-    assert.ok(home.includes('opacity: 1'));
+      const home = readFile('assets/css/contact.css');
+      assert.ok(home.includes('color: var(--am-input-placeholder)'));
+      assert.ok(home.includes('opacity: 1'));
   });
 
   test('5.13 - Vol. II define el tema completo de componentes interactivos', () => {
@@ -570,6 +573,7 @@ describe('7. Página 404', () => {
   test('7.3 - Usa design system compartido (no paleta aislada)', () => {
     assert.ok(html.includes('tokens.css'), '404 debe usar tokens.css del design system');
     assert.ok(!html.includes('#0D2C2C'), '404 no debe usar paleta verde petróleo aislada');
+    assert.ok(!html.includes('<style>'), '404 no debe mantener CSS inline que rompe CSP/cache');
   });
 
   test('7.4 - Legales correctos', () => {
@@ -609,7 +613,11 @@ describe('8. Regresiones funcionales', () => {
   test('8.2 - Todas las páginas publicables tienen canonical y Open Graph absolutos', () => {
     PAGES.forEach(page => {
       const html = readFile(page);
-      assert.ok(html.includes('<link rel="canonical" href="https://amorismoelmusical.com/'));
+      const expectedUrl = page === 'index.html'
+        ? 'https://amorismoelmusical.com/'
+        : `https://amorismoelmusical.com/${page}`;
+      assert.ok(html.includes(`<link rel="canonical" href="${expectedUrl}">`), `${page}: canonical debe coincidir con su URL publicable`);
+      assert.ok(html.includes(`<meta property="og:url" content="${expectedUrl}">`), `${page}: og:url debe coincidir con su URL publicable`);
       assert.ok(html.match(/<meta property="og:url" content="https:\/\/amorismoelmusical\.com\//));
       assert.ok(html.match(/<meta property="og:image" content="https:\/\/amorismoelmusical\.com\//));
       assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
@@ -686,6 +694,21 @@ describe('8. Regresiones funcionales', () => {
         assert.ok(heroSubmit.includes('disabled'), `${page}: hero submit debe estar deshabilitado pre-Mautic`);
       }
     });
+  });
+
+  test('8.8 - Responsive evita solapes de navegación en móvil', () => {
+    const responsive = readFile('assets/css/responsive.css');
+    assert.ok(responsive.includes(':root { --am-nav-h: 108px; }'));
+    assert.ok(responsive.includes('grid-template-rows: auto auto'));
+    assert.ok(responsive.includes('position: static'));
+    assert.ok(responsive.includes('transform: none'));
+  });
+
+  test('8.9 - Touch hover no deja CTAs primarios transparentes', () => {
+    const responsive = readFile('assets/css/responsive.css');
+    const touchHover = responsive.match(/@media \(hover: none\)\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    assert.ok(touchHover.includes('background-color: var(--am-home-accent)'));
+    assert.ok(!touchHover.includes('.am-cta:hover { background: transparent; }'));
   });
 });
 
