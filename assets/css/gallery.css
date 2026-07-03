@@ -6,7 +6,18 @@
 
 .am-gallery__main {
   max-width: var(--am-max-w);
-  margin: 0 auto var(--am-sp-8);
+  margin: var(--am-sp-8) auto 0;
+  display: none;
+}
+
+.am-gallery__main--active {
+  display: block;
+  animation: fadeInGallery 0.4s ease forwards;
+}
+
+@keyframes fadeInGallery {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .am-gallery__frame {

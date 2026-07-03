@@ -7,8 +7,9 @@
   const qs  = (s, el = document) => el.querySelector(s);
   const qsa = (s, el = document) => Array.from(el.querySelectorAll(s));
 
-  const mainImage  = qs('#gallery-main-image');
-  const thumbnails = qsa('.am-gallery__thumb');
+  const mainGallery = qs('.am-gallery__main');
+  const mainImage   = qs('#gallery-main-image');
+  const thumbnails  = qsa('.am-gallery__thumb');
 
   if (!mainImage || thumbnails.length === 0) return;
 
@@ -20,6 +21,11 @@
 
       mainImage.src = newSrc;
       if (newAlt) mainImage.alt = newAlt;
+
+      // Ensure the gallery container becomes visible
+      if (mainGallery && !mainGallery.classList.contains('am-gallery__main--active')) {
+        mainGallery.classList.add('am-gallery__main--active');
+      }
 
       thumbnails.forEach(t => {
         t.classList.remove('am-gallery__thumb--active');
