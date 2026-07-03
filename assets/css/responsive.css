@@ -1,3 +1,20 @@
+@media (max-width: 1024px) {
+  .am-statement__grid {
+    grid-template-columns: 1fr;
+    gap: var(--am-sp-6);
+    align-items: start;
+  }
+  .am-statement__headline h2 {
+    max-width: 10em;
+  }
+  .am-statement__body {
+    max-width: 720px;
+    padding-top: 0;
+  }
+  .am-statement__quotes {
+    grid-template-columns: 1fr;
+  }
+}
 @media (max-width: 768px) {
   .am-nav { padding: 0 var(--am-sp-4); }
   .am-nav__links { max-width: calc(100vw - 8rem); }
