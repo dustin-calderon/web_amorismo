@@ -103,7 +103,6 @@
   .am-nav { padding: 0 var(--am-sp-3); }
   .am-nav__links { max-width: calc(100vw - 7rem); }
   .am-nav__link { min-width: 54px; padding: var(--am-sp-2) var(--am-sp-1); font-size: 0.6875rem; }
-  .am-body--home .am-nav__logo { visibility: hidden; pointer-events: none; }
 
   /* Landing Hero — centered, simplified triptych */
   .am-landing-hero {
@@ -220,5 +219,4 @@
 @media (hover: none) {
   .am-landing-hero__cta:hover { border-color: var(--am-home-border); background: transparent; }
   .am-footer__album:hover { transform: none; }
-  .am-nav__logo:hover { transform: none; }
 }
