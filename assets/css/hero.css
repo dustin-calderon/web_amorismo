@@ -152,18 +152,18 @@
 
 
 /* ── Content cluster — logo → tagline → CTA ── */
+/* Two visual masses: [logo + tagline] grouped tight, [CTA] floats below with air. */
 .am-landing-hero__content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: clamp(var(--am-sp-4), 2.5vw, var(--am-sp-6));
   max-width: 520px;
 }
 
 .am-landing-hero__logo {
   display: block;
-  width: clamp(200px, 24vw, 360px);
+  width: clamp(220px, 28vw, 400px);
   height: auto;
   filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-landing-logo));
 }
@@ -175,14 +175,16 @@
   color: var(--am-home-text-muted);
   font-style: italic;
   letter-spacing: 0.01em;
-  margin: 0;
+  margin: clamp(0.5rem, 1vw, 0.75rem) 0 0;
 }
 
 /* CTA – outlined pill with play icon */
+/* margin-top creates deliberate breathing room between editorial block and action */
 .am-landing-hero__cta {
   display: inline-flex;
   align-items: center;
   gap: var(--am-sp-2);
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
   padding: 0.65rem 1.6rem;
   border: 1px solid var(--am-home-border);
   border-radius: 999px;

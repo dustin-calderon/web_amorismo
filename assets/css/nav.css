@@ -1,6 +1,6 @@
 /* ===== Navigation – Amorismo ===== */
 /*
- * Layout: [logo]  ←—— [Vol I | Vol II | Vol III] ——→  [✉]
+ * Layout: [Inicio]  ←—— [Vol I | Vol II | Vol III] ——→  [✉]
  * Transparent. Vol links are truly centered via position:absolute.
  */
 
@@ -18,31 +18,7 @@
   background: linear-gradient(to bottom, var(--am-nav-bg), transparent);
 }
 
-/* ── Logo (home link) ── */
-.am-nav__logo {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  flex-shrink: 0;
-  text-decoration: none;
-  opacity: 0.92;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.am-nav__logo:hover,
-.am-nav__logo:focus-visible {
-  opacity: 1;
-  transform: translateY(-1px);
-}
-
-.am-nav__logo-img {
-  height: 34px;
-  width: auto;
-  display: block;
-  filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-nav-logo));
-}
-
-/* ── Left menu (Inicio / Escuchar / Partituras) ── */
+/* ── Left menu (Inicio · Escuchar · Partituras) ── */
 .am-nav__menu {
   display: flex;
   align-items: center;
@@ -71,6 +47,7 @@
 .am-nav__menu-link.am-nav__menu-link--active {
   color: var(--am-home-text);
 }
+
 /*
  * The container is the visible card (border + radius).
  * Individual links grow on hover via transform: scale().
