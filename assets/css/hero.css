@@ -163,7 +163,8 @@
 
 .am-landing-hero__logo {
   display: block;
-  width: clamp(260px, 32vw, 460px);
+  /* Portrait ratio (654×990) — width controls height proportionally */
+  width: clamp(150px, 18vw, 240px);
   height: auto;
   /* New logo is already white — no invert filter needed, only depth shadow */
   filter: drop-shadow(var(--am-shadow-landing-logo));

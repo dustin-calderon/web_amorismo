@@ -62,9 +62,7 @@
   .am-contact__input { min-width: 0; }
 
   /* Footer */
-  .am-footer__grid { grid-template-columns: 1fr 1fr; grid-template-areas: "brand listen" "social listen"; gap: var(--am-sp-5); padding: var(--am-sp-5) var(--am-sp-4); }
-  .am-footer__col--listen { grid-column: auto; }
-  .am-footer__album { max-width: none; }
+  .am-footer__grid { padding: var(--am-sp-5) var(--am-sp-4); }
   .am-footer__bottom { padding: var(--am-sp-3) var(--am-sp-4); }
 
   /* Typography scaling */
@@ -148,13 +146,9 @@
   .am-contact { padding: var(--am-sp-5) var(--am-sp-3); }
   .am-cta { padding: var(--am-sp-3) var(--am-sp-4); font-size: 0.9rem; }
 
-  /* Footer — single column */
-  .am-footer__grid { grid-template-columns: 1fr; grid-template-areas: "brand" "listen" "social"; gap: var(--am-sp-4); padding: var(--am-sp-4) var(--am-sp-3); }
-  .am-footer__brand { order: 1; }
-  .am-footer__col--listen { order: 2; grid-column: auto; }
-  .am-footer__col--social { order: 3; justify-self: start; }
-  .am-footer__logo { width: 64px; }
-  .am-footer__album-cover { width: 48px; height: 48px; }
+  /* Footer */
+  .am-footer__grid { flex-direction: column; align-items: center; gap: var(--am-sp-3); padding: var(--am-sp-4) var(--am-sp-3); }
+  .am-footer__logo { width: 100px; }
   .am-footer__bottom { flex-direction: column; gap: var(--am-sp-2); text-align: center; padding: var(--am-sp-3); }
 
   /* Volume pages */
@@ -185,7 +179,6 @@
   .am-contact { padding: var(--am-sp-4) var(--am-sp-2); }
   .am-footer__grid { padding: var(--am-sp-3) var(--am-sp-2); }
   .am-footer__bottom { padding: var(--am-sp-2); font-size: 0.625rem; }
-  .am-footer__bio { font-size: 0.8125rem; }
 }
 
 /* ── Landscape — short viewport phones ─────────────── */
@@ -218,5 +211,4 @@
 /* ── Touch devices — disable hover transforms ─────── */
 @media (hover: none) {
   .am-cta:hover { background: transparent; }
-  .am-footer__album:hover { transform: none; }
 }
