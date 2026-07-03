@@ -42,7 +42,36 @@
   filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-nav-logo));
 }
 
-/* ── Vol links – single centered card ── */
+/* ── Left menu (Inicio / Escuchar / Partituras) ── */
+.am-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--am-sp-5);
+  margin-left: var(--am-sp-5);
+}
+
+.am-nav__menu-link {
+  font-family: var(--am-font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--am-home-text-muted);
+  text-decoration: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+}
+
+.am-nav__menu-link:hover,
+.am-nav__menu-link:focus-visible {
+  color: var(--am-home-text);
+}
+
+.am-nav__menu-link.am-nav__link--active {
+  color: var(--am-home-text);
+}
 /*
  * The container is the visible card (border + radius).
  * Individual links grow on hover via transform: scale().
