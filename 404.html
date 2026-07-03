@@ -5,424 +5,179 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Página no encontrada en la web de AMORISMO. Vuelve al inicio y sigue disfrutando de la música.">
 	<meta name="robots" content="noindex">
-	<title>404 - Página no encontrada</title>
-	
+	<title>404 – Página no encontrada | AMORISMO</title>
+
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Fredoka:wght@500&display=swap" rel="stylesheet">
-	
-	<!-- Favicon -->
+
 	<link rel="icon" type="image/png" href="assets/images/favicon.png">
 	<link rel="apple-touch-icon" href="assets/images/favicon.png">
 
+	<link rel="stylesheet" href="assets/css/tokens.css">
+	<link rel="stylesheet" href="assets/css/base.css">
+	<link rel="stylesheet" href="assets/css/nav.css">
+	<link rel="stylesheet" href="assets/css/components.css">
+	<link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
 	<style>
-		/* ===== CSS Custom Properties ===== */
-		:root {
-			--error-font-sans: 'Inter', system-ui, sans-serif;
-			--error-font-title: 'Fredoka', sans-serif;
-			
-			--error-color-verde-petroleo: #0D2C2C;
-			--error-color-verde-carbon: #0A2424;
-			--error-color-verde-profundo: #153A3B;
-			--error-color-gris-neblina-azul: #A8B8BD;
-			--error-color-blanco-proyector: #E6EBEE;
-			--error-color-blanco-puro: #FFFFFF;
-			--error-color-negro-escenico: #0A0D0E;
-			
-			--error-space-2: 0.5rem;
-			--error-space-3: 0.75rem;
-			--error-space-4: 1rem;
-			--error-space-5: 1.5rem;
-			--error-space-6: 2rem;
-			--error-space-8: 4rem;
-			
-			--error-radius-md: 14px;
-		}
-
-		/* ===== Base ===== */
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		html {
-			scroll-behavior: smooth;
-		}
-
-		body {
-			margin: 0;
-			color: var(--error-color-blanco-puro);
-			font-family: var(--error-font-sans);
-			font-weight: 400;
-			position: relative;
-			overflow-x: hidden;
-			background-color: var(--error-color-verde-petroleo);
-			min-height: 100vh;
+		/* ── 404-specific layout (minimal, non-reusable) ── */
+		.am-error {
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			flex-direction: column;
-		}
-
-		/* Fondo gradiente - Compatible con todos los navegadores */
-		.error__bg-gradient {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: radial-gradient(
-					circle at 50% 40%,
-					rgba(255,255,255,0.08) 0%,
-					rgba(255,255,255,0.02) 25%,
-					rgba(0,0,0,0.95) 80%
-				),
-				linear-gradient(
-					to bottom right,
-					var(--error-color-verde-petroleo) 0%,
-					var(--error-color-verde-carbon) 40%,
-					var(--error-color-verde-profundo) 100%
-				);
-			pointer-events: none;
-			z-index: -2;
-		}
-
-		/* Ruido/Grano - Compatible con todos los navegadores */
-		.error__bg-noise {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			pointer-events: none;
-			background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='5' seed='3'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.35'/></svg>");
-			background-size: 200px 200px;
-			opacity: 0.35;
-			z-index: -2;
-			will-change: auto;
-		}
-
-		/* ===== Main Container ===== */
-		main {
-			position: relative;
-			z-index: 1;
-			max-width: 900px;
-			width: 100%;
-			padding: var(--error-space-8);
 			text-align: center;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100%;
+			min-height: calc(100vh - var(--am-nav-h) - 200px);
+			padding: var(--am-sp-8) var(--am-sp-4);
 		}
 
-		h1 {
-			font-family: var(--error-font-title);
-			font-size: clamp(3rem, 15vw, 8rem);
-			font-weight: 900;
-			color: var(--error-color-blanco-proyector);
-			margin: 0 0 var(--error-space-4) 0;
-			letter-spacing: -0.03em;
-			text-shadow: 0 0 40px rgba(230, 235, 238, 0.3);
-			line-height: 1;
-		}
-
-		.error__subtitle {
-			font-family: var(--error-font-title);
-			font-size: clamp(1.5rem, 5vw, 2.5rem);
-			font-weight: 700;
-			color: var(--error-color-gris-neblina-azul);
-			margin: 0 0 var(--error-space-6) 0;
-			letter-spacing: 0.05em;
-		}
-
-		p {
-			font-size: 1.125rem;
-			line-height: 1.8;
-			color: var(--error-color-blanco-puro);
-			margin: 0 0 var(--error-space-4) 0;
-			max-width: 600px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		.error__copy {
-			margin: var(--error-space-6) 0;
-			font-weight: 400;
-		}
-
-		.error__emoji {
-			font-size: clamp(2rem, 8vw, 4rem);
+		.am-error__emoji {
+			font-size: clamp(2.5rem, 8vw, 4rem);
 			display: block;
-			margin: var(--error-space-6) 0;
-			animation: float 3s ease-in-out infinite;
+			margin-bottom: var(--am-sp-5);
+			animation: am-float 3s ease-in-out infinite;
 		}
 
-		@keyframes float {
-			0%, 100% { transform: translateY(0px); }
-			50% { transform: translateY(-20px); }
+		@keyframes am-float {
+			0%, 100% { transform: translateY(0); }
+			50% { transform: translateY(-16px); }
 		}
 
-		/* ===== Buttons ===== */
-		.error__buttons {
+		.am-error__code {
+			font-family: var(--am-font-title);
+			font-size: clamp(3rem, 14vw, 7rem);
+			font-weight: 500;
+			color: var(--am-home-text);
+			line-height: 1;
+			margin-bottom: var(--am-sp-3);
+			text-shadow: 0 0 40px var(--am-h1-shadow);
+		}
+
+		.am-error__subtitle {
+			font-family: var(--am-font-title);
+			font-size: clamp(1.25rem, 4vw, 2rem);
+			font-weight: 500;
+			color: var(--am-home-text-muted);
+			margin-bottom: var(--am-sp-6);
+			letter-spacing: 0.04em;
+		}
+
+		.am-error__copy {
+			max-width: 520px;
+			font-size: 1.0625rem;
+			line-height: 1.75;
+			color: var(--am-home-text);
+			margin-bottom: var(--am-sp-8);
+		}
+
+		.am-error__buttons {
 			display: flex;
 			flex-wrap: wrap;
-			gap: var(--error-space-4);
+			gap: var(--am-sp-4);
 			justify-content: center;
-			margin-top: var(--error-space-8);
-		}
-
-		.error__cta {
-			display: inline-block;
-			padding: var(--error-space-4) var(--error-space-6);
-			border-radius: var(--error-radius-md);
-			font-weight: 700;
-			font-size: 1rem;
-			text-decoration: none;
-			transition: all 0.3s ease;
-			cursor: pointer;
-			border: none;
-			text-transform: uppercase;
-			letter-spacing: 0.05em;
-			box-shadow: 0 8px 30px rgba(230, 235, 238, 0.2);
-		}
-
-		.error__cta--primary {
-			background-color: var(--error-color-blanco-proyector);
-			color: var(--error-color-negro-escenico);
-		}
-
-		.error__cta--primary:hover {
-			transform: translateY(-3px);
-			box-shadow: 0 12px 40px rgba(230, 235, 238, 0.4);
-			background-color: var(--error-color-blanco-puro);
-		}
-
-		.error__cta--secondary {
-			background-color: transparent;
-			color: var(--error-color-blanco-proyector);
-			border: 2px solid var(--error-color-gris-neblina-azul);
-		}
-
-		.error__cta--secondary:hover {
-			border-color: var(--error-color-blanco-proyector);
-			color: var(--error-color-blanco-puro);
-			box-shadow: 0 8px 30px rgba(230, 235, 238, 0.15);
-		}
-
-		.error__divider {
-			color: var(--error-color-gris-neblina-azul);
-			margin: 0 var(--error-space-2);
-		}
-
-		/* ===== Footer ===== */
-		footer {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			padding: var(--error-space-4);
-			text-align: center;
-			font-size: 0.75rem;
-			color: var(--error-color-gris-neblina-azul);
-			background: transparent;
-			z-index: 1;
-			width: 100%;
-		}
-
-		footer nav {
-			display: flex;
-			flex-wrap: wrap;
-			gap: var(--error-space-2);
-			justify-content: center;
-			margin-bottom: var(--error-space-2);
-		}
-
-		footer a {
-			color: var(--error-color-gris-neblina-azul);
-			text-decoration: none;
-			transition: color 0.3s ease;
-		}
-
-		footer a:hover {
-			color: var(--error-color-blanco-proyector);
-		}
-
-		:focus-visible {
-			outline: 3px solid var(--error-color-blanco-proyector);
-			outline-offset: 3px;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			html {
-				scroll-behavior: auto;
-			}
-
-			.error__emoji {
-				animation: none;
-			}
-
-			.error__cta,
-			footer a {
-				transition: none;
-			}
-		}
-
-		/* ===== Responsive ===== */
-		@media (max-width: 768px) {
-			main {
-				padding: var(--error-space-6) var(--error-space-4) 150px var(--error-space-4);
-				height: auto;
-				min-height: 100vh;
-			}
-
-			h1 {
-				font-size: clamp(2.5rem, 12vw, 5rem);
-			}
-
-			.error__subtitle {
-				font-size: clamp(1.25rem, 4vw, 1.75rem);
-			}
-
-			p {
-				font-size: 1rem;
-				line-height: 1.6;
-			}
-
-			.error__emoji {
-				font-size: clamp(2rem, 10vw, 3rem);
-			}
-
-			.error__buttons {
-				flex-direction: column;
-				gap: var(--error-space-3);
-				width: 100%;
-			}
-
-			.error__buttons .error__divider {
-				display: none;
-			}
-
-			.error__cta {
-				width: 100%;
-				padding: var(--error-space-4);
-			}
-
-			footer {
-				position: absolute;
-				bottom: 0;
-				background: transparent;
-				padding: var(--error-space-4) var(--error-space-2);
-			}
-
-			footer nav {
-				flex-direction: column;
-				gap: 0.5rem;
-			}
-
-			footer .error__divider {
-				display: none;
-			}
-
-			footer p {
-				font-size: 0.7rem;
-				margin: var(--error-space-2) 0 0 0;
-			}
 		}
 
 		@media (max-width: 480px) {
-			main {
-				padding: var(--error-space-4) 5% 140px 5%;
-				height: auto;
-				min-height: 100vh;
-			}
+			.am-error { padding: var(--am-sp-6) var(--am-sp-3); }
+			.am-error__buttons { flex-direction: column; width: 100%; }
+			.am-error__buttons .am-cta { width: 100%; text-align: center; }
+		}
 
-			h1 {
-				font-size: clamp(2rem, 10vw, 3.5rem);
-				margin-bottom: var(--error-space-3);
-			}
-
-			.error__subtitle {
-				font-size: clamp(1rem, 3vw, 1.25rem);
-				margin-bottom: var(--error-space-4);
-			}
-
-			p {
-				font-size: 0.95rem;
-				line-height: 1.5;
-			}
-
-			.error__copy {
-				margin: var(--error-space-4) 0;
-			}
-
-			.error__emoji {
-				font-size: 2.5rem;
-				margin: var(--error-space-4) 0;
-			}
-
-			.error__cta {
-				font-size: 0.9rem;
-				padding: var(--error-space-3) var(--error-space-4);
-			}
-
-			.error__buttons {
-				gap: var(--error-space-2);
-				margin-top: var(--error-space-6);
-			}
-
-			footer {
-				padding: var(--error-space-3) var(--error-space-2);
-				font-size: 0.65rem;
-				background: transparent;
-			}
-
-			footer nav a {
-				font-size: 0.65rem;
-			}
-
-			footer p {
-				font-size: 0.6rem;
-				margin: var(--error-space-2) 0 0 0;
-			}
+		@media (prefers-reduced-motion: reduce) {
+			.am-error__emoji { animation: none; }
 		}
 	</style>
 </head>
 <body>
-	<!-- FONDO DECORATIVO (Cross-browser compatible) -->
-	<div class="error__bg-gradient"></div>
-	<div class="error__bg-noise"></div>
+<!-- Background -->
+<div class="am-bg-gradient"></div>
+<div class="am-bg-noise"></div>
+<a class="am-skip-link" href="#main">Saltar al contenido</a>
 
-	<main role="main">
-		<span class="error__emoji">🎭</span>
-		
-		<h1>404</h1>
-		<p class="error__subtitle">Acto no encontrado</p>
-		
-		<p class="error__copy">
-			Parece que esta página decidió no salir a escena. Igual que en el teatro, a veces la función no se puede dar.
-		</p>
-		
-		<p>
-			No te preocupes. Vuelve al escenario principal y sigue disfrutando de la música.
-		</p>
+<!-- Navigation -->
+<nav class="am-nav" aria-label="Navegación principal">
+	<div class="am-nav__menu">
+		<a href="index.html" class="am-nav__menu-link" data-page="home">Inicio</a>
+		<a href="escuchar.html" class="am-nav__menu-link" data-page="escuchar">Escuchar</a>
+		<a href="partituras.html" class="am-nav__menu-link" data-page="partituras">Partituras</a>
+	</div>
+	<div class="am-nav__links">
+		<a href="vol-1.html" class="am-nav__link" data-page="vol1">Vol I</a>
+		<a href="vol-2.html" class="am-nav__link" data-page="vol2">Vol II</a>
+		<a href="vol-3.html" class="am-nav__link" data-page="vol3">Vol III</a>
+	</div>
+	<a href="index.html#correo" class="am-nav__mail" aria-label="Newsletter – suscríbete al correo">
+		<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+			<rect x="2" y="4" width="20" height="16" rx="2"/>
+			<path d="m2 7 10 7 10-7"/>
+		</svg>
+	</a>
+</nav>
 
-		<div class="error__buttons">
-			<a href="index.html" class="error__cta error__cta--primary">Volver a Inicio</a>
-			<span class="error__divider">|</span>
-			<a href="https://dustincalderon.com/" class="error__cta error__cta--secondary">Mi Web Principal</a>
+<main id="main" role="main" tabindex="-1">
+	<section class="am-error">
+		<span class="am-error__emoji" aria-hidden="true">🎭</span>
+		<h1 class="am-error__code">404</h1>
+		<p class="am-error__subtitle">Acto no encontrado</p>
+		<p class="am-error__copy">
+			Parece que esta página decidió no salir a escena. Igual que en el teatro, a veces la función no se puede dar.<br>
+			No te preocupes — vuelve al escenario principal y sigue disfrutando de la música.
+		</p>
+		<div class="am-error__buttons">
+			<a href="index.html" class="am-cta" id="cta-404-home">Volver a Inicio</a>
+			<a href="https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0" class="am-cta am-cta--outline" id="cta-404-spotify" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>
 		</div>
-	</main>
+	</section>
+</main>
 
-	<footer>
-		<nav aria-label="Enlaces legales">
+<footer class="am-footer">
+	<div class="am-footer__grid">
+		<!-- Brand -->
+		<div class="am-footer__brand">
+			<img src="assets/images/amorismo-logo.png" alt="AMORISMO" class="am-footer__logo" width="352" height="362" loading="lazy">
+			<p class="am-footer__bio">Un Musical de Dustin Calderón</p>
+		</div>
+		<!-- Redes -->
+		<div class="am-footer__col am-footer__col--social">
+			<h3 class="am-footer__heading">Sígueme</h3>
+			<ul class="am-footer__list">
+				<li><a href="https://www.instagram.com/amorismoelmusical/" target="_blank" rel="noopener noreferrer" class="am-footer__social-link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+					Instagram
+				</a></li>
+				<li><a href="https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0" target="_blank" rel="noopener noreferrer" class="am-footer__social-link">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+					Spotify
+				</a></li>
+			</ul>
+		</div>
+		<!-- Escucha -->
+		<div class="am-footer__col am-footer__col--listen">
+			<h3 class="am-footer__heading">Escucha Amorismo</h3>
+			<a href="https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0" class="am-footer__album" target="_blank" rel="noopener noreferrer">
+				<img src="assets/images/covers/portada-vol-1.webp" alt="Portada Vol. I" class="am-footer__album-cover" width="600" height="600" loading="lazy">
+				<div class="am-footer__album-info">
+					<p class="am-footer__album-title">Amorismo Vol. I</p>
+					<p class="am-footer__album-artist">Dustin Calderón</p>
+				</div>
+				<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="am-footer__album-play" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.2"/><polygon points="10,7.5 17,12 10,16.5"/></svg>
+			</a>
+		</div>
+	</div>
+	<!-- Bottom -->
+	<div class="am-footer__bottom">
+		<p class="am-footer__copyright">Copyright © 2026 dustincalderon.com · Todos los derechos reservados.</p>
+		<nav class="am-footer__legal" aria-label="Enlaces legales">
 			<a href="https://dustincalderon.com/legal/aviso-legal/" target="_blank" rel="noopener noreferrer">Aviso Legal</a>
-			<span class="error__divider">|</span>
+			<span aria-hidden="true">·</span>
 			<a href="https://dustincalderon.com/legal/privacidad/" target="_blank" rel="noopener noreferrer">Política de Privacidad</a>
 		</nav>
-		<p>© 2026 dustincalderon.com · Todos los derechos reservados</p>
-	</footer>
+	</div>
+</footer>
+
+<script defer src="assets/js/nav.js"></script>
+
 </body>
 </html>
