@@ -1,5 +1,6 @@
 # Node (herramientas puntuales de build)
 node_modules/
+package.json
 package-lock.json
 
 # OS

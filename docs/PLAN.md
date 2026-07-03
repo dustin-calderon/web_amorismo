@@ -76,7 +76,14 @@ web_amorismo/
    - Sinopsis reales para los 3 volúmenes
    - Bios profesionales completas de Dustin Calderón y David Gregory
    - Meta tags actualizados con sinopsis reales
-5. **Fase 5**: Integración formulario Mautic
+5. ✅ **Fase 5**: Galerías fotográficas — **COMPLETADA** (2026-07-03)
+   - **Vol I**: 8 fotos optimizadas (JPEG q82, max 1800px)
+   - **Vol II**: 11 fotos con grading cinemático (20% reducción contraste + grain sutil vía sharp)
+   - **Vol III**: Galería legacy preservada
+   - Pipeline de procesamiento: Sharp (Node.js) — crop, EXIF rotation, linear grading, sharpen
+   - Componentes: `gallery.css` (thumbnails + viewer) + `gallery.js` (click-to-reveal interactivo)
+   - Assets: `vol1-foto-01..08.jpg`, `vol2-foto-02..14.jpg` (sin 01, 09, 10)
+6. **Fase 6**: Integración formulario Mautic
 
 ## Decisión Arquitectónica
 **Multi-page (MPA)** con archivos `.html` independientes.
