@@ -178,7 +178,7 @@
 
   /* Footer */
   .am-footer__grid { gap: var(--am-sp-3); padding: var(--am-sp-4) var(--am-sp-2); }
-  .am-footer__logo { width: 90px; }
+  .am-footer__logo { width: 118px; }
   .am-footer__bottom { padding: var(--am-sp-3) var(--am-sp-2); }
   .am-error__buttons { flex-direction: column; width: 100%; }
   .am-error__buttons .am-cta { width: 100%; text-align: center; }
