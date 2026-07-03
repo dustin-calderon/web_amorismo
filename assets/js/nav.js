@@ -18,6 +18,10 @@
     'vol-2.html': 'vol2',
     'vol-3':      'vol3',
     'vol-3.html': 'vol3',
+    'escuchar':      'escuchar',
+    'escuchar.html': 'escuchar',
+    'partituras':      'partituras',
+    'partituras.html': 'partituras',
   };
 
   const path = window.location.pathname.replace(/\/+$/, '');
