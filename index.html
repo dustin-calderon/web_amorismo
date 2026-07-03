@@ -70,10 +70,20 @@
 				<img src="assets/images/amorismo-logo.png" alt="AMORISMO" class="am-landing-hero__logo" width="352" height="362">
 			</h1>
 			<p class="am-landing-hero__tagline">Un musical de Dustin Calderón</p>
-			<a href="https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0" class="am-landing-hero__cta" id="cta-hero" target="_blank" rel="noopener noreferrer">
-				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.5"/><polygon points="10,7.5 17,12 10,16.5"/></svg>
-				Escuchar en Spotify
-			</a>
+			<form class="am-contact__form am-landing-hero__form" id="hero-form">
+				<label for="hero-email" class="sr-only">Tu correo electrónico</label>
+				<input
+					type="email"
+					name="email"
+					class="am-contact__input"
+					placeholder="Tu correo electrónico"
+					required
+					autocomplete="email"
+					id="hero-email"
+					disabled
+				>
+				<button type="submit" class="am-cta am-cta--disabled" id="hero-submit" disabled>Próximamente</button>
+			</form>
 		</div>
 	</section>
 

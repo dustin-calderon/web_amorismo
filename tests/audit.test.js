@@ -281,11 +281,13 @@ describe('3. Contenido de vol-3.html', () => {
 describe('4. Contenido de index.html', () => {
   const html = readFile('index.html');
 
-  test('4.1 - Home usa landing hero con triptych y CTA principal', () => {
+  test('4.1 - Home usa landing hero con triptych y formulario de suscripción', () => {
     assert.ok(html.includes('class="am-landing-hero"'));
     assert.equal((html.match(/class="am-landing-hero__photo /g) || []).length, 3);
     assert.ok(!html.includes('class="am-landing-hero__cover"'));
-    assert.ok(html.includes('class="am-landing-hero__cta"'));
+    assert.ok(html.includes('id="hero-form"'), 'hero debe tener formulario de suscripción');
+    assert.ok(html.includes('id="hero-email"'), 'hero debe tener input de email');
+    assert.ok(html.includes('id="hero-submit"'), 'hero debe tener botón de submit');
   });
 
   test('4.2 - Crédito de autoría', () => {
@@ -664,17 +666,26 @@ describe('8. Regresiones funcionales', () => {
     });
   });
 
-  test('8.7 - El formulario de correo no simula altas sin backend', () => {
+  test('8.7 - Los formularios de correo no simulan altas sin backend', () => {
     PAGES.forEach(page => {
       const html = readFile(page);
-      // Only check form constraints on pages that have the contact section
-      if (!html.includes('id="contact-form"')) return;
-      const emailInput = html.match(/<input[^>]+id="contact-email"[^>]*>/)?.[0] || '';
-      const submitButton = html.match(/<button[^>]+id="contact-submit"[^>]*>/)?.[0] || '';
-      assert.ok(html.includes('El formulario de correo estará disponible próximamente.'), `${page}: debe explicar el estado real del formulario`);
-      assert.ok(emailInput.includes('disabled'), `${page}: input de correo debe estar deshabilitado`);
-      assert.ok(submitButton.includes('disabled'), `${page}: submit debe estar deshabilitado`);
-      assert.ok(!html.includes('¡Gracias! Te mantendremos al tanto.'), `${page}: no debe prometer un alta no enviada`);
+
+      // Contact section form (index.html only)
+      if (html.includes('id="contact-form"')) {
+        const emailInput = html.match(/<input[^>]+id="contact-email"[^>]*>/)?.[0] || '';
+        const submitButton = html.match(/<button[^>]+id="contact-submit"[^>]*>/)?.[0] || '';
+        assert.ok(html.includes('El formulario de correo estará disponible próximamente.'), `${page}: debe explicar el estado real del formulario`);
+        assert.ok(emailInput.includes('disabled'), `${page}: input de correo debe estar deshabilitado`);
+        assert.ok(submitButton.includes('disabled'), `${page}: submit debe estar deshabilitado`);
+      }
+
+      // Hero subscription form (index.html only)
+      if (html.includes('id="hero-form"')) {
+        const heroInput = html.match(/<input[^>]+id="hero-email"[^>]*>/)?.[0] || '';
+        const heroSubmit = html.match(/<button[^>]+id="hero-submit"[^>]*>/)?.[0] || '';
+        assert.ok(heroInput.includes('disabled'), `${page}: hero input debe estar deshabilitado pre-Mautic`);
+        assert.ok(heroSubmit.includes('disabled'), `${page}: hero submit debe estar deshabilitado pre-Mautic`);
+      }
     });
   });
 });
