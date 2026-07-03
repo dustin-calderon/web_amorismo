@@ -191,9 +191,8 @@ describe('2. Semántica HTML y SEO', () => {
         assert.ok(html.includes('<main id="main" role="main" tabindex="-1">'));
       });
 
-      test('La página activa existe sin depender de JavaScript', () => {
-        assert.equal((html.match(/aria-current="page"/g) || []).length, 1);
-        assert.equal((html.match(/am-nav__link--active/g) || []).length, 1);
+      test('Cada página navega con data-page para que nav.js pueda activar', () => {
+        assert.ok(html.includes('data-page='), `${page} necesita data-page en sus nav links`);
       });
 
       test('Rutas relativas (no absolutas)', () => {

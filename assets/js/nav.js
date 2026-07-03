@@ -31,11 +31,14 @@
   if (!activePage) return;
 
   document.querySelectorAll('[data-page]').forEach(function (link) {
+    var isMenu = link.classList.contains('am-nav__menu-link');
+    var activeClass = isMenu ? 'am-nav__menu-link--active' : 'am-nav__link--active';
+
     if (link.getAttribute('data-page') === activePage) {
-      link.classList.add('am-nav__link--active');
+      link.classList.add(activeClass);
       link.setAttribute('aria-current', 'page');
     } else {
-      link.classList.remove('am-nav__link--active');
+      link.classList.remove(activeClass);
       link.removeAttribute('aria-current');
     }
   });

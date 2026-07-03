@@ -68,7 +68,7 @@
   color: var(--am-home-text);
 }
 
-.am-nav__menu-link.am-nav__link--active {
+.am-nav__menu-link.am-nav__menu-link--active {
   color: var(--am-home-text);
 }
 /*
