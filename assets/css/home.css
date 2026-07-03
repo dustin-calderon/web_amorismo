@@ -209,7 +209,7 @@
 
 .am-bio__photo-wrap {
   aspect-ratio: 3 / 4;
-  border-radius: var(--am-radius-md);
+  border-radius: var(--am-radius-sm);
   overflow: hidden;
   box-shadow: var(--am-shadow-card);
   background: var(--am-home-surface);

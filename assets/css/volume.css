@@ -87,7 +87,7 @@
 
 .am-review {
   padding: var(--am-sp-6);
-  border-radius: var(--am-radius-md);
+  border-radius: var(--am-radius-sm);
   background: var(--am-home-quote-bg);
   border: 1px solid var(--am-home-border);
   max-width: 780px;
