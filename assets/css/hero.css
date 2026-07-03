@@ -180,34 +180,45 @@
 /* ── Option B: Photo backgrounds ── */
 .am-landing-hero__bg--photos {
   display: none;
-  background: none;
+  background: var(--am-home-bg);
 }
 
 .am-landing-hero__photo {
   position: absolute;
+  top: 0;
   height: 100%;
   object-fit: cover;
-  opacity: 0.85;
+  opacity: 0.72;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
 }
 
+/* Vol I — dark burdeos atmosphere, left third */
 .am-landing-hero__photo--vol1 {
-  left: 0;
-  width: 38%;
-  object-position: right center;
+  left: 12%;
+  width: 50%;
+  object-position: center;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 65%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 22%, black 65%, transparent 100%);
 }
 
+/* Vol II — brushstroke, center, layered on top */
 .am-landing-hero__photo--vol2 {
   left: 28%;
-  width: 44%;
+  width: 55%;
   object-position: center;
+  opacity: 0.55;
   mix-blend-mode: lighten;
-  opacity: 0.70;
 }
 
+/* Vol III — dark green atmosphere, right third */
 .am-landing-hero__photo--vol3 {
-  right: 0;
-  width: 35%;
-  object-position: left center;
+  right: -5%;
+  left: auto;
+  width: 50%;
+  object-position: center;
+  -webkit-mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
+  mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
 }
 
 /* ── Mode switching via data attribute ── */
