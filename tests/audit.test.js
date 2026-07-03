@@ -262,10 +262,11 @@ describe('3. Contenido de vol-3.html', () => {
     });
   });
 
-  test('3.4 - Equipo creativo (3)', () => {
-    ['Dustin Calderón', 'David Gregory', 'Carmen Rodríguez'].forEach(name => {
-      assert.ok(html.includes(name), `Equipo: ${name}`);
-    });
+  test('3.4 - Equipo creativo adicional y elenco valenciano (Vol. III)', () => {
+    assert.ok(html.includes('Carmen Rodríguez'), 'Equipo Creativo Adicional: Carmen Rodríguez');
+    assert.ok(html.includes('Mary Porcar'), 'Elenco Valenciano: Mary Porcar');
+    assert.ok(html.includes('Sergio Escribano'), 'Elenco Valenciano: Sergio Escribano');
+    assert.ok(html.includes('Elenco Valenciano'), 'Debe tener sección Elenco Valenciano');
   });
 
   test('3.5 - Galería con 8 thumbnails', () => {
