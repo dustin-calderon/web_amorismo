@@ -1,7 +1,15 @@
 # CONTENT: Amorismo – Textos y Biografías
 
 > Fuente de verdad para todo el copy del sitio web.
-> Última actualización: 2026-06-28
+> Última actualización: 2026-07-03
+
+---
+
+## Landing Hero (Home)
+
+- **Logo:** AMORISMO (wordmark image)
+- **Tagline:** Un musical de Dustin Calderón
+- **CTA:** Escuchar en Spotify → https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0
 
 ---
 
