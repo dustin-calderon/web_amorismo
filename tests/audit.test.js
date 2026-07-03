@@ -209,8 +209,8 @@ describe('2. Semántica HTML y SEO', () => {
       test('Footer editorial sin navegación duplicada', () => {
         const footer = html.match(/<footer class="am-footer">([\s\S]*?)<\/footer>/)?.[1] || '';
 
-        assert.ok(footer.includes('amorismo-logo-hero.png'), 'Footer uses combined hero logo');
-        assert.ok(footer.includes('Dustin Calderón'), 'Author credit present (in alt or text)');
+        assert.ok(footer.includes('src="assets/images/amorismo-logo.png"'));
+        assert.ok(footer.includes('Un Musical de Dustin Calderón'));
         assert.ok(!footer.includes('Micromúsica y poesía escrita'));
         ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(href => {
           assert.ok(!footer.includes(`href="${href}"`), `Footer no debe duplicar navegación: ${href}`);
