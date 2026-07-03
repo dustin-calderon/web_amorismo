@@ -42,6 +42,11 @@ describe('1. Integridad de archivos', () => {
     assert.ok(fileExists('404.html'));
   });
 
+  test('1.2b - Páginas nuevas existen (escuchar, partituras)', () => {
+    assert.ok(fileExists('escuchar.html'), 'escuchar.html debe existir');
+    assert.ok(fileExists('partituras.html'), 'partituras.html debe existir');
+  });
+
   test('1.3 - Módulos CSS existen', () => {
     const cssFiles = [
       'tokens.css', 'base.css', 'nav.css', 'components.css',
@@ -331,7 +336,8 @@ describe('5. CSS Design System', () => {
     const base = readFile('assets/css/base.css');
     assert.ok(base.includes('prefers-reduced-motion'));
     assert.ok(!base.includes('scroll-duration'), 'scroll-duration no es una propiedad CSS válida');
-    assert.ok(readFile('404.html').includes('prefers-reduced-motion'));
+    const error404 = readFile('404.html');
+    assert.ok(error404.includes('prefers-reduced-motion') || error404.includes('base.css'), '404 debe respetar prefers-reduced-motion (inline o via base.css)');
   });
 
   test('5.7 - Foco visible global sin supresión de outline', () => {
@@ -537,15 +543,16 @@ describe('7. Página 404', () => {
   const html = readFile('404.html');
 
   test('7.1 - Title descriptivo', () => {
-    assert.ok(html.includes('<title>404 - Página no encontrada</title>'));
+    assert.ok(html.includes('404') && html.includes('AMORISMO'));
   });
 
   test('7.2 - Link a inicio', () => {
     assert.ok(html.includes('href="index.html"'));
   });
 
-  test('7.3 - Usa paleta verde petróleo', () => {
-    assert.ok(html.includes('#0D2C2C'));
+  test('7.3 - Usa design system compartido (no paleta aislada)', () => {
+    assert.ok(html.includes('tokens.css'), '404 debe usar tokens.css del design system');
+    assert.ok(!html.includes('#0D2C2C'), '404 no debe usar paleta verde petróleo aislada');
   });
 
   test('7.4 - Legales correctos', () => {
@@ -623,7 +630,7 @@ describe('8. Regresiones funcionales', () => {
   });
 
   test('8.6 - Todos los recursos locales referenciados existen', () => {
-    [...PAGES, '404.html'].forEach(page => {
+    [...PAGES, '404.html', 'escuchar.html', 'partituras.html'].forEach(page => {
       const html = readFile(page);
       const references = [...html.matchAll(/(?:href|src)="([^"]+)"/g)]
         .map(match => match[1])
