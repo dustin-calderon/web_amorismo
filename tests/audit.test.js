@@ -159,8 +159,9 @@ describe('2. Semántica HTML y SEO', () => {
         assert.ok(html.includes('href="assets/images/favicon.png"'));
       });
 
-      test('role="main" presente', () => {
-        assert.ok(html.includes('role="main"'));
+      test('Landmark main nativo presente sin rol redundante', () => {
+        assert.ok(html.includes('<main id="main" tabindex="-1">'));
+        assert.ok(!html.includes('role="main"'));
       });
 
       test('Footer FUERA de main', () => {
@@ -190,7 +191,7 @@ describe('2. Semántica HTML y SEO', () => {
 
       test('Incluye acceso directo al contenido principal', () => {
         assert.ok(html.includes('class="am-skip-link" href="#main"'));
-        assert.ok(html.includes('<main id="main" role="main" tabindex="-1">'));
+        assert.ok(html.includes('<main id="main" tabindex="-1">'));
       });
 
       test('Cada página navega con data-page para que nav.js pueda activar', () => {
@@ -709,6 +710,26 @@ describe('8. Regresiones funcionales', () => {
     const touchHover = responsive.match(/@media \(hover: none\)\s*\{([\s\S]*?)\n\}/)?.[1] || '';
     assert.ok(touchHover.includes('background-color: var(--am-home-accent)'));
     assert.ok(!touchHover.includes('.am-cta:hover { background: transparent; }'));
+  });
+
+  test('8.10 - Embeds de Spotify usan atributos HTML válidos y privacidad explícita', () => {
+    const html = readFile('escuchar.html');
+    const iframes = html.match(/<iframe [^>]+><\/iframe>/g) || [];
+    assert.equal(iframes.length, 2);
+
+    iframes.forEach(iframe => {
+      assert.ok(iframe.includes('width="600"'), `iframe con width inválido: ${iframe}`);
+      assert.ok(!iframe.includes('width="100%"'), `iframe no debe usar porcentaje en atributo width: ${iframe}`);
+      assert.ok(iframe.includes('allowfullscreen'), `iframe debe permitir fullscreen de forma compatible: ${iframe}`);
+      assert.ok(iframe.includes('referrerpolicy="strict-origin-when-cross-origin"'), `iframe debe limitar referrer: ${iframe}`);
+    });
+  });
+
+  test('8.11 - Grupos de thumbnails tienen rol compatible con aria-label', () => {
+    ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
+      const html = readFile(page);
+      assert.ok(html.includes('class="am-gallery__thumbs" role="group" aria-label="Seleccionar fotografía"'), `${page}: thumbnails necesitan role=group para aria-label`);
+    });
   });
 });
 
