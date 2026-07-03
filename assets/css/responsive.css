@@ -118,8 +118,6 @@
   .am-gallery { padding: var(--am-sp-6) var(--am-sp-4); }
   .am-gallery__main { margin-bottom: var(--am-sp-5); }
   .am-gallery__thumbs { grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); }
-  .am-testimonials { padding: var(--am-sp-6) var(--am-sp-4); }
-  .am-testimonial { padding: var(--am-sp-4); }
   .am-synopsis { padding: var(--am-sp-6) var(--am-sp-4); }
   .am-cast { padding: var(--am-sp-6) var(--am-sp-4); }
   .am-reviews { padding: var(--am-sp-6) var(--am-sp-4); }

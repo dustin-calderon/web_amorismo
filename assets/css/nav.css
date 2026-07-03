@@ -124,7 +124,7 @@
   right: var(--am-sp-3);
   bottom: 0.35rem;
   height: 2px;
-  border-radius: var(--am-radius-sm);
+  border-radius: 1px;
   background: var(--am-nav-active-text);
 }
 

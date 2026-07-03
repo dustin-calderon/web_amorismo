@@ -43,35 +43,6 @@
   margin: 0;
 }
 
-.am-hero__copy strong {
-  color: var(--am-home-accent-soft);
-  font-weight: 700;
-}
-
-.am-hero__meta {
-  margin: 0;
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: var(--am-home-text);
-}
-
-.am-hero__meta strong {
-  color: var(--am-home-text);
-  display: block;
-  margin-bottom: var(--am-sp-2);
-}
-
-/* Centered variant — single-column hero */
-.am-hero__grid--centered {
-  grid-template-columns: 1fr;
-  text-align: center;
-}
-
-.am-hero__grid--centered .am-hero__body {
-  text-align: center;
-  align-items: center;
-}
-
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    Landing Hero – Home page only
    Cinema-poster hero with triptych silhouettes.
@@ -168,16 +139,6 @@
   height: auto;
   /* New logo is already white — no invert filter needed, only depth shadow */
   filter: drop-shadow(var(--am-shadow-landing-logo));
-}
-
-.am-landing-hero__tagline {
-  font-family: var(--am-font-sans);
-  font-size: clamp(0.9375rem, 1.4vw, 1.125rem);
-  line-height: 1.7;
-  color: var(--am-home-text-muted);
-  font-style: italic;
-  letter-spacing: 0.01em;
-  margin: clamp(1rem, 2vw, 1.5rem) 0 0;
 }
 
 /* ── Hero form — reuses .am-contact__form system, only adds spacing ── */

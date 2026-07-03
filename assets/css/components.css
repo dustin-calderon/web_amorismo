@@ -3,6 +3,8 @@
 /* ===== CTA Button ===== */
 .am-cta {
   display: inline-block;
+  -webkit-appearance: none;
+  appearance: none;
   background-color: var(--am-home-accent);
   color: var(--am-on-accent);
   padding: var(--am-sp-4) var(--am-sp-6);
