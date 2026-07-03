@@ -92,7 +92,9 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: var(--am-home-bg);
+  background: transparent;
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
 }
 
 .am-landing-hero__photo {
@@ -133,7 +135,7 @@
   mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
 }
 
-/* ── Gradient overlay — vignette + bottom fade ── */
+/* ── Gradient overlay — vignette only (bottom fade handled by __bg mask) ── */
 .am-landing-hero__bg::after {
   content: '';
   position: absolute;
@@ -144,13 +146,6 @@
       transparent 0%,
       var(--am-hero-vignette-mid) 55%,
       var(--am-hero-vignette-edge) 100%
-    ),
-    linear-gradient(
-      to top,
-      var(--am-home-bg) 0%,
-      var(--am-hero-fade-dense) 15%,
-      var(--am-hero-fade-soft) 38%,
-      transparent 60%
     );
   pointer-events: none;
 }
