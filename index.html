@@ -57,20 +57,12 @@
 <main id="main" role="main" tabindex="-1">
 
 	<!-- ===== 1. LANDING HERO: Triptych + Logo + Tagline + CTA ===== -->
-	<section class="am-landing-hero" data-hero-mode="masks">
-		<!-- Option A: CSS-mask triptych -->
+	<section class="am-landing-hero">
 		<div class="am-landing-hero__bg" aria-hidden="true">
-			<span class="am-landing-hero__shadow am-landing-hero__shadow--vol1"></span>
-			<span class="am-landing-hero__shadow am-landing-hero__shadow--vol2"></span>
-			<span class="am-landing-hero__shadow am-landing-hero__shadow--vol3"></span>
-		</div>
-		<!-- Option B: Photo backgrounds -->
-		<div class="am-landing-hero__bg am-landing-hero__bg--photos" aria-hidden="true">
 			<img src="assets/images/hero/fondo-vol1.jpeg" alt="" class="am-landing-hero__photo am-landing-hero__photo--vol1">
 			<img src="assets/images/hero/fondo-vol2.jpeg" alt="" class="am-landing-hero__photo am-landing-hero__photo--vol2">
 			<img src="assets/images/hero/fondo-vol3.jpeg" alt="" class="am-landing-hero__photo am-landing-hero__photo--vol3">
 		</div>
-		<button class="am-landing-hero__toggle" id="hero-toggle" type="button" aria-label="Cambiar fondo del hero">A</button>
 		<div class="am-landing-hero__content">
 			<h1>
 				<img src="assets/images/amorismo-logo.png" alt="AMORISMO" class="am-landing-hero__logo" width="352" height="362">
@@ -230,13 +222,6 @@
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
-<script>
-document.getElementById('hero-toggle')?.addEventListener('click', function () {
-	const hero = document.querySelector('.am-landing-hero');
-	const isPhotos = hero.dataset.heroMode === 'photos';
-	hero.dataset.heroMode = isPhotos ? 'masks' : 'photos';
-	this.textContent = isPhotos ? 'A' : 'B';
-});
-</script>
+
 </body>
 </html>

@@ -88,71 +88,50 @@
   overflow: hidden;
 }
 
-/* ── Triptych background halos ── */
+/* ── Photo triptych background ── */
 .am-landing-hero__bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    radial-gradient(ellipse 55% 90% at 28% 50%, var(--am-hero-shadow-vol1) 0%, transparent 70%),
-    radial-gradient(ellipse 65% 60% at 50% 48%, var(--am-hero-shadow-vol2) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 85% at 85% 50%, var(--am-hero-shadow-vol3) 0%, transparent 65%);
+  background: var(--am-home-bg);
 }
 
-/* ── Silhouette masks — visible shapes with minimal blur ── */
-.am-landing-hero__shadow {
+.am-landing-hero__photo {
   position: absolute;
-  display: block;
-  pointer-events: none;
-  background-color: currentColor;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  top: 0;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
 }
 
-/* Vol I — red couple */
-.am-landing-hero__shadow--vol1 {
-  width: clamp(380px, 44vw, 700px);
-  aspect-ratio: 1;
+/* Vol I — dark burdeos atmosphere */
+.am-landing-hero__photo--vol1 {
   left: 18%;
-  top: 50%;
-  color: var(--am-hero-shadow-vol1);
-  opacity: 0.90;
-  filter: blur(3px);
-  transform: translateY(-50%) scaleX(-1);
-  -webkit-mask-image: url('../images/hero/amorismo-01-sombra.png');
-  mask-image: url('../images/hero/amorismo-01-sombra.png');
+  width: 55%;
+  object-position: right center;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 72%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 25%, black 72%, transparent 100%);
 }
 
-/* Vol II — brushstroke */
-.am-landing-hero__shadow--vol2 {
-  width: clamp(700px, 80vw, 1300px);
-  aspect-ratio: 1345 / 519;
-  left: 50%;
-  top: 48%;
-  transform: translateX(-35%) translateY(-50%) rotate(-1deg);
-  color: var(--am-hero-shadow-vol2);
-  opacity: 0.85;
-  filter: blur(2px);
-  -webkit-mask-image: url('../images/hero/amorismo-02-sombra.png');
-  mask-image: url('../images/hero/amorismo-02-sombra.png');
+/* Vol II — brushstroke, center, layered */
+.am-landing-hero__photo--vol2 {
+  left: 28%;
+  width: 55%;
+  object-position: center;
+  opacity: 0.55;
+  mix-blend-mode: lighten;
 }
 
-/* Vol III — green figure */
-.am-landing-hero__shadow--vol3 {
-  width: clamp(360px, 40vw, 640px);
-  aspect-ratio: 1280 / 1438;
-  right: 0%;
-  top: 50%;
-  color: var(--am-hero-shadow-vol3);
-  opacity: 0.88;
-  filter: blur(3px);
-  transform: translateY(-50%) rotate(1deg);
-  -webkit-mask-image: url('../images/hero/amorismo-03-sombra.png');
-  mask-image: url('../images/hero/amorismo-03-sombra.png');
+/* Vol III — dark green atmosphere */
+.am-landing-hero__photo--vol3 {
+  right: -5%;
+  left: auto;
+  width: 50%;
+  object-position: center;
+  -webkit-mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
+  mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
 }
 
 /* ── Gradient overlay — vignette + bottom fade ── */
@@ -177,84 +156,6 @@
   pointer-events: none;
 }
 
-/* ── Option B: Photo backgrounds ── */
-.am-landing-hero__bg--photos {
-  display: none;
-  background: var(--am-home-bg);
-}
-
-.am-landing-hero__photo {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.72;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
-}
-
-/* Vol I — dark burdeos atmosphere, left third */
-.am-landing-hero__photo--vol1 {
-  left: 12%;
-  width: 50%;
-  object-position: center;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 22%, black 65%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 22%, black 65%, transparent 100%);
-}
-
-/* Vol II — brushstroke, center, layered on top */
-.am-landing-hero__photo--vol2 {
-  left: 28%;
-  width: 55%;
-  object-position: center;
-  opacity: 0.55;
-  mix-blend-mode: lighten;
-}
-
-/* Vol III — dark green atmosphere, right third */
-.am-landing-hero__photo--vol3 {
-  right: -5%;
-  left: auto;
-  width: 50%;
-  object-position: center;
-  -webkit-mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
-  mask-image: linear-gradient(to left, black 0%, black 55%, transparent 100%);
-}
-
-/* ── Mode switching via data attribute ── */
-[data-hero-mode="photos"] > .am-landing-hero__bg:not(.am-landing-hero__bg--photos) {
-  display: none;
-}
-
-[data-hero-mode="photos"] > .am-landing-hero__bg--photos {
-  display: block;
-}
-
-/* ── Toggle button ── */
-.am-landing-hero__toggle {
-  position: fixed;
-  bottom: var(--am-sp-6);
-  right: var(--am-sp-6);
-  z-index: 100;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--am-home-border);
-  border-radius: 50%;
-  background: rgba(10, 10, 10, 0.6);
-  color: var(--am-home-text);
-  font-family: var(--am-font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  transition: border-color 0.25s ease, background-color 0.25s ease;
-}
-
-.am-landing-hero__toggle:hover {
-  border-color: var(--am-home-text);
-  background: rgba(10, 10, 10, 0.8);
-}
 
 /* ── Content cluster — logo → tagline → CTA ── */
 .am-landing-hero__content {
@@ -311,54 +212,4 @@
 
 .am-landing-hero__cta svg {
   flex-shrink: 0;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   Responsive — Landing Hero
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-
-@media (max-width: 768px) {
-  .am-landing-hero__shadow--vol1 {
-    width: clamp(200px, 42vw, 340px);
-    left: 24%;
-    opacity: 0.40;
-    filter: blur(3px);
-  }
-
-  .am-landing-hero__shadow--vol2 {
-    width: clamp(320px, 68vw, 500px);
-    left: 38%;
-    opacity: 0.32;
-    filter: blur(2px);
-  }
-
-  .am-landing-hero__shadow--vol3 {
-    width: clamp(180px, 36vw, 300px);
-    right: -2%;
-    opacity: 0.30;
-    filter: blur(4px);
-  }
-}
-
-@media (max-width: 480px) {
-  .am-landing-hero__shadow--vol1 {
-    width: 55vw;
-    left: 22vw;
-    opacity: 0.32;
-    filter: blur(4px);
-  }
-
-  .am-landing-hero__shadow--vol2 {
-    width: 85vw;
-    left: 8vw;
-    opacity: 0.26;
-    filter: blur(3px);
-  }
-
-  .am-landing-hero__shadow--vol3 {
-    width: 50vw;
-    right: -10vw;
-    opacity: 0.22;
-    filter: blur(5px);
-  }
 }
