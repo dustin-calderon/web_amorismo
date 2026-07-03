@@ -104,9 +104,11 @@ body.am-body--home {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.55;
-  background-image: url("../images/grain-dust.png");
-  background-size: 800px 800px;
+  opacity: 0.1;
+  background-image: url("../images/old_film_grain.png");
+  background-size: 1200px auto;
+  filter: invert(1);
+  mix-blend-mode: screen;
 }
 
 /* ===== Typography ===== */
