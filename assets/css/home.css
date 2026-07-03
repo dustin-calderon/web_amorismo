@@ -97,6 +97,10 @@
   line-height: 1.6;
 }
 
+.am-statement__credit-name {
+  color: var(--am-home-accent-soft);
+}
+
 .am-statement__body p + p {
   margin-top: var(--am-sp-5);
 }
