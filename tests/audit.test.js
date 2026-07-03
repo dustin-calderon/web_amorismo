@@ -465,7 +465,7 @@ describe('5. CSS Design System', () => {
     const volumeTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
 
     assert.ok(!volumeTwoTheme.includes('--am-logo-filter: none'), 'none + drop-shadow() invalida filter');
-    assert.ok(volumeTwoTheme.includes('--am-logo-filter: brightness(1)'));
+    assert.ok(volumeTwoTheme.includes('--am-logo-filter: invert(1)'));
     // Hero uses pre-baked white logo (no filter needed); only vol page titles use the token
     assert.ok(components.includes('var(--am-logo-filter) drop-shadow'));
   });

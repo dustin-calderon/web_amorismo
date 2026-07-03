@@ -56,8 +56,8 @@
   --am-noise-color: var(--am-home-text);
   --am-footer-logo-bg: transparent;
   --am-footer-logo-padding: 0;
-  /* Logo color control: dark red logo → invert to cream on dark backgrounds */
-  --am-logo-filter: brightness(0) invert(1) brightness(0.96) sepia(0.05);
+  /* Logo color control: white logo → keep white on dark backgrounds */
+  --am-logo-filter: brightness(1);
 
   /* Espaciado (escala 4px) */
   --am-sp-1: 0.25rem;
@@ -189,8 +189,8 @@ body[data-vol="2"] {
   --am-noise-blend:       multiply;
   --am-footer-logo-bg:    transparent;
   --am-footer-logo-padding: 0;
-  /* Light theme: keep original logo color while preserving composed filters */
-  --am-logo-filter: brightness(1);
+  /* Light theme: invert white logo to dark gray */
+  --am-logo-filter: invert(1) opacity(0.85);
 
   /* Gradiente: muy suave sobre el fondo crema */
   --am-bg-grad-color-a:   rgba(167, 25, 33, 0.06);
