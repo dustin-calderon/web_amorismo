@@ -66,7 +66,8 @@ web_amorismo/
 │   ├── js/
 │   │   ├── nav.js           # Estado activo de navegación
 │   │   ├── gallery.js       # Galerías interactivas
-│   │   └── forms.js         # Newsletter Mautic compartida
+│   │   ├── forms.js         # Newsletter Mautic compartida
+│   │   └── motion.js        # Scroll-triggered animations
 │   └── images/
 │       ├── covers/          # Portadas optimizadas de Vol. I, II, III
 │       ├── hero/            # Fondos y siluetas del landing hero
@@ -93,10 +94,11 @@ web_amorismo/
    `tokens.css` define paletas raw y tokens semánticos. Las páginas de volumen usan `body[data-vol="1|2|3"]` para remapear colores, sombras, fondo ambiental, nav y CTAs.
 
 4. **JavaScript mínimo y defensivo**
-   Solo hay tres scripts de producción:
+   Solo hay cuatro scripts de producción:
    - `nav.js`, sin dependencias.
    - `gallery.js`, con early return si no hay galería.
    - `forms.js`, IIFE sin dependencias para enviar newsletter a Mautic.
+   - `motion.js`, scroll-triggered animations con `IntersectionObserver`.
 
 5. **Newsletter sin falsa confirmación**
    El working tree actual incluye `assets/js/forms.js` y formularios visibles/activos. El script apunta a `FORM_ID = 18` en `https://news.amorismoelmusical.com`. Los tests validan estructura y configuración local, pero no sustituyen una prueba real de alta contra Mautic.
@@ -106,6 +108,9 @@ web_amorismo/
 
 7. **No overcoding**
    No se añade framework, compilador ni abstracción nueva mientras la web siga siendo estática y pequeña.
+
+8. **SEO + GEO (Generative Engine Optimization)**
+   Structured data (JSON-LD) con `WebSite`, `MusicGroup` y `MusicAlbum` schemas para Rich Results y descubribilidad por motores generativos (ChatGPT, Gemini, Perplexity). Incluye `speakable` para asistentes de voz.
 
 ## Home Actual
 
@@ -238,21 +243,21 @@ Comando:
 node --test tests/audit.test.js
 ```
 
-Cobertura del test actual:
+Cobertura del test actual (209 tests, 17 suites):
 
 - Existencia de páginas y módulos.
 - Semántica HTML.
-- SEO básico.
+- SEO: canonical, OG, twitter:card/title/description, títulos con keyword branding.
 - Recursos locales referenciados.
 - Estado de formularios activos con configuración Mautic.
 - Accesibilidad básica.
 - Design system y tokens.
 - JavaScript defensivo.
 - Seguridad básica de enlaces externos.
+- Deploy hygiene: `_headers`, `robots.txt`, `sitemap.xml` con `lastmod`, cache-control.
+- Structured Data (JSON-LD): WebSite + MusicGroup en home, MusicAlbum en volúmenes, og:type music.album, anti-schema-spam en auxiliares.
 
-Nota: algunos nombres internos de tests conservan wording histórico como "4 páginas", pero `PAGES` ya incluye las 6 páginas públicas principales.
-
-Estado conocido al 2026-07-04: `node --test tests/audit.test.js` no está verde. Resultado actual: 184/185. Falla solo en `5.17 - El filtro del logo se puede componer con drop-shadow` porque el test espera que `components.css` incluya `var(--am-logo-filter) drop-shadow`. Los checks de formularios activos y backend Mautic sí pasan con el estado actual.
+Estado conocido al 2026-07-04: 209/209 pass, 0 fail.
 
 ## Deploy
 
@@ -289,12 +294,7 @@ curl -I https://amorismoelmusical.com
    - Criterio cerrado: sin grano en Home, Vol. I y Vol. III.
    - Vol. II conserva grano visible con `--am-noise-opacity: 0.25`.
 
-3. **Tests**
-   - Actualizar nombres descriptivos obsoletos en `audit.test.js`.
-   - Añadir checks específicos del hero home: `fondo-vol1.jpeg`, dimensiones 1500x1500 y `left: 23%` si se quiere bloquear ese encuadre.
-   - Resolver o ajustar `5.17` para que el contrato del filtro de logo coincida con `components.css`.
-
-4. **Contenido pendiente**
+3. **Contenido pendiente**
    - Partituras sigue como coming soon.
    - Vol. III Spotify sigue pendiente.
    - Algunos elencos valencianos de Vol. I y Vol. II están representados visualmente sin nombres publicados.

@@ -772,6 +772,8 @@ describe('8. Regresiones funcionales', () => {
       assert.ok(html.match(/<meta property="og:url" content="https:\/\/amorismoelmusical\.com\//));
       assert.ok(html.match(/<meta property="og:image" content="https:\/\/amorismoelmusical\.com\//));
       assert.ok(html.includes('<meta name="twitter:card" content="summary_large_image">'));
+      assert.ok(html.includes('<meta name="twitter:title"'), `${page}: debe tener twitter:title`);
+      assert.ok(html.includes('<meta name="twitter:description"'), `${page}: debe tener twitter:description`);
     });
   });
 
@@ -1008,11 +1010,105 @@ describe('10. Deploy Hygiene & SEO', () => {
     assert.ok(!sitemap.includes('404.html'), 'sitemap no debe incluir 404.html');
   });
 
+  test('10.3b - sitemap.xml incluye lastmod en todas las entradas', () => {
+    const sitemap = readFile('sitemap.xml');
+    const urls = (sitemap.match(/<url>/g) || []).length;
+    const lastmods = (sitemap.match(/<lastmod>/g) || []).length;
+    assert.equal(urls, lastmods, `Cada <url> debe tener <lastmod>: ${urls} urls vs ${lastmods} lastmods`);
+    assert.ok(sitemap.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/), 'lastmod debe usar formato YYYY-MM-DD');
+  });
+
   test('10.4 - Archivos raw/fuentes no tracked en .gitignore', () => {
     const gitignore = readFile('.gitignore');
     assert.ok(gitignore.includes('Fotos/'), '.gitignore debe excluir Fotos/');
     assert.ok(gitignore.includes('scripts/'), '.gitignore debe excluir scripts/');
     assert.ok(gitignore.includes('LINEAS-AMORISMO.png'), '.gitignore debe excluir LINEAS-AMORISMO.png');
     assert.ok(gitignore.includes('logo_dustin_amorismo.png'), '.gitignore debe excluir logo_dustin_amorismo.png');
+  });
+
+  test('10.5 - _headers incluye cache-control para assets estáticos', () => {
+    const headers = readFile('_headers');
+    assert.ok(headers.includes('/assets/*'), '_headers debe aplicar reglas a /assets/*');
+    assert.ok(headers.includes('Cache-Control:'), '_headers debe definir Cache-Control para assets');
+    assert.ok(headers.includes('immutable'), '_headers debe usar immutable para assets versionados');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 11. STRUCTURED DATA (JSON-LD) — GEO
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('11. Structured Data (JSON-LD) — GEO', () => {
+
+  test('11.1 - index.html contiene JSON-LD WebSite + MusicGroup', () => {
+    const html = readFile('index.html');
+    assert.ok(html.includes('application/ld+json'), 'index.html debe tener JSON-LD');
+
+    const jsonLdMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+    assert.ok(jsonLdMatch, 'JSON-LD script tag debe existir');
+
+    const data = JSON.parse(jsonLdMatch[1]);
+    assert.ok(data['@graph'], 'JSON-LD debe usar @graph para múltiples entidades');
+
+    const types = data['@graph'].map(item => item['@type']);
+    assert.ok(types.includes('WebSite'), 'Debe incluir WebSite');
+    assert.ok(types.includes('MusicGroup'), 'Debe incluir MusicGroup');
+
+    const website = data['@graph'].find(i => i['@type'] === 'WebSite');
+    assert.ok(website.speakable, 'WebSite debe tener speakable para GEO');
+    assert.ok(website.inLanguage === 'es', 'inLanguage debe ser es');
+
+    const musicGroup = data['@graph'].find(i => i['@type'] === 'MusicGroup');
+    assert.ok(musicGroup.album.length === 3, 'MusicGroup debe listar 3 álbumes');
+    assert.ok(musicGroup.sameAs.length >= 2, 'MusicGroup debe tener sameAs con redes sociales');
+    assert.ok(musicGroup.member.length === 2, 'MusicGroup debe tener 2 miembros');
+  });
+
+  test('11.2 - Páginas de volumen contienen JSON-LD MusicAlbum', () => {
+    ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
+      const html = readFile(page);
+      assert.ok(html.includes('application/ld+json'), `${page}: debe tener JSON-LD`);
+
+      const jsonLdMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+      assert.ok(jsonLdMatch, `${page}: JSON-LD script tag debe existir`);
+
+      const data = JSON.parse(jsonLdMatch[1]);
+      assert.equal(data['@type'], 'MusicAlbum', `${page}: @type debe ser MusicAlbum`);
+      assert.ok(data.name.includes('AMORISMO Vol.'), `${page}: name debe incluir AMORISMO Vol.`);
+      assert.ok(data.image.startsWith('https://'), `${page}: image debe ser URL absoluta`);
+      assert.ok(data.byArtist, `${page}: debe referenciar byArtist`);
+      assert.ok(data.genre.includes('Teatro Musical'), `${page}: genre debe incluir Teatro Musical`);
+      assert.equal(data.inLanguage, 'es', `${page}: inLanguage debe ser es`);
+    });
+  });
+
+  test('11.3 - Páginas de volumen usan og:type music.album', () => {
+    ['vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
+      const html = readFile(page);
+      assert.ok(html.includes('og:type" content="music.album"'),
+        `${page}: og:type debe ser music.album, no website`);
+    });
+  });
+
+  test('11.4 - Títulos incluyen keyword branding', () => {
+    PAGES.forEach(page => {
+      const html = readFile(page);
+      const titleMatch = html.match(/<title>([^<]+)<\/title>/);
+      assert.ok(titleMatch, `${page}: debe tener <title>`);
+      const title = titleMatch[1];
+      assert.ok(title.includes('AMORISMO'), `${page}: título debe incluir AMORISMO`);
+      assert.ok(
+        title.includes('Dustin Calderón') || title.includes('Musical'),
+        `${page}: título debe incluir keyword secundario ("Dustin Calderón" o "Musical")`
+      );
+    });
+  });
+
+  test('11.5 - Escuchar y Partituras NO tienen JSON-LD (páginas auxiliares)', () => {
+    ['escuchar.html', 'partituras.html'].forEach(page => {
+      const html = readFile(page);
+      assert.ok(!html.includes('application/ld+json'),
+        `${page}: páginas auxiliares no deben tener JSON-LD (evita schema spam)`);
+    });
   });
 });

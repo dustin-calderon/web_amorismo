@@ -4,3 +4,7 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Long-term cache for static assets (CSS, JS, images, fonts)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

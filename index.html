@@ -11,7 +11,9 @@
 	<meta property="og:url" content="https://amorismoelmusical.com/">
 	<meta property="og:image" content="https://amorismoelmusical.com/assets/images/amorismo-cartel.webp">
 	<meta name="twitter:card" content="summary_large_image">
-	<title>AMORISMO – El Micromusical</title>
+	<meta name="twitter:title" content="AMORISMO – El Micromusical de Dustin Calderón">
+	<meta name="twitter:description" content="Tres volúmenes de historias condensadas en música y verdad. Música y letra de Dustin Calderón.">
+	<title>AMORISMO – El Micromusical | Dustin Calderón</title>
 	<link rel="canonical" href="https://amorismoelmusical.com/">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -126,7 +128,19 @@
 
 	<hr class="am-divider">
 
-	<!-- ===== 2. BIOS: Dustin + David ===== -->
+	<!-- ===== 2. ¿QUÉ SIGNIFICA AMORISMO? ===== -->
+	<section class="am-statement" id="que-es-amorismo">
+		<div class="am-statement__body am-statement__body--centered am-motion">
+			<p>¿Qué significa Amorismo?</p>
+			<p>Es la unión de dos conceptos: la palabra <strong>Amor</strong> y el sufijo <strong>«-ismo»</strong> de las corrientes artísticas.</p>
+			<p>Piensa en un museo. Dos personas pueden pararse frente al mismo cuadro y, dependiendo de la lente —cubismo, dadaísmo, realismo—, interpretar la obra de maneras completamente opuestas.</p>
+			<p>A partir de esta idea, <span class="am-statement__credit-name">David Gregory</span> propone el concepto de <em>Amorismo</em>: la certeza de que con el amor pasa exactamente lo mismo. Todos usamos la misma palabra, pero nadie lo siente, lo vive ni se comporta igual.</p>
+		</div>
+	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 3. BIOS: Dustin + David ===== -->
 	<section class="am-bios" id="equipo">
 		<h2 class="am-bios__heading">Equipo Creativo</h2>
 
@@ -218,6 +232,80 @@
 <script defer src="assets/js/nav.js"></script>
 <script defer src="assets/js/forms.js"></script>
 <script defer src="assets/js/motion.js"></script>
+
+<!-- Structured Data: SEO + GEO (Generative Engine Optimization) -->
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": "https://amorismoelmusical.com/#website",
+			"name": "AMORISMO – El Micromusical",
+			"url": "https://amorismoelmusical.com/",
+			"description": "Micromusical contemporáneo de Dustin Calderón. Tres volúmenes de historias sobre amor, soledad y vulnerabilidad.",
+			"inLanguage": "es",
+			"publisher": {
+				"@type": "Person",
+				"name": "Dustin Calderón",
+				"url": "https://dustincalderon.com"
+			},
+			"speakable": {
+				"@type": "SpeakableSpecification",
+				"cssSelector": [".am-statement__headline", ".am-statement__body", ".am-statement__quote"]
+			}
+		},
+		{
+			"@type": "MusicGroup",
+			"@id": "https://amorismoelmusical.com/#musicgroup",
+			"name": "AMORISMO",
+			"description": "Micromusical contemporáneo e íntimo que explora el amor, la soledad, la vulnerabilidad y esas pequeñas decisiones que pueden cambiar el rumbo de una relación.",
+			"genre": ["Teatro Musical", "Musical Contemporáneo"],
+			"foundingLocation": {
+				"@type": "Place",
+				"name": "Madrid, España"
+			},
+			"member": [
+				{
+					"@type": "Person",
+					"name": "Dustin Calderón",
+					"roleName": "Compositor, director musical y letrista"
+				},
+				{
+					"@type": "Person",
+					"name": "David Gregory",
+					"roleName": "Director de escena"
+				}
+			],
+			"album": [
+				{
+					"@type": "MusicAlbum",
+					"name": "AMORISMO Vol. I",
+					"url": "https://amorismoelmusical.com/vol-1.html",
+					"image": "https://amorismoelmusical.com/assets/images/covers/portada-vol-1.webp"
+				},
+				{
+					"@type": "MusicAlbum",
+					"name": "AMORISMO Vol. II",
+					"url": "https://amorismoelmusical.com/vol-2.html",
+					"image": "https://amorismoelmusical.com/assets/images/covers/portada-vol-2.webp"
+				},
+				{
+					"@type": "MusicAlbum",
+					"name": "AMORISMO Vol. III",
+					"url": "https://amorismoelmusical.com/vol-3.html",
+					"image": "https://amorismoelmusical.com/assets/images/covers/portada-vol-3.webp"
+				}
+			],
+			"sameAs": [
+				"https://www.instagram.com/amorismoelmusical/",
+				"https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0"
+			],
+			"image": "https://amorismoelmusical.com/assets/images/amorismo-cartel.webp"
+		}
+	]
+}
+</script>
 
 </body>
 </html>

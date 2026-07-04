@@ -105,6 +105,13 @@
   margin-top: var(--am-sp-5);
 }
 
+/* ── Centered body variant (etymology / "¿Qué significa?") ── */
+.am-statement__body--centered {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
 /* ── Testimonial Quotes — floating colored text, no cards ── */
 .am-statement__quotes {
   display: grid;
