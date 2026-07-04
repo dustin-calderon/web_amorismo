@@ -81,6 +81,11 @@
         showFeedback(form, 'success', '\u00a1Gracias! Te mantendremos al tanto.');
         input.value = '';
         btn.textContent = '\u2713 Enviado';
+        // Re-enable after delay so user can subscribe another email
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }, 3000);
       } else {
         throw new Error('Status ' + res.status);
       }
