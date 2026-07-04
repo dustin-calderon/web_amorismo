@@ -3,9 +3,18 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Página no encontrada en la web de AMORISMO. Vuelve al inicio y sigue disfrutando de la música.">
-	<meta name="robots" content="noindex">
-	<title>404 – Página no encontrada | AMORISMO</title>
+	<meta name="facebook-domain-verification" content="1ptp0k5fhktlvoxo1y8tif2kxrf4m1">
+	<meta name="description" content="AMORISMO Vol. IV – ¿Puedes elegir una vida con alguien sin haber enterrado del todo las vidas que imaginaste con otra persona? Próximamente.">
+	<meta property="og:title" content="AMORISMO Vol. IV">
+	<meta property="og:description" content="¿Puedes elegir una vida con alguien sin haber enterrado del todo las vidas que imaginaste con otra persona? Próximamente.">
+	<meta property="og:type" content="music.album">
+	<meta property="og:url" content="https://amorismoelmusical.com/vol-4.html">
+	<meta property="og:image" content="https://amorismoelmusical.com/assets/images/covers/portada-vol-4.webp">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="AMORISMO Vol. IV | Musical de Dustin Calderón">
+	<meta name="twitter:description" content="¿Puedes elegir una vida con alguien sin haber enterrado del todo las vidas que imaginaste con otra persona? Próximamente.">
+	<title>AMORISMO Vol. IV | Musical de Dustin Calderón</title>
+	<link rel="canonical" href="https://amorismoelmusical.com/vol-4.html">
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,10 +27,16 @@
 	<link rel="stylesheet" href="assets/css/base.css">
 	<link rel="stylesheet" href="assets/css/nav.css">
 	<link rel="stylesheet" href="assets/css/components.css">
+	<link rel="stylesheet" href="assets/css/hero.css">
+	<link rel="stylesheet" href="assets/css/volume.css">
+	<link rel="stylesheet" href="assets/css/gallery.css">
+	<link rel="stylesheet" href="assets/css/home.css">
+	<link rel="stylesheet" href="assets/css/contact.css">
 	<link rel="stylesheet" href="assets/css/footer.css">
+	<link rel="stylesheet" href="assets/css/motion.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
 </head>
-<body>
+<body data-vol="4">
 <!-- Background -->
 <div class="am-bg-gradient"></div>
 <div class="am-bg-noise"></div>
@@ -40,7 +55,7 @@
 		<a href="vol-3.html" class="am-nav__link" data-page="vol3">Vol III</a>
 		<a href="vol-4.html" class="am-nav__link" data-page="vol4">Vol IV</a>
 	</div>
-	<a href="index.html#correo" class="am-nav__mail" aria-label="Newsletter – suscríbete al correo">
+	<a href="#correo" class="am-nav__mail" aria-label="Newsletter – suscríbete al correo">
 		<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 			<rect x="2" y="4" width="20" height="16" rx="2"/>
 			<path d="m2 7 10 7 10-7"/>
@@ -49,19 +64,44 @@
 </nav>
 
 <main id="main" tabindex="-1">
-	<section class="am-error">
-		<span class="am-error__emoji" aria-hidden="true">🎭</span>
-		<h1 class="am-error__code">404</h1>
-		<p class="am-error__subtitle">Acto no encontrado</p>
-		<p class="am-error__copy">
-			Parece que esta página decidió no salir a escena. Igual que en el teatro, a veces la función no se puede dar.<br>
-			No te preocupes — vuelve al escenario principal y sigue disfrutando de la música.
-		</p>
-		<div class="am-error__buttons">
-			<a href="index.html" class="am-cta" id="cta-404-home">Volver a Inicio</a>
-			<a href="https://open.spotify.com/intl-es/album/2z9biYhBAbUPlokl17H5z0" class="am-cta am-cta--outline" id="cta-404-spotify" target="_blank" rel="noopener noreferrer">Escuchar en Spotify</a>
+
+	<!-- ===== 1. HERO: Álbum + Frase + Próximamente ===== -->
+	<section class="am-page-title">
+		<h1>AMORISMO · VOL. IV</h1>
+	</section>
+
+	<section class="am-hero am-volume-hero">
+		<div class="am-hero__grid">
+			<div class="am-hero__visual">
+				<img src="assets/images/covers/portada-vol-4.webp" alt="Portada de AMORISMO Vol. IV" class="am-hero__image" width="800" height="800" fetchpriority="high">
+			</div>
+			<div class="am-hero__body">
+				<p class="am-hero__copy">
+				¿Puedes elegir una vida con alguien<br>
+				sin haber enterrado del todo<br>
+				las vidas que imaginaste<br>
+				con otra persona?
+			</p>
+				<p class="am-hero__note">Próximamente</p>
+				<a href="#correo" class="am-cta" id="cta-vol4">Suscríbete a la newsletter</a>
+			</div>
 		</div>
 	</section>
+
+	<hr class="am-divider">
+
+	<!-- ===== 2. CORREO ===== -->
+	<section class="am-contact" id="correo">
+		<h2 class="am-contact__heading">Mantente al tanto</h2>
+		<p class="am-contact__text">Newsletter de Amorismo</p>
+		<form class="am-contact__form" id="contact-form">
+			<label for="contact-email" class="sr-only">Tu correo electrónico</label>
+			<input type="email" name="email" class="am-contact__input" placeholder="Tu correo electrónico" required autocomplete="email" id="contact-email">
+			<button type="submit" class="am-cta" id="contact-submit">Entrar</button>
+		</form>
+		<p class="am-contact__feedback" aria-live="polite"></p>
+	</section>
+
 </main>
 
 <footer class="am-footer">
@@ -78,7 +118,6 @@
 			</a>
 		</div>
 	</div>
-	<!-- Bottom -->
 	<div class="am-footer__bottom">
 		<p class="am-footer__copyright">Copyright © 2026 Dustin Calderón · Derechos reservados.</p>
 		<nav class="am-footer__legal" aria-label="Enlaces legales">
@@ -90,6 +129,27 @@
 </footer>
 
 <script defer src="assets/js/nav.js"></script>
+<script defer src="assets/js/forms.js"></script>
 
+<!-- Structured Data: MusicAlbum -->
+<script type="application/ld+json">
+{
+	"@context": "https://schema.org",
+	"@type": "MusicAlbum",
+	"name": "AMORISMO Vol. IV",
+	"description": "¿Puedes elegir una vida con alguien sin haber enterrado del todo las vidas que imaginaste con otra persona?",
+	"albumProductionType": "StudioAlbum",
+	"genre": ["Teatro Musical", "Musical Contemporáneo"],
+	"inLanguage": "es",
+	"image": "https://amorismoelmusical.com/assets/images/covers/portada-vol-4.webp",
+	"url": "https://amorismoelmusical.com/vol-4.html",
+	"byArtist": {
+		"@type": "MusicGroup",
+		"name": "AMORISMO",
+		"@id": "https://amorismoelmusical.com/#musicgroup"
+	}
+}
+</script>
+<script defer src="assets/js/motion.js"></script>
 </body>
 </html>

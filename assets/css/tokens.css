@@ -32,6 +32,14 @@
   --am-v3-texto-secundario: #B8C0B8;
   --am-v3-acento: #7FAF72;
 
+  /* ── Vol IV – Paleta Azul Profundo ── */
+  --am-v4-principal: #0F2440;
+  --am-v4-secundario: #1E3A5F;
+  --am-v4-fondo-oscuro: #0A1628;
+  --am-v4-texto: #F5F4EF;
+  --am-v4-texto-secundario: #A0B8D0;
+  --am-v4-acento: #5A8AB5;
+
   /* ── Home – Tokens Semánticos ── */
   /* Fuente: docs/home_reference.png — derivados de las 3 paletas */
   --am-home-bg: #0A0A0A;                     /* fondo global oscuro (neutro) */
@@ -117,13 +125,7 @@
   --am-h1-shadow:        rgba(245, 244, 239, 0.20);
 }
 
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   Theming por Vol — remap de tokens semánticos
-   Cada body[data-vol="X"] sobreescribe --am-home-* con
-   la paleta raw del volumen correspondiente.
-   Todo el CSS (base, volume, components, etc.) hereda
-   el tema correcto sin modificar ninguna regla de layout.
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+/* ── Theming por Vol — remap de tokens semánticos ── */
 
 /* ── Vol I – Burdeos ── */
 body[data-vol="1"] {
@@ -145,7 +147,6 @@ body[data-vol="1"] {
   --am-feedback-success:  var(--am-v1-elemento-02);
   --am-input-placeholder: var(--am-v1-texto);
   --am-noise-opacity:     0;
-
   --am-bg-grad-color-a:   rgba(106, 0, 24, 0.35);
   --am-bg-grad-color-b:   rgba(139, 16, 48, 0.15);
   --am-bg-grad-bottom:    var(--am-v1-fondo-oscuro);
@@ -163,7 +164,6 @@ body[data-vol="1"] {
   --am-shadow-landing-logo: 0 4px 24px rgba(58, 0, 16, 0.55);
   --am-hero-overlay-mid: rgba(58, 0, 16, 0.58);
   --am-hero-overlay-top: rgba(58, 0, 16, 0.30);
-
   --am-bg-photo: url("../images/hero/fondo-vol1.jpeg");
   --am-bg-photo-opacity: 0.8;
   --am-bg-photo-blend: normal;
@@ -195,17 +195,11 @@ body[data-vol="2"] {
   --am-noise-opacity:     0.25;
   /* Light theme: invert white logo to dark gray */
   --am-logo-filter: invert(1) opacity(0.85);
-
-  /* Gradiente: muy suave sobre el fondo crema */
   --am-bg-grad-color-a:   rgba(167, 25, 33, 0.06);
   --am-bg-grad-color-b:   rgba(43, 43, 43, 0.03);
   --am-bg-grad-bottom:    var(--am-v2-fondo);             /* no degrade a negro */
-
-  /* Text-shadows invertidos: oscuros sobre fondo claro */
   --am-heading-shadow:    rgba(43, 43, 43, 0.08);
   --am-h1-shadow:         rgba(43, 43, 43, 0.10);
-
-  /* Sombras de cards adaptadas al contexto claro */
   --am-shadow-card:       0 8px 25px rgba(0, 0, 0, 0.10);
   --am-shadow-cta:        0 8px 30px rgba(167, 25, 33, 0.22);
   --am-shadow-cta-hover:  0 12px 40px rgba(43, 43, 43, 0.20);
@@ -217,7 +211,6 @@ body[data-vol="2"] {
   --am-shadow-landing-logo: 0 4px 24px rgba(43, 43, 43, 0.18);
   --am-hero-overlay-mid: rgba(245, 244, 239, 0.58);
   --am-hero-overlay-top: rgba(245, 244, 239, 0.30);
-
   --am-bg-photo: url("../images/hero/fondo-vol2.jpeg");
   --am-bg-photo-opacity: 0.08;
   --am-bg-photo-blend: multiply;
@@ -244,10 +237,9 @@ body[data-vol="3"] {
   --am-cta-hover-bg:      var(--am-v3-principal);
   --am-input-placeholder: var(--am-v3-texto);
   --am-noise-opacity:     0;
-
   --am-bg-grad-color-a:   rgba(15, 61, 34, 0.4);
   --am-bg-grad-color-b:   rgba(30, 90, 53, 0.2);
-  --am-bg-grad-bottom:    var(--am-v3-fondo-oscuro);      /* #08130C */
+  --am-bg-grad-bottom:    var(--am-v3-fondo-oscuro);
   --am-heading-shadow:    rgba(127, 175, 114, 0.12);
   --am-h1-shadow:         rgba(127, 175, 114, 0.18);
   --am-shadow-card:       0 8px 25px rgba(8, 19, 12, 0.55);
@@ -262,8 +254,46 @@ body[data-vol="3"] {
   --am-shadow-landing-logo: 0 4px 24px rgba(8, 19, 12, 0.58);
   --am-hero-overlay-mid: rgba(8, 19, 12, 0.58);
   --am-hero-overlay-top: rgba(8, 19, 12, 0.30);
-
   --am-bg-photo: url("../images/hero/fondo-vol3.jpeg");
   --am-bg-photo-opacity: 0.35;
+  --am-bg-photo-blend: screen;
+}
+body[data-vol="4"] {
+  --am-home-bg:           var(--am-v4-fondo-oscuro);      /* #0A1628 */
+  --am-home-surface:      #101E34;
+  --am-home-text:         var(--am-v4-texto);             /* #F5F4EF */
+  --am-home-text-muted:   var(--am-v4-texto-secundario);  /* #A0B8D0 */
+  --am-home-accent:       var(--am-v4-secundario);        /* #1E3A5F */
+  --am-home-accent-soft:  var(--am-v4-acento);            /* #5A8AB5 */
+  --am-on-accent:         var(--am-v4-texto);
+  --am-home-quote-bg:     #081020;
+  --am-home-border:       rgba(90, 138, 181, 0.12);
+  --am-nav-bg:            rgba(10, 22, 40, 0.94);
+  --am-nav-hover-bg:      rgba(245, 244, 239, 0.06);
+  --am-nav-active-bg:     rgba(90, 138, 181, 0.16);
+  --am-nav-active-text:   var(--am-v4-acento);
+  --am-control-focus-bg:  rgba(30, 58, 95, 0.22);
+  --am-cta-hover-bg:      var(--am-v4-principal);
+  --am-input-placeholder: var(--am-v4-texto);
+  --am-noise-opacity:     0;
+  --am-bg-grad-color-a:   rgba(15, 36, 64, 0.4);
+  --am-bg-grad-color-b:   rgba(30, 58, 95, 0.2);
+  --am-bg-grad-bottom:    var(--am-v4-fondo-oscuro);
+  --am-heading-shadow:    rgba(90, 138, 181, 0.12);
+  --am-h1-shadow:         rgba(90, 138, 181, 0.18);
+  --am-shadow-card:       0 8px 25px rgba(10, 22, 40, 0.55);
+  --am-shadow-cta:        0 8px 30px rgba(30, 58, 95, 0.38);
+  --am-shadow-cta-hover:  0 12px 40px rgba(15, 36, 64, 0.58);
+  --am-shadow-hero:       0 10px 30px rgba(10, 22, 40, 0.58);
+  --am-shadow-logo:       0 0 20px rgba(90, 138, 181, 0.20);
+  --am-shadow-thumb:      0 4px 12px rgba(10, 22, 40, 0.50);
+  --am-shadow-thumb-hover: 0 6px 18px rgba(10, 22, 40, 0.70);
+  --am-shadow-thumb-active: 0 6px 18px rgba(90, 138, 181, 0.32);
+  --am-shadow-nav-logo: 0 1px 6px rgba(10, 22, 40, 0.45);
+  --am-shadow-landing-logo: 0 4px 24px rgba(10, 22, 40, 0.58);
+  --am-hero-overlay-mid: rgba(10, 22, 40, 0.58);
+  --am-hero-overlay-top: rgba(10, 22, 40, 0.30);
+  --am-bg-photo: url("../images/hero/fondo-vol4.jpeg");
+  --am-bg-photo-opacity: 0.45;
   --am-bg-photo-blend: screen;
 }

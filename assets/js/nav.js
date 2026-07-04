@@ -25,6 +25,8 @@
     'vol-2.html':     'vol2',
     'vol-3':          'vol3',
     'vol-3.html':     'vol3',
+    'vol-4':          'vol4',
+    'vol-4.html':     'vol4',
   };
 
   var path = window.location.pathname.replace(/\/+$/, '');

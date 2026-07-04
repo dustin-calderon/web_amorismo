@@ -21,7 +21,7 @@ const fileExists = (relPath) => existsSync(join(ROOT, relPath));
 
 // ─── Shared page list ────────────────────────────────────────────────────────
 
-const PAGES = ['index.html', 'escuchar.html', 'partituras.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'];
+const PAGES = ['index.html', 'escuchar.html', 'partituras.html', 'vol-1.html', 'vol-2.html', 'vol-3.html', 'vol-4.html'];
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 1. FILE INTEGRITY
@@ -568,9 +568,9 @@ describe('6. JavaScript', () => {
     assert.ok(gallery.includes('if (!mainImage'));
   });
 
-  test('6.4 - nav.js mapea las 6 páginas', () => {
+  test('6.4 - nav.js mapea las 8 páginas', () => {
     const nav = readFile('assets/js/nav.js');
-    ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'].forEach(page => {
+    ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html', 'vol-4.html'].forEach(page => {
       assert.ok(nav.includes(`'${page}'`), `nav.js debe mapear ${page}`);
     });
   });
@@ -651,7 +651,7 @@ describe('6. JavaScript', () => {
   });
 
   test('6.8 - forms.js cargado en páginas con formulario', () => {
-    const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'];
+    const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html', 'vol-4.html'];
     pagesWithForms.forEach(page => {
       const html = readFile(page);
       assert.ok(html.includes('defer src="assets/js/forms.js"'), `${page}: debe cargar forms.js`);
@@ -753,7 +753,7 @@ describe('7. Página 404', () => {
 describe('8. Regresiones funcionales', () => {
 
   test('8.1 - Cada volumen usa su portada optimizada', () => {
-    ['1', '2', '3'].forEach(volume => {
+    ['1', '2', '3', '4'].forEach(volume => {
       const html = readFile(`vol-${volume}.html`);
       assert.ok(
         html.includes(`src="assets/images/covers/portada-vol-${volume}.webp"`),
@@ -828,7 +828,7 @@ describe('8. Regresiones funcionales', () => {
   });
 
   test('8.7 - Los formularios de correo están activos con backend Mautic', () => {
-    const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'];
+    const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html', 'vol-4.html'];
     pagesWithForms.forEach(page => {
       const html = readFile(page);
 
