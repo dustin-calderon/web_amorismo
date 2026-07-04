@@ -74,7 +74,7 @@ El backend está configurado con `FORM_ID = 18` apuntando a `https://news.amoris
 |---|---|
 | `assets/js/forms.js` | `FORM_ID = 18` — Producción configurada ✅ |
 | `index.html`, `vol-1.html`, `vol-2.html`, `vol-3.html` | Copy: `Newsletter de Amorismo` / botón `Entrar` ✅ |
-| `tests/audit.test.js` | Valida `forms.js`, estados activos, feedback y ausencia de `console.log`; suite 202/202 ✅ |
+| `tests/audit.test.js` | Valida `forms.js`, estados activos, feedback y ausencia de `console.log`; suite 209/209 ✅ |
 
 ### No requieren cambios
 
@@ -246,7 +246,7 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
  5. ✅ CODE   → FORM_ID = 18 en forms.js
  6. ✅ CODE   → Copy: "Newsletter de Amorismo" / botón "Entrar"
  7. ✅ TEST   → E2E verificado (2026-07-04): POST → 302, contacto creado (ID 1357), tags `brand:amorismo` + `lead:newsletter`, segmento `brand-amorismo`, contacto eliminado tras test ✅
- 8. ✅ TEST   → 202/202 tests passing
+ 8. ✅ TEST   → 209/209 tests passing
  9. ✅ DEPLOY → Pushed to deploy branch
 10. ✅ DOC    → Este documento actualizado
 ```

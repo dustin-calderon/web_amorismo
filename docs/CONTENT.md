@@ -33,6 +33,21 @@
 | Vol. II | `https://amorismoelmusical.com/assets/images/covers/portada-vol-2.webp` |
 | Vol. III | `https://amorismoelmusical.com/assets/images/covers/portada-vol-3.webp` |
 
+### Twitter Cards
+
+Todas las páginas incluyen `twitter:card`, `twitter:title` y `twitter:description` explícitos.
+
+### Structured Data (JSON-LD)
+
+| Página | Schema |
+|---|---|
+| `index.html` | `@graph`: `WebSite` (con `speakable`) + `MusicGroup` (3 álbumes, 2 miembros, sameAs) |
+| `vol-1.html` | `MusicAlbum` (byArtist → MusicGroup, sameAs → Spotify) |
+| `vol-2.html` | `MusicAlbum` (byArtist → MusicGroup, sameAs → Spotify) |
+| `vol-3.html` | `MusicAlbum` (byArtist → MusicGroup) |
+| `escuchar.html` | Ninguno (auxiliar) |
+| `partituras.html` | Ninguno (auxiliar) |
+
 ## Navegación
 
 ### Menú principal
@@ -57,10 +72,12 @@
 
 ### Meta
 
-- `title`: `AMORISMO – El Micromusical`
+- `title`: `AMORISMO – El Micromusical | Dustin Calderón`
 - `description`: `AMORISMO – El Micromusical de Dustin Calderón. Tres volúmenes de historias condensadas en música y verdad.`
 - `og:title`: `AMORISMO – El Micromusical`
 - `og:description`: `Tres volúmenes de historias condensadas en música y verdad. Música y letra de Dustin Calderón.`
+- `twitter:title`: `AMORISMO – El Micromusical de Dustin Calderón`
+- `twitter:description`: `Tres volúmenes de historias condensadas en música y verdad. Música y letra de Dustin Calderón.`
 - `canonical`: `https://amorismoelmusical.com/`
 
 ### Hero
@@ -155,10 +172,12 @@ Fundador y Director Artístico de Teatro101, con obras premiadas por BroadwayWor
 
 ### Meta
 
-- `title`: `Escuchar – AMORISMO`
-- `description`: `Escucha AMORISMO – El Micromusical de Dustin Calderón. Próximamente más contenido.`
+- `title`: `Escuchar – AMORISMO | Musical de Dustin Calderón`
+- `description`: `Escucha AMORISMO – El Micromusical de Dustin Calderón en Spotify. Vol. I y Vol. II disponibles. Vol. III próximamente.`
 - `og:title`: `Escuchar – AMORISMO`
-- `og:description`: `Escucha AMORISMO. Próximamente más contenido.`
+- `og:description`: `Escucha AMORISMO en Spotify. Vol. I y Vol. II disponibles. Vol. III próximamente.`
+- `twitter:title`: `Escuchar AMORISMO | Musical de Dustin Calderón`
+- `twitter:description`: `Escucha AMORISMO – El Micromusical de Dustin Calderón en Spotify. Vol. I y Vol. II disponibles.`
 - `canonical`: `https://amorismoelmusical.com/escuchar.html`
 
 ### Contenido
@@ -179,10 +198,12 @@ Fundador y Director Artístico de Teatro101, con obras premiadas por BroadwayWor
 
 ### Meta
 
-- `title`: `Partituras – AMORISMO`
+- `title`: `Partituras – AMORISMO | Musical de Dustin Calderón`
 - `description`: `Partituras de AMORISMO – El Micromusical de Dustin Calderón. Próximamente disponibles.`
 - `og:title`: `Partituras – AMORISMO`
 - `og:description`: `Partituras de AMORISMO. Próximamente disponibles.`
+- `twitter:title`: `Partituras de AMORISMO | Musical de Dustin Calderón`
+- `twitter:description`: `Partituras de AMORISMO – El Micromusical de Dustin Calderón. Próximamente disponibles.`
 - `canonical`: `https://amorismoelmusical.com/partituras.html`
 
 ### Contenido
@@ -202,10 +223,13 @@ Estamos preparando algo especial. Las partituras de Amorismo estarán disponible
 
 ### Meta
 
-- `title`: `AMORISMO Vol. I`
-- `description`: `AMORISMO Vol. I – Una noche puede parecer el principio de algo. Entre ilusión, amistad y deseo, esta historia mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.`
+- `title`: `AMORISMO Vol. I | Musical de Dustin Calderón`
+- `description`: `AMORISMO Vol. I – Yo que creí que con un beso me querías dar tu amor. Una historia que mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.`
 - `og:title`: `AMORISMO Vol. I`
-- `og:description`: `Una noche puede parecer el principio de algo. Entre ilusión, amistad y deseo, esta historia mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.`
+- `og:description`: `Yo que creí que con un beso me querías dar tu amor. Una historia que mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.`
+- `og:type`: `music.album`
+- `twitter:title`: `AMORISMO Vol. I | Musical de Dustin Calderón`
+- `twitter:description`: `Yo que creí que con un beso me querías dar tu amor. Una historia que mira de frente ese lugar incómodo donde alguien se enamora mientras la otra persona solo intenta no hacer daño.`
 - `canonical`: `https://amorismoelmusical.com/vol-1.html`
 
 ### Hero
@@ -265,10 +289,13 @@ Una noche puede parecer el principio de algo. También puede ser solo una confus
 
 ### Meta
 
-- `title`: `AMORISMO Vol. II`
-- `description`: `AMORISMO Vol. II – Dos personas se desean, se buscan y se hieren sin saber muy bien cómo parar. Esta historia entra en la parte menos cómoda del amor: esa en la que amar no cura nada si nadie sabe mirarse de verdad.`
+- `title`: `AMORISMO Vol. II | Musical de Dustin Calderón`
+- `description`: `AMORISMO Vol. II – Cada noche vuelvo a tu cama aunque me repitas que no me enamore. De ti. Una historia que entra en la parte menos cómoda del amor: esa en la que amar no cura nada si nadie sabe mirarse de verdad.`
 - `og:title`: `AMORISMO Vol. II`
-- `og:description`: `Dos personas se desean, se buscan y se hieren sin saber muy bien cómo parar. Una historia que entra en la parte menos cómoda del amor: esa en la que amar no cura nada si nadie sabe mirarse de verdad.`
+- `og:description`: `Cada noche vuelvo a tu cama aunque me repitas que no me enamore. De ti. Una historia sobre la parte menos cómoda del amor.`
+- `og:type`: `music.album`
+- `twitter:title`: `AMORISMO Vol. II | Musical de Dustin Calderón`
+- `twitter:description`: `Cada noche vuelvo a tu cama aunque me repitas que no me enamore. De ti. Una historia sobre la parte menos cómoda del amor.`
 - `canonical`: `https://amorismoelmusical.com/vol-2.html`
 
 ### Hero
@@ -337,10 +364,13 @@ Dos personas se desean, se buscan y se hieren sin saber muy bien cómo parar. El
 
 ### Meta
 
-- `title`: `AMORISMO Vol. III`
-- `description`: `AMORISMO Vol. III – Después de quince años de matrimonio, una pareja se enfrenta a una verdad que ya no cabe debajo de la alfombra. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.`
+- `title`: `AMORISMO Vol. III | Musical de Dustin Calderón`
+- `description`: `AMORISMO Vol. III – La rutina es cruel. Muchas cosas existen sin hablar. Hasta que ya no pueden. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.`
 - `og:title`: `AMORISMO Vol. III`
-- `og:description`: `Después de quince años de matrimonio, una pareja se enfrenta a una verdad que ya no cabe debajo de la alfombra. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.`
+- `og:description`: `La rutina es cruel. Muchas cosas existen sin hablar. Hasta que ya no pueden. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.`
+- `og:type`: `music.album`
+- `twitter:title`: `AMORISMO Vol. III | Musical de Dustin Calderón`
+- `twitter:description`: `La rutina es cruel. Muchas cosas existen sin hablar. Hasta que ya no pueden. Una historia sobre ternura, identidad y el dolor de decir la verdad cuando todavía hay amor.`
 - `canonical`: `https://amorismoelmusical.com/vol-3.html`
 
 ### Hero
