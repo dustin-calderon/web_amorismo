@@ -464,12 +464,18 @@ describe('5. CSS Design System', () => {
 
     assert.ok(base.includes('filter: blur(var(--am-bg-photo-blur))'),
       'El blur del fondo debe salir de token para poder ajustarlo por volumen');
+    assert.ok(base.includes('transform: scale(var(--am-bg-photo-scale))'),
+      'La escala del fondo debe salir de token para evitar overflow por volumen');
     assert.ok(tokens.includes('--am-bg-photo-blur: 3px;'),
       'El blur base del fondo ambiental debe quedar explícito');
+    assert.ok(tokens.includes('--am-bg-photo-scale: 1.03;'),
+      'La escala base del fondo ambiental debe quedar explícita');
     assert.ok(volumeOneTheme.includes('--am-bg-photo-blur: 6px;'),
       'Vol. I debe aumentar el blur de su fondo ambiental');
     assert.ok(volumeTwoTheme.includes('--am-bg-photo-size: 100% 100%;'),
       'Vol. II debe estirar el fondo ambiental a ancho y alto completos');
+    assert.ok(volumeTwoTheme.includes('--am-bg-photo-scale: 1;'),
+      'Vol. II no debe ampliar el fondo más allá del viewport');
   });
 
   test('5.15 - Vol. III no hereda sombras rojas de Home', () => {
@@ -500,10 +506,15 @@ describe('5. CSS Design System', () => {
   });
 
   test('5.18 - Solo Vol II conserva grain visible', () => {
+    const base = readFile('assets/css/base.css');
     const volOneTheme = tokens.match(/body\[data-vol="1"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
     const volTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
     const volThreeTheme = tokens.match(/body\[data-vol="3"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
 
+    assert.ok(base.includes('background-size: 100% 100%;'),
+      'La capa de grain debe cubrir ancho y alto completos del viewport');
+    assert.ok(base.includes('background-repeat: no-repeat;'),
+      'La capa de grain no debe repetirse ni mostrar cortes');
     assert.ok(tokens.includes('--am-noise-opacity: 0;'),
       'El token base debe dejar el grain apagado fuera de overrides explícitos');
     assert.ok(volOneTheme.includes('--am-noise-opacity:     0;'),
