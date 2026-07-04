@@ -969,3 +969,50 @@ describe('9. Seguridad', () => {
     }
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 10. DEPLOY HYGIENE & SEO
+// ─────────────────────────────────────────────────────────────────────────────
+
+describe('10. Deploy Hygiene & SEO', () => {
+
+  test('10.1 - _headers existe con security headers mínimos', () => {
+    assert.ok(fileExists('_headers'), '_headers debe existir en la raíz');
+    const headers = readFile('_headers');
+    assert.ok(headers.includes('X-Content-Type-Options: nosniff'), 'debe incluir X-Content-Type-Options');
+    assert.ok(headers.includes('X-Frame-Options: DENY'), 'debe incluir X-Frame-Options');
+    assert.ok(headers.includes('Referrer-Policy'), 'debe incluir Referrer-Policy');
+  });
+
+  test('10.2 - robots.txt existe y referencia sitemap', () => {
+    assert.ok(fileExists('robots.txt'), 'robots.txt debe existir');
+    const robots = readFile('robots.txt');
+    assert.ok(robots.includes('Sitemap: https://amorismoelmusical.com/sitemap.xml'),
+      'robots.txt debe referenciar la URL absoluta del sitemap');
+  });
+
+  test('10.3 - sitemap.xml lista todas las páginas públicas', () => {
+    assert.ok(fileExists('sitemap.xml'), 'sitemap.xml debe existir');
+    const sitemap = readFile('sitemap.xml');
+    const publicPages = [
+      'https://amorismoelmusical.com/',
+      'https://amorismoelmusical.com/vol-1.html',
+      'https://amorismoelmusical.com/vol-2.html',
+      'https://amorismoelmusical.com/vol-3.html',
+      'https://amorismoelmusical.com/escuchar.html',
+      'https://amorismoelmusical.com/partituras.html',
+    ];
+    publicPages.forEach(url => {
+      assert.ok(sitemap.includes(url), `sitemap debe incluir ${url}`);
+    });
+    assert.ok(!sitemap.includes('404.html'), 'sitemap no debe incluir 404.html');
+  });
+
+  test('10.4 - Archivos raw/fuentes no tracked en .gitignore', () => {
+    const gitignore = readFile('.gitignore');
+    assert.ok(gitignore.includes('Fotos/'), '.gitignore debe excluir Fotos/');
+    assert.ok(gitignore.includes('scripts/'), '.gitignore debe excluir scripts/');
+    assert.ok(gitignore.includes('LINEAS-AMORISMO.png'), '.gitignore debe excluir LINEAS-AMORISMO.png');
+    assert.ok(gitignore.includes('logo_dustin_amorismo.png'), '.gitignore debe excluir logo_dustin_amorismo.png');
+  });
+});
