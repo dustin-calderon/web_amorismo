@@ -21,9 +21,20 @@
    marker-highlight keywords, floating colored quotes without cards.
    Applies taste-skill criteria: VARIANCE=8, DENSITY=4 (Gallery).      */
 .am-statement {
-  padding: clamp(3.5rem, 7vw, 5.5rem) var(--am-sp-6);
+  padding: clamp(4.5rem, 9vw, 7rem) var(--am-sp-6);
   max-width: 1420px;
   margin: 0 auto;
+}
+
+/* ── Section heading (centered, no grid) ── */
+.am-statement__heading {
+  font-family: var(--am-font-title);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--am-home-text);
+  text-align: center;
+  margin: 0 0 clamp(2rem, 4vw, 3.5rem);
 }
 
 /* ── Headline + Body grid ── */
@@ -110,6 +121,10 @@
   max-width: 720px;
   margin: 0 auto;
   text-align: center;
+}
+
+.am-statement__body--centered p + p {
+  margin-top: var(--am-sp-6);
 }
 
 /* ── Testimonial Quotes — floating colored text, no cards ── */

@@ -31,6 +31,7 @@
     { selector: '.am-statement__body', variant: 'am-motion--slide-right', delay: 120 },
     { selector: '.am-statement__quote--featured', variant: 'am-motion--quote', delay: 0 },
     { selector: '.am-statement__quote:not(.am-statement__quote--featured)', variant: 'am-motion--stagger', delay: 80, stagger: 90 },
+    { selector: '.am-statement__heading', variant: 'am-motion--slide-left', delay: 0 },
     { selector: '.am-bios__heading', variant: 'am-motion--slide-left', delay: 0 },
     { selector: '.am-bio:not(.am-bio--reverse) .am-bio__photo-wrap', variant: 'am-motion--slide-left', delay: 0 },
     { selector: '.am-bio:not(.am-bio--reverse) .am-bio__body', variant: 'am-motion--slide-right', delay: 110 },
