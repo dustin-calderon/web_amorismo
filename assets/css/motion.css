@@ -1,0 +1,269 @@
+/* ===== Editorial Motion – Amorismo ===== */
+
+:root {
+  --am-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --am-motion-fast: 520ms;
+  --am-motion-mid: 760ms;
+  --am-motion-slow: 980ms;
+  --am-motion-distance: 26px;
+}
+
+body[data-vol="1"] {
+  --am-motion-distance: 30px;
+}
+
+body[data-vol="2"] {
+  --am-motion-distance: 20px;
+}
+
+body[data-vol="3"] {
+  --am-motion-distance: 18px;
+  --am-motion-mid: 900ms;
+}
+
+.am-motion-ready .am-motion {
+  opacity: 0;
+  transform: translate3d(0, var(--am-motion-distance), 0);
+  transition:
+    opacity var(--am-motion-mid) var(--am-motion-ease),
+    transform var(--am-motion-mid) var(--am-motion-ease);
+  transition-delay: var(--am-motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.am-motion-ready .am-motion--hero-art {
+  transform: translate3d(0, calc(var(--am-motion-distance) * 1.25), 0) scale(0.985);
+  transition-duration: var(--am-motion-slow);
+}
+
+.am-motion-ready .am-motion--hero-copy {
+  transform: translate3d(0, calc(var(--am-motion-distance) * 0.8), 0);
+}
+
+.am-motion-ready .am-motion--home-logo {
+  transform: translate3d(0, 18px, 0) scale(0.97);
+  transition-duration: var(--am-motion-slow);
+}
+
+.am-motion-ready .am-motion--slide-left {
+  transform: translate3d(-24px, var(--am-motion-distance), 0);
+}
+
+.am-motion-ready .am-motion--slide-right {
+  transform: translate3d(24px, var(--am-motion-distance), 0);
+}
+
+.am-motion-ready .am-motion--quote {
+  transform: translate3d(18px, var(--am-motion-distance), 0);
+}
+
+.am-motion-ready .am-motion--quote::before {
+  opacity: 0;
+  transform: translate3d(-8px, 10px, 0);
+  transition:
+    opacity var(--am-motion-fast) var(--am-motion-ease),
+    transform var(--am-motion-fast) var(--am-motion-ease);
+  transition-delay: calc(var(--am-motion-delay, 0ms) + 80ms);
+}
+
+.am-motion-ready .am-motion--stagger {
+  transition-duration: var(--am-motion-slow);
+}
+
+.am-motion-ready .am-motion.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.am-motion-ready .am-motion.has-motion-ended {
+  will-change: auto;
+}
+
+.am-motion-ready .am-motion--quote.is-visible::before {
+  opacity: 0.28;
+  transform: translate3d(0, 0, 0);
+}
+
+.am-motion-ready .am-statement__headline .am-hl--amor {
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 820ms var(--am-motion-ease) 220ms;
+}
+
+.am-motion-ready .am-statement__headline.is-visible .am-hl--amor {
+  background-size: 100% 100%;
+}
+
+.am-landing-hero__photo {
+  --am-home-photo-opacity: 0.72;
+  transform:
+    translate3d(
+      var(--am-home-parallax-x, 0px),
+      var(--am-home-parallax-y, 0px),
+      0
+    )
+    scale(var(--am-home-photo-scale, 1.02));
+  animation: am-home-drift 18s var(--am-motion-ease) infinite alternate;
+  transition: opacity var(--am-motion-slow) var(--am-motion-ease);
+  will-change: transform;
+}
+
+.am-landing-hero__photo--vol1 {
+  --am-home-photo-opacity: 0.72;
+  --am-home-drift-x: -10px;
+  --am-home-drift-y: 12px;
+  animation-duration: 19s;
+}
+
+.am-landing-hero__photo--vol2 {
+  --am-home-photo-opacity: 0.45;
+  --am-home-drift-x: 14px;
+  --am-home-drift-y: -8px;
+  animation-duration: 16s;
+  animation-delay: -3s;
+}
+
+.am-landing-hero__photo--vol3 {
+  --am-home-photo-opacity: 0.72;
+  --am-home-drift-x: -8px;
+  --am-home-drift-y: -14px;
+  animation-duration: 22s;
+  animation-delay: -7s;
+}
+
+@keyframes am-home-drift {
+  from {
+    transform:
+      translate3d(
+        var(--am-home-parallax-x, 0px),
+        var(--am-home-parallax-y, 0px),
+        0
+      )
+      scale(var(--am-home-photo-scale, 1.02));
+  }
+  to {
+    transform:
+      translate3d(
+        calc(var(--am-home-parallax-x, 0px) + var(--am-home-drift-x, 0px)),
+        calc(var(--am-home-parallax-y, 0px) + var(--am-home-drift-y, 0px)),
+        0
+      )
+      scale(var(--am-home-photo-scale, 1.02));
+  }
+}
+
+.am-motion-ready .am-landing-hero__photo.am-motion {
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity 1400ms var(--am-motion-ease),
+    filter 1400ms var(--am-motion-ease);
+  transition-delay: var(--am-motion-delay, 0ms);
+}
+
+.am-motion-ready .am-landing-hero__photo.am-motion.is-visible {
+  opacity: var(--am-home-photo-opacity);
+  filter: blur(0);
+}
+
+.am-motion-ready .am-landing-hero__photo--vol1.am-motion {
+  --am-home-photo-scale: 1.035;
+}
+
+.am-motion-ready .am-landing-hero__photo--vol2.am-motion {
+  --am-home-photo-scale: 1.045;
+}
+
+.am-motion-ready .am-landing-hero__photo--vol3.am-motion {
+  --am-home-photo-scale: 1.04;
+}
+
+.am-landing-hero__content {
+  transform: translate3d(0, var(--am-home-content-parallax, 0px), 0);
+  will-change: transform;
+}
+
+.am-bio__photo {
+  transition:
+    transform 800ms var(--am-motion-ease),
+    filter 800ms var(--am-motion-ease);
+}
+
+.am-bio:hover .am-bio__photo {
+  filter: saturate(1.04) contrast(1.03);
+  transform: scale(1.025);
+}
+
+.am-volume-hero .am-hero__image {
+  transform:
+    translate3d(0, calc(var(--am-hero-parallax, 0) * -1px), 0)
+    rotate(-1.5deg);
+  transition: filter 420ms var(--am-motion-ease);
+}
+
+.am-person__photo {
+  transition:
+    transform 700ms var(--am-motion-ease),
+    filter 700ms var(--am-motion-ease);
+}
+
+.am-person:hover .am-person__photo {
+  filter: saturate(1.04) contrast(1.03);
+  transform: scale(1.035);
+}
+
+.am-gallery__image {
+  opacity: 1;
+  transition: opacity 260ms var(--am-motion-ease);
+}
+
+.am-gallery__image--switching {
+  opacity: 0;
+}
+
+@media (max-width: 768px) {
+  .am-volume-hero .am-hero__image {
+    transform: translate3d(0, calc(var(--am-hero-parallax, 0) * -0.5px), 0);
+  }
+}
+
+@media (hover: none) {
+  .am-person:hover .am-person__photo,
+  .am-bio:hover .am-bio__photo {
+    filter: none;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .am-motion-ready .am-motion,
+  .am-motion-ready .am-motion--quote::before,
+  .am-gallery__image,
+  .am-person__photo,
+  .am-bio__photo,
+  .am-landing-hero__content,
+  .am-volume-hero .am-hero__image {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+    will-change: auto;
+  }
+
+  .am-motion-ready .am-landing-hero__photo,
+  .am-motion-ready .am-landing-hero__photo.am-motion,
+  .am-motion-ready .am-landing-hero__photo.am-motion.is-visible {
+    opacity: var(--am-home-photo-opacity);
+    filter: none;
+    transform: none;
+    transition: none;
+    animation: none;
+    will-change: auto;
+  }
+
+  .am-motion-ready .am-person:hover .am-person__photo,
+  .am-motion-ready .am-bio:hover .am-bio__photo {
+    filter: none;
+    transform: none;
+  }
+}
