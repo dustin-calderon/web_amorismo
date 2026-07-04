@@ -98,6 +98,11 @@ describe('1. Integridad de archivos', () => {
     });
   });
 
+  test('1.8b - Textura de grano existe', () => {
+    assert.ok(fileExists('assets/images/old_film_grain.png'),
+      'old_film_grain.png necesario para la textura del grain overlay');
+  });
+
   test('1.9 - Ningún archivo CSS/JS supera 300 líneas', () => {
     const files = [
       ...[
@@ -391,6 +396,11 @@ describe('5. CSS Design System', () => {
     assert.ok(!sharedComponents.includes('rgba(10, 10, 10'));
     assert.ok(!sharedComponents.includes('rgba(0, 0, 0'));
     assert.ok(!sharedComponents.includes('var(--am-v1-secundario)'));
+    // Guard: home.css must use semantic aliases, not raw palette vars
+    assert.ok(!sharedComponents.includes('var(--am-v3-acento)'),
+      'home.css no debe usar --am-v3-acento directamente; usar alias semántico');
+    assert.ok(!sharedComponents.includes('var(--am-v1-elemento-02)'),
+      'home.css no debe usar --am-v1-elemento-02 directamente; usar alias semántico');
   });
 
   test('5.10 - Componentes interactivos usan contraste y tamaño táctil', () => {
@@ -464,15 +474,32 @@ describe('5. CSS Design System', () => {
   });
 
   test('5.17 - El filtro del logo se puede componer con drop-shadow', () => {
-    const components = readFile('assets/css/components.css');
-    const hero = readFile('assets/css/hero.css');
-    const nav = readFile('assets/css/nav.css');
+    const footer = readFile('assets/css/footer.css');
     const volumeTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
 
     assert.ok(!volumeTwoTheme.includes('--am-logo-filter: none'), 'none + drop-shadow() invalida filter');
     assert.ok(volumeTwoTheme.includes('--am-logo-filter: invert(1)'));
-    // Hero uses pre-baked white logo (no filter needed); only vol page titles use the token
-    assert.ok(components.includes('var(--am-logo-filter) drop-shadow'));
+    // Footer logo is the live consumer of the token
+    assert.ok(footer.includes('var(--am-logo-filter)'),
+      'footer.css debe usar el token --am-logo-filter para adaptarse al tema');
+  });
+
+  test('5.18 - Vol I y III definen --am-noise-opacity para grano visible', () => {
+    const volOneTheme = tokens.match(/body\[data-vol="1"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    const volThreeTheme = tokens.match(/body\[data-vol="3"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    assert.ok(volOneTheme.includes('--am-noise-opacity'),
+      'Vol I (tema oscuro) debe definir --am-noise-opacity > 0 para textura visible');
+    assert.ok(volThreeTheme.includes('--am-noise-opacity'),
+      'Vol III (tema oscuro) debe definir --am-noise-opacity > 0 para textura visible');
+  });
+
+  test('5.19 - Vol II define --am-feedback-success con contraste adecuado', () => {
+    const volTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    assert.ok(volTwoTheme.includes('--am-feedback-success'),
+      'Vol II (tema claro) debe sobrescribir --am-feedback-success para contraste WCAG');
+    // Must NOT use the default light green that fails on cream background
+    assert.ok(!volTwoTheme.includes('--am-feedback-success:  var(--am-v3-acento)'),
+      'Vol II no debe usar --am-v3-acento (#7FAF72) como feedback-success (falla contraste WCAG sobre crema)');
   });
 });
 
@@ -562,6 +589,20 @@ describe('6. JavaScript', () => {
     navs.slice(1).forEach(({ page, nav }) => {
       assert.strictEqual(nav, reference, `${page}: nav diverge de ${allPages[0]}`);
     });
+  });
+
+  test('6.10 - gallery.js auto-activa primer thumbnail al cargar', () => {
+    const gallery = readFile('assets/js/gallery.js');
+    assert.ok(gallery.includes('activateThumb(thumbnails[0])'),
+      'gallery.js debe llamar activateThumb(thumbnails[0]) al inicializar para mostrar la imagen principal');
+  });
+
+  test('6.11 - gallery.js usa ES5 puro (sin const/let/arrow)', () => {
+    const gallery = readFile('assets/js/gallery.js');
+    // Only allow var, function(){}, no const/let/=>
+    assert.ok(!gallery.match(/\bconst\b/), 'gallery.js no debe usar const (ES6) — usar var');
+    assert.ok(!gallery.match(/\blet\b/), 'gallery.js no debe usar let (ES6) — usar var');
+    assert.ok(!gallery.includes('=>'), 'gallery.js no debe usar arrow functions (ES6) — usar function()');
   });
 });
 
