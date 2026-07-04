@@ -60,12 +60,13 @@ web_amorismo/
 │   │   ├── home.css         # Statement, citas, bios y divisores del home
 │   │   ├── volume.css       # Sinopsis, cast y reviews
 │   │   ├── gallery.css      # Thumbnails y viewer de galerías
-│   │   ├── contact.css      # Formularios de correo deshabilitados
+│   │   ├── contact.css      # Formularios de correo y feedback
 │   │   ├── footer.css       # Footer editorial compartido
 │   │   └── responsive.css   # Breakpoints compartidos
 │   ├── js/
 │   │   ├── nav.js           # Estado activo de navegación
-│   │   └── gallery.js       # Galerías interactivas
+│   │   ├── gallery.js       # Galerías interactivas
+│   │   └── forms.js         # Newsletter Mautic compartida
 │   └── images/
 │       ├── covers/          # Portadas optimizadas de Vol. I, II, III
 │       ├── hero/            # Fondos y siluetas del landing hero
@@ -92,12 +93,13 @@ web_amorismo/
    `tokens.css` define paletas raw y tokens semánticos. Las páginas de volumen usan `body[data-vol="1|2|3"]` para remapear colores, sombras, fondo ambiental, nav y CTAs.
 
 4. **JavaScript mínimo y defensivo**
-   Solo hay dos scripts de producción:
+   Solo hay tres scripts de producción:
    - `nav.js`, sin dependencias.
    - `gallery.js`, con early return si no hay galería.
+   - `forms.js`, IIFE sin dependencias para enviar newsletter a Mautic.
 
-5. **Sin backend fingido**
-   Los formularios de correo están visibles pero deshabilitados. No hay `form.js` ni envío simulado hasta integrar Mautic u otro backend real.
+5. **Newsletter sin falsa confirmación**
+   El working tree actual incluye `assets/js/forms.js` y formularios visibles/activos. El script apunta a `FORM_ID = 18` en `https://news.amorismoelmusical.com`. Los tests validan estructura y configuración local, pero no sustituyen una prueba real de alta contra Mautic.
 
 6. **Accesibilidad básica explícita**
    Todas las páginas tienen `lang="es"`, `meta viewport`, skip link, un único `h1`, `main#main`, imágenes con `alt`, foco visible y respeto por `prefers-reduced-motion`.
@@ -115,7 +117,9 @@ web_amorismo/
      - `assets/images/hero/fondo-vol2.jpeg`
      - `assets/images/hero/fondo-vol3.jpeg`
    - Logo `assets/images/amorismo-logo-hero.png`.
-   - Formulario hero deshabilitado con botón `Próximamente`.
+   - Formulario hero activo con botón `Entrar`.
+   - Script asociado: `assets/js/forms.js`.
+   - Estado técnico: `FORM_ID = 18`; pendiente conservar evidencia de prueba real de alta si se necesita auditoría operativa.
    - Grano global desactivado en home mediante `--am-noise-opacity: 0`.
 
 2. **Statement**
@@ -128,8 +132,10 @@ web_amorismo/
    - David Gregory.
 
 4. **Correo**
-   - Formulario deshabilitado.
-   - Copy: `El formulario de correo estará disponible próximamente.`
+   - Formulario activo.
+   - Copy: `Newsletter de Amorismo`.
+   - Botón: `Entrar`.
+   - Feedback accesible: `.am-contact__feedback` con `aria-live="polite"`.
 
 ## Páginas de Volumen
 
@@ -141,7 +147,9 @@ Las páginas `vol-1.html`, `vol-2.html` y `vol-3.html` comparten:
 - Sinopsis.
 - Elenco.
 - Galería con thumbnails optimizadas y viewer interactivo.
-- Formulario de correo deshabilitado.
+- Formulario de correo activo visualmente.
+- Script `assets/js/forms.js` cargado.
+- Estado técnico: `FORM_ID = 18` compartido para todas las instancias.
 - Footer compartido.
 
 ### Vol. I
@@ -184,11 +192,32 @@ Las páginas `vol-1.html`, `vol-2.html` y `vol-3.html` comparten:
 
 `assets/images/hero/amorismo-01-sombra.png`, `amorismo-02-sombra.png` y `amorismo-03-sombra.png` existen como assets de marca, pero el landing hero actual usa los fondos `fondo-vol*.jpeg`, no estas siluetas.
 
+### Fondos ambientales de volumen
+
+La capa `.am-bg-gradient::before` usa `--am-bg-photo`, `--am-bg-photo-size`, `--am-bg-photo-opacity`, `--am-bg-photo-blend`, `--am-bg-photo-blur` y `--am-bg-photo-scale`.
+
+| Tema | Fondo | Size | Blur | Scale |
+|---|---|---|---:|---:|
+| Vol. I | `fondo-vol1.jpeg` | `cover` | `6px` | `1.03` |
+| Vol. II | `fondo-vol2.jpeg` | `100% 100%` | `3px` | `1` |
+| Vol. III | `fondo-vol3.jpeg` | `cover` | `3px` | `1.03` |
+
 ### Grain
 
-`assets/images/old_film_grain.png` existe y la capa `.am-bg-noise` sigue en el DOM, pero el token global está en `--am-noise-opacity: 0`.
+`assets/images/old_film_grain.png` existe y la capa `.am-bg-noise` sigue en el DOM. El token global está en `--am-noise-opacity: 0`, por lo que la home no muestra grano desde el valor base.
 
-Nota técnica: `body[data-vol="2"]` sobreescribe `--am-noise-opacity: 0.06`, por lo que Vol. II conserva un grano sutil en su tema claro. Esto es estado actual, no una recomendación.
+La capa de grano se renderiza como una sola textura fija al viewport, con `background-size: 100% 100%` y `background-repeat: no-repeat`, para evitar cortes o repeticiones visibles.
+
+Sobrescrituras actuales por volumen:
+
+| Tema | Valor |
+|---|---:|
+| Home/base | `0` |
+| `body[data-vol="1"]` | `0` |
+| `body[data-vol="2"]` | `0.25` |
+| `body[data-vol="3"]` | `0` |
+
+Esto es estado actual: solo Vol. II conserva grano visible. Home, Vol. I y Vol. III quedan sin grano.
 
 ## Responsive
 
@@ -215,7 +244,7 @@ Cobertura del test actual:
 - Semántica HTML.
 - SEO básico.
 - Recursos locales referenciados.
-- Estado de formularios sin backend.
+- Estado de formularios activos con configuración Mautic.
 - Accesibilidad básica.
 - Design system y tokens.
 - JavaScript defensivo.
@@ -223,7 +252,7 @@ Cobertura del test actual:
 
 Nota: algunos nombres internos de tests conservan wording histórico como "4 páginas", pero `PAGES` ya incluye las 6 páginas públicas principales.
 
-Estado conocido al 2026-07-04: `node --test tests/audit.test.js` falla en `5.13 - Vol. II define el tema completo de componentes interactivos` porque el test espera el token `--am-footer-logo-bg`, que no existe en `tokens.css`. No se ha corregido en esta actualización porque el alcance era documentación y el fallo pertenece al contrato test/CSS existente.
+Estado conocido al 2026-07-04: `node --test tests/audit.test.js` no está verde. Resultado actual: 184/185. Falla solo en `5.17 - El filtro del logo se puede componer con drop-shadow` porque el test espera que `components.css` incluya `var(--am-logo-filter) drop-shadow`. Los checks de formularios activos y backend Mautic sí pasan con el estado actual.
 
 ## Deploy
 
@@ -251,19 +280,19 @@ curl -I https://amorismoelmusical.com
 
 ## Backlog Real
 
-1. **Integración de formulario**
-   - Definir backend real: Mautic u otra solución.
-   - Activar `hero-form` y `contact-form`.
-   - Añadir validación y feedback real.
-   - No publicar JS que simule altas.
+1. **Cerrar integración de formulario**
+   - El formulario real ya está referenciado como `FORM_ID = 18`.
+   - CORS/túnel/DNS están documentados en `docs/FORM_INTEGRATION.md`.
+   - Pendiente operativo: conservar evidencia de una alta real, tags y segmento en Mautic si se requiere trazabilidad fuera de los tests locales.
 
-2. **Revisión de grano por volumen**
-   - Decidir si `--am-noise-opacity: 0.06` en Vol. II es intencional.
-   - Si el criterio es "sin grano en toda la web", eliminar también esa sobrescritura.
+2. **Grano por volumen**
+   - Criterio cerrado: sin grano en Home, Vol. I y Vol. III.
+   - Vol. II conserva grano visible con `--am-noise-opacity: 0.25`.
 
 3. **Tests**
    - Actualizar nombres descriptivos obsoletos en `audit.test.js`.
    - Añadir checks específicos del hero home: `fondo-vol1.jpeg`, dimensiones 1500x1500 y `left: 23%` si se quiere bloquear ese encuadre.
+   - Resolver o ajustar `5.17` para que el contrato del filtro de logo coincida con `components.css`.
 
 4. **Contenido pendiente**
    - Partituras sigue como coming soon.
@@ -276,6 +305,6 @@ curl -I https://amorismoelmusical.com
 - Sin framework.
 - Cloudflare Pages como hosting.
 - CSS modular, sin archivo monolítico legacy.
-- Formulario deshabilitado hasta backend real.
+- Formularios activos con `FORM_ID = 18`; los tests locales no sustituyen una prueba real de alta en Mautic.
 - Footer editorial compartido sin duplicar navegación.
 - Galerías con thumbnails optimizadas; no cargar full-size en miniaturas.

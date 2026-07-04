@@ -7,9 +7,10 @@
 ## Reglas de Contenido
 
 - No publicar copy provisional.
-- No simular disponibilidad de entradas, partituras, discos o formularios.
+- No simular disponibilidad de entradas, partituras o discos.
+- En formularios, distinguir configuración técnica de prueba operativa: `FORM_ID = 18` está configurado, pero los tests locales no prueban una alta real en Mautic.
 - Mantener el tono íntimo, contemporáneo y editorial.
-- Cuando una función esté pendiente, decirlo de forma explícita: `Próximamente`, `Entradas no disponibles` o `El formulario de correo estará disponible próximamente.`
+- Cuando una función esté pendiente, decirlo de forma explícita. Estado actual de formularios: UI activa con copy `Newsletter de Amorismo` y envío configurado a Mautic `FORM_ID = 18`.
 - Las páginas deben conservar un único `h1`.
 - Los nombres propios y créditos deben coincidir exactamente con el HTML.
 
@@ -73,9 +74,10 @@
 - Formulario hero:
   - `id="hero-form"`
   - Input placeholder: `Tu correo electrónico`
-  - Input deshabilitado.
-  - Botón: `Próximamente`
-  - Botón deshabilitado.
+  - Input activo.
+  - Botón: `Entrar`
+  - Script: `assets/js/forms.js`
+  - Estado técnico: `FORM_ID = 18` en `https://news.amorismoelmusical.com`.
 
 ### Statement
 
@@ -143,10 +145,11 @@ Fundador y Director Artístico de Teatro101, con obras premiadas por BroadwayWor
 ### Correo
 
 - Heading: `Mantente al tanto`
-- Texto: `El formulario de correo estará disponible próximamente.`
+- Texto: `Newsletter de Amorismo`
 - Placeholder: `Tu correo electrónico`
-- Botón: `Próximamente`
-- Estado: input y botón deshabilitados.
+- Botón: `Entrar`
+- Feedback: `<p class="am-contact__feedback" aria-live="polite"></p>`
+- Estado técnico: UI activa; backend configurado con `FORM_ID = 18`.
 
 ## Escuchar (`escuchar.html`)
 
@@ -441,7 +444,7 @@ Copyright © 2026 Dustin Calderón · Derechos reservados.
 | Spotify Vol. II | `https://open.spotify.com/intl-es/album/5YmceQBudLtEer75utcBX6` | Activo |
 | Spotify Vol. III | Pendiente | No publicado |
 | Partituras | Pendiente | Coming soon |
-| Newsletter/correo | Pendiente de backend | Formularios deshabilitados |
+| Newsletter/correo | Configurado en Mautic | UI activa con `assets/js/forms.js`; `FORM_ID = 18`; prueba operativa real debe verificarse fuera de los tests locales |
 
 ## Referencia de Bios Largas No Publicadas
 
