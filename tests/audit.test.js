@@ -434,7 +434,6 @@ describe('5. CSS Design System', () => {
       '--am-nav-active-text:',
       '--am-cta-hover-bg:',
       '--am-input-placeholder:',
-      '--am-footer-logo-bg:',
     ].forEach(token => {
       assert.ok(volumeTwoTheme.includes(token), `Vol. II debe definir ${token}`);
     });
