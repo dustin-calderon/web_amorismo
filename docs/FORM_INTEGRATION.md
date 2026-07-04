@@ -27,7 +27,7 @@ Visitante escribe email → forms.js POST a Mautic → contacto creado → feedb
 
 ## 2. Inventario de Instancias
 
-5 formularios en 4 archivos HTML. **Todos envían al mismo `FORM_ID`.**
+5 formularios en 4 archivos HTML. Cuando se active la integración, todos deberían enviar al mismo `FORM_ID`.
 
 | Archivo | HTML `id` | Ubicación |
 |---|---|---|
@@ -68,11 +68,11 @@ Visitante escribe email → forms.js POST a Mautic → contacto creado → feedb
 
 | Archivo | Por qué está listo |
 |---|---|
-| `assets/css/contact.css` | `.am-contact__feedback`, `--visible`, `--success`, `--error` ya definidos (L55-72) |
+| `assets/css/contact.css` | `.am-contact__feedback`, `--visible`, `--success`, `--error` ya definidos |
 | `assets/css/components.css` | `.am-cta`, `.am-cta--disabled` ya definidos |
 | `assets/css/hero.css` | `.am-landing-hero__form` spacing ya definido |
 | `assets/css/tokens.css` | Tokens `--am-feedback-success`, `--am-input-placeholder` ya existen |
-| `assets/css/responsive.css` | Form responsive ≤768px (L90-92) y ≤480px (L194-195) ya cubierto |
+| `assets/css/responsive.css` | Form responsive cubierto en breakpoints `<=768px` y `<=480px` |
 
 ---
 
@@ -333,7 +333,7 @@ sudo systemctl restart cloudflared
  6. CODE   → Actualizar 4 HTML: quitar disabled, nuevo copy, feedback element, script tag
  7. TEST   → Enviar suscripción de prueba → verificar contacto en Mautic
  8. TEST   → Ejecutar node --test tests/audit.test.js
- 9. DEPLOY → Commit + push → CF Pages auto-deploy
+ 9. DEPLOY → Commit + push + deploy con Wrangler Pages
 10. DOC    → Actualizar `docs/PLAN.md`, `docs/CONTENT.md` y este documento
 ```
 
@@ -343,8 +343,8 @@ sudo systemctl restart cloudflared
 
 | Documento | Ruta |
 |---|---|
-| Mautic Forms Integration Guide | `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_FORMS_INTEGRATION_GUIDE.md` |
-| Mautic CORS Forms | `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_CORS_FORMS.md` |
-| Mautic Brand Separation | `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_BRAND_SEPARATION_GUIDE.md` |
+| Mautic Forms Integration Guide | Referencia externa local: `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_FORMS_INTEGRATION_GUIDE.md` |
+| Mautic CORS Forms | Referencia externa local: `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_CORS_FORMS.md` |
+| Mautic Brand Separation | Referencia externa local: `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_BRAND_SEPARATION_GUIDE.md` |
 | Cloudflare Auth (zone IDs, tokens) | Personal Context MCP → `cloudflare-auth` |
 | Project Roadmap | `docs/PLAN.md` (Fase 6) |
