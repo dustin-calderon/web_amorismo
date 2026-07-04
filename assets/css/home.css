@@ -73,7 +73,7 @@
 
 /* "no" — Vol III green, warm contrast against dark bg */
 .am-hl--no {
-  color: var(--am-v3-acento);
+  color: var(--am-hl-green);
 }
 
 /* ── Body / description text ── */
@@ -159,17 +159,17 @@
 }
 
 /* ── Color per quote — maps each to a Vol palette ── */
-.am-statement__quote--featured p   { color: var(--am-v1-elemento-02); }
-.am-statement__quote--featured cite { color: var(--am-v1-elemento-02); }
+.am-statement__quote--featured p   { color: var(--am-quote-pink); }
+.am-statement__quote--featured cite { color: var(--am-quote-pink); }
 
 .am-statement__quote--v1 p   { color: var(--am-home-accent); }
 .am-statement__quote--v1 cite { color: var(--am-home-accent); }
 
-.am-statement__quote--v2 p   { color: var(--am-v1-elemento-02); }
-.am-statement__quote--v2 cite { color: var(--am-v1-elemento-02); }
+.am-statement__quote--v2 p   { color: var(--am-quote-pink); }
+.am-statement__quote--v2 cite { color: var(--am-quote-pink); }
 
-.am-statement__quote--v3 p   { color: var(--am-v3-acento); }
-.am-statement__quote--v3 cite { color: var(--am-v3-acento); }
+.am-statement__quote--v3 p   { color: var(--am-quote-green); }
+.am-statement__quote--v3 cite { color: var(--am-quote-green); }
 
 /* ===== Bio Blocks (Dustin / David) ===== */
 .am-bios {
