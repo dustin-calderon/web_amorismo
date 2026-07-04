@@ -60,8 +60,8 @@ describe('1. Integridad de archivos', () => {
     assert.ok(fileExists('assets/js/gallery.js'), 'gallery.js debe existir');
   });
 
-  test('1.4b - No hay JavaScript de formulario sin backend', () => {
-    assert.ok(!fileExists('assets/js/form.js'), 'form.js no debe fingir altas sin backend real');
+  test('1.4b - Módulo forms.js existe para newsletter Mautic', () => {
+    assert.ok(fileExists('assets/js/forms.js'), 'forms.js debe existir para la integración con Mautic');
   });
 
   test('1.5 - Legacy files eliminados', () => {
@@ -107,6 +107,7 @@ describe('1. Integridad de archivos', () => {
       ].map(f => `assets/css/${f}`),
       'assets/js/nav.js',
       'assets/js/gallery.js',
+      'assets/js/forms.js',
     ];
     files.forEach(f => {
       const lines = readFile(f).split('\n').length;
@@ -528,14 +529,22 @@ describe('6. JavaScript', () => {
   test('6.7 - Sin console.log en producción', () => {
     const nav = readFile('assets/js/nav.js');
     const gallery = readFile('assets/js/gallery.js');
+    const forms = readFile('assets/js/forms.js');
     assert.ok(!nav.includes('console.log'));
     assert.ok(!gallery.includes('console.log'));
+    assert.ok(!forms.includes('console.log'));
   });
 
-  test('6.8 - Ninguna página carga scripts inexistentes o muertos', () => {
-    PAGES.forEach(page => {
+  test('6.8 - forms.js cargado en páginas con formulario', () => {
+    const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'];
+    pagesWithForms.forEach(page => {
       const html = readFile(page);
-      assert.ok(!html.includes('assets/js/form.js'), `${page}: no debe cargar form.js sin backend`);
+      assert.ok(html.includes('defer src="assets/js/forms.js"'), `${page}: debe cargar forms.js`);
+    });
+    // Páginas sin formulario no deben cargar forms.js
+    ['escuchar.html', 'partituras.html'].forEach(page => {
+      const html = readFile(page);
+      assert.ok(!html.includes('forms.js'), `${page}: no debe cargar forms.js`);
     });
   });
 
@@ -675,25 +684,29 @@ describe('8. Regresiones funcionales', () => {
     });
   });
 
-  test('8.7 - Los formularios de correo no simulan altas sin backend', () => {
-    PAGES.forEach(page => {
+  test('8.7 - Los formularios de correo están activos con backend Mautic', () => {
+    const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html'];
+    pagesWithForms.forEach(page => {
       const html = readFile(page);
 
-      // Contact section form (index.html only)
+      // Contact section form (todas las 4 páginas)
       if (html.includes('id="contact-form"')) {
         const emailInput = html.match(/<input[^>]+id="contact-email"[^>]*>/)?.[0] || '';
         const submitButton = html.match(/<button[^>]+id="contact-submit"[^>]*>/)?.[0] || '';
-        assert.ok(html.includes('El formulario de correo estará disponible próximamente.'), `${page}: debe explicar el estado real del formulario`);
-        assert.ok(emailInput.includes('disabled'), `${page}: input de correo debe estar deshabilitado`);
-        assert.ok(submitButton.includes('disabled'), `${page}: submit debe estar deshabilitado`);
+        assert.ok(!emailInput.includes('disabled'), `${page}: input de correo debe estar habilitado`);
+        assert.ok(!submitButton.includes('disabled'), `${page}: submit debe estar habilitado`);
+        assert.ok(!submitButton.includes('am-cta--disabled'), `${page}: submit no debe tener clase disabled`);
+        assert.ok(html.includes('Newsletter de Amorismo'), `${page}: debe mostrar copy final de newsletter`);
+        assert.ok(html.includes('aria-live="polite"'), `${page}: debe tener feedback accesible`);
       }
 
-      // Hero subscription form (index.html only)
+      // Hero subscription form (solo index.html)
       if (html.includes('id="hero-form"')) {
         const heroInput = html.match(/<input[^>]+id="hero-email"[^>]*>/)?.[0] || '';
         const heroSubmit = html.match(/<button[^>]+id="hero-submit"[^>]*>/)?.[0] || '';
-        assert.ok(heroInput.includes('disabled'), `${page}: hero input debe estar deshabilitado pre-Mautic`);
-        assert.ok(heroSubmit.includes('disabled'), `${page}: hero submit debe estar deshabilitado pre-Mautic`);
+        assert.ok(!heroInput.includes('disabled'), `${page}: hero input debe estar habilitado`);
+        assert.ok(!heroSubmit.includes('disabled'), `${page}: hero submit debe estar habilitado`);
+        assert.ok(!heroSubmit.includes('am-cta--disabled'), `${page}: hero submit no debe tener clase disabled`);
       }
     });
   });
@@ -769,7 +782,7 @@ describe('9. Seguridad', () => {
 
   test('9.2 - Sin credenciales en HTML/JS', () => {
     const allContent = PAGES.map(p => readFile(p)).join('') +
-      readFile('assets/js/nav.js') + readFile('assets/js/gallery.js');
+      readFile('assets/js/nav.js') + readFile('assets/js/gallery.js') + readFile('assets/js/forms.js');
     assert.ok(!allContent.includes('Bearer '));
     assert.ok(!allContent.includes('api_key'));
   });
