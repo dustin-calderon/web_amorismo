@@ -110,10 +110,8 @@
   .am-hero__image { max-width: 90vw; }
   .am-hero__body { text-align: center; padding: 0 var(--am-sp-2); }
   .am-hero__copy { font-size: 1rem; line-height: 1.6; }
-  .am-hero__meta { font-size: 0.95rem; font-weight: 600; }
   .am-section-label { text-align: center; margin-bottom: var(--am-sp-6); }
   .am-person-grid--cols-4 { grid-template-columns: repeat(2, 1fr); gap: var(--am-sp-3); }
-  .am-person-grid--cols-3 { grid-template-columns: 1fr; gap: var(--am-sp-5); }
   .am-container { padding: var(--am-sp-4); }
   .am-gallery { padding: var(--am-sp-6) var(--am-sp-4); }
   .am-gallery__main { margin-bottom: var(--am-sp-5); }
@@ -136,10 +134,6 @@
     grid-column: 1;
     justify-self: center;
     max-width: calc(100vw - 5.5rem);
-    background: var(--am-nav-bg);
-    box-shadow: var(--am-shadow-nav-logo);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
   }
   .am-nav__mail {
     position: absolute;
