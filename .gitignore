@@ -4,6 +4,12 @@ package.json
 package-lock.json
 .wrangler/tmp/
 
+# Fuentes y assets raw (no son parte del deploy)
+Fotos/
+scripts/
+LINEAS-AMORISMO.png
+logo_dustin_amorismo.png
+
 # OS
 .DS_Store
 Thumbs.db
