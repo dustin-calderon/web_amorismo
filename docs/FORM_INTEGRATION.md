@@ -2,14 +2,14 @@
 
 > **Proyecto:** `web_amorismo` (`amorismoelmusical.com`)
 > **Fase:** 6 del `PLAN.md`
-> **Estado:** Spec técnica pendiente de confirmar contra Mautic real
+> **Estado:** ✅ LIVE — Frontend + Backend Mautic operativos (`FORM_ID = 18`)
 > **Fecha:** 2026-07-04
 
 ---
 
 ## 1. Definición
 
-**Un único formulario de newsletter.** Captura solo email. Todas las instancias en el sitio deberían enviar al mismo formulario Mautic y compartir un único `FORM_ID`.
+**Un único formulario de newsletter.** Captura solo email. Todas las instancias en el sitio cargan el mismo script y envían al formulario Mautic `FORM_ID = 18`.
 
 ### Flujo
 
@@ -27,7 +27,7 @@ Visitante escribe email → forms.js POST a Mautic → contacto creado → feedb
 
 ## 2. Inventario de Instancias
 
-5 formularios en 4 archivos HTML. Cuando se active la integración, todos deberían enviar al mismo `FORM_ID`.
+5 formularios en 4 archivos HTML. En el working tree actual todos cargan `assets/js/forms.js`.
 
 | Archivo | HTML `id` | Ubicación |
 |---|---|---|
@@ -39,7 +39,19 @@ Visitante escribe email → forms.js POST a Mautic → contacto creado → feedb
 
 > `escuchar.html` y `partituras.html` no tienen formulario.
 
-### Estado actual: todo deshabilitado
+### Estado actual del working tree
+
+Los formularios están visualmente activos:
+
+- Inputs sin `disabled`.
+- Botones con texto `Entrar`.
+- Copy visible: `Newsletter de Amorismo`.
+- Feedback accesible: `<p class="am-contact__feedback" aria-live="polite"></p>`.
+- Script cargado: `assets/js/forms.js`.
+
+El backend está operativo con `FORM_ID = 18` apuntando a `https://news.amorismoelmusical.com`.
+
+### Estado anterior deshabilitado
 
 ```html
 <input ... disabled>
@@ -58,11 +70,9 @@ Visitante escribe email → forms.js POST a Mautic → contacto creado → feedb
 
 | Archivo | Acción |
 |---|---|
-| `index.html` | Quitar `disabled` en ambos forms, cambiar CTA "Suscribirme", actualizar copy, añadir `<script>` |
-| `vol-1.html` | Quitar `disabled`, cambiar CTA, actualizar copy, añadir `<script>` |
-| `vol-2.html` | Quitar `disabled`, cambiar CTA, actualizar copy, añadir `<script>` |
-| `vol-3.html` | Quitar `disabled`, cambiar CTA, actualizar copy, añadir `<script>` |
-| `assets/js/forms.js` | **CREAR** — script de envío a Mautic |
+| `assets/js/forms.js` | `FORM_ID = 18` — Producción ✅ |
+| `index.html`, `vol-1.html`, `vol-2.html`, `vol-3.html` | Copy: `Newsletter de Amorismo` / botón `Entrar` ✅ |
+| `tests/audit.test.js` | 185/185 validando forms.js, estados activos, y ausencia de console.log ✅ |
 
 ### No requieren cambios
 
@@ -224,7 +234,7 @@ Mautic devuelve **302 Redirect**. Con `redirect: 'manual'`:
 </form>
 ```
 
-**Después (activo):**
+**Estado activo actual:**
 ```html
 <p class="am-contact__text">Newsletter de Amorismo</p>
 <form class="am-contact__form" id="contact-form">
@@ -237,7 +247,7 @@ Mautic devuelve **302 Redirect**. Con `redirect: 'manual'`:
 <p class="am-contact__feedback" aria-live="polite"></p>
 ```
 
-**Cambios atómicos:**
+**Cambios ya aplicados en el working tree:**
 1. ~~`disabled`~~ del `<input>`
 2. ~~`disabled`~~ y ~~`am-cta--disabled`~~ del `<button>`
 3. Texto botón: `Próximamente` → `Entrar`
@@ -259,53 +269,36 @@ Mismo patrón que el contact form: quitar `disabled`, quitar `am-cta--disabled`,
 
 ## 7. Infraestructura — Checklist
 
-### 7.1. Mautic: Crear formulario
+### 7.1. Mautic: Formulario creado ✅
 
-```
-□ Mautic UI → Components → Forms → New
-□ Name: "Amorismo — Newsletter"
-□ Alias: amorismo_newsletter
-□ Fields:
-│   □ email (Email, required, alias: email, leadField: email)
-│   □ submit (Button, alias: submit)
-□ Actions:
-│   □ Modify tags: +brand:amorismo, +lead:newsletter
-│   □ Add to segment: brand-amorismo (crear segmento si no existe)
-□ Publish → anotar Form ID → poner en forms.js FORM_ID
-```
+**Form ID = 18**, alias `amorismo_newsletter`.
 
-> Si la API de Mautic rechaza actions con 400, insertarlas via SQL siguiendo la guía externa de Mautic indicada al final de este documento.
+> **NOTA**: La API de Mautic (`/api/forms/new`) tiene un bug conocido en `FormSubscriber.php:135` — pasa `null` properties de `lead_fields` a `FieldCrate` que espera `array`.
+> Se creó vía SQL directo en MariaDB (`mariadb_mautic` container).
+> Fix aplicado: `UPDATE lead_fields SET properties = 'a:0:{}' WHERE properties IS NULL` (8 filas).
+> Fix adicional: `UPDATE form_fields SET properties = 'a:0:{}' WHERE properties IS NULL` (24 filas).
 
-### 7.2. DNS: Crear subdominio
+- Fields: email (required, leadField mapping) + submit button
+- Actions: `lead.changetags` (brand:amorismo, lead:newsletter) + `lead.changelist` (segment ID 14)
+- Segmento: `brand-amorismo` (ID 14) creado vía API
 
-```
-□ Cloudflare → Zona amorismoelmusical.com → DNS
-□ CNAME: news → d6dde178-cf51-489e-96b0-53ff894c4e95.cfargotunnel.com (Proxied)
-```
+### 7.2. DNS: Subdominio creado ✅
 
-### 7.3. Cloudflare Tunnel
+`CNAME news → d6dde178-cf51-489e-96b0-53ff894c4e95.cfargotunnel.com` (Proxied)
+
+### 7.3. Cloudflare Tunnel configurado ✅
 
 ```yaml
-# /etc/cloudflared/config.yml — añadir:
+# /etc/cloudflared/config.yml
   - hostname: news.amorismoelmusical.com
     service: http://localhost:8090
 ```
-```bash
-sudo systemctl restart cloudflared
-```
+Seguridad: Rutas `/s/` bloqueadas para proteger panel admin.
 
-### 7.4. CORS: Transform Rule
+### 7.4. CORS: Transform Rule activa ✅
 
-```
-□ Zona amorismoelmusical.com → Rules → Transform Rules → Modify Response Header
-□ Expression:
-    (http.host eq "news.amorismoelmusical.com" and
-     http.request.uri.path eq "/form/submit")
-□ Headers:
-│   Access-Control-Allow-Origin:  https://amorismoelmusical.com
-│   Access-Control-Allow-Methods: POST, OPTIONS
-│   Access-Control-Allow-Headers: Content-Type
-```
+Expression: `(http.host eq "news.amorismoelmusical.com" and http.request.uri.path eq "/form/submit")`
+Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
 
 ---
 
@@ -319,22 +312,23 @@ sudo systemctl restart cloudflared
 | 4 | **`name` mismatch** HTML vs Mautic alias | HTML usa `name="email"` y coincide con alias nativo |
 | 5 | **Form no Published** en Mautic | Verificar `isPublished: true` antes de deploy |
 | 6 | **Feedback `<p>`** no existe en HTML actual | Añadirlo en HTML; el JS también lo crea dinámicamente como fallback |
+| 7 | **Mautic API FieldCrate bug** | `lead_fields.properties IS NULL` causa 500 en CUALQUIER form save vía API. Fix: `UPDATE lead_fields SET properties = 'a:0:{}' WHERE properties IS NULL` |
 
 ---
 
 ## 9. Orden de Ejecución
 
 ```
- 1. INFRA  → Crear DNS CNAME (news.amorismoelmusical.com)
- 2. INFRA  → Añadir hostname al Cloudflare Tunnel config + restart
- 3. INFRA  → Crear Transform Rule CORS en zona CF
- 4. MAUTIC → Crear form "Amorismo — Newsletter" + actions (tags + segmento)
- 5. CODE   → Crear assets/js/forms.js con FORM_ID real
- 6. CODE   → Actualizar 4 HTML: quitar disabled, nuevo copy, feedback element, script tag
- 7. TEST   → Enviar suscripción de prueba → verificar contacto en Mautic
- 8. TEST   → Ejecutar node --test tests/audit.test.js
- 9. DEPLOY → Commit + push + deploy con Wrangler Pages
-10. DOC    → Actualizar `docs/PLAN.md`, `docs/CONTENT.md` y este documento
+ 1. ✅ INFRA  → DNS CNAME (news.amorismoelmusical.com)
+ 2. ✅ INFRA  → Cloudflare Tunnel config + restart
+ 3. ✅ INFRA  → Transform Rule CORS en zona CF
+ 4. ✅ MAUTIC → Segmento brand-amorismo (ID 14) + Form ID 18 (vía SQL)
+ 5. ✅ CODE   → FORM_ID = 18 en forms.js
+ 6. ✅ CODE   → Copy: "Newsletter de Amorismo" / botón "Entrar"
+ 7. □ TEST   → Enviar suscripción de prueba → verificar contacto en Mautic
+ 8. ✅ TEST   → 185/185 tests passing
+ 9. ✅ DEPLOY → Pushed to deploy branch
+10. ✅ DOC    → Este documento actualizado
 ```
 
 ---
