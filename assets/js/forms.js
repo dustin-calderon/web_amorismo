@@ -13,7 +13,7 @@
   var MAUTIC_URL = 'https://news.amorismoelmusical.com';
 
   /** @type {number} ID del formulario "Amorismo — Newsletter" en Mautic */
-  var FORM_ID = 0; // ← TODO: actualizar tras crear el form en Mautic
+  var FORM_ID = 18;
 
   /**
    * Construye FormData con el formato que espera Mautic Form API.
