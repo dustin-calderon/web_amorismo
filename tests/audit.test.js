@@ -255,9 +255,10 @@ describe('2. Semántica HTML y SEO', () => {
 describe('3. Contenido de vol-3.html', () => {
   const html = readFile('vol-3.html');
 
-  test('3.1 - CTA disabled presente', () => {
-    assert.ok(html.includes('Entradas no disponibles'));
-    assert.ok(html.includes('am-cta--disabled'));
+  test('3.1 - Hero con aviso de disco y CTA newsletter', () => {
+    assert.ok(html.includes('del disco'));
+    assert.ok(html.includes('newsletter'));
+    assert.ok(html.includes('#correo'));
   });
 
   test('3.2 - Sin enlace a taquilla', () => {
