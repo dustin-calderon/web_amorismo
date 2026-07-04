@@ -53,6 +53,20 @@
   line-height: 1.04;
   max-width: 8.5em;
 }
+body[data-vol="4"] .am-volume-hero .am-hero__copy {
+  font-size: clamp(1.1rem, 2.2vw, 2rem);
+  line-height: 1.5;
+  max-width: 22em;
+}
+.am-hero__highlight {
+  color: var(--am-home-accent-soft);
+}
+.am-hero__highlight--bg {
+  background: var(--am-home-accent);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  color: var(--am-home-text);
+}
 
 .am-hero__note {
   font-family: var(--am-font-sans);
