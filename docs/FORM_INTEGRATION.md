@@ -1,8 +1,8 @@
 # FORM_INTEGRATION: Newsletter Amorismo → Mautic
 
 > **Proyecto:** `web_amorismo` (`amorismoelmusical.com`)
-> **Fase:** 6 del `PLAN.md`
-> **Estado:** ✅ LIVE — Frontend + Backend Mautic operativos (`FORM_ID = 18`)
+> **Documento relacionado:** `docs/PLAN.md`
+> **Estado:** Configuración de producción aplicada — Frontend activo + Mautic `FORM_ID = 18`
 > **Fecha:** 2026-07-04
 
 ---
@@ -10,6 +10,8 @@
 ## 1. Definición
 
 **Un único formulario de newsletter.** Captura solo email. Todas las instancias en el sitio cargan el mismo script y envían al formulario Mautic `FORM_ID = 18`.
+
+Nota de rigor: los tests locales validan HTML, script y configuración, pero no ejecutan una suscripción real contra Mautic. Para afirmar operación end-to-end hay que conservar una prueba real de contacto creado, tags y segmento.
 
 ### Flujo
 
@@ -49,7 +51,7 @@ Los formularios están visualmente activos:
 - Feedback accesible: `<p class="am-contact__feedback" aria-live="polite"></p>`.
 - Script cargado: `assets/js/forms.js`.
 
-El backend está operativo con `FORM_ID = 18` apuntando a `https://news.amorismoelmusical.com`.
+El backend está configurado con `FORM_ID = 18` apuntando a `https://news.amorismoelmusical.com`.
 
 ### Estado anterior deshabilitado
 
@@ -66,13 +68,13 @@ El backend está operativo con `FORM_ID = 18` apuntando a `https://news.amorismo
 
 ## 3. Archivos Involucrados
 
-### Requieren cambios
+### Estado de cambios aplicados
 
 | Archivo | Acción |
 |---|---|
-| `assets/js/forms.js` | `FORM_ID = 18` — Producción ✅ |
+| `assets/js/forms.js` | `FORM_ID = 18` — Producción configurada ✅ |
 | `index.html`, `vol-1.html`, `vol-2.html`, `vol-3.html` | Copy: `Newsletter de Amorismo` / botón `Entrar` ✅ |
-| `tests/audit.test.js` | 185/185 validando forms.js, estados activos, y ausencia de console.log ✅ |
+| `tests/audit.test.js` | Valida `forms.js`, estados activos, feedback y ausencia de `console.log`; suite 190/190 ✅ |
 
 ### No requieren cambios
 
@@ -122,93 +124,8 @@ Mautic devuelve **302 Redirect**. Con `redirect: 'manual'`:
 
 ## 5. Script: `assets/js/forms.js`
 
-```javascript
-/**
- * forms.js — Amorismo Newsletter
- * Envía email a Mautic Form API (POST /form/submit).
- * Sin auth, sin CORS hack, sin modules.
- */
-(function () {
-  'use strict';
-
-  /** @type {string} */
-  var MAUTIC_URL = 'https://news.amorismoelmusical.com';
-
-  /** @type {number} Actualizar tras crear el form en Mautic */
-  var FORM_ID = 0; // ← TODO: ID real
-
-  /**
-   * @param {string} email
-   * @returns {FormData}
-   */
-  function buildPayload(email) {
-    var fd = new FormData();
-    fd.append('mauticform[formId]', FORM_ID);
-    fd.append('mauticform[email]', email);
-    fd.append('mauticform[return]', '');
-    return fd;
-  }
-
-  /**
-   * @param {HTMLFormElement} form
-   * @param {'success'|'error'} type
-   * @param {string} msg
-   */
-  function showFeedback(form, type, msg) {
-    var el = form.closest('.am-contact')
-      ? form.closest('.am-contact').querySelector('.am-contact__feedback')
-      : null;
-    if (!el) {
-      el = document.createElement('p');
-      el.className = 'am-contact__feedback';
-      form.insertAdjacentElement('afterend', el);
-    }
-    el.textContent = msg;
-    el.className = 'am-contact__feedback am-contact__feedback--visible '
-                 + 'am-contact__feedback--' + type;
-  }
-
-  /** @param {SubmitEvent} e */
-  function handleSubmit(e) {
-    e.preventDefault();
-    var form = e.currentTarget;
-    var input = form.querySelector('input[type="email"]');
-    var btn = form.querySelector('button[type="submit"]');
-    if (!input || !btn) return;
-
-    var email = input.value.trim();
-    if (!email) return;
-
-    var originalText = btn.textContent;
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
-
-    fetch(MAUTIC_URL + '/form/submit', {
-      method: 'POST',
-      body: buildPayload(email),
-      redirect: 'manual'
-    })
-    .then(function (res) {
-      if (res.type === 'opaqueredirect' || res.ok || res.status === 302) {
-        showFeedback(form, 'success', '¡Gracias! Te mantendremos al tanto.');
-        input.value = '';
-        btn.textContent = '✓ Enviado';
-      } else {
-        throw new Error('Status ' + res.status);
-      }
-    })
-    .catch(function (err) {
-      console.error('[AmorismoForm]', err);
-      showFeedback(form, 'error', 'Error al enviar. Inténtalo de nuevo.');
-      btn.disabled = false;
-      btn.textContent = originalText;
-    });
-  }
-
-  document.querySelectorAll('#hero-form, #contact-form')
-    .forEach(function (f) { f.addEventListener('submit', handleSubmit); });
-})();
-```
+> **Código fuente**: [`assets/js/forms.js`](../assets/js/forms.js) (fuente de verdad).
+> No se duplica aquí para evitar drift con el working tree.
 
 **Decisiones tomadas:**
 - IIFE (consistente con `nav.js`, `gallery.js` — no hay bundler)
@@ -311,7 +228,7 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
 | 3 | **Mautic 302** = éxito | `response.type === 'opaqueredirect'` → OK |
 | 4 | **`name` mismatch** HTML vs Mautic alias | HTML usa `name="email"` y coincide con alias nativo |
 | 5 | **Form no Published** en Mautic | Verificar `isPublished: true` antes de deploy |
-| 6 | **Feedback `<p>`** no existe en HTML actual | Añadirlo en HTML; el JS también lo crea dinámicamente como fallback |
+| 6 | **Feedback `<p>`** debe existir cerca del formulario | Está en HTML; el JS también lo crea dinámicamente como fallback |
 | 7 | **Mautic API FieldCrate bug** | `lead_fields.properties IS NULL` causa 500 en CUALQUIER form save vía API. Fix: `UPDATE lead_fields SET properties = 'a:0:{}' WHERE properties IS NULL` |
 
 ---
@@ -325,8 +242,8 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
  4. ✅ MAUTIC → Segmento brand-amorismo (ID 14) + Form ID 18 (vía SQL)
  5. ✅ CODE   → FORM_ID = 18 en forms.js
  6. ✅ CODE   → Copy: "Newsletter de Amorismo" / botón "Entrar"
- 7. □ TEST   → Enviar suscripción de prueba → verificar contacto en Mautic
- 8. ✅ TEST   → 185/185 tests passing
+ 7. □ TEST   → Conservar evidencia de suscripción real → verificar contacto, tags y segmento en Mautic
+ 8. ✅ TEST   → 190/190 tests passing
  9. ✅ DEPLOY → Pushed to deploy branch
 10. ✅ DOC    → Este documento actualizado
 ```
@@ -341,4 +258,4 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
 | Mautic CORS Forms | Referencia externa local: `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_CORS_FORMS.md` |
 | Mautic Brand Separation | Referencia externa local: `D:\Code Projects\Instalar Home Server\docs\guides\MAUTIC_BRAND_SEPARATION_GUIDE.md` |
 | Cloudflare Auth (zone IDs, tokens) | Personal Context MCP → `cloudflare-auth` |
-| Project Roadmap | `docs/PLAN.md` (Fase 6) |
+| Project Roadmap | `docs/PLAN.md` |
