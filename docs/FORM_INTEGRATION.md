@@ -245,7 +245,7 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
  4. ✅ MAUTIC → Segmento brand-amorismo (ID 14) + Form ID 18 (vía SQL)
  5. ✅ CODE   → FORM_ID = 18 en forms.js
  6. ✅ CODE   → Copy: "Newsletter de Amorismo" / botón "Entrar"
- 7. ✅ TEST   → E2E verificado: POST → 200, contacto creado (ID 1355), tags `brand:amorismo` + `lead:newsletter`, segmento `brand-amorismo` ✅
+ 7. ✅ TEST   → E2E verificado (2026-07-04): POST → 302, contacto creado (ID 1357), tags `brand:amorismo` + `lead:newsletter`, segmento `brand-amorismo`, contacto eliminado tras test ✅
  8. ✅ TEST   → 202/202 tests passing
  9. ✅ DEPLOY → Pushed to deploy branch
 10. ✅ DOC    → Este documento actualizado
