@@ -259,12 +259,12 @@ body[data-vol="3"] {
   --am-bg-photo-blend: screen;
 }
 body[data-vol="4"] {
-  --am-home-bg:           var(--am-v4-fondo-oscuro);      /* #0A1628 */
+  --am-home-bg:           var(--am-v4-fondo-oscuro);
   --am-home-surface:      #101E34;
-  --am-home-text:         var(--am-v4-texto);             /* #F5F4EF */
-  --am-home-text-muted:   var(--am-v4-texto-secundario);  /* #A0B8D0 */
-  --am-home-accent:       var(--am-v4-secundario);        /* #1E3A5F */
-  --am-home-accent-soft:  var(--am-v4-acento);            /* #5A8AB5 */
+  --am-home-text:         var(--am-v4-texto);
+  --am-home-text-muted:   var(--am-v4-texto-secundario);
+  --am-home-accent:       var(--am-v4-secundario);
+  --am-home-accent-soft:  var(--am-v4-acento);
   --am-on-accent:         var(--am-v4-texto);
   --am-home-quote-bg:     #081020;
   --am-home-border:       rgba(90, 138, 181, 0.12);
@@ -279,8 +279,7 @@ body[data-vol="4"] {
   --am-bg-grad-color-a:   rgba(15, 36, 64, 0.4);
   --am-bg-grad-color-b:   rgba(30, 58, 95, 0.2);
   --am-bg-grad-bottom:    var(--am-v4-fondo-oscuro);
-  --am-heading-shadow:    rgba(90, 138, 181, 0.12);
-  --am-h1-shadow:         rgba(90, 138, 181, 0.18);
+  --am-heading-shadow: rgba(90, 138, 181, 0.12); --am-h1-shadow: rgba(90, 138, 181, 0.18);
   --am-shadow-card:       0 8px 25px rgba(10, 22, 40, 0.55);
   --am-shadow-cta:        0 8px 30px rgba(30, 58, 95, 0.38);
   --am-shadow-cta-hover:  0 12px 40px rgba(15, 36, 64, 0.58);
@@ -291,9 +290,10 @@ body[data-vol="4"] {
   --am-shadow-thumb-active: 0 6px 18px rgba(90, 138, 181, 0.32);
   --am-shadow-nav-logo: 0 1px 6px rgba(10, 22, 40, 0.45);
   --am-shadow-landing-logo: 0 4px 24px rgba(10, 22, 40, 0.58);
-  --am-hero-overlay-mid: rgba(10, 22, 40, 0.58);
-  --am-hero-overlay-top: rgba(10, 22, 40, 0.30);
+  --am-hero-overlay-mid: rgba(10, 22, 40, 0.58); --am-hero-overlay-top: rgba(10, 22, 40, 0.30);
   --am-bg-photo: url("../images/hero/fondo-vol4.jpeg");
   --am-bg-photo-opacity: 0.45;
+  --am-bg-photo-blur: 0px;
+  --am-bg-photo-scale: 1;
   --am-bg-photo-blend: screen;
 }
