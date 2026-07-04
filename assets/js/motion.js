@@ -95,6 +95,7 @@
 
   function bindHeroParallax() {
     var hero = document.querySelector('.am-volume-hero');
+    var mobileHero = window.matchMedia && window.matchMedia('(max-width: 768px)');
     var active = true;
     var ticking = false;
 
@@ -106,8 +107,9 @@
       var progress = (viewport - rect.top) / (viewport + rect.height);
       var clamped = Math.max(0, Math.min(1, progress));
       var offset = Math.round((clamped - 0.5) * 18);
+      var multiplier = mobileHero && mobileHero.matches ? -0.5 : -1;
 
-      hero.style.setProperty('--am-hero-parallax', offset);
+      hero.style.setProperty('--am-hero-parallax-y', Math.round(offset * multiplier) + 'px');
       ticking = false;
     }
 

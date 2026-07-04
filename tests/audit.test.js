@@ -631,8 +631,22 @@ describe('6. JavaScript', () => {
 
     assert.ok(motionCss.includes('opacity: var(--am-home-photo-opacity)'),
       'reduced motion debe preservar la opacidad diseñada de cada foto del hero');
+    assert.ok(motionCss.includes('@media (max-width: 480px)'));
+    assert.ok(motionCss.includes('--am-home-photo-opacity: 0;'),
+      'las fotos ocultas en mobile deben seguir ocultas cuando entra .is-visible');
     assert.ok(motionCss.includes('.am-motion-ready .am-bio:hover .am-bio__photo'),
       'reduced motion/touch debe neutralizar hover de bios');
+  });
+
+  test('6.7e - parallax usa valores CSS seguros y ajusta intensidad responsive', () => {
+    const motionJs = readFile('assets/js/motion.js');
+    const motionCss = readFile('assets/css/motion.css');
+
+    assert.ok(motionJs.includes("window.matchMedia('(max-width: 768px)')"));
+    assert.ok(motionJs.includes("--am-hero-parallax-y', Math.round(offset * multiplier) + 'px'"));
+    assert.ok(motionCss.includes('var(--am-hero-parallax-y, 0px)'));
+    assert.ok(!motionCss.includes('var(--am-hero-parallax, 0) *'),
+      'evita multiplicaciones CSS frágiles dentro de calc() para el parallax');
   });
 
   test('6.8 - forms.js cargado en páginas con formulario', () => {
