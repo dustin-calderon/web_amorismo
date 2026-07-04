@@ -48,7 +48,7 @@ describe('1. Integridad de archivos', () => {
     const cssFiles = [
       'tokens.css', 'base.css', 'nav.css', 'components.css',
       'hero.css', 'home.css', 'volume.css', 'gallery.css',
-      'contact.css', 'footer.css', 'responsive.css',
+      'contact.css', 'footer.css', 'motion.css', 'responsive.css',
     ];
     cssFiles.forEach(f => {
       assert.ok(fileExists(`assets/css/${f}`), `CSS: ${f} debe existir`);
@@ -58,6 +58,7 @@ describe('1. Integridad de archivos', () => {
   test('1.4 - Módulos JS existen', () => {
     assert.ok(fileExists('assets/js/nav.js'), 'nav.js debe existir');
     assert.ok(fileExists('assets/js/gallery.js'), 'gallery.js debe existir');
+    assert.ok(fileExists('assets/js/motion.js'), 'motion.js debe existir para animación progresiva');
   });
 
   test('1.4b - Módulo forms.js existe para newsletter Mautic', () => {
@@ -108,11 +109,12 @@ describe('1. Integridad de archivos', () => {
       ...[
         'tokens.css', 'base.css', 'nav.css', 'components.css',
         'hero.css', 'home.css', 'volume.css', 'gallery.css',
-        'contact.css', 'footer.css', 'responsive.css',
+        'contact.css', 'footer.css', 'motion.css', 'responsive.css',
       ].map(f => `assets/css/${f}`),
       'assets/js/nav.js',
       'assets/js/gallery.js',
       'assets/js/forms.js',
+      'assets/js/motion.js',
     ];
     files.forEach(f => {
       const lines = readFile(f).split('\n').length;
@@ -301,6 +303,11 @@ describe('4. Contenido de index.html', () => {
     assert.ok(html.includes('id="hero-submit"'), 'hero debe tener botón de submit');
   });
 
+  test('4.1b - Home carga el sistema de movimiento editorial', () => {
+    assert.ok(html.includes('href="assets/css/motion.css"'));
+    assert.ok(html.includes('defer src="assets/js/motion.js"'));
+  });
+
   test('4.2 - Crédito de autoría', () => {
     assert.ok(html.includes('Dustin Calderón'));
   });
@@ -346,7 +353,9 @@ describe('5. CSS Design System', () => {
 
   test('5.6 - Respeta prefers-reduced-motion', () => {
     const base = readFile('assets/css/base.css');
+    const motion = readFile('assets/css/motion.css');
     assert.ok(base.includes('prefers-reduced-motion'));
+    assert.ok(motion.includes('prefers-reduced-motion'));
     assert.ok(!base.includes('scroll-duration'), 'scroll-duration no es una propiedad CSS válida');
     const error404 = readFile('404.html');
     assert.ok(error404.includes('prefers-reduced-motion') || error404.includes('base.css'), '404 debe respetar prefers-reduced-motion (inline o via base.css)');
@@ -588,9 +597,42 @@ describe('6. JavaScript', () => {
     const nav = readFile('assets/js/nav.js');
     const gallery = readFile('assets/js/gallery.js');
     const forms = readFile('assets/js/forms.js');
+    const motion = readFile('assets/js/motion.js');
     assert.ok(!nav.includes('console.log'));
     assert.ok(!gallery.includes('console.log'));
     assert.ok(!forms.includes('console.log'));
+    assert.ok(!motion.includes('console.log'));
+  });
+
+  test('6.7b - motion.js es progresivo y no oculta contenido sin JS', () => {
+    const motionJs = readFile('assets/js/motion.js');
+    const motionCss = readFile('assets/css/motion.css');
+
+    assert.ok(motionJs.includes('IntersectionObserver'));
+    assert.ok(motionJs.includes("document.body.classList.add('am-motion-ready')"));
+    assert.ok(motionCss.includes('.am-motion-ready .am-motion'));
+    assert.ok(!motionCss.match(/^\.am-motion\s*\{/m),
+      'El contenido no debe quedar oculto si JS no añade .am-motion-ready');
+  });
+
+  test('6.7c - motion.js limpia hints y pausa parallax fuera de viewport', () => {
+    const motionJs = readFile('assets/js/motion.js');
+    const motionCss = readFile('assets/css/motion.css');
+
+    assert.ok(motionJs.includes('motionStarted'), 'motion.js debe evitar doble inicialización');
+    assert.ok(motionJs.includes('has-motion-ended'), 'motion.js debe marcar animaciones terminadas');
+    assert.ok(motionCss.includes('.am-motion-ready .am-motion.has-motion-ended'));
+    assert.ok(motionJs.match(/active\s*=\s*entries\[0\].*isIntersecting/),
+      'parallax debe pausarse cuando el hero sale del viewport');
+  });
+
+  test('6.7d - motion.css respeta reduced motion sin alterar el arte del hero', () => {
+    const motionCss = readFile('assets/css/motion.css');
+
+    assert.ok(motionCss.includes('opacity: var(--am-home-photo-opacity)'),
+      'reduced motion debe preservar la opacidad diseñada de cada foto del hero');
+    assert.ok(motionCss.includes('.am-motion-ready .am-bio:hover .am-bio__photo'),
+      'reduced motion/touch debe neutralizar hover de bios');
   });
 
   test('6.8 - forms.js cargado en páginas con formulario', () => {
@@ -635,6 +677,15 @@ describe('6. JavaScript', () => {
     assert.ok(!gallery.match(/\bconst\b/), 'gallery.js no debe usar const (ES6) — usar var');
     assert.ok(!gallery.match(/\blet\b/), 'gallery.js no debe usar let (ES6) — usar var');
     assert.ok(!gallery.includes('=>'), 'gallery.js no debe usar arrow functions (ES6) — usar function()');
+  });
+
+  test('6.12 - gallery.js evita carreras en cambios rápidos de imagen', () => {
+    const gallery = readFile('assets/js/gallery.js');
+
+    assert.ok(gallery.includes('pendingSrc'), 'gallery.js debe rastrear la imagen pendiente');
+    assert.ok(gallery.includes('pendingImage = new Image()'), 'gallery.js debe precargar antes del crossfade');
+    assert.ok(gallery.includes('clearPendingSwitch'), 'gallery.js debe cancelar cambios pendientes obsoletos');
+    assert.ok(gallery.includes('window.clearTimeout'), 'gallery.js debe limpiar timers anteriores');
   });
 });
 
@@ -865,7 +916,8 @@ describe('9. Seguridad', () => {
 
   test('9.2 - Sin credenciales en HTML/JS', () => {
     const allContent = PAGES.map(p => readFile(p)).join('') +
-      readFile('assets/js/nav.js') + readFile('assets/js/gallery.js') + readFile('assets/js/forms.js');
+      readFile('assets/js/nav.js') + readFile('assets/js/gallery.js') +
+      readFile('assets/js/forms.js') + readFile('assets/js/motion.js');
     assert.ok(!allContent.includes('Bearer '));
     assert.ok(!allContent.includes('api_key'));
   });
