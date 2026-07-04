@@ -87,7 +87,7 @@ Los 4 copys de esta secuencia están pendientes de redacción.
 
 | Campo | Valor |
 |---|---|
-| From | `Dustin Calderón <boletin@dustincalderon.com>` |
+| From | `Amorismo <amorismo@dustincalderon.com>` |
 | Plataforma | Mautic (homeserver) |
 | Trigger | Fin de secuencia 01-bienvenida |
 | Cadencia | TBD — definir antes de implementar |

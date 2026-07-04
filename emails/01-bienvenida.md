@@ -37,7 +37,7 @@ El copy de este email está pendiente de redacción.
 
 | Campo | Valor |
 |---|---|
-| From | `Dustin Calderón <boletin@dustincalderon.com>` |
+| From | `Amorismo <amorismo@dustincalderon.com>` |
 | Plataforma | Mautic (homeserver) |
 | Trigger | Suscripción formulario web |
 | Delay | Inmediato |
