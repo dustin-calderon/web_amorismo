@@ -665,10 +665,13 @@ describe('6. JavaScript', () => {
     });
   });
 
-  test('6.10 - gallery.js auto-activa primer thumbnail al cargar', () => {
+  test('6.10 - gallery.js no abre el visor grande hasta que hay click', () => {
     const gallery = readFile('assets/js/gallery.js');
-    assert.ok(gallery.includes('activateThumb(thumbnails[0])'),
-      'gallery.js debe llamar activateThumb(thumbnails[0]) al inicializar para mostrar la imagen principal');
+
+    assert.ok(!gallery.includes('activateThumb(thumbnails[0])'),
+      'gallery.js no debe autoactivar el visor grande al cargar');
+    assert.ok(gallery.includes("thumb.addEventListener('click'"),
+      'gallery.js debe abrir el visor mediante interacción con thumbnail');
   });
 
   test('6.11 - gallery.js usa ES5 puro (sin const/let/arrow)', () => {

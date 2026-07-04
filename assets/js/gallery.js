@@ -1,8 +1,8 @@
 /**
  * gallery.js – Interactive gallery for production photos
  *
- * Activates the first thumbnail on load (progressive enhancement)
- * and handles click-to-switch with aria-pressed state management.
+ * Shows the large viewer only after a thumbnail click and keeps
+ * click-to-switch state in sync with aria-pressed.
  *
  * Syntax: ES5 strict — matches nav.js and forms.js for browser parity.
  */
@@ -83,8 +83,5 @@
       activateThumb(thumb);
     });
   });
-
-  // Auto-activate first thumbnail on load — ensures main image is visible
-  activateThumb(thumbnails[0]);
 
 })();
