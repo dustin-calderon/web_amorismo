@@ -457,6 +457,21 @@ describe('5. CSS Design System', () => {
     assert.ok(!gallery.includes('rgba('));
   });
 
+  test('5.14b - Fondos ambientales tienen encuadre y blur por volumen', () => {
+    const base = readFile('assets/css/base.css');
+    const volumeOneTheme = tokens.match(/body\[data-vol="1"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    const volumeTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+
+    assert.ok(base.includes('filter: blur(var(--am-bg-photo-blur))'),
+      'El blur del fondo debe salir de token para poder ajustarlo por volumen');
+    assert.ok(tokens.includes('--am-bg-photo-blur: 3px;'),
+      'El blur base del fondo ambiental debe quedar explícito');
+    assert.ok(volumeOneTheme.includes('--am-bg-photo-blur: 6px;'),
+      'Vol. I debe aumentar el blur de su fondo ambiental');
+    assert.ok(volumeTwoTheme.includes('--am-bg-photo-size: 100% 100%;'),
+      'Vol. II debe estirar el fondo ambiental a ancho y alto completos');
+  });
+
   test('5.15 - Vol. III no hereda sombras rojas de Home', () => {
     const volumeThreeTheme = tokens.match(/body\[data-vol="3"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
     assert.ok(volumeThreeTheme.includes('--am-shadow-cta:'));
@@ -484,13 +499,19 @@ describe('5. CSS Design System', () => {
       'footer.css debe usar el token --am-logo-filter para adaptarse al tema');
   });
 
-  test('5.18 - Vol I y III definen --am-noise-opacity para grano visible', () => {
+  test('5.18 - Solo Vol II conserva grain visible', () => {
     const volOneTheme = tokens.match(/body\[data-vol="1"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+    const volTwoTheme = tokens.match(/body\[data-vol="2"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
     const volThreeTheme = tokens.match(/body\[data-vol="3"\]\s*\{([\s\S]*?)\n\}/)?.[1] || '';
-    assert.ok(volOneTheme.includes('--am-noise-opacity'),
-      'Vol I (tema oscuro) debe definir --am-noise-opacity > 0 para textura visible');
-    assert.ok(volThreeTheme.includes('--am-noise-opacity'),
-      'Vol III (tema oscuro) debe definir --am-noise-opacity > 0 para textura visible');
+
+    assert.ok(tokens.includes('--am-noise-opacity: 0;'),
+      'El token base debe dejar el grain apagado fuera de overrides explícitos');
+    assert.ok(volOneTheme.includes('--am-noise-opacity:     0;'),
+      'Vol I no debe mostrar grain');
+    assert.ok(volTwoTheme.includes('--am-noise-opacity:     0.25;'),
+      'Vol II debe conservar grain con opacidad 0.25');
+    assert.ok(volThreeTheme.includes('--am-noise-opacity:     0;'),
+      'Vol III no debe mostrar grain');
   });
 
   test('5.19 - Vol II define --am-feedback-success con contraste adecuado', () => {
@@ -747,8 +768,19 @@ describe('8. Regresiones funcionales', () => {
         assert.ok(!heroInput.includes('disabled'), `${page}: hero input debe estar habilitado`);
         assert.ok(!heroSubmit.includes('disabled'), `${page}: hero submit debe estar habilitado`);
         assert.ok(!heroSubmit.includes('am-cta--disabled'), `${page}: hero submit no debe tener clase disabled`);
+        // Hero form MUST have its own feedback <p> — not rely on JS fallback
+        const heroSection = html.match(/id="hero-form"[\s\S]*?<\/form>([\s\S]*?)<\/div>/)?.[1] || '';
+        assert.ok(heroSection.includes('am-contact__feedback'),
+          `${page}: hero form necesita <p class="am-contact__feedback"> propio`);
+        assert.ok(heroSection.includes('aria-live="polite"'),
+          `${page}: hero feedback necesita aria-live="polite"`);
       }
     });
+
+    // forms.js debe re-habilitar botón tras éxito (setTimeout)
+    const formsJs = readFile('assets/js/forms.js');
+    assert.ok(formsJs.includes('setTimeout'),
+      'forms.js debe re-habilitar el botón tras éxito con setTimeout');
   });
 
   test('8.8 - Responsive evita solapes de navegación en móvil', () => {
