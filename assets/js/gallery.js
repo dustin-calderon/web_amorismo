@@ -12,6 +12,9 @@
   var mainGallery = document.querySelector('.am-gallery__main');
   var mainImage   = document.querySelector('#gallery-main-image');
   var thumbnails  = document.querySelectorAll('.am-gallery__thumb');
+  var switchTimer = null;
+  var pendingImage = null;
+  var pendingSrc = null;
 
   if (!mainImage || thumbnails.length === 0) return;
 
@@ -25,8 +28,41 @@
     var newAlt = thumb.getAttribute('data-alt');
     if (!newSrc) return;
 
-    mainImage.src = newSrc;
-    if (newAlt) mainImage.alt = newAlt;
+    function clearPendingSwitch() {
+      if (switchTimer) window.clearTimeout(switchTimer);
+      switchTimer = null;
+      if (pendingImage) {
+        pendingImage.onload = null;
+        pendingImage.onerror = null;
+        pendingImage = null;
+      }
+      pendingSrc = null;
+    }
+
+    function applyImage() {
+      if (pendingSrc !== newSrc) return;
+      mainImage.src = newSrc;
+      if (newAlt) mainImage.alt = newAlt;
+      mainImage.classList.remove('am-gallery__image--switching');
+      clearPendingSwitch();
+    }
+
+    if (mainImage.getAttribute('src') !== newSrc) {
+      clearPendingSwitch();
+      pendingSrc = newSrc;
+      pendingImage = new Image();
+      pendingImage.onload = pendingImage.onerror = function () {
+        if (pendingSrc !== newSrc) return;
+        mainImage.classList.add('am-gallery__image--switching');
+        switchTimer = window.setTimeout(applyImage, 120);
+      };
+      pendingImage.src = newSrc;
+    } else {
+      clearPendingSwitch();
+      mainImage.src = newSrc;
+      if (newAlt) mainImage.alt = newAlt;
+      mainImage.classList.remove('am-gallery__image--switching');
+    }
 
     // Ensure the gallery container becomes visible
     if (mainGallery && !mainGallery.classList.contains('am-gallery__main--active')) {
