@@ -126,6 +126,9 @@
 .am-statement__body--centered p + p {
   margin-top: var(--am-sp-6);
 }
+.am-statement__body .am-hero__highlight {
+  color: var(--am-home-accent-soft);
+}
 
 /* ── Testimonial Quotes — floating colored text, no cards ── */
 .am-statement__quotes {
