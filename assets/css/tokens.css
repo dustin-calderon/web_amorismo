@@ -53,7 +53,7 @@
   --am-cta-hover-bg: var(--am-v1-secundario);
   --am-feedback-success: var(--am-v3-acento);
   --am-input-placeholder: var(--am-home-text);
-  --am-noise-opacity: 0.1;
+  --am-noise-opacity: 0;
   /* Logo color control: white logo → keep white on dark backgrounds */
   --am-logo-filter: brightness(1);
 
