@@ -870,6 +870,16 @@ describe('8. Regresiones funcionales', () => {
     assert.ok(responsive.includes('transform: none'));
   });
 
+  test('8.8b - Elenco mantiene dos fotos por fila en responsive', () => {
+    const responsive = readFile('assets/css/responsive.css');
+    const phoneBlock = responsive.match(/@media \(max-width: 480px\)\s*\{([\s\S]*?)\n\}/)?.[1] || '';
+
+    assert.ok(responsive.includes('.am-person-grid--cols-4 { grid-template-columns: repeat(2, 1fr);'),
+      'el breakpoint mobile debe definir dos columnas para elenco');
+    assert.ok(!phoneBlock.includes('.am-person-grid--cols-4 { grid-template-columns: 1fr;'),
+      'phone portrait no debe volver a una columna');
+  });
+
   test('8.9 - Touch hover no deja CTAs primarios transparentes', () => {
     const responsive = readFile('assets/css/responsive.css');
     const touchHover = responsive.match(/@media \(hover: none\)\s*\{([\s\S]*?)\n\}/)?.[1] || '';
