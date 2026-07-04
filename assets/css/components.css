@@ -118,13 +118,6 @@
   margin: 0;
 }
 
-.am-page-title__logo {
-  display: block;
-  max-width: 280px;
-  height: auto;
-  margin: 0 auto;
-  filter: var(--am-logo-filter) drop-shadow(var(--am-shadow-logo));
-}
 
 /* ===== Work-in-Progress / "En construcción" ===== */
 /* Reusable: drop .am-wip inside any <main> for a coming-soon page. */
