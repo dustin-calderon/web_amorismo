@@ -3,16 +3,15 @@
  *
  * Activates the first thumbnail on load (progressive enhancement)
  * and handles click-to-switch with aria-pressed state management.
+ *
+ * Syntax: ES5 strict — matches nav.js and forms.js for browser parity.
  */
 (function () {
   'use strict';
 
-  const qs  = (s, el = document) => el.querySelector(s);
-  const qsa = (s, el = document) => Array.from(el.querySelectorAll(s));
-
-  const mainGallery = qs('.am-gallery__main');
-  const mainImage   = qs('#gallery-main-image');
-  const thumbnails  = qsa('.am-gallery__thumb');
+  var mainGallery = document.querySelector('.am-gallery__main');
+  var mainImage   = document.querySelector('#gallery-main-image');
+  var thumbnails  = document.querySelectorAll('.am-gallery__thumb');
 
   if (!mainImage || thumbnails.length === 0) return;
 
@@ -48,5 +47,8 @@
       activateThumb(thumb);
     });
   });
+
+  // Auto-activate first thumbnail on load — ensures main image is visible
+  activateThumb(thumbnails[0]);
 
 })();
