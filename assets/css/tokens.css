@@ -110,6 +110,7 @@
   --am-bg-photo-blend: normal;
   --am-bg-photo-size: cover;
   --am-bg-photo-blur: 3px;
+  --am-bg-photo-scale: 1.03;
 
   /* ── Sombras de tipografía (sobreescribibles por Vol claro) ── */
   --am-heading-shadow:   rgba(245, 244, 239, 0.15);
@@ -185,6 +186,19 @@ body[data-vol="2"] {
   --am-nav-hover-bg:      rgba(43, 43, 43, 0.06);
   --am-nav-active-bg:     rgba(167, 25, 33, 0.12);
   --am-nav-active-text:   var(--am-v2-acento);
+  --am-control-focus-bg:  rgba(167, 25, 33, 0.08);
+  --am-cta-hover-bg:      var(--am-v2-parrafo);
+  --am-feedback-success:  #1E7C3E;
+  --am-input-placeholder: var(--am-v2-parrafo);
+  --am-noise-filter:      none;
+  --am-noise-blend:       multiply;
+  --am-noise-opacity:     0.25;
+  /* Light theme: invert white logo to dark gray */
+  --am-logo-filter: invert(1) opacity(0.85);
+
+  /* Gradiente: muy suave sobre el fondo crema */
+  --am-bg-grad-color-a:   rgba(167, 25, 33, 0.06);
+  --am-bg-grad-color-b:   rgba(43, 43, 43, 0.03);
   --am-bg-grad-bottom:    var(--am-v2-fondo);             /* no degrade a negro */
 
   /* Text-shadows invertidos: oscuros sobre fondo claro */
@@ -207,7 +221,8 @@ body[data-vol="2"] {
   --am-bg-photo: url("../images/hero/fondo-vol2.jpeg");
   --am-bg-photo-opacity: 0.08;
   --am-bg-photo-blend: multiply;
-  --am-bg-photo-size: auto 100%;
+  --am-bg-photo-size: 100% 100%;
+  --am-bg-photo-scale: 1;
 }
 
 /* ── Vol III – Verde Oscuro ── */
