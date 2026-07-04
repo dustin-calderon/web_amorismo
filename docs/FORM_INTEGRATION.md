@@ -205,12 +205,14 @@ Mismo patrón que el contact form: quitar `disabled`, quitar `am-cta--disabled`,
 
 ### 7.3. Cloudflare Tunnel configurado ✅
 
-```yaml
-# /etc/cloudflared/config.yml
-  - hostname: news.amorismoelmusical.com
-    service: http://localhost:8090
-```
-Seguridad: Rutas `/s/` bloqueadas para proteger panel admin.
+> **IMPORTANTE**: El tunnel usa `source: cloudflare` (API-managed). Las ingress rules
+> del archivo local `/etc/cloudflared/config.yml` son **ignoradas**. Las reglas se
+> gestionan SOLO vía la API de Cloudflare (`PUT /cfd_tunnel/{id}/configurations`).
+
+**Ingress rules activas (API, versión 39):**
+1. `^/s(/.*)?$` → `http_status:403` (bloquear panel admin)
+2. `^/$` → `http_status:403` (bloquear landing)
+3. catch-all → `http://localhost:8090`
 
 ### 7.4. CORS: Transform Rule activa ✅
 
@@ -230,6 +232,7 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
 | 5 | **Form no Published** en Mautic | Verificar `isPublished: true` antes de deploy |
 | 6 | **Feedback `<p>`** debe existir cerca del formulario | Está en HTML; el JS también lo crea dinámicamente como fallback |
 | 7 | **Mautic API FieldCrate bug** | `lead_fields.properties IS NULL` causa 500 en CUALQUIER form save vía API. Fix: `UPDATE lead_fields SET properties = 'a:0:{}' WHERE properties IS NULL` |
+| 8 | **Tunnel source: cloudflare** ignora config local | Archivo `/etc/cloudflared/config.yml` define tunnel ID pero las ingress rules se leen de la API. Añadir hostnames vía `PUT /configurations`, no editando el YAML local |
 
 ---
 
@@ -242,8 +245,8 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
  4. ✅ MAUTIC → Segmento brand-amorismo (ID 14) + Form ID 18 (vía SQL)
  5. ✅ CODE   → FORM_ID = 18 en forms.js
  6. ✅ CODE   → Copy: "Newsletter de Amorismo" / botón "Entrar"
- 7. □ TEST   → Conservar evidencia de suscripción real → verificar contacto, tags y segmento en Mautic
- 8. ✅ TEST   → 190/190 tests passing
+ 7. ✅ TEST   → E2E verificado: POST → 200, contacto creado (ID 1355), tags `brand:amorismo` + `lead:newsletter`, segmento `brand-amorismo` ✅
+ 8. ✅ TEST   → 191/191 tests passing
  9. ✅ DEPLOY → Pushed to deploy branch
 10. ✅ DOC    → Este documento actualizado
 ```
