@@ -1,11 +1,71 @@
 /* ===== Volume Pages – Amorismo ===== */
-/* Sections: Synopsis, Cast (reuses components), Reviews, Contact (reuses home.css) */
+/* Sections: Vol hero accents, Synopsis, Cast (reuses components), Reviews */
+
+/* ===== Editorial Volume Hero ===== */
+.am-volume-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.am-volume-hero::before {
+  content: '';
+  position: absolute;
+  inset: var(--am-sp-6);
+  border: 1px solid var(--am-home-border);
+  border-radius: var(--am-radius-sm);
+  pointer-events: none;
+}
+
+.am-volume-hero .am-hero__grid {
+  position: relative;
+}
+
+.am-volume-hero .am-hero__visual {
+  position: relative;
+}
+
+.am-volume-hero .am-hero__visual::after {
+  content: '';
+  position: absolute;
+  width: 56%;
+  height: 72%;
+  right: 10%;
+  bottom: -4%;
+  background: var(--am-home-accent-soft);
+  opacity: 0.16;
+  filter: blur(42px);
+  z-index: -1;
+}
+
+.am-volume-hero .am-hero__image {
+  max-width: 540px;
+  transform: rotate(-1.5deg);
+}
+
+.am-volume-hero .am-hero__body {
+  max-width: 520px;
+}
+
+.am-volume-hero .am-hero__copy {
+  font-family: var(--am-font-title);
+  font-size: clamp(2rem, 4.2vw, 4rem);
+  font-style: italic;
+  line-height: 1.04;
+  max-width: 8.5em;
+}
 
 /* ===== Synopsis ===== */
 .am-synopsis {
   padding: var(--am-sp-8) var(--am-sp-6);
   max-width: var(--am-max-w);
   margin: 0 auto;
+}
+
+.am-volume-story__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  gap: clamp(var(--am-sp-6), 5vw, var(--am-sp-8));
+  align-items: center;
 }
 
 .am-synopsis__heading {
@@ -39,6 +99,92 @@
   margin: var(--am-sp-6) 0 0;
   padding-top: var(--am-sp-4);
   border-top: 1px solid var(--am-home-border);
+}
+
+.am-volume-story__quote {
+  position: relative;
+  margin: 0;
+  padding: clamp(var(--am-sp-5), 4vw, var(--am-sp-8)) 0 clamp(var(--am-sp-5), 4vw, var(--am-sp-8)) var(--am-sp-6);
+  border-left: 1px solid var(--am-home-accent-soft);
+}
+
+.am-volume-story__quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.15em;
+  left: var(--am-sp-4);
+  color: var(--am-home-accent-soft);
+  font-family: var(--am-font-title);
+  font-size: clamp(5rem, 10vw, 8rem);
+  line-height: 1;
+  opacity: 0.28;
+}
+
+.am-volume-story__quote blockquote {
+  position: relative;
+  color: var(--am-home-text);
+  font-family: var(--am-font-title);
+  font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-style: italic;
+  line-height: 1.12;
+  margin: 0;
+}
+
+.am-volume-story__quote figcaption {
+  color: var(--am-home-text-muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin-top: var(--am-sp-5);
+  text-transform: uppercase;
+}
+
+.am-gallery--editorial .am-section-label {
+  margin-bottom: var(--am-sp-5);
+}
+
+.am-gallery--editorial .am-gallery__thumbs {
+  border-top: 1px solid var(--am-home-border);
+  padding-top: var(--am-sp-5);
+}
+
+.am-gallery--editorial .am-gallery__frame {
+  background: transparent;
+  border: 1px solid var(--am-home-border);
+}
+
+@media (max-width: 768px) {
+  .am-volume-hero::before {
+    inset: var(--am-sp-3);
+  }
+
+  .am-volume-hero .am-hero__image {
+    transform: none;
+  }
+
+  .am-volume-hero .am-hero__body {
+    align-items: center;
+    max-width: none;
+  }
+
+  .am-volume-hero .am-hero__copy {
+    max-width: 11em;
+  }
+
+  .am-volume-story__grid {
+    grid-template-columns: 1fr;
+    gap: var(--am-sp-6);
+  }
+
+  .am-volume-story__quote {
+    padding: var(--am-sp-5) 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--am-home-accent-soft);
+  }
+
+  .am-volume-story__quote::before {
+    left: 0;
+  }
 }
 
 /* ===== Cast Section (extends am-person components) ===== */
