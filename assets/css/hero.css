@@ -80,7 +80,7 @@
 
 /* Vol I — dark burdeos atmosphere */
 .am-landing-hero__photo--vol1 {
-  left: 28%;
+  left: 33%;
   width: 42%;
   object-position: center;
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 68%, transparent 100%);
