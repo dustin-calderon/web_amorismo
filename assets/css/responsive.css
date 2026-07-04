@@ -127,9 +127,28 @@
 /* ── ≤ 480px — Phone portrait ──────────────────────── */
 @media (max-width: 480px) {
   /* Nav */
-  .am-nav { padding: 0 var(--am-sp-3); }
-  .am-nav__links { max-width: calc(100vw - 7rem); }
+  .am-nav {
+    grid-template-columns: 1fr;
+    padding: var(--am-sp-2) var(--am-sp-3);
+    gap: var(--am-sp-2);
+  }
+  .am-nav__menu {
+    grid-column: 1;
+    justify-self: center;
+    max-width: calc(100vw - 5.5rem);
+    background: var(--am-nav-bg);
+    box-shadow: var(--am-shadow-nav-logo);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  .am-nav__mail {
+    position: absolute;
+    top: var(--am-sp-2);
+    right: var(--am-sp-3);
+  }
+  .am-nav__links { max-width: calc(100vw - 3rem); }
   .am-nav__link { min-width: 54px; padding: var(--am-sp-2) var(--am-sp-1); font-size: 0.6875rem; }
+  .am-nav__menu-link { padding: var(--am-sp-2) 0.65rem; }
 
   /* Landing Hero — centered, simplified triptych */
   .am-landing-hero {
@@ -137,6 +156,7 @@
     padding-left: var(--am-sp-4);
     padding-right: var(--am-sp-4);
     align-items: center;
+    justify-content: center;
     padding-bottom: clamp(var(--am-sp-6), 12vh, 6rem);
   }
   .am-landing-hero__content { align-items: center; text-align: center; max-width: 100%; }
@@ -199,6 +219,8 @@
 @media (max-width: 360px) {
   .am-nav__links { max-width: calc(100vw - 5.5rem); }
   .am-nav__link { min-width: 44px; font-size: 0.625rem; letter-spacing: 0.02em; }
+  .am-nav__menu-link { padding: var(--am-sp-2) 0.5rem; font-size: 0.6rem; letter-spacing: 0.04em; }
+  .am-nav__mail { width: 36px; min-width: 36px; min-height: 36px; }
   .am-landing-hero__logo { width: clamp(110px, 32vw, 140px); }
   .am-landing-hero__form { margin-top: var(--am-sp-4); }
   .am-statement { padding: var(--am-sp-5) var(--am-sp-2); }
