@@ -140,7 +140,7 @@ Compositor, director musical y pedagogo peruano afincado en España. Especializa
 ```
 
 ```text
-Su grupo vocal 6ID fue finalista en Got Talent 7 España y subcampeón del mundo en la ICCa World Competition. Su música suena en Netflix (serie Élite). Ganador del BroadwayWorld Award al Mejor Musical. Desde 2026, dirige el CITEM, escuela online de referencia para teatro musical hispanohablante.
+Su grupo vocal 6ID fue finalista en Got Talent 7 España y subcampeón del mundo en la ICCa World Competition. Su música suena en Netflix (serie Élite). Ganador del BroadwayWorld Award al Mejor Musical. Desde 2026, dirige el CITEM, el ecosistema digital para artistas, creadores y escuelas de teatro musical.
 ```
 
 #### David Gregory
@@ -488,7 +488,7 @@ Su grupo vocal 6ID fue finalista en Got Talent 7 España (Telecinco, 2022) y sub
 
 Como compositor, destaca su obra AMORISMO —teatro musical interactivo— que ha sido interpretada en diferentes ciudades de España y Perú. Ganador del BroadwayWorld Award al Mejor Musical. Ha sido director musical y pianista en producciones como La Vida Chulapa (Veranos de la Villa), Jekyll & Hyde, Annie, Tina Turner — El Musical y Un Chico de Revista, entre otros.
 
-Desde 2026, dirige el CITEM (Centro Iberoamericano de Teatro Musical), una escuela online de referencia para actores y compositores de teatro musical hispanohablantes.
+Desde 2026, dirige el CITEM, el ecosistema digital para artistas, creadores y escuelas de teatro musical.
 
 ### David Gregory
 

@@ -173,7 +173,7 @@ Fuente: Dustin/David desde web Amorismo; Alberto desde `alberto-frias.com` o mat
 
 Compositor, director musical y pedagogo peruano afincado en España. Especializado en teatro musical, ha trabajado con las principales compañías del sector en Madrid y Gran Vía. Ha sido director musical en producciones como **La Vida Chulapa** (Veranos de la Villa), **Jekyll & Hyde**, **Annie**, **Tina Turner - El Musical** y **Un Chico de Revista**.
 
-Su grupo vocal 6ID fue finalista en **Got Talent 7 España** y subcampeón del mundo en la **ICCa World Competition**. Su música suena en Netflix, en la serie **Élite**. Ganador del **BroadwayWorld Award al Mejor Musical**. Desde 2026, dirige el **CITEM**, escuela online de referencia para teatro musical hispanohablante.
+Su grupo vocal 6ID fue finalista en **Got Talent 7 España** y subcampeón del mundo en la **ICCa World Competition**. Su música suena en Netflix, en la serie **Élite**. Ganador del **BroadwayWorld Award al Mejor Musical**. Desde 2026, dirige el **CITEM**, el ecosistema digital para artistas, creadores y escuelas de teatro musical.
 
 ### David Gregory
 
