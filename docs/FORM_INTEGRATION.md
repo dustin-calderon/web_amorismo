@@ -49,6 +49,7 @@ Los formularios están visualmente activos:
 - Botones con texto `Entrar`.
 - Copy visible: `Newsletter de Amorismo`.
 - Feedback accesible: `<p class="am-contact__feedback" aria-live="polite"></p>`.
+- Línea de consentimiento bajo cada formulario: `<p class="am-contact__legal">` dice que al dejar el correo te suscribes y que se miden aperturas y clics, y enlaza la política de `dustincalderon.com/legal/privacidad/`, que lleva el detalle. Sin casillas: el acto es suscribirse. El test 8.7b lo exige en cada formulario.
 - Script cargado: `assets/js/forms.js`.
 
 El backend está configurado con `FORM_ID = 18` apuntando a `https://news.amorismoelmusical.com`.
@@ -246,7 +247,7 @@ Headers: `Access-Control-Allow-Origin: https://amorismoelmusical.com`
  5. ✅ CODE   → FORM_ID = 18 en forms.js
  6. ✅ CODE   → Copy: "Newsletter de Amorismo" / botón "Entrar"
  7. ✅ TEST   → E2E verificado (2026-07-04): POST → 302, contacto creado (ID 1357), tags `brand:amorismo` + `lead:newsletter`, segmento `brand-amorismo`, contacto eliminado tras test ✅
- 8. ✅ TEST   → 209/209 tests passing
+ 8. ✅ TEST   → `node --test tests/audit.test.js` en verde
  9. ✅ DEPLOY → Pushed to deploy branch
 10. ✅ DOC    → Este documento actualizado
 ```

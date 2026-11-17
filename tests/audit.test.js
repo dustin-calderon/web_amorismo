@@ -827,6 +827,16 @@ describe('8. Regresiones funcionales', () => {
     });
   });
 
+  test('8.7b - Cada formulario dice junto al botón qué se mide y enlaza la política, sin casillas', () => {
+    ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html', 'vol-4.html'].forEach(page => {
+      const html = readFile(page);
+      const forms = html.match(/<\/form>/g).length;
+      const lines = html.match(/<\/form>\s*<p class="am-contact__legal">[^<]*medimos si abres nuestros correos y qué enlaces pulsas[^<]*<a href="https:\/\/dustincalderon\.com\/legal\/privacidad\/"/g) || [];
+      assert.strictEqual(lines.length, forms, `${page}: cada formulario lleva su línea de consentimiento`);
+      assert.ok(!html.includes('type="checkbox"'), `${page}: el acto es suscribirse, sin casillas`);
+    });
+  });
+
   test('8.7 - Los formularios de correo están activos con backend Mautic', () => {
     const pagesWithForms = ['index.html', 'vol-1.html', 'vol-2.html', 'vol-3.html', 'vol-4.html'];
     pagesWithForms.forEach(page => {

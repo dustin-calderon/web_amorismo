@@ -52,6 +52,20 @@
   background: var(--am-control-focus-bg);
 }
 
+/* Línea de consentimiento, bajo cada formulario: qué se mide al suscribirse y enlace a la política */
+.am-contact__legal {
+  margin: var(--am-sp-3) 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--am-home-text-muted);
+}
+
+.am-contact__legal a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .am-contact__feedback {
   margin-top: var(--am-sp-4);
   font-size: 0.875rem;
